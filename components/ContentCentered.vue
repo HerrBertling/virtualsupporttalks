@@ -7,16 +7,16 @@
 </template>
 <script>
 export default {
-  name: 'CenteredContent',
+  name: "CenteredContent",
 
   props: {
     backgroundColor: {
       type: String,
-      default: '#fff',
+      default: "#fff",
     },
     textColor: {
       type: String,
-      default: '#000',
+      default: "#000",
     },
   },
 
@@ -25,10 +25,10 @@ export default {
       return {
         backgroundColor: this.backgroundColor,
         color: this.textColor,
-      }
+      };
     },
   },
-}
+};
 </script>
 <style scoped>
 .cb_centeredContent {

@@ -16,28 +16,28 @@
 
 <script>
 export default {
-  name: 'LayoutFooter',
+  name: "LayoutFooter",
 
   props: {
     footerNav: {
       type: Array,
       default: () => [
         {
-          link: '/impressum',
-          title: 'Impressum',
+          link: "/impressum",
+          title: "Impressum",
         },
         {
-          link: '/datenschutz',
-          title: 'Datenschutz',
+          link: "/datenschutz",
+          title: "Datenschutz",
         },
         {
-          link: '/cookies',
-          title: 'Cookie-Richtlinie',
+          link: "/cookies",
+          title: "Cookie-Richtlinie",
         },
       ],
     },
   },
-}
+};
 </script>
 
 <style scoped>

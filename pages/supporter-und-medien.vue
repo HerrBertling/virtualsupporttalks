@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <section class="tileSection">
-      <h3>Unsere Supporter</h3>
+      <h2>Unsere Supporter</h2>
       <div class="tiles">
         <SupporterTile
           v-for="tile in supporter"
@@ -14,26 +14,36 @@
     </section>
     <ContentBlocks :blocks="content" />
     <section class="tileSection">
-      <h3>Redezeit in den Medien</h3>
+      <h2>Redezeit in den Medien</h2>
+      <div class="tiles">
+        <SupporterTile
+          v-for="medium in media"
+          :key="medium.url"
+          :url="medium.url"
+        >
+          <nuxt-content :document="medium" />
+        </SupporterTile>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SupportMedia',
+  name: "SupportMedia",
 
   meta: {
     inMainNav: true,
-    title: 'Supporter und Medien',
+    title: "Supporter und Medien",
   },
 
   async asyncData({ $content }) {
-    const supporter = await $content('supporter').fetch()
-    const content = await $content('supporter-content').fetch()
-    return { supporter, content }
+    const supporter = await $content("supporter").fetch();
+    const content = await $content("supporter-content").fetch();
+    const media = await $content("medien").fetch();
+    return { supporter, content, media };
   },
-}
+};
 </script>
 
 <style scoped>
@@ -51,6 +61,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   grid-template-rows: auto;
-  grid-gap: 1rem;
+  grid-column-gap: 1rem;
+  grid-row-gap: 2rem;
 }
 </style>

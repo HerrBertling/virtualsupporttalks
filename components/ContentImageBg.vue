@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  name: 'ContentImageBg',
+  name: "ContentImageBg",
 
   props: {
     backgroundImage: {
@@ -21,10 +21,10 @@ export default {
 
   computed: {
     bgImg() {
-      return require(`~/${this.backgroundImage}`)
+      return require(`~/${this.backgroundImage}`);
     },
   },
-}
+};
 </script>
 <style scoped>
 .cb_contentImageBg {
@@ -46,7 +46,7 @@ export default {
 }
 
 .cb_contentImageBg::after {
-  content: '';
+  content: "";
   display: block;
   background-color: rgba(192, 192, 192, 0.7);
   position: absolute;

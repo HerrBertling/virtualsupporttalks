@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'ContentWithFullSizeImage',
+  name: "ContentWithFullSizeImage",
 
   props: {
     backgroundColor: {
@@ -30,19 +30,19 @@ export default {
     },
     imagePlacement: {
       type: String,
-      default: 'left',
+      default: "left",
     },
   },
 
   computed: {
     img() {
-      return require(`~/${this.image}`)
+      return require(`~/${this.image}`);
     },
     imageRight() {
-      return this.imagePlacement === 'right'
+      return this.imagePlacement === "right";
     },
   },
-}
+};
 </script>
 
 <style scoped>

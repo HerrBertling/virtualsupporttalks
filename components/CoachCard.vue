@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'CoachCard',
+  name: "CoachCard",
 
   props: {
     coach: {
@@ -35,13 +35,13 @@ export default {
 
   computed: {
     usedImage() {
-      if (this.coach.image.startsWith('/static/')) {
-        return this.coach.image.substring(7)
+      if (this.coach.image.startsWith("/static/")) {
+        return this.coach.image.substring(7);
       }
-      return this.coach.image
+      return this.coach.image;
     },
   },
-}
+};
 </script>
 
 <style scoped>

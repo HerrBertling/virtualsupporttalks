@@ -21,26 +21,26 @@
 
 <script>
 export default {
-  name: 'ContributorPage',
+  name: "ContributorPage",
 
   async asyncData({ $content, params }) {
     const contribData = await $content(
       `contributors/${params.contributor}`
-    ).fetch()
-    return { contribData }
+    ).fetch();
+    return { contribData };
   },
 
   computed: {
     name() {
-      const { firstName, lastName } = this.contribData
-      return `${firstName} ${lastName}`
+      const { firstName, lastName } = this.contribData;
+      return `${firstName} ${lastName}`;
     },
 
     img() {
-      return require(`~/${this.contribData.image}`)
+      return require(`~/${this.contribData.image}`);
     },
   },
-}
+};
 </script>
 
 <style scoped>

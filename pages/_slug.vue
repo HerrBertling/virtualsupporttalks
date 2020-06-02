@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: 'BasicContent',
+  name: "BasicContent",
 
   async asyncData({ $content, params }) {
-    const doc = await $content(params.slug).fetch()
-    return { doc }
+    const doc = await $content(params.slug).fetch();
+    return { doc };
   },
-}
+};
 </script>
 
 <style scoped>

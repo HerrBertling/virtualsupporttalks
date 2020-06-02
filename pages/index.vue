@@ -16,13 +16,11 @@
 <script>
 export default {
   async asyncData({ $content }) {
-    const homeContent = await $content('home')
-      .sortBy('order')
-      .fetch()
-    const contributors = await $content('contributors').fetch()
-    return { homeContent, contributors }
+    const homeContent = await $content("home").sortBy("order").fetch();
+    const contributors = await $content("contributors").fetch();
+    return { homeContent, contributors };
   },
-}
+};
 </script>
 
 <style scoped>

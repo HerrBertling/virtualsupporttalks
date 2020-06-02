@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'SupporterTile',
+  name: "SupporterTile",
 
   props: {
     url: {
@@ -20,7 +20,7 @@ export default {
       default: null,
     },
   },
-}
+};
 </script>
 
 <style scoped>
@@ -29,6 +29,7 @@ export default {
   align-items: center;
   justify-content: center;
   transition: opacity 300ms ease-in;
+  text-decoration: none;
 }
 
 .supporter:hover,
@@ -39,6 +40,12 @@ export default {
 
 .supporter >>> p {
   margin: 0;
+  text-align: center;
+}
+
+.supporter >>> h3 {
+  margin: 0;
+  text-align: center;
 }
 
 .supporter >>> img {

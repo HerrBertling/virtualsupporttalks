@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'ContributorCard',
+  name: "ContributorCard",
 
   props: {
     firstName: {
@@ -40,13 +40,13 @@ export default {
 
   computed: {
     img() {
-      return require(`~/${this.image}`)
+      return require(`~/${this.image}`);
     },
     name() {
-      return `${this.firstName} ${this.lastName}`
+      return `${this.firstName} ${this.lastName}`;
     },
   },
-}
+};
 </script>
 
 <style scoped>

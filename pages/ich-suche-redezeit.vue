@@ -4,7 +4,7 @@
     <div class="coachSearch">
       <label>
         <strong>Coach-Liste durchsuchen</strong>
-        <input v-model="searchInput" type="search" @input="$fetch" />
+        <input v-model.lazy="searchInput" type="search" />
       </label>
     </div>
     <section v-if="searchInput" class="coachesList">
@@ -27,43 +27,47 @@
 export default {
   meta: {
     inMainNav: true,
-    title: 'Ich suche Redezeit',
+    title: "Ich suche Redezeit",
   },
 
   async fetch() {
-    this.coachList = await this.$content('coaches')
+    this.coachList = await this.$content("coaches")
       .search(this.searchInput)
-      .fetch()
+      .fetch();
   },
 
   async asyncData({ $content }) {
-    const content = await $content('need-support')
-      .sortBy('order')
-      .fetch()
-    const coaches = await $content('coaches')
-      .sortBy('name')
-      .fetch()
-    return { content, coaches }
+    const content = await $content("need-support").sortBy("order").fetch();
+    const coaches = await $content("coaches").sortBy("name").fetch();
+    return { content, coaches };
   },
 
   data() {
     return {
-      searchInput: '',
+      searchInput: "",
       coachList: [],
-    }
+    };
+  },
+
+  watch: {
+    searchInput() {
+      this.$fetch();
+    },
   },
 
   head() {
     return {
-      title: 'Ich suche Redezeit',
-    }
+      title: "Ich suche Redezeit",
+    };
   },
-}
+};
 </script>
 
 <style scoped>
 .coachSearch {
   padding: 2rem 1rem;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .coachesList {

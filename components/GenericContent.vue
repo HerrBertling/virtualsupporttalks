@@ -5,8 +5,8 @@
 </template>
 <script>
 export default {
-  name: 'GenericContent',
-}
+  name: "GenericContent",
+};
 </script>
 <style scoped>
 .cb_genericContent {
