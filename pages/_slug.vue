@@ -9,7 +9,7 @@ export default {
   name: "BasicContent",
 
   async asyncData({ $content, params }) {
-    const doc = await $content(params.slug).fetch();
+    const doc = await $content(`pages/${params.slug}`).fetch();
     return { doc };
   },
 };

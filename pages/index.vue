@@ -20,6 +20,13 @@ export default {
     const contributors = await $content("contributors").fetch();
     return { homeContent, contributors };
   },
+  head() {
+    return {
+      script: [
+        { src: "https://identity.netlify.com/v1/netlify-identity-widget.js" },
+      ],
+    };
+  },
 };
 </script>
 
