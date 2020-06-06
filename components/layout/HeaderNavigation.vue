@@ -10,7 +10,7 @@
       <span :class="$style.burger"></span>
     </button>
     <ul :class="[$style.headerNav, navExpanded && $style.menuExpanded]">
-      <li v-for="item in navigationItems" :key="item.path" @click="toggleNav">
+      <li v-for="item in navigationItems" :key="item.path" @click="closeNav">
         <nuxt-link :to="item.path">
           {{ item.title }}
         </nuxt-link>
@@ -51,6 +51,9 @@ export default {
   methods: {
     toggleNav() {
       this.navExpanded = !this.navExpanded;
+    },
+    closeNav() {
+      this.navExpanded = false;
     },
   },
 };
