@@ -1,14 +1,14 @@
 <template>
-  <article class="contWrapper plzAnimateMe">
+  <article :class="[$style.contWrapper, $style.plzAnimateMe]">
     <nuxt-link :to="permalink">
-      <figure class="contImage" role="figure" :aria-label="name">
+      <figure :class="$style.contImage" role="figure" :aria-label="name">
         <img :src="img" :alt="name" loading="lazy" />
         <figcaption>{{ name }}</figcaption>
       </figure>
     </nuxt-link>
     <div>
       <h3>{{ name }}</h3>
-      <nuxt-link class="button" :to="permalink">
+      <nuxt-link :class="$style.button" :to="permalink">
         Mehr zu {{ firstName }}
       </nuxt-link>
     </div>
@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .contImage figcaption {
   position: absolute;
   height: 1px;

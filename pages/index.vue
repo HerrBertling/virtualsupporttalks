@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentBlocks :blocks="homeContent" />
-    <section class="contributorList">
+    <section :class="$style.contributorList">
       <ContributorCard
         v-for="{ firstName, lastName, permalink, image } in contributors"
         :key="`${lastName}_${firstName}`"
@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .contributorList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

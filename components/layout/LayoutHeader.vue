@@ -1,9 +1,9 @@
 <template>
   <header
-    id="header"
     :class="[
-      hasScrolled && 'hasScrolled',
-      whiteBackground && 'whiteBackground',
+      $style.header,
+      hasScrolled && $style.hasScrolled,
+      whiteBackground && $style.whiteBackground,
     ]"
   >
     <em>
@@ -73,8 +73,8 @@ export default {
 };
 </script>
 
-<style scoped>
-#header {
+<style module>
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -90,7 +90,7 @@ export default {
   font-size: 16px;
 }
 
-#header::after {
+.header::after {
   content: "";
   display: block;
   position: absolute;
@@ -104,26 +104,26 @@ export default {
   transition: opacity 300ms ease-in;
 }
 
-#header.hasScrolled {
+.header.hasScrolled {
   height: 64px;
 }
 
-#header.hasScrolled::after,
-#header.whiteBackground::after {
+.header.hasScrolled::after,
+.header.whiteBackground::after {
   opacity: 1;
 }
 
-#header em,
-#header nav {
+.header em,
+.header nav {
   position: relative;
   z-index: 2;
 }
 
-#header.hasScrolled img {
+.header.hasScrolled img {
   transform: scale(0.8);
 }
 
-#header img {
+.header img {
   max-height: 48px;
   width: auto;
   transition: transform 300ms ease-in;

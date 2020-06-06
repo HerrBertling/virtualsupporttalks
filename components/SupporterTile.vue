@@ -37,7 +37,6 @@ export default {
 .supporter:active {
   opacity: 0.8;
 }
-
 .supporter >>> p {
   margin: 0;
   text-align: center;

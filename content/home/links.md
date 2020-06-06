@@ -1,20 +1,12 @@
 ---
 title: Links
-type: twoImages
+type: TwoImages
 order: 30
 backgroundColor: rgb(255, 255, 255)
+image1: assets/img/looking-for-talk.jpg
+text1: Ich suche Redezeit
+link1: /ich-suche-redezeit
+image2: assets/img/offering-talk.jpg
+text2: Ich biete Redezeit
+link2: /ich-biete-redezeit
 ---
-
-<div class="img_link_wrapper">
-<nuxt-link class="img_link plzAnimateMe" href="/ich-suche-redezeit/">
-  <img src="~/assets/img/looking-for-talk.jpg" alt="Ich suche Redezeit" />
-  
-  ## Ich suche Redezeit
-</nuxt-link>
-
-<nuxt-link class="img_link plzAnimateMe" href="/ich-biete-redezeit/">
-  <img src="~/assets/img/offering-talk.jpg" alt="Ich biete Redezeit" />
-  
-  ## Ich biete Redezeit
-</nuxt-link>
-</div>

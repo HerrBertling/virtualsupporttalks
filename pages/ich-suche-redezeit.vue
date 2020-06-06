@@ -1,13 +1,13 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <div class="coachSearch">
+    <div :class="$style.coachSearch">
       <label>
         <strong>Coach-Liste durchsuchen</strong>
         <input v-model.lazy="searchInput" type="search" />
       </label>
     </div>
-    <section v-if="searchInput" class="coachesList">
+    <section v-if="searchInput" :class="$style.coachesList">
       <CoachCard
         v-for="(coach, index) in coachList"
         :key="index"
@@ -16,7 +16,7 @@
         <nuxt-content :document="coach" />
       </CoachCard>
     </section>
-    <section v-else class="coachesList">
+    <section v-else :class="$style.coachesList">
       <CoachCard v-for="(coach, index) in coaches" :key="index" :coach="coach">
         <nuxt-content :document="coach" />
       </CoachCard>
@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .coachSearch {
   padding: 2rem 1rem;
   max-width: 1280px;

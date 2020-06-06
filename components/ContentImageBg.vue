@@ -1,9 +1,9 @@
 <template>
   <section
-    class="cb_contentImageBg"
+    :class="$style.cb_contentImageBg"
     :style="{ backgroundImage: `url(${bgImg})` }"
   >
-    <div class="cb_contentImageBg_content">
+    <div :class="$style.cb_contentImageBg_content">
       <slot />
     </div>
   </section>
@@ -26,7 +26,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style module>
 .cb_contentImageBg {
   position: relative;
   display: flex;

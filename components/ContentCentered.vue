@@ -1,6 +1,6 @@
 <template>
-  <section class="cb_centeredContent" :style="styleObject">
-    <div class="cb_centeredContent_content">
+  <section :class="$style.cb_centeredContent" :style="styleObject">
+    <div :class="$style.cb_centeredContent_content">
       <slot />
     </div>
   </section>
@@ -30,7 +30,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style module>
 .cb_centeredContent {
   padding: 1rem;
 }

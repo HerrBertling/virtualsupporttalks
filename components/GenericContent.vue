@@ -1,5 +1,5 @@
 <template>
-  <section class="cb_genericContent">
+  <section :class="$style.cb_genericContent">
     <slot />
   </section>
 </template>
@@ -8,7 +8,7 @@ export default {
   name: "GenericContent",
 };
 </script>
-<style scoped>
+<style module>
 .cb_genericContent {
   max-width: 1280px;
   width: 100vw;

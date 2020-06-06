@@ -1,18 +1,19 @@
 <template>
-  <nav aria-role="navigation">
+  <nav :class="$style.nav" aria-role="navigation">
     <button
-      id="navToggle"
-      :class="['menuToggle', navExpanded && 'menuActive']"
+      :class="[$style.menuToggle, navExpanded && $style.menuActive]"
       :aria-expanded="navExpanded"
       aria-controls="navigation"
       @click="toggleNav"
     >
-      <span class="menuText">Menu</span>
-      <span class="burger"></span>
+      <span :class="$style.menuText">Menu</span>
+      <span :class="$style.burger"></span>
     </button>
-    <ul id="navigation" :class="['headerNav', navExpanded && 'menuExpanded']">
-      <li v-for="item in navigationItems" :key="item.path">
-        <nuxt-link :to="item.path">{{ item.title }}</nuxt-link>
+    <ul :class="[$style.headerNav, navExpanded && $style.menuExpanded]">
+      <li v-for="item in navigationItems" :key="item.path" @click="toggleNav">
+        <nuxt-link :to="item.path">
+          {{ item.title }}
+        </nuxt-link>
       </li>
     </ul>
   </nav>
@@ -55,7 +56,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .headerNav {
   margin: 0;
   padding: 0;
@@ -167,7 +168,7 @@ export default {
     left: auto;
   }
 
-  nav {
+  .nav {
     flex-grow: 1;
     max-width: 70vw;
   }

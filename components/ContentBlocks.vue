@@ -31,6 +31,18 @@
       >
         <nuxt-content :document="block" />
       </ContentWithFullSizeImage>
+      <TwoImages
+        v-else-if="block.type === 'TwoImages'"
+        :key="index"
+        :image1="block.image1"
+        :image2="block.image2"
+        :text1="block.text1"
+        :text2="block.text2"
+        :link1="block.link1"
+        :link2="block.link2"
+      >
+        <pre>{{ block }}</pre>
+      </TwoImages>
       <GenericContent v-else :key="index" v-bind="block">
         <pre>{{ block }}</pre>
       </GenericContent>

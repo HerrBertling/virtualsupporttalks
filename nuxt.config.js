@@ -55,6 +55,17 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [],
+
+  content: {
+    markdown: {
+      basePlugins: [
+        "remark-squeeze-paragraphs",
+        "remark-slug",
+        "remark-external-links",
+        "remark-footnotes",
+      ],
+    },
+  },
   /*
    ** Nuxt.js dev-modules
    */

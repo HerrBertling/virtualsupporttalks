@@ -1,5 +1,5 @@
 <template>
-  <article class="basicContent">
+  <article :class="$style.basicContent">
     <nuxt-content :document="doc" />
   </article>
 </template>
@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .basicContent {
   padding: 6rem 1rem 3rem;
   min-height: 75vh;

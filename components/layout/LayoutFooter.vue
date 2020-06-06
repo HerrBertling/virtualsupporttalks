@@ -1,12 +1,12 @@
 <template>
-  <nav class="footerNav">
-    <ul class="footerNav_list">
+  <nav :class="$style.footerNav">
+    <ul :class="$style.footerNav_list">
       <li
         v-for="{ link, title } in footerNav"
         :key="link"
-        class="footerNav_item"
+        :class="$style.footerNav_item"
       >
-        <nuxt-link class="footerNav_link" :to="link">
+        <nuxt-link :class="$style.footerNav_link" :to="link">
           {{ title }}
         </nuxt-link>
       </li>
@@ -40,7 +40,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .footerNav {
   padding: 2rem;
   font-size: 0.8rem;

@@ -5,10 +5,16 @@
   >
     <img
       :src="img"
-      :class="['cb_contentFullSizeImg__image', imageRight && 'imageRight']"
+      :class="[
+        $style.cb_contentFullSizeImg__image,
+        imageRight && $style.imageRight,
+      ]"
     />
     <div
-      :class="['cb_contentFullSizeImg__content', imageRight && 'imageRight']"
+      :class="[
+        $style.cb_contentFullSizeImg__content,
+        imageRight && $style.imageRight,
+      ]"
     >
       <slot />
     </div>
@@ -45,7 +51,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .cb_contentFullSizeImg {
   display: grid;
   grid-template-columns: 100vw;

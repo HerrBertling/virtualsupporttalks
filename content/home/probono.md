@@ -1,7 +1,7 @@
 ---
 title: Pro Bono
 type: ContentImageBg
-order: 30
+order: 20
 backgroundImage: assets/img/background_leaf.jpg
 ---
 

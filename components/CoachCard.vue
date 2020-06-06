@@ -1,21 +1,29 @@
 <template>
-  <article class="coachWrapper">
-    <figure class="coachImage" role="figure" :aria-label="coach.name">
-      <picture>
-        <source :srcset="usedImage" type="image/jpeg" />
-        <img :src="usedImage" :alt="coach.name" loading="lazy" />
-      </picture>
-      <figcaption>{{ coach.name }}</figcaption>
-    </figure>
-    <h3 class="title">
-      <a v-if="coach.url" :href="coach.url" target="_blank" rel="noopener">
+  <article :class="$style.coachWrapper">
+    <a
+      :href="coach.url ? coach.url : `mailto:${coach.email}`"
+      target="_blank"
+      rel="noopener"
+    >
+      <figure :class="$style.coachImage" role="figure" :aria-label="coach.name">
+        <picture>
+          <source :srcset="usedImage" type="image/jpeg" />
+          <img :src="usedImage" :alt="coach.name" loading="lazy" />
+        </picture>
+        <figcaption>{{ coach.name }}</figcaption>
+      </figure>
+    </a>
+    <a
+      :href="coach.url ? coach.url : `mailto:${coach.email}`"
+      target="_blank"
+      rel="noopener"
+      :class="$style.title"
+    >
+      <h3>
         {{ coach.name }}
-      </a>
-      <a v-else :href="`mailto:${coach.email}`">
-        {{ coach.name }}
-      </a>
-    </h3>
-    <div class="content">
+      </h3>
+    </a>
+    <div :class="$style.content">
       <p><strong>Meine Schwerpunkte:</strong></p>
       <slot />
     </div>
@@ -44,7 +52,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .coachWrapper {
   display: grid;
   grid-template-columns: 4rem 1fr;

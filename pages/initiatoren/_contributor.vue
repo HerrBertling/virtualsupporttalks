@@ -1,18 +1,18 @@
 <template>
-  <article class="contributorPage">
-    <figure class="contImage" role="figure" :aria-label="name">
+  <article :class="$style.contributorPage">
+    <figure :class="$style.contImage" role="figure" :aria-label="name">
       <picture>
         <source :srcset="img" type="image/jpeg" />
         <img :src="img" :alt="name" loading="lazy" />
       </picture>
       <figcaption>{{ name }}</figcaption>
     </figure>
-    <div class="contContent">
+    <div :class="$style.contContent">
       <h1>
         <a :href="contribData.website">{{ name }}</a>
       </h1>
       <nuxt-content :document="contribData" />
-      <a class="button" :href="contribData.website">
+      <a :class="$style.button" :href="contribData.website">
         Zur Webseite von {{ contribData.firstName }}
       </a>
     </div>
@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .contributorPage {
   display: grid;
   grid-template-columns: 1fr;

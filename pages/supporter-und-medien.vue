@@ -1,8 +1,8 @@
 <template>
-  <div class="wrapper">
-    <section class="tileSection">
+  <div :class="$style.wrapper">
+    <section :class="$style.tileSection">
       <h2>Unsere Supporter</h2>
-      <div class="tiles">
+      <div :class="$style.tiles">
         <SupporterTile
           v-for="tile in supporter"
           :key="tile.url"
@@ -13,9 +13,9 @@
       </div>
     </section>
     <ContentBlocks :blocks="content" />
-    <section class="tileSection">
+    <section :class="$style.tileSection">
       <h2>Redezeit in den Medien</h2>
-      <div class="tiles">
+      <div :class="$style.tiles">
         <SupporterTile
           v-for="medium in media"
           :key="medium.url"
@@ -46,7 +46,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style module>
 .wrapper {
   padding-top: 6rem;
 }

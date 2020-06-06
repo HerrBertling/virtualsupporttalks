@@ -1,9 +1,9 @@
 <template>
   <div
-    class="cb_pageHeader_wrapper"
+    :class="$style.cb_pageHeader_wrapper"
     :style="{ backgroundColor: backgroundColor }"
   >
-    <header class="cb_pageHeader" :style="styleObject">
+    <header :class="$style.cb_pageHeader" :style="styleObject">
       <slot />
     </header>
   </div>
@@ -36,7 +36,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style module>
 .cb_pageHeader_wrapper {
   padding-top: 120px;
 }
