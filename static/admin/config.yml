@@ -3,12 +3,14 @@ backend:
   branch: master
 
 media_folder: "static/img"
+public_folder: "/img"
 
 collections:
   - name: "coaches"
     label: "Coaches"
     label_singular: "Coach"
     folder: "content/coaches"
+    media_folder: "static/img/coaches"
     create: true
     slug: "{{slug}}"
     identifier_field: name
@@ -34,6 +36,7 @@ collections:
     label: "Startpage Blocks"
     label_singular: "Contentblock Startpage"
     folder: "content/home"
+    media_folder: "/assets/img"
     create: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
@@ -72,6 +75,7 @@ collections:
     label: "Need Support Blocks"
     label_singular: "Contentblock Need Support"
     folder: "content/need-support"
+    media_folder: "/assets/img"
     create: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
@@ -103,12 +107,6 @@ collections:
           label: "Hintergrundfarbe",
           name: "backgroundColor",
           widget: "string",
-          required: false,
-        }
-      - {
-          label: "English content",
-          name: "contentEn",
-          widget: "markdown",
           required: false,
         }
       - { label: "Inhalt", name: "body", widget: "markdown", required: false }
