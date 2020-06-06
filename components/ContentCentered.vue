@@ -32,7 +32,7 @@ export default {
 </script>
 <style module>
 .cb_centeredContent {
-  padding: 1rem;
+  padding: 3rem 1rem;
 }
 
 @media (min-width: 768px) {

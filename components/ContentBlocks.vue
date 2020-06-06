@@ -18,6 +18,7 @@
       <ContentImageBg
         v-else-if="block.type === 'ContentImageBg'"
         :key="index"
+        :with-padding-top="index === 0"
         :background-image="block.backgroundImage"
       >
         <nuxt-content :document="block" />

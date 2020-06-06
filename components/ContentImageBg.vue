@@ -3,7 +3,12 @@
     :class="$style.cb_contentImageBg"
     :style="{ backgroundImage: `url(${bgImg})` }"
   >
-    <div :class="$style.cb_contentImageBg_content">
+    <div
+      :class="[
+        $style.cb_contentImageBg_content,
+        withPaddingTop && $style.paddingTop,
+      ]"
+    >
       <slot />
     </div>
   </section>
@@ -16,6 +21,10 @@ export default {
     backgroundImage: {
       type: String,
       default: null,
+    },
+    withPaddingTop: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -43,6 +52,10 @@ export default {
   width: 100vw;
   margin: auto;
   z-index: 1;
+}
+
+.paddingTop {
+  padding: 7rem 1rem 3rem;
 }
 
 .cb_contentImageBg::after {
