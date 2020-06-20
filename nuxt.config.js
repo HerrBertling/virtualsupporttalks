@@ -1,5 +1,6 @@
 export default {
   mode: "universal",
+  target: "static",
   components: [{ path: "~/components", extensions: ["vue"] }],
   /*
    ** Headers of the page
@@ -74,8 +75,6 @@ export default {
     "@nuxtjs/eslint-module",
     // Doc: https://github.com/nuxt-community/stylelint-module
     "@nuxtjs/stylelint-module",
-    // TODO: Remove when upgrading to nuxt 2.13+
-    "@nuxt/components",
   ],
   /*
    ** Nuxt.js modules
