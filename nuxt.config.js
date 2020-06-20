@@ -1,5 +1,6 @@
 export default {
   mode: "universal",
+  target: "static",
   components: [{ path: "~/components", extensions: ["vue"] }],
   /*
    ** Headers of the page
