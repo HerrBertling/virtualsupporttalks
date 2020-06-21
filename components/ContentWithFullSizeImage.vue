@@ -1,6 +1,6 @@
 <template>
   <section
-    class="cb_contentFullSizeImg"
+    :class="$style.cb_contentFullSizeImg"
     :style="{ backgroundColor: backgroundColor }"
   >
     <img
