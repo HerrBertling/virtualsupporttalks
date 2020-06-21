@@ -3,7 +3,7 @@ name: Denise Brauer
 url: https://happy-mama-coach.com/
 image: /static/img/coaches/Denise_Brauer.jpg
 webp: /static/img/coaches/Denise_Brauer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

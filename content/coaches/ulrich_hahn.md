@@ -3,7 +3,7 @@ name: Ulrich Hahn
 email: joerghahn1061@gmail.com
 image: /static/img/coaches/Ulrich_Hahn.jpg
 webp: /static/img/coaches/Ulrich_Hahn.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

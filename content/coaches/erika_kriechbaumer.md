@@ -3,7 +3,7 @@ name: Erika Kriechbaumer
 url: http://www.themove.at
 image: /static/img/coaches/Erika_Kriechbaumer.jpg
 webp: /static/img/coaches/Erika_Kriechbaumer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

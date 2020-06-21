@@ -3,7 +3,7 @@ name: Sebastian Cramer
 url: http://www.sebastian-cramer.de
 image: /static/img/coaches/Sebastian_Cramer.jpg
 webp: /static/img/coaches/Sebastian_Cramer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

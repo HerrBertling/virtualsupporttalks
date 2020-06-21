@@ -3,7 +3,7 @@ name: Sandra Brauer
 url: https://sandrabrauer.de/
 image: /static/img/coaches/Sandra_Brauer.jpg
 webp: /static/img/coaches/Sandra_Brauer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

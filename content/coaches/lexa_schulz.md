@@ -3,7 +3,7 @@ name: Lexa Schulz
 url: http://www.lexaschulzcoaching.de
 image: /static/img/coaches/Lexa_Schulz.jpg
 webp: /static/img/coaches/Lexa_Schulz.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

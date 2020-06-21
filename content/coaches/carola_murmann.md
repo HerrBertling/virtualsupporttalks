@@ -3,7 +3,7 @@ name: Carola Murmann
 url: http://www.proveniens.de
 image: /static/img/coaches/Carola_Murmann.jpg
 webp: /static/img/coaches/Carola_Murmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

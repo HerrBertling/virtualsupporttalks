@@ -3,7 +3,7 @@ name: Stefanie Fink
 url: http://www.stefanie-fink.com
 image: /static/img/coaches/Stefanie_Fink.jpg
 webp: /static/img/coaches/Stefanie_Fink.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Bodo Mohr
 url: http://www.bodomohr.de
 image: /static/img/coaches/Bodo_Mohr.jpg
 webp: /static/img/coaches/Bodo_Mohr.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

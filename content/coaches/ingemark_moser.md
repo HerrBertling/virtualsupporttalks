@@ -3,7 +3,7 @@ name: Ingemark Moser
 url: http://www.ingemarkmoser.ch
 image: /static/img/coaches/Ingemark_Moser.jpg
 webp: /static/img/coaches/Ingemark_Moser.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Melanie Maksimovic
 url: http://www.steinzeit-baby.de
 image: /static/img/coaches/Melanie_Maksimovic.jpg
 webp: /static/img/coaches/Melanie_Maksimovic.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

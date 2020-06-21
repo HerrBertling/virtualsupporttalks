@@ -3,7 +3,7 @@ name: Holger Bubenheim
 email: kontakt@hb-training.de
 image: /static/img/coaches/Holger_Bubenheim.jpg
 webp: /static/img/coaches/Holger_Bubenheim.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

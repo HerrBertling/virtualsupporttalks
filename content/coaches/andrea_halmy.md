@@ -3,7 +3,7 @@ name: Andrea Halmy
 url: https://beyourbest4success.com/individuals/
 image: /static/img/coaches/Andrea_Halmy.jpg
 webp: /static/img/coaches/Andrea_Halmy.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

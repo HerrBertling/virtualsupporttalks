@@ -3,7 +3,7 @@ name: Pia Graf
 email: pia.graf@emmtrix.com
 image: /static/img/coaches/Pia_Graf.jpg
 webp: /static/img/coaches/Pia_Graf.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Bernd Sakotnik
 email: bernd@sakotnik.com
 image: /static/img/coaches/Bernd_Sakotnik.jpg
 webp: /static/img/coaches/Bernd_Sakotnik.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Werner Lucas
 url: http://werner-lucas.de
 image: /static/img/coaches/Werner_Lucas.jpg
 webp: /static/img/coaches/Werner_Lucas.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

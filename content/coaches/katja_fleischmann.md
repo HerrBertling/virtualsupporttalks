@@ -3,7 +3,7 @@ name: Katja Fleischmann
 url: https://www.katjafleischmann.de/
 image: /static/img/coaches/Katja_Fleischmann.jpg
 webp: /static/img/coaches/Katja_Fleischmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

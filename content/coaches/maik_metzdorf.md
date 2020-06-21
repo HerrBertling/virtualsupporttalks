@@ -3,7 +3,7 @@ name: Maik Metzdorf
 url: http://www.maik-metzdorf-coaching.de
 image: /static/img/coaches/Maik_Metzdorf.jpg
 webp: /static/img/coaches/Maik_Metzdorf.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Georg Tscharke
 url: http://www.jobtrain.bayern
 image: /static/img/coaches/Georg_Tscharke.jpg
 webp: /static/img/coaches/Georg_Tscharke.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

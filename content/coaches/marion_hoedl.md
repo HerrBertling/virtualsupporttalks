@@ -3,7 +3,7 @@ name: Marion Hödl
 url: https://nlp-zentrum-muenchen.de/nlp-trainer-muenchen/
 image: /static/img/coaches/Marion_Hoedl.jpg
 webp: /static/img/coaches/Marion_Hoedl.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Julia Heinrichs
 url: http://www.facetta.ch
 image: /static/img/coaches/Julia_Heinrichs.jpg
 webp: /static/img/coaches/Julia_Heinrichs.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

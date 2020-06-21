@@ -3,7 +3,7 @@ name: Imke Lambrecht
 url: http://www.imke-lambrecht.coach
 image: /static/img/coaches/Imke_Lambrecht.jpg
 webp: /static/img/coaches/Imke_Lambrecht.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

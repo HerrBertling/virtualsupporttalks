@@ -3,7 +3,7 @@ name: Olga Gerashchenko
 url: https://www.akewa.eu
 image: /static/img/coaches/Olga_Gerashchenko.jpg
 webp: /static/img/coaches/Olga_Gerashchenko.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

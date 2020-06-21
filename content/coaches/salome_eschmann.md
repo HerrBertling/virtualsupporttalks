@@ -3,7 +3,7 @@ name: Salomé Eschmann
 email: Salome.Eschenmann@iqsh.de
 image: /static/img/coaches/Salome_Eschmann.jpg
 webp: /static/img/coaches/Salome_Eschmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

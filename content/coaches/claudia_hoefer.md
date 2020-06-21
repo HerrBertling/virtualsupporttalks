@@ -3,7 +3,7 @@ name: Claudia Hoefer
 url: http://www.change-connect.de/
 image: /static/img/coaches/Claudia_Hoefer.jpg
 webp: /static/img/coaches/Claudia_Hoefer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

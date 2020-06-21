@@ -3,7 +3,7 @@ name: Nadine Pötz
 url: http://www.fraupötz.de
 image: /static/img/coaches/Nadine_Poetz.jpg
 webp: /static/img/coaches/Nadine_Poetz.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

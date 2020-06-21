@@ -3,7 +3,7 @@ name: Frank Grundei
 url: http://www.fg-coaching-training.de
 image: /static/img/coaches/Frank_Grundei.jpg
 webp: /static/img/coaches/Frank_Grundei.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

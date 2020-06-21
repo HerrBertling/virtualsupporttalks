@@ -3,7 +3,7 @@ name: Corinna Bornhorst
 url: https://www.BienanDanza.net
 image: /static/img/coaches/Corinna_Bornhorst.jpg
 webp: /static/img/coaches/Corinna_Bornhorst.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

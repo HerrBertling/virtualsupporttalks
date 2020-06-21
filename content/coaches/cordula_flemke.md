@@ -3,7 +3,7 @@ name: Cordula Flemke
 url: http://www.flemke.de
 image: /static/img/coaches/Cordula_Flemke.jpg
 webp: /static/img/coaches/Cordula_Flemke.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

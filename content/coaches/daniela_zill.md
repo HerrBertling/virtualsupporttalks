@@ -3,7 +3,7 @@ name: Daniela Zill
 url: http://www.daniela-zill.com
 image: /static/img/coaches/Daniela_Zill.jpg
 webp: /static/img/coaches/Daniela_Zill.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Kerstin Wunderlich
 url: http://www.dr-wunderlich-team.de
 image: /static/img/coaches/Kerstin_Wunderlich.jpg
 webp: /static/img/coaches/Kerstin_Wunderlich.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Fiorella Danker
 email: f.danker@gmx.de
 image: /static/img/coaches/Fiorella_Danker.jpg
 webp: /static/img/coaches/Fiorella_Danker.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

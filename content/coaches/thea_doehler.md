@@ -3,7 +3,7 @@ name: Thea Döhler
 url: https://marketing.triacom.com
 image: /static/img/coaches/Thea_Doehler.jpg
 webp: /static/img/coaches/Thea_Doehler.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Ina Glüsing
 url: https://ina-gluesing-5.jimdosite.com/
 image: /static/img/coaches/Ina_Gluesing.jpg
 webp: /static/img/coaches/Ina_Gluesing.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

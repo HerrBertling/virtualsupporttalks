@@ -3,7 +3,7 @@ name: Mona Komnenov
 url: http://www.mindfulmona.de
 image: /static/img/coaches/Mona_Komnenov.jpg
 webp: /static/img/coaches/Mona_Komnenov.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

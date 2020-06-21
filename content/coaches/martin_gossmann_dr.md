@@ -1,9 +1,9 @@
 ---
 name: Martin&nbsp;Goßmann, Dr.
 email: martin.gossmann@mail.de
-image: /static/img/coaches/Martin_Gossmann_Dr_.jpg
-webp: /static/img/coaches/Martin_Gossmann_Dr_.webp
-tags: '',
+image: /static/img/coaches/Martin_Gossmann_Dr..jpg
+webp: /static/img/coaches/Martin_Gossmann_Dr..webp
+tags: ''
 languages: 'de'
 ---
 

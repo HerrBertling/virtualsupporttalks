@@ -3,7 +3,7 @@ name: Ines Läufer
 url: https://www.ines-laeufer-coaching.de/
 image: /static/img/coaches/Ines_Laeufer.jpg
 webp: /static/img/coaches/Ines_Laeufer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

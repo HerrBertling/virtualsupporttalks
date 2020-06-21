@@ -3,7 +3,7 @@ name: Stephanie Buß
 url: https://lerncoach-spielendschlau.de/
 image: /static/img/coaches/Stephanie_Buss.jpg
 webp: /static/img/coaches/Stephanie_Buss.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

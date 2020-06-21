@@ -3,7 +3,7 @@ name: Almut Tiba-Ehlers
 url: http://www.brainwing.de
 image: /static/img/coaches/Almut_Tiba_Ehlers.jpg
 webp: /static/img/coaches/Almut_Tiba_Ehlers.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Katja Hinz
 url: http://www.katjahinz.com
 image: /static/img/coaches/Katja_Hinz.jpg
 webp: /static/img/coaches/Katja_Hinz.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

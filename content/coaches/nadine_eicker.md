@@ -3,7 +3,7 @@ name: Nadine Eicker
 url: https://www.wertvollberatung.de/
 image: /static/img/coaches/Nadine_Eicker.jpg
 webp: /static/img/coaches/Nadine_Eicker.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

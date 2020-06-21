@@ -3,7 +3,7 @@ name: Torsten Voller
 url: https://calendly.com/voller/30-minuten-coaching
 image: /static/img/coaches/Torsten_Voller.jpg
 webp: /static/img/coaches/Torsten_Voller.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

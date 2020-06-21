@@ -3,7 +3,7 @@ name: Annegret Sperl
 url: http://www.friedvolle-elternschaft.de
 image: /static/img/coaches/Annegret_Sperl.jpg
 webp: /static/img/coaches/Annegret_Sperl.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

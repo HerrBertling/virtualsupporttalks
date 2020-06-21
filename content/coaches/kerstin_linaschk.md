@@ -3,7 +3,7 @@ name: Kerstin Linaschk
 url: https://www.loesungsbereit.de/
 image: /static/img/coaches/Kerstin_Linaschk.jpg
 webp: /static/img/coaches/Kerstin_Linaschk.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

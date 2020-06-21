@@ -3,7 +3,7 @@ name: Beatrix von Eycken
 url: https://bgm-voneycken.de/
 image: /static/img/coaches/Beatrix_von Eycken.jpg
 webp: /static/img/coaches/Beatrix_von Eycken.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

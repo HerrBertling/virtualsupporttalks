@@ -3,7 +3,7 @@ name: Stephanie Löwe
 url: https://www.daily-balance.com/
 image: /static/img/coaches/Stephanie_Loewe.jpg
 webp: /static/img/coaches/Stephanie_Loewe.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

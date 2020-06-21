@@ -3,7 +3,7 @@ name: Denise Stegmann
 email: denise_stegmann@yahoo.de
 image: /static/img/coaches/Denise_Stegmann.jpg
 webp: /static/img/coaches/Denise_Stegmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

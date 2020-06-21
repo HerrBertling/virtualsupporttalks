@@ -3,7 +3,7 @@ name: Anna Warkentin
 url: https://www.annawarkentin.de/
 image: /static/img/coaches/Anna_Warkentin.jpg
 webp: /static/img/coaches/Anna_Warkentin.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Zita Eggardt
 email: zita.eggardt@tuhh.de
 image: /static/img/coaches/Zita_Eggardt.jpg
 webp: /static/img/coaches/Zita_Eggardt.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

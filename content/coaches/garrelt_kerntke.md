@@ -3,7 +3,7 @@ name: Garrelt Kerntke
 url: http://www.DerCoachanDeinerSeite.de
 image: /static/img/coaches/Garrelt_Kerntke.jpg
 webp: /static/img/coaches/Garrelt_Kerntke.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

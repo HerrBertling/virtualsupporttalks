@@ -3,7 +3,7 @@ name: Stefanie Ballof
 url: http://www.mploid.de
 image: /static/img/coaches/Stefanie_Ballof.jpg
 webp: /static/img/coaches/Stefanie_Ballof.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

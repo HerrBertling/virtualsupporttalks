@@ -3,7 +3,7 @@ name: Charlotte Stein
 url: https://www.instagram.com/charlotte_stein_coaching/
 image: /static/img/coaches/Charlotte_Stein.jpg
 webp: /static/img/coaches/Charlotte_Stein.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

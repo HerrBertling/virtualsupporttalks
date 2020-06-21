@@ -3,7 +3,7 @@ name: Marzena Sierant
 url: http://www.sierant.de
 image: /static/img/coaches/Marzena_Sierant.jpg
 webp: /static/img/coaches/Marzena_Sierant.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

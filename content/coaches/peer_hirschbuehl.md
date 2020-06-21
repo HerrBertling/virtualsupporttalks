@@ -3,7 +3,7 @@ name: Peer Hirschbühl
 email: info@peer-hirschbuehl.de
 image: /static/img/coaches/Peer_Hirschbuehl.jpg
 webp: /static/img/coaches/Peer_Hirschbuehl.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

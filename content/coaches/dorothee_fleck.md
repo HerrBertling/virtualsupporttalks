@@ -3,7 +3,7 @@ name: Dorothee Fleck
 email: dorothee@dorothee-fleck.com
 image: /static/img/coaches/Dorothee_Fleck.jpg
 webp: /static/img/coaches/Dorothee_Fleck.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

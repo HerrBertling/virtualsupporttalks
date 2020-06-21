@@ -3,7 +3,7 @@ name: Doris Engel
 email: dorissengel@gmx.de
 image: /static/img/coaches/Doris_Engel.jpg
 webp: /static/img/coaches/Doris_Engel.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

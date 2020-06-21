@@ -3,7 +3,7 @@ name: Maria Steinbrück
 url: https://misschancenclever.de
 image: /static/img/coaches/Maria_Steinbrueck.jpg
 webp: /static/img/coaches/Maria_Steinbrueck.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Bruno Burkhard
 url: http://www.stamina-coaching.ch
 image: /static/img/coaches/Bruno_Burkhard.jpg
 webp: /static/img/coaches/Bruno_Burkhard.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

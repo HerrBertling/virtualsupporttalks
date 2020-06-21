@@ -3,7 +3,7 @@ name: Daniela Gottwald
 url: http://Www.danielagottwald.com
 image: /static/img/coaches/Daniela_Gottwald.jpg
 webp: /static/img/coaches/Daniela_Gottwald.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

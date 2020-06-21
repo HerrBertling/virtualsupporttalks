@@ -3,7 +3,7 @@ name: Ingrid Erkel
 url: https://www.beziehungspunkt.com/Ingrid-Erkel-54096.html
 image: /static/img/coaches/Ingrid_Erkel.jpg
 webp: /static/img/coaches/Ingrid_Erkel.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Gabriele L. Langner
 url: http://www.mediale-praxis.de
 image: /static/img/coaches/Gabriele_L_Langner.jpg
 webp: /static/img/coaches/Gabriele_L_Langner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

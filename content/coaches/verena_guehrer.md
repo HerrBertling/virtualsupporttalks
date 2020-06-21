@@ -3,7 +3,7 @@ name: Verena Gührer
 url: https://www.wegweiserin.net
 image: /static/img/coaches/Verena_Guehrer.jpg
 webp: /static/img/coaches/Verena_Guehrer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

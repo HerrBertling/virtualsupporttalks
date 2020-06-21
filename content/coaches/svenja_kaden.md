@@ -3,7 +3,7 @@ name: Svenja Kaden
 url: http://www.svenjakaden.de
 image: /static/img/coaches/Svenja_Kaden.jpg
 webp: /static/img/coaches/Svenja_Kaden.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

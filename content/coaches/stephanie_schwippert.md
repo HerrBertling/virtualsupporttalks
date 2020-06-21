@@ -3,7 +3,7 @@ name: Stephanie Schwippert
 url: http://www.reconnect-coaching.com
 image: /static/img/coaches/Stephanie_Schwippert.jpg
 webp: /static/img/coaches/Stephanie_Schwippert.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

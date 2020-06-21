@@ -3,7 +3,7 @@ name: Viola Bellingen
 email: bellingen.systemischescoaching@gmail.com
 image: /static/img/coaches/Viola_Bellingen.jpg
 webp: /static/img/coaches/Viola_Bellingen.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

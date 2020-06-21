@@ -3,7 +3,7 @@ name: Melanie Konrad
 url: http://www.melaniekonrad.de
 image: /static/img/coaches/Melanie_Konrad.jpg
 webp: /static/img/coaches/Melanie_Konrad.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

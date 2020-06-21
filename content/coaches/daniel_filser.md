@@ -3,7 +3,7 @@ name: Daniel Filser
 url: https://www.danielfilser.com/
 image: /static/img/coaches/Daniel_Filser.jpg
 webp: /static/img/coaches/Daniel_Filser.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

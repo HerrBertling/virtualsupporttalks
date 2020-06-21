@@ -3,7 +3,7 @@ name: Susanne Ihlow
 url: http://www.gladmore.de
 image: /static/img/coaches/Susanne_Ihlow.jpg
 webp: /static/img/coaches/Susanne_Ihlow.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Peter Christian Rabeneck
 url: https://www.gluecksrabe.de
 image: /static/img/coaches/Peter_Christian Rabeneck.jpg
 webp: /static/img/coaches/Peter_Christian Rabeneck.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

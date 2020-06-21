@@ -3,7 +3,7 @@ name: Ulrike Stemmer
 email: ulrike.stemmer.coaching@gmail.com
 image: /static/img/coaches/Ulrike_Stemmer.jpg
 webp: /static/img/coaches/Ulrike_Stemmer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

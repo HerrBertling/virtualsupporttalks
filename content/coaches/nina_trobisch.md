@@ -3,7 +3,7 @@ name: Nina Trobisch
 url: http://heldenprinzip.de
 image: /static/img/coaches/Nina_Trobisch.jpg
 webp: /static/img/coaches/Nina_Trobisch.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

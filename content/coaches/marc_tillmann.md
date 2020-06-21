@@ -3,7 +3,7 @@ name: Marc Tillmann
 url: https://www.marc-tillmann.de/
 image: /static/img/coaches/Marc_Tillmann.jpg
 webp: /static/img/coaches/Marc_Tillmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

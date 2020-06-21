@@ -3,7 +3,7 @@ name: Patricia Hilali
 url: https://patricia-hilali.com
 image: /static/img/coaches/Patricia_Hilali.jpg
 webp: /static/img/coaches/Patricia_Hilali.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

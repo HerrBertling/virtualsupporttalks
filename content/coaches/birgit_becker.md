@@ -3,7 +3,7 @@ name: Birgit Becker
 url: http://www.koerpersophie.de
 image: /static/img/coaches/Birgit_Becker.jpg
 webp: /static/img/coaches/Birgit_Becker.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

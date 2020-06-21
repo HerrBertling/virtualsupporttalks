@@ -3,7 +3,7 @@ name: Maria Beyer
 url: http://www.MB-Seminare.de
 image: /static/img/coaches/Maria_Beyer.jpg
 webp: /static/img/coaches/Maria_Beyer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

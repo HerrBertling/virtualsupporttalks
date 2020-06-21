@@ -3,7 +3,7 @@ name: Sonja Bauer
 url: http://www.kleineauszeit-coaching.de
 image: /static/img/coaches/Sonja_Bauer.jpg
 webp: /static/img/coaches/Sonja_Bauer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

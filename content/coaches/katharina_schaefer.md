@@ -3,7 +3,7 @@ name: Katharina Schäfer
 email: katharina.schaefer@outlook.com
 image: /static/img/coaches/Katharina_Schaefer.jpg
 webp: /static/img/coaches/Katharina_Schaefer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

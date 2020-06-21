@@ -3,7 +3,7 @@ name: Katrin Gotthardt
 email: katrin.gotthardt@web.de
 image: /static/img/coaches/Katrin_Gotthardt.jpg
 webp: /static/img/coaches/Katrin_Gotthardt.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

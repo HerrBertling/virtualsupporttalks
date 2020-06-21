@@ -3,7 +3,7 @@ name: Hermann Häfele
 url: http://www.roter-faden-coaching.de
 image: /static/img/coaches/Hermann_Haefele.jpg
 webp: /static/img/coaches/Hermann_Haefele.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

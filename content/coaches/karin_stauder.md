@@ -3,7 +3,7 @@ name: Karin Stauder
 email: stauder@denk-art.com
 image: /static/img/coaches/Karin_Stauder.jpg
 webp: /static/img/coaches/Karin_Stauder.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

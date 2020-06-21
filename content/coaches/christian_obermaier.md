@@ -3,7 +3,7 @@ name: Christian Obermaier
 url: http://www.christianobermaier.de
 image: /static/img/coaches/Christian_Obermaier.jpg
 webp: /static/img/coaches/Christian_Obermaier.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Siegfried Dannwolf
 url: http://www.lebeundarbeiteachtsam.de
 image: /static/img/coaches/Siegfried_Dannwolf.jpg
 webp: /static/img/coaches/Siegfried_Dannwolf.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

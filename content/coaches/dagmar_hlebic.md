@@ -3,7 +3,7 @@ name: Dagmar Hlebic
 url: http://www.hlebic.at
 image: /static/img/coaches/Dagmar_Hlebic.jpg
 webp: /static/img/coaches/Dagmar_Hlebic.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

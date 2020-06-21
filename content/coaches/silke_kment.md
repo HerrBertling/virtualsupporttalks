@@ -3,7 +3,7 @@ name: Silke Kment
 url: http://www.nachsorge-coaching.de
 image: /static/img/coaches/Silke_Kment.jpg
 webp: /static/img/coaches/Silke_Kment.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

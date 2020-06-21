@@ -3,7 +3,7 @@ name: Harald Dill
 url: https://www.coach-dill.de
 image: /static/img/coaches/Harald_Dill.jpg
 webp: /static/img/coaches/Harald_Dill.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

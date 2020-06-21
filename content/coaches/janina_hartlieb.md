@@ -3,7 +3,7 @@ name: Janina Hartlieb
 url: http://jh-coaching.de
 image: /static/img/coaches/Janina_Hartlieb.jpg
 webp: /static/img/coaches/Janina_Hartlieb.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

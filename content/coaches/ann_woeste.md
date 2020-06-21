@@ -3,7 +3,7 @@ name: Ann Wöste
 url: http://die-globale-familie.de/coaching-fuer-expat-partner-und-third-culture-kids/
 image: /static/img/coaches/Ann_Woeste.jpg
 webp: /static/img/coaches/Ann_Woeste.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

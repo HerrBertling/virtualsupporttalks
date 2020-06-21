@@ -3,7 +3,7 @@ name: Wiebke Wimmer
 url: https://steife-brise.de/wordpress/media/Coaching-Profil-Wiebke-Wimmer.pdf
 image: /static/img/coaches/Wiebke_Wimmer.jpg
 webp: /static/img/coaches/Wiebke_Wimmer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

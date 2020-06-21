@@ -3,7 +3,7 @@ name: Joana Joost
 email: joana.joost@gmx.de
 image: /static/img/coaches/Joana_Joost.jpg
 webp: /static/img/coaches/Joana_Joost.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

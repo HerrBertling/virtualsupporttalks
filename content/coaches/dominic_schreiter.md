@@ -3,7 +3,7 @@ name: Dominic Schreiter
 url: http://www.weggefairte.de
 image: /static/img/coaches/Dominic_Schreiter.jpg
 webp: /static/img/coaches/Dominic_Schreiter.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

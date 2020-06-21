@@ -3,7 +3,7 @@ name: Peter Schönfelder
 url: https://peter-schoenfelder.com/
 image: /static/img/coaches/Peter_Schoenfelder.jpg
 webp: /static/img/coaches/Peter_Schoenfelder.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

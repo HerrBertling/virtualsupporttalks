@@ -3,7 +3,7 @@ name: Ina Rathje
 url: https://wirobski-rathje.de/leistungen/anti-stress-coaching/
 image: /static/img/coaches/Ina_Rathje.jpg
 webp: /static/img/coaches/Ina_Rathje.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

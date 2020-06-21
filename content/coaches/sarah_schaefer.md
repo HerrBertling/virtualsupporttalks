@@ -3,7 +3,7 @@ name: Sarah Schäfer
 url: http://feelandlook.de
 image: /static/img/coaches/Sarah_Schaefer.jpg
 webp: /static/img/coaches/Sarah_Schaefer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

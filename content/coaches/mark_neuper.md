@@ -3,7 +3,7 @@ name: Mark Neuper
 url: https://coaches.xing.com/profile/Mark_Neuper
 image: /static/img/coaches/Mark_Neuper.jpg
 webp: /static/img/coaches/Mark_Neuper.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

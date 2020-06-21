@@ -3,7 +3,7 @@ name: Sandra Piduch
 email: sandrapiduch@yahoo.co.uk
 image: /static/img/coaches/Sandra_Piduch.jpg
 webp: /static/img/coaches/Sandra_Piduch.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

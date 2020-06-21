@@ -3,7 +3,7 @@ name: Silke Wolf
 url: https://seele-balance.de/
 image: /static/img/coaches/Silke_Wolf.jpg
 webp: /static/img/coaches/Silke_Wolf.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

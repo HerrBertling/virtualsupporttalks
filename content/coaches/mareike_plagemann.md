@@ -3,7 +3,7 @@ name: Mareike Plagemann
 url: http://www.mareike-plagemann.de
 image: /static/img/coaches/Mareike_Plagemann.jpg
 webp: /static/img/coaches/Mareike_Plagemann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

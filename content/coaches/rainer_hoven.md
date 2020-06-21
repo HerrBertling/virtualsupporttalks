@@ -3,7 +3,7 @@ name: Rainer Hoven
 url: http://www.rainerhoven.de
 image: /static/img/coaches/Rainer_Hoven.jpg
 webp: /static/img/coaches/Rainer_Hoven.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

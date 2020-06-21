@@ -3,7 +3,7 @@ name: Gabriele Tiefenthaler
 url: http://www.coaching-gabriele-tiefenthaler.com
 image: /static/img/coaches/Gabriele_Tiefenthaler.jpg
 webp: /static/img/coaches/Gabriele_Tiefenthaler.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Susanne Volkert
 url: http://www.susannevolkert.de
 image: /static/img/coaches/Susanne_Volkert.jpg
 webp: /static/img/coaches/Susanne_Volkert.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

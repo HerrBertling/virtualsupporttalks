@@ -3,7 +3,7 @@ name: Andreas Werner
 url: http://www.do-it-seminare.com
 image: /static/img/coaches/Andreas_Werner.jpg
 webp: /static/img/coaches/Andreas_Werner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

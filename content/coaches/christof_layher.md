@@ -3,7 +3,7 @@ name: Christof Layher
 url: http://christoflayher.de
 image: /static/img/coaches/Christof_Layher.jpg
 webp: /static/img/coaches/Christof_Layher.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

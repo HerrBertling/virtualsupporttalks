@@ -3,7 +3,7 @@ name: Ute Zumkeller
 url: http://www.selbstbewegendes.de
 image: /static/img/coaches/Ute_Zumkeller.jpg
 webp: /static/img/coaches/Ute_Zumkeller.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

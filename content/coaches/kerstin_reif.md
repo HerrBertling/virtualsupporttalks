@@ -3,7 +3,7 @@ name: Kerstin Reif
 url: http://www.kerstinreif.com
 image: /static/img/coaches/Kerstin_Reif.jpg
 webp: /static/img/coaches/Kerstin_Reif.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

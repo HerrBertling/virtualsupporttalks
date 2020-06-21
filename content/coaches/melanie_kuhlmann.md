@@ -3,7 +3,7 @@ name: Melanie Kuhlmann
 url: http://www.friendsatwork.de
 image: /static/img/coaches/Melanie_Kuhlmann.jpg
 webp: /static/img/coaches/Melanie_Kuhlmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

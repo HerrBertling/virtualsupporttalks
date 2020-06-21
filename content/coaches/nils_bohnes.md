@@ -3,7 +3,7 @@ name: Nils Bohnes
 url: http://proact-consulting.de
 image: /static/img/coaches/Nils_Bohnes.jpg
 webp: /static/img/coaches/Nils_Bohnes.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

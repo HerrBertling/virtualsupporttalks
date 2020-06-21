@@ -3,7 +3,7 @@ name: Rolf Weßner
 url: http://www.seek-bodensee.de
 image: /static/img/coaches/Rolf_Wessner.jpg
 webp: /static/img/coaches/Rolf_Wessner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Jeannette Tetzner
 url: https://bewusstseinswachstum.de/
 image: /static/img/coaches/Jeannette_Tetzner.jpg
 webp: /static/img/coaches/Jeannette_Tetzner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

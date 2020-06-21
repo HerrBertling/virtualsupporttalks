@@ -3,7 +3,7 @@ name: Bjarne Olesen
 url: http://www.rne.one
 image: /static/img/coaches/Bjarne_Olesen.jpg
 webp: /static/img/coaches/Bjarne_Olesen.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

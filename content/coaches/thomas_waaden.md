@@ -3,7 +3,7 @@ name: Thomas Waaden
 url: http://www.thomaswaaden.de
 image: /static/img/coaches/Thomas_Waaden.jpg
 webp: /static/img/coaches/Thomas_Waaden.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Andreas Braun
 url: http://www.coachingprofis.de
 image: /static/img/coaches/Andreas_Braun.jpg
 webp: /static/img/coaches/Andreas_Braun.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

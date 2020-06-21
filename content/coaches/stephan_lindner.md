@@ -3,7 +3,7 @@ name: Stephan Lindner
 url: http://www.stephan-lindner.de
 image: /static/img/coaches/Stephan_Lindner.jpg
 webp: /static/img/coaches/Stephan_Lindner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

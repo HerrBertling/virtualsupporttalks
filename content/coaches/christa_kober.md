@@ -3,7 +3,7 @@ name: Christa Kober
 url: https://www.christa-kober.de/
 image: /static/img/coaches/Christa_Kober.jpg
 webp: /static/img/coaches/Christa_Kober.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

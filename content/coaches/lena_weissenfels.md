@@ -3,7 +3,7 @@ name: Lena Weißenfels
 email: lenaweissenfels@web.de
 image: /static/img/coaches/Lena_Weissenfels.jpg
 webp: /static/img/coaches/Lena_Weissenfels.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Anne Kuhlmann
 url: https://www.deinmamagefühl.de/
 image: /static/img/coaches/Anne_Kuhlmann.jpg
 webp: /static/img/coaches/Anne_Kuhlmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

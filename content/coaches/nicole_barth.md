@@ -3,7 +3,7 @@ name: Nicole Barth
 url: https://barth-pb.de
 image: /static/img/coaches/Nicole_Barth.jpg
 webp: /static/img/coaches/Nicole_Barth.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

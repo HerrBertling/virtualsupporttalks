@@ -3,7 +3,7 @@ name: Katharina Stenger
 url: http://www.katharina-stenger.de
 image: /static/img/coaches/Katharina_Stenger.jpg
 webp: /static/img/coaches/Katharina_Stenger.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

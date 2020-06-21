@@ -3,7 +3,7 @@ name: Christina Stiglmeier
 url: http://www.breatheinbreatheout.de
 image: /static/img/coaches/Christina_Stiglmeier.jpg
 webp: /static/img/coaches/Christina_Stiglmeier.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

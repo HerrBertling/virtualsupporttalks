@@ -3,7 +3,7 @@ name: Daniela Pröll
 url: http://www.diamond-people.com
 image: /static/img/coaches/Daniela_Proell.jpg
 webp: /static/img/coaches/Daniela_Proell.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

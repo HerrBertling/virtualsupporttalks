@@ -3,7 +3,7 @@ name: Carina Schinke
 url: https://carina-schinke.de/
 image: /static/img/coaches/Carina_Schinke.jpg
 webp: /static/img/coaches/Carina_Schinke.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

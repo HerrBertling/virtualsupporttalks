@@ -3,7 +3,7 @@ name: Antoni Aguado
 url: http://3a-coaching.de
 image: /static/img/coaches/Antoni_Aguado.jpg
 webp: /static/img/coaches/Antoni_Aguado.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

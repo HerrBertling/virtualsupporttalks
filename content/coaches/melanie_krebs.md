@@ -3,7 +3,7 @@ name: Melanie Krebs
 url: https://www.melanie-krebs-coaching.de/
 image: /static/img/coaches/Melanie_Krebs.jpg
 webp: /static/img/coaches/Melanie_Krebs.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

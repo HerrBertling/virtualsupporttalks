@@ -3,7 +3,7 @@ name: Tanja Schmidt
 url: https://inbetween-coaching.de/
 image: /static/img/coaches/Tanja_Schmidt.jpg
 webp: /static/img/coaches/Tanja_Schmidt.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

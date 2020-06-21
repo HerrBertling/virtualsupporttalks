@@ -3,7 +3,7 @@ name: Alexandra Gebur
 url: https://wegeausdemstress.de
 image: /static/img/coaches/Alexandra_Gebur.jpg
 webp: /static/img/coaches/Alexandra_Gebur.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

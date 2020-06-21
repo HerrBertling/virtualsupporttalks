@@ -3,7 +3,7 @@ name: Sebastian Knoll
 url: http://www.sichtweisenwerkstatt.de
 image: /static/img/coaches/Sebastian_Knoll.jpg
 webp: /static/img/coaches/Sebastian_Knoll.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

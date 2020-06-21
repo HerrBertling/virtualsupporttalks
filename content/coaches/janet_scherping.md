@@ -3,7 +3,7 @@ name: Janet Scherping
 url: http://www.die-kreativen-moeglichmacher.de
 image: /static/img/coaches/Janet_Scherping.jpg
 webp: /static/img/coaches/Janet_Scherping.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Barbara Plehn
 url: http://www.gewohnheitsentwickler.com
 image: /static/img/coaches/Barbara_Plehn.jpg
 webp: /static/img/coaches/Barbara_Plehn.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

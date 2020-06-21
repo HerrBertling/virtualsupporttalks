@@ -3,7 +3,7 @@ name: Nicole Forrai
 url: http://www.nicoleforrai-coaching.de
 image: /static/img/coaches/Nicole_Forrai.jpg
 webp: /static/img/coaches/Nicole_Forrai.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

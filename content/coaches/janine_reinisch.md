@@ -3,7 +3,7 @@ name: Janine Reinisch
 url: https://www.janinereinisch.de/
 image: /static/img/coaches/Janine_Reinisch.jpg
 webp: /static/img/coaches/Janine_Reinisch.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

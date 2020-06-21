@@ -3,7 +3,7 @@ name: Susan Groffmann
 url: http://www.susangroffmann-coaching.de
 image: /static/img/coaches/Susan_Groffmann.jpg
 webp: /static/img/coaches/Susan_Groffmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Daniela Strunk
 url: http://www.das-coaching.de
 image: /static/img/coaches/Daniela_Strunk.jpg
 webp: /static/img/coaches/Daniela_Strunk.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

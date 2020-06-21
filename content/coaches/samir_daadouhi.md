@@ -3,7 +3,7 @@ name: Samir Daadouhi
 url: http://www.saminar.de
 image: /static/img/coaches/Samir_Daadouhi.jpg
 webp: /static/img/coaches/Samir_Daadouhi.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

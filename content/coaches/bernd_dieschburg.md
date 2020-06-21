@@ -3,7 +3,7 @@ name: Bernd Dieschburg
 url: http://www.diresults.de
 image: /static/img/coaches/Bernd_Dieschburg.jpg
 webp: /static/img/coaches/Bernd_Dieschburg.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

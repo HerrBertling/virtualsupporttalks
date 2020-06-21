@@ -3,7 +3,7 @@ name: Rhea Schaedlich
 url: http://www.beratung-hamburg.com
 image: /static/img/coaches/Rhea_Schaedlich.jpg
 webp: /static/img/coaches/Rhea_Schaedlich.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

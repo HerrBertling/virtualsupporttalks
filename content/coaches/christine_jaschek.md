@@ -3,7 +3,7 @@ name: Christine Jaschek
 url: http://www.christine-jaschek.de
 image: /static/img/coaches/Christine_Jaschek.jpg
 webp: /static/img/coaches/Christine_Jaschek.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

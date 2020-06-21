@@ -3,7 +3,7 @@ name: Anne Bahry
 url: http://www.deinesparringspartnerin.de
 image: /static/img/coaches/Anne_Bahry.jpg
 webp: /static/img/coaches/Anne_Bahry.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

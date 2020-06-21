@@ -3,7 +3,7 @@ name: Andreas Kuffner
 url: http://www.andreaskuffner.de
 image: /static/img/coaches/Andreas_Kuffner.jpg
 webp: /static/img/coaches/Andreas_Kuffner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

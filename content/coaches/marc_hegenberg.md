@@ -3,7 +3,7 @@ name: Marc Hegenberg
 email: bluetezeit@die-optimisten.net
 image: /static/img/coaches/Marc_Hegenberg.jpg
 webp: /static/img/coaches/Marc_Hegenberg.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

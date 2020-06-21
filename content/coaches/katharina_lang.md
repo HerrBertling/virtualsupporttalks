@@ -3,7 +3,7 @@ name: Katharina Lang
 url: http://www.katharinalang.com
 image: /static/img/coaches/Katharina_Lang.jpg
 webp: /static/img/coaches/Katharina_Lang.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

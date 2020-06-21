@@ -3,7 +3,7 @@ name: Cynthia Mönch
 url: https://www.schluesselmomente-coaching.de/
 image: /static/img/coaches/Cynthia_Moench.jpg
 webp: /static/img/coaches/Cynthia_Moench.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

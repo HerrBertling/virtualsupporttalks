@@ -3,7 +3,7 @@ name: Katharina Kapala
 url: http://Thalamus-Coaching.de
 image: /static/img/coaches/Katharina_Kapala.jpg
 webp: /static/img/coaches/Katharina_Kapala.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

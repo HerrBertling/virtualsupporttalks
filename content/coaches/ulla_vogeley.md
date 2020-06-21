@@ -3,7 +3,7 @@ name: Ulla Vogeley
 url: http://www.ulla-vogeley.de
 image: /static/img/coaches/Ulla_Vogeley.jpg
 webp: /static/img/coaches/Ulla_Vogeley.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

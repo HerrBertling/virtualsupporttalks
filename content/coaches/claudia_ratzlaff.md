@@ -3,7 +3,7 @@ name: Claudia Ratzlaff
 url: http://www.isee-c.eu
 image: /static/img/coaches/Claudia_Ratzlaff.jpg
 webp: /static/img/coaches/Claudia_Ratzlaff.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Annett Lossack
 url: https://www.mich-neu-erfinden.ch
 image: /static/img/coaches/Annett_Lossack.jpg
 webp: /static/img/coaches/Annett_Lossack.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

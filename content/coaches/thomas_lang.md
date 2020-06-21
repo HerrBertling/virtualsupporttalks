@@ -3,7 +3,7 @@ name: Thomas Lang
 url: http://www.innerestaerke.com
 image: /static/img/coaches/Thomas_Lang.jpg
 webp: /static/img/coaches/Thomas_Lang.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Andrea Allihn
 url: http://www.andrea-allihn.de
 image: /static/img/coaches/Andrea_Allihn.jpg
 webp: /static/img/coaches/Andrea_Allihn.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

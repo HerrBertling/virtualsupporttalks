@@ -3,7 +3,7 @@ name: Stefanie Ule
 url: http://www.steffiule.de
 image: /static/img/coaches/Stefanie_Ule.jpg
 webp: /static/img/coaches/Stefanie_Ule.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Hergen von Huchting
 url: http://www.beziehungscoach.de
 image: /static/img/coaches/Hergen_von Huchting.jpg
 webp: /static/img/coaches/Hergen_von Huchting.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

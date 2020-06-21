@@ -3,7 +3,7 @@ name: Tina Faedtke
 url: https://www.facebook.com/serencon/
 image: /static/img/coaches/Tina_Faedtke.jpg
 webp: /static/img/coaches/Tina_Faedtke.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

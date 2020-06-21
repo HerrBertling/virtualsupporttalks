@@ -3,7 +3,7 @@ name: Hanspeter Lanz
 url: https://www.mediationsbuero-frankfurt.de/%C3%BCber-uns/
 image: /static/img/coaches/Hanspeter_Lanz.jpg
 webp: /static/img/coaches/Hanspeter_Lanz.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

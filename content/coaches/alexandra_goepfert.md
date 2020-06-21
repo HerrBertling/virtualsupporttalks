@@ -3,7 +3,7 @@ name: Alexandra Göpfert
 email: alexandra.goepfert@yahoo.de
 image: /static/img/coaches/Alexandra_Goepfert.jpg
 webp: /static/img/coaches/Alexandra_Goepfert.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

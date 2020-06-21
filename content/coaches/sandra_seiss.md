@@ -3,7 +3,7 @@ name: Sandra Seiss
 url: http://www.selbst-wirksam-sein.com
 image: /static/img/coaches/Sandra_Seiss.jpg
 webp: /static/img/coaches/Sandra_Seiss.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

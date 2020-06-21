@@ -3,7 +3,7 @@ name: Ina Lecher
 url: http://www.lecher-coaching.de
 image: /static/img/coaches/Ina_Lecher.jpg
 webp: /static/img/coaches/Ina_Lecher.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Laura Drees
 url: https://lauradrees.com/
 image: /static/img/coaches/Laura_Drees.jpg
 webp: /static/img/coaches/Laura_Drees.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Roland Heibel
 url: http://www.rolandheibel.de/coaching
 image: /static/img/coaches/Roland_Heibel.jpg
 webp: /static/img/coaches/Roland_Heibel.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Kirsten Hanebuth
 url: http://www.hanebuth.de
 image: /static/img/coaches/Kirsten_Hanebuth.jpg
 webp: /static/img/coaches/Kirsten_Hanebuth.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

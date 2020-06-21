@@ -3,7 +3,7 @@ name: Andrea Beckgerd
 url: https://www.andrea-beckgerd-coaching.de
 image: /static/img/coaches/Andrea_Beckgerd.jpg
 webp: /static/img/coaches/Andrea_Beckgerd.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

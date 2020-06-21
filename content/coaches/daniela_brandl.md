@@ -3,7 +3,7 @@ name: Daniela Brandl
 url: http://www.danielabrandl.de
 image: /static/img/coaches/Daniela_Brandl.jpg
 webp: /static/img/coaches/Daniela_Brandl.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

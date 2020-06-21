@@ -3,7 +3,7 @@ name: Christian Stock
 url: http://www.coaching-agency.de
 image: /static/img/coaches/Christian_Stock.jpg
 webp: /static/img/coaches/Christian_Stock.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

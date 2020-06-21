@@ -3,7 +3,7 @@ name: Christiane Kleyna
 url: http://www.christiane-kleyna.de
 image: /static/img/coaches/Christiane_Kleyna.jpg
 webp: /static/img/coaches/Christiane_Kleyna.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

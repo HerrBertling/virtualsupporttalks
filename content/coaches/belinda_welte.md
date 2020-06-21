@@ -3,7 +3,7 @@ name: Belinda Welte
 url: http://www.happinesscast.de
 image: /static/img/coaches/Belinda_Welte.jpg
 webp: /static/img/coaches/Belinda_Welte.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

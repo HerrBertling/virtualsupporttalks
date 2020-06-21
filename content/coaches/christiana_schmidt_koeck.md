@@ -3,7 +3,7 @@ name: Christiana Schmidt-Köck
 url: http://www.mariposa-consulting.at
 image: /static/img/coaches/Christiana_Schmidt_Koeck.jpg
 webp: /static/img/coaches/Christiana_Schmidt_Koeck.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

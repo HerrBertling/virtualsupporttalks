@@ -3,7 +3,7 @@ name: Bärbel Honig
 url: https://www.honig-coaching.de/
 image: /static/img/coaches/Baerbel_Honig.jpg
 webp: /static/img/coaches/Baerbel_Honig.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

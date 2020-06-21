@@ -3,7 +3,7 @@ name: Karoline Sophie Hinkfoth
 email: hallo@wertverbunden.com
 image: /static/img/coaches/Karoline_Sophie Hinkfoth.jpg
 webp: /static/img/coaches/Karoline_Sophie Hinkfoth.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

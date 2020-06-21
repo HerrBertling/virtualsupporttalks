@@ -3,7 +3,7 @@ name: Elisabeth Namiri
 url: https://www.aes-namiri.de/
 image: /static/img/coaches/Elisabeth_Namiri.jpg
 webp: /static/img/coaches/Elisabeth_Namiri.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

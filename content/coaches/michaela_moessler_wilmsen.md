@@ -3,7 +3,7 @@ name: Michaela Mössler-Wilmsen
 url: http://www.moessler.com
 image: /static/img/coaches/Michaela_Moessler_Wilmsen.jpg
 webp: /static/img/coaches/Michaela_Moessler_Wilmsen.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

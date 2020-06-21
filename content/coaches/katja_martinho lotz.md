@@ -3,7 +3,7 @@ name: Katja Martinho Lotz
 email: katjamartinho@gmail.com
 image: /static/img/coaches/Katja_Martinho Lotz.jpg
 webp: /static/img/coaches/Katja_Martinho Lotz.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

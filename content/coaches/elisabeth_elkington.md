@@ -3,7 +3,7 @@ name: Elisabeth Elkington
 email: olaolu108@googlemail.com
 image: /static/img/coaches/Elisabeth_Elkington.jpg
 webp: /static/img/coaches/Elisabeth_Elkington.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

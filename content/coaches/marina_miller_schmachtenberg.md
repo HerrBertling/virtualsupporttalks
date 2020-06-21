@@ -3,7 +3,7 @@ name: Marina Miller-Schmachtenberg
 url: http://www.meine-coachin.de
 image: /static/img/coaches/Marina_Miller_Schmachtenberg.jpg
 webp: /static/img/coaches/Marina_Miller_Schmachtenberg.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

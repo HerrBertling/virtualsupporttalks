@@ -3,7 +3,7 @@ name: Katrin Hoebbel
 url: https://www.urway.rocks/katrin/
 image: /static/img/coaches/Katrin_Hoebbel.jpg
 webp: /static/img/coaches/Katrin_Hoebbel.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

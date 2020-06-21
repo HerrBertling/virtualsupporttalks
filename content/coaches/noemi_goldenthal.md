@@ -3,7 +3,7 @@ name: Noemi Goldenthal
 url: http://www.noemi-goldenthal.de
 image: /static/img/coaches/Noemi_Goldenthal.jpg
 webp: /static/img/coaches/Noemi_Goldenthal.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

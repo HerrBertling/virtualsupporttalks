@@ -3,7 +3,7 @@ name: Erkan Kasap
 url: http://www.mindful-business-club.com
 image: /static/img/coaches/Erkan_Kasap.jpg
 webp: /static/img/coaches/Erkan_Kasap.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

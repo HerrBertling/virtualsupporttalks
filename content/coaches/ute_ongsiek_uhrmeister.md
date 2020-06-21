@@ -3,7 +3,7 @@ name: Ute Ongsiek-Uhrmeister
 url: http://www.ongsiek-uhrmeister.de
 image: /static/img/coaches/Ute_Ongsiek_Uhrmeister.jpg
 webp: /static/img/coaches/Ute_Ongsiek_Uhrmeister.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Andrea Eisert
 url: https://www.bgm-beratung-nbg.de/
 image: /static/img/coaches/Andrea_Eisert.jpg
 webp: /static/img/coaches/Andrea_Eisert.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

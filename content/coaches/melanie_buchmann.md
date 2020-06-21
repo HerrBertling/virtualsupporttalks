@@ -3,7 +3,7 @@ name: Melanie Buchmann
 url: https://melaniebuchmann.de/
 image: /static/img/coaches/Melanie_Buchmann.jpg
 webp: /static/img/coaches/Melanie_Buchmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

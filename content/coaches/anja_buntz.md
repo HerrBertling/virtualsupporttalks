@@ -3,7 +3,7 @@ name: Anja Buntz
 url: http://www.anjabuntz.de
 image: /static/img/coaches/Anja_Buntz.jpg
 webp: /static/img/coaches/Anja_Buntz.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

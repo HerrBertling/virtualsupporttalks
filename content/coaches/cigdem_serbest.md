@@ -3,7 +3,7 @@ name: Cigdem Serbest
 url: http://www.mindful-business-club.com
 image: /static/img/coaches/Cigdem_Serbest.jpg
 webp: /static/img/coaches/Cigdem_Serbest.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

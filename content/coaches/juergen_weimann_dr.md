@@ -3,7 +3,7 @@ name: Jürgen Weimann, Dr.
 email: jw@juergenweimann.com
 image: /static/img/coaches/Juergen_Weimann_Dr.jpg
 webp: /static/img/coaches/Juergen_Weimann_Dr.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

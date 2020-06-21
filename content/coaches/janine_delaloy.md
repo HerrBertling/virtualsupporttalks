@@ -3,7 +3,7 @@ name: Janine Delaloy
 url: http://WWW.coachingbegleitung-delaloy.de
 image: /static/img/coaches/Janine_Delaloy.jpg
 webp: /static/img/coaches/Janine_Delaloy.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

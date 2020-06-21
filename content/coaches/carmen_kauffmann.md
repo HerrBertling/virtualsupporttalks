@@ -3,7 +3,7 @@ name: Carmen Kauffmann
 url: http://www.carmen-kauffmann.de
 image: /static/img/coaches/Carmen_Kauffmann.jpg
 webp: /static/img/coaches/Carmen_Kauffmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

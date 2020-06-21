@@ -3,7 +3,7 @@ name: Annelie Alexandru
 url: https://feelgood-expertin.de
 image: /static/img/coaches/Annelie_Alexandru.jpg
 webp: /static/img/coaches/Annelie_Alexandru.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Julia Bamberg
 url: https://juliabamberg.de/
 image: /static/img/coaches/Julia_Bamberg.jpg
 webp: /static/img/coaches/Julia_Bamberg.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

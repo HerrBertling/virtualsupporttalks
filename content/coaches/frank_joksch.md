@@ -3,7 +3,7 @@ name: Frank Joksch
 email: frankjoksch@freenet.de
 image: /static/img/coaches/Frank_Joksch.jpg
 webp: /static/img/coaches/Frank_Joksch.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

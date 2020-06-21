@@ -3,7 +3,7 @@ name: Karolina Prinz
 url: http://www.karolina-prinz.de
 image: /static/img/coaches/Karolina_Prinz.jpg
 webp: /static/img/coaches/Karolina_Prinz.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Petra Peinemann
 url: http://www.petra-peinemann.de
 image: /static/img/coaches/Petra_Peinemann.jpg
 webp: /static/img/coaches/Petra_Peinemann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

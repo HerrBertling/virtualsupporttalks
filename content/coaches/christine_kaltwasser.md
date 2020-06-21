@@ -3,7 +3,7 @@ name: Christine Kaltwasser
 url: https://die-perspektivwerkstatt.de/
 image: /static/img/coaches/Christine_Kaltwasser.jpg
 webp: /static/img/coaches/Christine_Kaltwasser.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

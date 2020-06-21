@@ -3,7 +3,7 @@ name: Benjamin Rolff
 email: benjamin.rolff@gmx.de
 image: /static/img/coaches/Benjamin_Rolff.jpg
 webp: /static/img/coaches/Benjamin_Rolff.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

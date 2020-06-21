@@ -3,7 +3,7 @@ name: Verena A. Wigger
 url: http://www.verenawigger.ch
 image: /static/img/coaches/Verena_A_Wigger.jpg
 webp: /static/img/coaches/Verena_A_Wigger.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

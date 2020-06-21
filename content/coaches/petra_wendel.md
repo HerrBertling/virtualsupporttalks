@@ -3,7 +3,7 @@ name: Petra Wendel
 url: http://www.supervision-wendel.de
 image: /static/img/coaches/Petra_Wendel.jpg
 webp: /static/img/coaches/Petra_Wendel.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Teresa Görg
 email: TeresaGoerg@gmx.de
 image: /static/img/coaches/Teresa_Goerg.jpg
 webp: /static/img/coaches/Teresa_Goerg.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

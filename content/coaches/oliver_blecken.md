@@ -3,7 +3,7 @@ name: Oliver Blecken
 url: http://www.oliver-blecken.de
 image: /static/img/coaches/Oliver_Blecken.jpg
 webp: /static/img/coaches/Oliver_Blecken.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

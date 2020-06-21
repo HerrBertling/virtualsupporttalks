@@ -3,7 +3,7 @@ name: Nadine Bernardo
 url: https://yinyoni.com/
 image: /static/img/coaches/Nadine_Bernardo.jpg
 webp: /static/img/coaches/Nadine_Bernardo.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

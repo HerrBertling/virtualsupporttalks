@@ -3,7 +3,7 @@ name: Angelika Decker
 url: http://www.angelika-decker.de
 image: /static/img/coaches/Angelika_Decker.jpg
 webp: /static/img/coaches/Angelika_Decker.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

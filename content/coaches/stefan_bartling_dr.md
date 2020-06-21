@@ -3,7 +3,7 @@ name: Stefan Bartling, Dr.
 url: http://www.kommunikationskultur.biz
 image: /static/img/coaches/Stefan_Bartling_Dr.jpg
 webp: /static/img/coaches/Stefan_Bartling_Dr.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

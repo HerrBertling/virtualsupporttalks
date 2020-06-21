@@ -3,7 +3,7 @@ name: Bernadette Schreyer
 url: https://bernifox.com
 image: /static/img/coaches/Bernadette_Schreyer.jpg
 webp: /static/img/coaches/Bernadette_Schreyer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

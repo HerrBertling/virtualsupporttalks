@@ -3,7 +3,7 @@ name: Andrea Hanna
 url: http://www.makeitagile.de
 image: /static/img/coaches/Andrea_Hanna.jpg
 webp: /static/img/coaches/Andrea_Hanna.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

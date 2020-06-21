@@ -3,7 +3,7 @@ name: Andreas Schmidt
 email: andreas2.schmidt@tu-dortmund.de
 image: /static/img/coaches/Andreas_Schmidt.jpg
 webp: /static/img/coaches/Andreas_Schmidt.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

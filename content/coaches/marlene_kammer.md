@@ -3,7 +3,7 @@ name: Marlene Kammer
 url: https://www.facebook.com/beratungandcoaching/?modal=suggested_action&amp;notif_id=1586589603013353&amp;notif_t=page_user_activity
 image: /static/img/coaches/Marlene_Kammer.jpg
 webp: /static/img/coaches/Marlene_Kammer.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Martin Nowak
 url: http://www.metasicht.com
 image: /static/img/coaches/Martin_Nowak.jpg
 webp: /static/img/coaches/Martin_Nowak.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

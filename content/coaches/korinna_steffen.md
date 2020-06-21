@@ -3,7 +3,7 @@ name: Korinna Steffen
 url: http://www.visionaktion.de
 image: /static/img/coaches/Korinna_Steffen.jpg
 webp: /static/img/coaches/Korinna_Steffen.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

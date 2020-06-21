@@ -3,7 +3,7 @@ name: Claus-Dieter Piontke
 url: https://managemententwickler.de/coaching-sparringspartner/
 image: /static/img/coaches/Claus_Dieter_Piontke.jpg
 webp: /static/img/coaches/Claus_Dieter_Piontke.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

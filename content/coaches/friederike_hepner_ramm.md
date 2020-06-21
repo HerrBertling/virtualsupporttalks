@@ -3,7 +3,7 @@ name: Friederike Hepner-Ramm
 url: http://www.call-your-coach.de
 image: /static/img/coaches/Friederike_Hepner_Ramm.jpg
 webp: /static/img/coaches/Friederike_Hepner_Ramm.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

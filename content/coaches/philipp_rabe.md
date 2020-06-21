@@ -3,7 +3,7 @@ name: Philipp Rabe
 url: https://leadershiplernen.de
 image: /static/img/coaches/Philipp_Rabe.jpg
 webp: /static/img/coaches/Philipp_Rabe.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Ursula Lindenberg
 url: https://ul-coaching.wixsite.com/ulindenberg
 image: /static/img/coaches/Ursula_Lindenberg.jpg
 webp: /static/img/coaches/Ursula_Lindenberg.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

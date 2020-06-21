@@ -3,7 +3,7 @@ name: Cristina Sandner
 url: https://www.werte-atelier.de/
 image: /static/img/coaches/Cristina_Sandner.jpg
 webp: /static/img/coaches/Cristina_Sandner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Gaby Haak
 url: http://www.gabyhaak.de
 image: /static/img/coaches/Gaby_Haak.jpg
 webp: /static/img/coaches/Gaby_Haak.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

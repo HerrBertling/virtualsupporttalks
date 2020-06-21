@@ -3,7 +3,7 @@ name: Daniela Koster
 url: http://www.danielakoster.de
 image: /static/img/coaches/Daniela_Koster.jpg
 webp: /static/img/coaches/Daniela_Koster.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

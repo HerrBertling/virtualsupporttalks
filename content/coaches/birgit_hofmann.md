@@ -3,7 +3,7 @@ name: Birgit Hofmann
 url: http://www.birgit-hofmann.com
 image: /static/img/coaches/Birgit_Hofmann.jpg
 webp: /static/img/coaches/Birgit_Hofmann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

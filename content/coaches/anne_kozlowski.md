@@ -3,7 +3,7 @@ name: Anne Kozlowski
 email: anne.kozlowski@gmx.net
 image: /static/img/coaches/Anne_Kozlowski.jpg
 webp: /static/img/coaches/Anne_Kozlowski.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

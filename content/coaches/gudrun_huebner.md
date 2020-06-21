@@ -3,7 +3,7 @@ name: Gudrun Hübner
 url: https://schlafberatung-huebner.de/
 image: /static/img/coaches/Gudrun_Huebner.jpg
 webp: /static/img/coaches/Gudrun_Huebner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Ulrich Marschner
 url: http://www.nachvornehandeln.de
 image: /static/img/coaches/Ulrich_Marschner.jpg
 webp: /static/img/coaches/Ulrich_Marschner.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

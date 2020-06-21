@@ -3,7 +3,7 @@ name: Annika Salingré
 url: http://querdenker.in/systemisches_coaching/
 image: /static/img/coaches/Annika_Salingre.jpg
 webp: /static/img/coaches/Annika_Salingre.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Elisabeth Neumann
 email: Mail@medienkontor-neumann.de
 image: /static/img/coaches/Elisabeth_Neumann.jpg
 webp: /static/img/coaches/Elisabeth_Neumann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

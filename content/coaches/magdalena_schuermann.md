@@ -3,7 +3,7 @@ name: Magdalena Schürmann
 url: http://www.arbeitsleben-beratung.de
 image: /static/img/coaches/Magdalena_Schuermann.jpg
 webp: /static/img/coaches/Magdalena_Schuermann.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

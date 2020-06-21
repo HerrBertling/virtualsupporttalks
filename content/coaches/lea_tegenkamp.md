@@ -3,7 +3,7 @@ name: Lea Tegenkamp
 url: https://www.walk-and-talk.org/
 image: /static/img/coaches/Lea_Tegenkamp.jpg
 webp: /static/img/coaches/Lea_Tegenkamp.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

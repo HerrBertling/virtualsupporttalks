@@ -3,7 +3,7 @@ name: Martina Fricke
 email: mf@martina-fricke.com
 image: /static/img/coaches/Martina_Fricke.jpg
 webp: /static/img/coaches/Martina_Fricke.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 

@@ -3,7 +3,7 @@ name: Jessica Jansen
 url: http://www.mamawunder.com
 image: /static/img/coaches/Jessica_Jansen.jpg
 webp: /static/img/coaches/Jessica_Jansen.webp
-tags: '',
+tags: ''
 languages: 'de'
 ---
 
