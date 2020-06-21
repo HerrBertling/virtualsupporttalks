@@ -19,7 +19,7 @@
       rel="noopener"
       :class="$style.title"
     >
-      <h3>
+      <h3 :class="$style.headline">
         {{ coach.name }}
       </h3>
     </a>
@@ -92,14 +92,17 @@ export default {
 .title {
   grid-row: 1;
   grid-column: 2;
-  font-size: 1rem;
   align-self: center;
+}
+
+.headline {
+  font-size: 0.75rem;
 }
 
 .content {
   grid-row: 2;
   grid-column: 1 / -1;
-  font-size: 0.8rem !important;
+  font-size: 0.75rem !important;
 }
 .coachContent ul {
   padding: 0;
