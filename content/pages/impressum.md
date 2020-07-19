@@ -1,5 +1,8 @@
 ---
 order: 10
+title: Impressum
+date: 2020-07-19T19:42:11.354Z
+permalink: /impressum
 ---
 
 # Impressum
