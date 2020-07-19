@@ -1,5 +1,6 @@
 export default {
   mode: "universal",
+  target: "static",
   components: [{ path: "~/components" }],
   /*
    ** Headers of the page
