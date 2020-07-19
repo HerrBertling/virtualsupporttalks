@@ -4,11 +4,9 @@
       :href="coach.url ? coach.url : `mailto:${coach.email}`"
       target="_blank"
       rel="noopener"
+      :class="$style.coachImage"
     >
-      <figure :class="$style.coachImage" role="figure" :aria-label="coach.name">
-        <img :src="usedImage" :alt="coach.name" loading="lazy" @error="err" />
-        <figcaption>{{ coach.name }}</figcaption>
-      </figure>
+      <img :src="usedImage" :alt="coach.name" loading="lazy" @error="err" />
     </a>
     <a
       :href="coach.url ? coach.url : `mailto:${coach.email}`"
