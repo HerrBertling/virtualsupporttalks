@@ -30,7 +30,10 @@ export default {
 
   computed: {
     bgImg() {
-      return require(`~/${this.backgroundImage}`);
+      if (this.backgroundImage) {
+        return require(`~/${this.backgroundImage}`);
+      }
+      return null;
     },
   },
 };

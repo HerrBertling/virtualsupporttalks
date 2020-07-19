@@ -1,23 +1,23 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <div :class="$style.coachSearch">
-      <label>
-        <strong>Coach-Liste filtern</strong>
-        <input v-model.lazy="searchInput" type="search" />
-      </label>
+    <div v-if="tags" :class="$style.coachSearch">
+      <h5>Coach-Liste filtern</h5>
+      <button
+        v-for="tag in tags"
+        :key="tag"
+        :class="[$style.tag, tag === currentTag && $style.selected]"
+        @click="toggleCurrentTag(tag)"
+      >
+        {{ tag }}
+      </button>
     </div>
-    <section v-if="searchInput" :class="$style.coachesList">
+    <section :class="$style.coachesList">
       <CoachCard
-        v-for="(coach, index) in coachList"
+        v-for="(coach, index) in filteredList"
         :key="index"
         :coach="coach"
       >
-        <nuxt-content :document="coach" />
-      </CoachCard>
-    </section>
-    <section v-else :class="$style.coachesList">
-      <CoachCard v-for="(coach, index) in coaches" :key="index" :coach="coach">
         <nuxt-content :document="coach" />
       </CoachCard>
     </section>
@@ -30,28 +30,44 @@ export default {
     title: "Ich suche Redezeit",
   },
 
-  async fetch() {
-    this.coachList = await this.$content("coaches")
-      .search(this.searchInput)
-      .fetch();
-  },
-
   async asyncData({ $content }) {
     const content = await $content("need-support").sortBy("order").fetch();
-    const coaches = await $content("coaches").sortBy("name").fetch();
+    const initialCoaches = await $content("coaches").sortBy("name").fetch();
+    const coaches = Object.freeze(initialCoaches);
     return { content, coaches };
   },
 
   data() {
     return {
-      searchInput: "",
-      filteredList: this.coaches,
+      currentTag: null,
     };
   },
 
-  watch: {
-    searchInput() {
-      this.$fetch();
+  computed: {
+    filteredList() {
+      if (this.currentTag === null) {
+        return this.coaches;
+      }
+      return this.coaches.filter(
+        (coach) => coach.tags && coach.tags.includes(this.currentTag)
+      );
+    },
+    tags() {
+      let internalTags = [];
+      this.coaches.forEach((coach) => {
+        if (coach.tags) {
+          const coachTags = coach.tags.split(", ");
+          internalTags = [...internalTags, ...coachTags];
+        }
+      });
+      return [...new Set(internalTags)];
+    },
+  },
+
+  methods: {
+    toggleCurrentTag(tag) {
+      const tagIsActive = this.currentTag === tag;
+      this.currentTag = tagIsActive ? null : tag;
     },
   },
 
@@ -77,5 +93,19 @@ export default {
   padding: 3rem 1rem;
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.tag {
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
+  width: auto;
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.selected {
+  background-color: lightgrey;
+  color: white;
 }
 </style>

@@ -68,10 +68,11 @@ export default {
   flex-direction: column;
   position: fixed;
   top: 64px;
-  left: 0;
+  right: 0;
   width: 100vw;
-  height: calc(100vh - 48px);
-  transform: translateX(100vw);
+  max-width: 40rem;
+  height: calc(100vh - 64px);
+  transform: translateX(40rem);
   transition: transform 300ms ease-in;
   background: var(--colorWhite);
 }
