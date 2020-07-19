@@ -92,6 +92,7 @@ export default {
 }
 
 .img_link h2 {
-  padding: 0.5rem 1rem;
+  margin: 0;
+  padding: 1rem;
 }
 </style>

@@ -6,10 +6,7 @@
       rel="noopener"
     >
       <figure :class="$style.coachImage" role="figure" :aria-label="coach.name">
-        <picture>
-          <source :srcset="usedImage" type="image/jpeg" />
-          <img :src="usedImage" :alt="coach.name" loading="lazy" />
-        </picture>
+        <img :src="usedImage" :alt="coach.name" loading="lazy" @error="err" />
         <figcaption>{{ coach.name }}</figcaption>
       </figure>
     </a>
@@ -47,6 +44,11 @@ export default {
         return this.coach.image.substring(7);
       }
       return this.coach.image;
+    },
+  },
+  methods: {
+    err() {
+      console.log("image not found?");
     },
   },
 };
