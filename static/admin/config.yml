@@ -6,126 +6,72 @@ media_folder: "static/img"
 public_folder: "/img"
 
 collections:
+  - name: "coaches"
+    label: "Coaches"
+    label_singular: "Coach"
+    folder: "content/coaches"
+    media_folder: "static/img/coaches"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "URL", name: "url", widget: "string" }
+      - { label: "E-Mail", name: "email", widget: "string" }
+      - { label: "Schlagwörter", name: "tags", widget: "string" }
+      - { label: "Bild", name: "image", widget: "image" }
+      - { label: "Schwerpunkte", name: "body", widget: "markdown" }
+  - name: "contributors"
+    label: "Initiatoren"
+    label_singular: "Initiator"
+    folder: "content/contributors"
+    create: true
+    fields:
+      - { label: "Titel (intern)", name: "title", widget: "string" }
+      - { label: "Vorname", name: "firstName", widget: "string" }
+      - { label: "Nachname", name: "lastName", widget: "string" }
+      - { label: "Webseite", name: "website", widget: "string" }
+      - { label: "Bild", name: "image", widget: "image" }
+      - { label: "Text", name: "body", widget: "markdown" }
   - name: "startpage"
-    label: "Startpage"
+    label: "Startpage Blocks"
     label_singular: "Contentblock Startpage"
     folder: "content/home"
     media_folder: "/assets/img"
     create: true
     fields:
-      - label: "Content Blocks"
-        name: "sections"
-        widget: "list"
-        types:
-          - label: "Inhalt zentriert"
-            name: "contentCentered"
-            widget: object
-            fields:
-              - {
-                  label: "Hintergrundfarbe",
-                  name: "backgroundColor",
-                  widget: "string",
-                  required: false,
-                }
-              - {
-                  label: "Reihenfolge",
-                  name: "order",
-                  widget: "number",
-                  step: 10,
-                  min: 0,
-                }
-              - {
-                  label: "Inhalt",
-                  name: "body",
-                  widget: "markdown",
-                  required: false,
-                }
-          - label: "Inhalt mit Hintergrundbild"
-            name: "ContentImageBg"
-            widget: object
-            fields:
-              - {
-                  label: "Hintergrundbild",
-                  name: "backgroundImage",
-                  widget: "image",
-                  required: false,
-                }
-              - {
-                  label: "Reihenfolge",
-                  name: "order",
-                  widget: "number",
-                  step: 10,
-                  min: 0,
-                }
-              - {
-                  label: "Inhalt",
-                  name: "body",
-                  widget: "markdown",
-                  required: false,
-                }
-          - label: "Seitentitel"
-            name: "HeaderBlock"
-            widget: object
-            fields:
-              - {
-                  label: "Reihenfolge",
-                  name: "order",
-                  widget: "number",
-                  step: 10,
-                  min: 0,
-                }
-              - {
-                  label: "Hintergrundfarbe",
-                  name: "backgroundColor",
-                  widget: "string",
-                  required: false,
-                }
-              - {
-                  label: "Hintergrundbild",
-                  name: "backgroundImage",
-                  widget: "image",
-                  required: false,
-                }
-              - {
-                  label: "Inhalt",
-                  name: "body",
-                  widget: "markdown",
-                  required: false,
-                }
-          - label: "Inhalt/Bild 50:50"
-            name: "ContentWithFullSizeImage"
-            widget: object
-            fields:
-              - {
-                  label: "Bild",
-                  name: "image",
-                  widget: "image",
-                  required: false,
-                }
-              - {
-                  label: "Reihenfolge",
-                  name: "order",
-                  widget: "number",
-                  step: 10,
-                  min: 0,
-                }
-              - {
-                  label: "Inhalt",
-                  name: "body",
-                  widget: "markdown",
-                  required: false,
-                }
-              - {
-                  label: "Bildposition",
-                  name: "imagePlacement",
-                  widget: "select",
-                  options:
-                    [
-                      { label: "Links", value: "left" },
-                      { label: "Rechts", value: "right" },
-                    ],
-                }
-
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Contentblock Typ"
+        name: "type"
+        widget: "select"
+        options:
+          [
+            "contentCentered",
+            "contentImageBg",
+            "pageHeader",
+            "contentWithFullSizeImageLeft",
+          ]
+      - {
+          label: "Reihenfolge",
+          name: "order",
+          widget: "number",
+          step: 10,
+          min: 0,
+        }
+      - {
+          label: "Hintergrundbild",
+          name: "backgroundImage",
+          widget: "image",
+          required: false,
+        }
+      - { label: "Bild", name: "image", widget: "image", required: false }
+      - {
+          label: "Hintergrundfarbe",
+          name: "backgroundColor",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Inhalt", name: "body", widget: "markdown", required: false }
   - name: "needSupport"
     label: "Need Support Blocks"
     label_singular: "Contentblock Need Support"
@@ -165,36 +111,7 @@ collections:
           required: false,
         }
       - { label: "Inhalt", name: "body", widget: "markdown", required: false }
-
-  - name: "coaches"
-    label: "Coaches"
-    label_singular: "Coach"
-    folder: "content/coaches"
-    media_folder: "static/img/coaches"
-    create: true
-    slug: "{{slug}}"
-    identifier_field: name
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "URL", name: "url", widget: "string" }
-      - { label: "E-Mail", name: "email", widget: "string" }
-      - { label: "Schlagwörter", name: "tags", widget: "string" }
-      - { label: "Bild", name: "image", widget: "image" }
-      - { label: "Schwerpunkte", name: "body", widget: "markdown" }
-
-  - name: "contributors"
-    label: "Initiatoren"
-    label_singular: "Initiator"
-    folder: "content/contributors"
-    create: true
-    fields:
-      - { label: "Titel (intern)", name: "title", widget: "string" }
-      - { label: "Vorname", name: "firstName", widget: "string" }
-      - { label: "Nachname", name: "lastName", widget: "string" }
-      - { label: "Webseite", name: "website", widget: "string" }
-      - { label: "Bild", name: "image", widget: "image" }
-      - { label: "Text", name: "body", widget: "markdown" }
-
+  # Our pages e.g. About
   - name: "pages"
     label: "Page"
     folder: "content/pages"
