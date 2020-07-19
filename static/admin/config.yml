@@ -50,6 +50,7 @@ collections:
             "contentImageBg",
             "pageHeader",
             "contentWithFullSizeImageLeft",
+            "twoImages",
           ]
       - {
           label: "Reihenfolge",

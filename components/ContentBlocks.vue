@@ -41,11 +41,9 @@
         :text2="block.text2"
         :link1="block.link1"
         :link2="block.link2"
-      >
-        <pre>{{ block }}</pre>
-      </TwoImages>
+      />
       <GenericContent v-else :key="index" v-bind="block">
-        <pre>{{ block }}</pre>
+        <nuxt-content :document="block" />
       </GenericContent>
     </template>
   </div>
