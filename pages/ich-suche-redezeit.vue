@@ -14,7 +14,8 @@
     </div>
     <section :class="$style.coachesList">
       <CoachCard
-        v-for="(coach, index) in filteredList"
+        v-for="(coach, index) in coaches"
+        v-show="shouldShowCoach(coach)"
         :key="index"
         :coach="coach"
       >
@@ -32,8 +33,7 @@ export default {
 
   async asyncData({ $content }) {
     const content = await $content("need-support").sortBy("order").fetch();
-    const initialCoaches = await $content("coaches").sortBy("name").fetch();
-    const coaches = Object.freeze(initialCoaches);
+    const coaches = await $content("coaches").sortBy("name").fetch();
     return { content, coaches };
   },
 
@@ -44,14 +44,6 @@ export default {
   },
 
   computed: {
-    filteredList() {
-      if (this.currentTag === null) {
-        return this.coaches;
-      }
-      return this.coaches.filter(
-        (coach) => coach.tags && coach.tags.includes(this.currentTag)
-      );
-    },
     tags() {
       let internalTags = [];
       this.coaches.forEach((coach) => {
@@ -68,6 +60,15 @@ export default {
     toggleCurrentTag(tag) {
       const tagIsActive = this.currentTag === tag;
       this.currentTag = tagIsActive ? null : tag;
+    },
+    shouldShowCoach(coach) {
+      if (!this.currentTag) {
+        return true;
+      }
+      if (this.currentTag && !coach.tags) {
+        return false;
+      }
+      return coach.tags.includes(this.currentTag);
     },
   },
 
