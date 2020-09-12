@@ -1,12 +1,16 @@
 <template>
   <section :class="$style.cb_genericContent">
-    <slot />
+    <ContentfulRichText
+      v-if="block.fields.content"
+      :content="block.fields.content"
+    />
+    <slot v-else />
   </section>
 </template>
 <script>
 export default {
-  name: "GenericContent",
-};
+  name: 'GenericContent',
+}
 </script>
 <style module>
 .cb_genericContent {

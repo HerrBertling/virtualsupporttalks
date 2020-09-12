@@ -10,12 +10,12 @@
 </template>
 <script>
 export default {
-  name: "HeaderBlock",
+  name: 'HeaderBlock',
 
   props: {
     backgroundColor: {
       type: String,
-      default: "#fff",
+      default: '#fff',
     },
     backgroundImage: {
       type: String,
@@ -24,17 +24,14 @@ export default {
   },
 
   computed: {
-    bgImg() {
-      return require(`~/${this.backgroundImage}`);
-    },
     styleObject() {
       return {
         backgroundColor: this.backgroundColor,
-        backgroundImage: `url(${this.bgImg})`,
-      };
+        backgroundImage: `url(${this.backgroundImage})`,
+      }
     },
   },
-};
+}
 </script>
 <style module>
 .cb_pageHeader_wrapper {

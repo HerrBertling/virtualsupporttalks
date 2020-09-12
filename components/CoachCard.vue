@@ -1,21 +1,21 @@
 <template>
   <article :class="$style.coachWrapper">
     <a
-      :href="coach.url ? coach.url : `mailto:${coach.email}`"
+      :href="url ? url : `mailto:${email}`"
       target="_blank"
       rel="noopener"
       :class="$style.coachImage"
     >
-      <img :src="usedImage" :alt="coach.name" loading="lazy" @error="err" />
+      <img :src="image" :alt="name" loading="lazy" />
     </a>
     <a
-      :href="coach.url ? coach.url : `mailto:${coach.email}`"
+      :href="url ? url : `mailto:${email}`"
       target="_blank"
       rel="noopener"
       :class="$style.title"
     >
       <h3 :class="$style.headline">
-        {{ coach.name }}
+        {{ name }}
       </h3>
     </a>
     <div :class="$style.content">
@@ -27,29 +27,27 @@
 
 <script>
 export default {
-  name: "CoachCard",
+  name: 'CoachCard',
 
   props: {
-    coach: {
-      type: Object,
-      default: () => {},
+    email: {
+      type: String,
+      default: null,
+    },
+    url: {
+      type: String,
+      default: null,
+    },
+    name: {
+      type: String,
+      default: null,
+    },
+    image: {
+      type: String,
+      default: null,
     },
   },
-
-  computed: {
-    usedImage() {
-      if (this.coach.image.startsWith("/static/")) {
-        return this.coach.image.substring(7);
-      }
-      return this.coach.image;
-    },
-  },
-  methods: {
-    err() {
-      console.log("image not found?");
-    },
-  },
-};
+}
 </script>
 
 <style module>

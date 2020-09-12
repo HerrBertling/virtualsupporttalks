@@ -2,7 +2,7 @@
   <article :class="[$style.contWrapper, $style.plzAnimateMe]">
     <nuxt-link :to="permalink">
       <figure :class="$style.contImage" role="figure" :aria-label="name">
-        <img :src="img" :alt="name" loading="lazy" />
+        <img :src="image" :alt="name" loading="lazy" />
         <figcaption>{{ name }}</figcaption>
       </figure>
     </nuxt-link>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "ContributorCard",
+  name: 'ContributorCard',
 
   props: {
     firstName: {
@@ -32,21 +32,21 @@ export default {
       type: String,
       default: null,
     },
-    permalink: {
+    slug: {
       type: String,
-      default: null,
+      required: true,
     },
   },
 
   computed: {
-    img() {
-      return require(`~/${this.image}`);
-    },
     name() {
-      return `${this.firstName} ${this.lastName}`;
+      return `${this.firstName} ${this.lastName}`
+    },
+    permalink() {
+      return `/initiatoren/${this.slug}`
     },
   },
-};
+}
 </script>
 
 <style module>

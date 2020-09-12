@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <div v-if="tags" :class="$style.coachSearch">
+    <!-- <div v-if="tags" :class="$style.coachSearch">
       <h5>Coach-Liste filtern</h5>
       <button
         v-for="tag in tags"
@@ -11,15 +11,18 @@
       >
         {{ tag }}
       </button>
-    </div>
+    </div> -->
     <section :class="$style.coachesList">
       <CoachCard
         v-for="(coach, index) in coaches"
         v-show="shouldShowCoach(coach)"
         :key="index"
-        :coach="coach"
+        :name="coach.fields.name"
+        :url="coach.fields.url"
+        :email="coach.fields.email"
+        :image="coach.fields.image.fields.file.url"
       >
-        <nuxt-content :document="coach" />
+        <ContentfulRichText :content="coach.fields.description" />
       </CoachCard>
     </section>
   </div>
@@ -28,56 +31,59 @@
 export default {
   meta: {
     inMainNav: true,
-    title: "Ich suche Redezeit",
+    title: 'Ich suche Redezeit',
   },
 
-  async asyncData({ $content }) {
-    const content = await $content("need-support").sortBy("order").fetch();
-    const coaches = await $content("coaches").sortBy("name").fetch();
-    return { content, coaches };
+  async asyncData({ $contentful }) {
+    const { fields } = await $contentful.getEntry('3tWiFBv2glxL9ouznQYrG5')
+    const { items } = await $contentful.getEntries({
+      content_type: 'coach',
+      order: 'fields.name',
+    })
+    return { title: fields.title, content: fields.content, coaches: items }
   },
 
   data() {
     return {
       currentTag: null,
-    };
+    }
   },
 
   computed: {
-    tags() {
-      let internalTags = [];
-      this.coaches.forEach((coach) => {
-        if (coach.tags) {
-          const coachTags = coach.tags.split(", ");
-          internalTags = [...internalTags, ...coachTags];
-        }
-      });
-      return [...new Set(internalTags)];
-    },
+    // tags() {
+    //   let internalTags = [];
+    //   this.coaches.forEach((coach) => {
+    //     if (coach.tags) {
+    //       const coachTags = coach.tags.split(", ");
+    //       internalTags = [...internalTags, ...coachTags];
+    //     }
+    //   });
+    //   return [...new Set(internalTags)];
+    // },
   },
 
   methods: {
-    toggleCurrentTag(tag) {
-      const tagIsActive = this.currentTag === tag;
-      this.currentTag = tagIsActive ? null : tag;
-    },
+    // toggleCurrentTag(tag) {
+    //   const tagIsActive = this.currentTag === tag;
+    //   this.currentTag = tagIsActive ? null : tag;
+    // },
     shouldShowCoach(coach) {
       if (!this.currentTag) {
-        return true;
+        return true
       }
       if (this.currentTag && !coach.tags) {
-        return false;
+        return false
       }
-      return coach.tags.includes(this.currentTag);
+      return coach.tags.includes(this.currentTag)
     },
   },
 
   head() {
     return {
-      title: "Ich suche Redezeit",
-    };
+      title: 'Ich suche Redezeit',
+    }
   },
-};
+}
 </script>
 
 <style module>

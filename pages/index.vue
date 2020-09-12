@@ -1,36 +1,28 @@
 <template>
   <div>
-    <ContentBlocks :blocks="homeContent" />
+    <ContentBlocks :blocks="content" />
     <section :class="$style.contributorList">
       <ContributorCard
-        v-for="{ firstName, lastName, permalink, image } in contributors"
-        :key="`${lastName}_${firstName}`"
-        :first-name="firstName"
-        :last-name="lastName"
-        :permalink="permalink"
-        :image="image"
+        v-for="contributor in contributors"
+        :key="`${contributor.fields.lastname}_${contributor.fields.firstname}`"
+        :first-name="contributor.fields.firstname"
+        :last-name="contributor.fields.lastname"
+        :image="contributor.fields.image.fields.file.url"
+        :slug="contributor.fields.slug"
       />
     </section>
   </div>
 </template>
 <script>
 export default {
-  async asyncData({ $content }) {
-    const homeContent = await $content("home").sortBy("order").fetch();
-    const contributors = await $content("contributors").fetch();
-    return { homeContent, contributors };
+  async asyncData({ $contentful }) {
+    const { fields } = await $contentful.getEntry('2W0lOJiaTbb5Dptc3mjRhN')
+    const { items } = await $contentful.getEntries({
+      content_type: 'contributor',
+    })
+    return { title: fields.title, content: fields.content, contributors: items }
   },
-  head() {
-    return {
-      script: [
-        {
-          src: "https://identity.netlify.com/v1/netlify-identity-widget.js",
-          defer: true,
-        },
-      ],
-    };
-  },
-};
+}
 </script>
 
 <style module>

@@ -4,12 +4,11 @@
       <h2>Unsere Supporter</h2>
       <div :class="$style.tiles">
         <SupporterTile
-          v-for="tile in supporter"
-          :key="tile.url"
-          :url="tile.url"
-        >
-          <nuxt-content :document="tile" />
-        </SupporterTile>
+          v-for="entry in supporter"
+          :key="entry.fields.url"
+          :url="entry.fields.url"
+          :image="entry.fields.image.fields.file.url"
+        />
       </div>
     </section>
     <ContentBlocks :blocks="content" />
@@ -18,11 +17,11 @@
       <div :class="$style.tiles">
         <SupporterTile
           v-for="medium in media"
-          :key="medium.url"
-          :url="medium.url"
-        >
-          <nuxt-content :document="medium" />
-        </SupporterTile>
+          :key="medium.fields.url"
+          :url="medium.fields.url"
+          :title="medium.fields.title"
+          :image="medium.fields.image.fields.file.url"
+        />
       </div>
     </section>
   </div>
@@ -30,20 +29,31 @@
 
 <script>
 export default {
-  name: "SupportMedia",
+  name: 'SupportMedia',
 
   meta: {
     inMainNav: true,
-    title: "Supporter und Medien",
+    title: 'Supporter und Medien',
   },
 
-  async asyncData({ $content }) {
-    const supporter = await $content("supporter").fetch();
-    const content = await $content("supporter-content").fetch();
-    const media = await $content("medien").fetch();
-    return { supporter, content, media };
+  async asyncData({ $contentful }) {
+    const { fields } = await $contentful.getEntry('25tWaqDQRtqkh9Bh2idI2A')
+    const media = await $contentful.getEntries({
+      content_type: 'media',
+      order: 'fields.title',
+    })
+    const supporter = await $contentful.getEntries({
+      content_type: 'supporter',
+      order: 'fields.title',
+    })
+    return {
+      title: fields.title,
+      content: fields.content,
+      media: media.items,
+      supporter: supporter.items,
+    }
   },
-};
+}
 </script>
 
 <style module>

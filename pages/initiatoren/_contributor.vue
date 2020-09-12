@@ -9,11 +9,11 @@
     </figure>
     <div :class="$style.contContent">
       <h1>
-        <a :href="contribData.website">{{ name }}</a>
+        <a :href="website">{{ name }}</a>
       </h1>
-      <nuxt-content :document="contribData" />
-      <a :class="$style.button" :href="contribData.website">
-        Zur Webseite von {{ contribData.firstName }}
+      <ContentfulRichText :content="content" />
+      <a :class="$style.button" :href="website">
+        Zur Webseite von {{ firstName }}
       </a>
     </div>
   </article>
@@ -21,26 +21,30 @@
 
 <script>
 export default {
-  name: "ContributorPage",
+  name: 'ContributorPage',
 
-  async asyncData({ $content, params }) {
-    const contribData = await $content(
-      `contributors/${params.contributor}`
-    ).fetch();
-    return { contribData };
+  async asyncData({ $contentful, params }) {
+    const { items } = await $contentful.getEntries({
+      content_type: 'contributor',
+      'fields.slug[in]': params.contributor,
+    })
+    const { content, firstname, lastname, url } = items[0].fields
+    return {
+      content,
+      img: items[0].fields.image.fields.file.url,
+      firstName: firstname,
+      lastName: lastname,
+      website: url,
+    }
   },
 
   computed: {
     name() {
-      const { firstName, lastName } = this.contribData;
-      return `${firstName} ${lastName}`;
-    },
-
-    img() {
-      return require(`~/${this.contribData.image}`);
+      const { firstName, lastName } = this
+      return `${firstName} ${lastName}`
     },
   },
-};
+}
 </script>
 
 <style module>

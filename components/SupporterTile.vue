@@ -6,21 +6,32 @@
     rel="noreferrer noopener"
     loading="lazy"
   >
-    <slot />
+    <div>
+      <img :src="image" :alt="title" />
+      <h3 v-if="title">{{ title }}</h3>
+    </div>
   </a>
 </template>
 
 <script>
 export default {
-  name: "SupporterTile",
+  name: 'SupporterTile',
 
   props: {
     url: {
       type: String,
       default: null,
     },
+    image: {
+      type: String,
+      default: null,
+    },
+    title: {
+      type: String,
+      default: null,
+    },
   },
-};
+}
 </script>
 
 <style scoped>
@@ -37,17 +48,15 @@ export default {
 .supporter:active {
   opacity: 0.8;
 }
-.supporter >>> p {
-  margin: 0;
+.supporter div {
   text-align: center;
 }
 
-.supporter >>> h3 {
+.supporter h3 {
   margin: 0;
-  text-align: center;
 }
 
-.supporter >>> img {
+.supporter img {
   object-fit: cover;
   max-width: 300px;
   max-height: 300px;

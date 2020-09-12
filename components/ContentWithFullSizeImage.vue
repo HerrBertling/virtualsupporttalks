@@ -1,21 +1,13 @@
 <template>
   <section
-    :class="$style.cb_contentFullSizeImg"
+    :class="$style.wrapper"
     :style="{ backgroundColor: backgroundColor }"
   >
     <img
-      :src="img"
-      :class="[
-        $style.cb_contentFullSizeImg__image,
-        imageRight && $style.imageRight,
-      ]"
+      :src="image"
+      :class="[$style.image, imageRight && $style.imageRight]"
     />
-    <div
-      :class="[
-        $style.cb_contentFullSizeImg__content,
-        imageRight && $style.imageRight,
-      ]"
-    >
+    <div :class="[$style.content, imageRight && $style.imageRight]">
       <slot />
     </div>
   </section>
@@ -23,7 +15,7 @@
 
 <script>
 export default {
-  name: "ContentWithFullSizeImage",
+  name: 'ContentWithFullSizeImage',
 
   props: {
     backgroundColor: {
@@ -34,59 +26,50 @@ export default {
       type: String,
       default: null,
     },
-    imagePlacement: {
-      type: String,
-      default: "left",
+    imageRight: {
+      type: Boolean,
+      default: false,
     },
   },
-
-  computed: {
-    img() {
-      return require(`~/${this.image}`);
-    },
-    imageRight() {
-      return this.imagePlacement === "right";
-    },
-  },
-};
+}
 </script>
 
 <style module>
-.cb_contentFullSizeImg {
+.wrapper {
   display: grid;
   grid-template-columns: 100vw;
 }
 
-.cb_contentFullSizeImg__image {
+.image {
   object-fit: cover;
   height: 60vh;
   width: 100%;
 }
 
-.cb_contentFullSizeImg__content {
+.content {
   padding: 2rem 1rem;
 }
 
 @media (min-width: 960px) {
-  .cb_contentFullSizeImg {
+  .wrapper {
     grid-template-columns: repeat(2, 50vw);
   }
-  .cb_contentFullSizeImg__image {
+  .image {
     object-fit: cover;
     height: 100%;
     width: 100%;
   }
 
-  .cb_contentFullSizeImg__image.imageRight {
+  .image.imageRight {
     grid-column: 2;
     grid-row: 1;
   }
 
-  .cb_contentFullSizeImg__content {
+  .content {
     padding: 3rem;
     padding-top: 9rem;
   }
-  .cb_contentFullSizeImg__content.imageRight {
+  .content.imageRight {
     grid-column: 1;
     grid-row: 1;
   }

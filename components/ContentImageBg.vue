@@ -1,21 +1,16 @@
 <template>
   <section
-    :class="$style.cb_contentImageBg"
-    :style="{ backgroundImage: `url(${bgImg})` }"
+    :class="$style.wrapper"
+    :style="{ backgroundImage: `url(${backgroundImage})` }"
   >
-    <div
-      :class="[
-        $style.cb_contentImageBg_content,
-        withPaddingTop && $style.paddingTop,
-      ]"
-    >
+    <div :class="[$style.content, withPaddingTop && $style.paddingTop]">
       <slot />
     </div>
   </section>
 </template>
 <script>
 export default {
-  name: "ContentImageBg",
+  name: 'ContentImageBg',
 
   props: {
     backgroundImage: {
@@ -27,19 +22,10 @@ export default {
       default: false,
     },
   },
-
-  computed: {
-    bgImg() {
-      if (this.backgroundImage) {
-        return require(`~/${this.backgroundImage}`);
-      }
-      return null;
-    },
-  },
-};
+}
 </script>
 <style module>
-.cb_contentImageBg {
+.wrapper {
   position: relative;
   display: flex;
   background-size: cover;
@@ -49,7 +35,7 @@ export default {
   text-align: center;
 }
 
-.cb_contentImageBg_content {
+.content {
   padding: 3rem 1rem;
   max-width: var(--widthContentMax);
   width: 100vw;
@@ -61,8 +47,8 @@ export default {
   padding: 7rem 1rem 3rem;
 }
 
-.cb_contentImageBg::after {
-  content: "";
+.wrapper::after {
+  content: '';
   display: block;
   background-color: rgba(192, 192, 192, 0.7);
   position: absolute;

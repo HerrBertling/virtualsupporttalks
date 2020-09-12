@@ -1,13 +1,13 @@
 <template>
   <section :class="$style.img_link_wrapper">
     <nuxt-link :class="$style.img_link" :to="link1">
-      <img :src="img1" :alt="text1" />
+      <img :src="image1" :alt="text1" />
 
       <h2>{{ text1 }}</h2>
     </nuxt-link>
 
     <nuxt-link :class="$style.img_link" :to="link2">
-      <img :src="img2" :alt="text2" />
+      <img :src="image2" :alt="text2" />
 
       <h2>{{ text2 }}</h2>
     </nuxt-link>
@@ -15,44 +15,35 @@
 </template>
 <script>
 export default {
-  name: "TwoImages",
+  name: 'TwoImages',
 
   props: {
     image1: {
       type: String,
-      default: "",
+      default: '',
     },
     image2: {
       type: String,
-      default: "",
+      default: '',
     },
     text1: {
       type: String,
-      default: "",
+      default: '',
     },
     text2: {
       type: String,
-      default: "",
+      default: '',
     },
     link1: {
       type: String,
-      default: "",
+      default: '',
     },
     link2: {
       type: String,
-      default: "",
+      default: '',
     },
   },
-
-  computed: {
-    img1() {
-      return require(`~/${this.image1}`);
-    },
-    img2() {
-      return require(`~/${this.image2}`);
-    },
-  },
-};
+}
 </script>
 <style module>
 .img_link_wrapper {

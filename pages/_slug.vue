@@ -1,18 +1,22 @@
 <template>
   <article :class="$style.basicContent">
-    <nuxt-content :document="doc" />
+    <ContentfulRichText :content="content" />
   </article>
 </template>
 
 <script>
 export default {
-  name: "BasicContent",
-
-  async asyncData({ $content, params }) {
-    const doc = await $content(`pages/${params.slug}`).fetch();
-    return { doc };
+  name: 'BasicContent',
+  async asyncData({ $contentful, params }) {
+    const { items } = await $contentful.getEntries({
+      content_type: 'page',
+      'fields.slug[in]': params.slug,
+    })
+    return {
+      content: items[0].fields.content[0].fields.content,
+    }
   },
-};
+}
 </script>
 
 <style module>

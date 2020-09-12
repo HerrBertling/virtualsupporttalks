@@ -5,20 +5,25 @@
 </template>
 <script>
 export default {
-  meta: {
-    inMainNav: true,
-    title: "Ich biete Redezeit",
+  meta() {
+    return {
+      inMainNav: true,
+      title: this.title,
+    }
   },
 
-  async asyncData({ $content }) {
-    const content = await $content("give-support").sortBy("order").fetch();
-    return { content };
+  async asyncData({ $contentful }) {
+    const { fields } = await $contentful.getEntry('2WBTRHlycqG57zkTI0G5K3')
+    // const { items } = await $contentful.getEntries({
+    //   content_type: 'contributor',
+    // })
+    return { title: fields.title, content: fields.content }
   },
 
   head() {
     return {
-      title: "Ich biete Redezeit",
-    };
+      title: this.title,
+    }
   },
-};
+}
 </script>

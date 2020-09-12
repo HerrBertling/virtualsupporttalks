@@ -2,49 +2,47 @@
   <div>
     <template v-for="(block, index) in blocks">
       <HeaderBlock
-        v-if="block.type === 'HeaderBlock'"
+        v-if="block.sys.contentType.sys.id === 'headerBlock'"
         :key="index"
-        :background-color="block.backgroundColor"
-        :background-image="block.backgroundImage"
+        :background-color="block.fields.backgroundcolor"
+        :background-image="block.fields.image.fields.file.url"
       />
       <ContentCentered
-        v-else-if="block.type === 'ContentCentered'"
+        v-else-if="block.sys.contentType.sys.id === 'centeredContent'"
         :key="index"
-        :background-color="block.backgroundColor"
-        :text-color="block.textColor"
+        :background-color="block.fields.backgroundcolor"
+        :text-color="block.fields.textcolor"
       >
-        <nuxt-content :document="block" />
+        <ContentfulRichText :content="block.fields.content" />
       </ContentCentered>
       <ContentImageBg
-        v-else-if="block.type === 'ContentImageBg'"
+        v-else-if="block.sys.contentType.sys.id === 'contentImageBg'"
         :key="index"
         :with-padding-top="index === 0"
-        :background-image="block.backgroundImage"
+        :background-image="block.fields.backgroundImage.fields.file.url"
       >
-        <nuxt-content :document="block" />
+        <ContentfulRichText :content="block.fields.content" />
       </ContentImageBg>
       <ContentWithFullSizeImage
-        v-else-if="block.type === 'ContentWithFullSizeImage'"
+        v-else-if="block.sys.contentType.sys.id === 'contentWithFullSizeImage'"
         :key="index"
-        :background-color="block.backgroundColor"
-        :image="block.image"
-        :image-placement="block.imagePlacement || 'left'"
+        :background-color="block.fields.backgroundcolor"
+        :image="block.fields.image.fields.file.url"
+        :image-right="block.fields.imageRight"
       >
-        <nuxt-content :document="block" />
+        <ContentfulRichText :content="block.fields.content" />
       </ContentWithFullSizeImage>
       <TwoImages
-        v-else-if="block.type === 'TwoImages'"
+        v-else-if="block.sys.contentType.sys.id === 'twoImages'"
         :key="index"
-        :image1="block.image1"
-        :image2="block.image2"
-        :text1="block.text1"
-        :text2="block.text2"
-        :link1="block.link1"
-        :link2="block.link2"
+        :image1="block.fields.image1.fields.file.url"
+        :image2="block.fields.image2.fields.file.url"
+        :text1="block.fields.text1"
+        :text2="block.fields.text2"
+        :link1="block.fields.link1"
+        :link2="block.fields.link2"
       />
-      <GenericContent v-else :key="index" v-bind="block">
-        <nuxt-content :document="block" />
-      </GenericContent>
+      <GenericContent v-else :key="index" v-bind="block" />
     </template>
   </div>
 </template>
@@ -56,5 +54,5 @@ export default {
       required: true,
     },
   },
-};
+}
 </script>

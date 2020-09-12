@@ -21,42 +21,42 @@
 
 <script>
 export default {
-  name: "HeaderNavigation",
+  name: 'HeaderNavigation',
   data() {
     return {
       navExpanded: false,
       navigationItems: [
         {
-          title: "Ich suche Redezeit",
-          path: "/ich-suche-redezeit",
+          title: 'Ich suche Redezeit',
+          path: '/ich-suche-redezeit',
         },
         {
-          title: "Ich biete Redezeit",
-          path: "/ich-biete-redezeit",
+          title: 'Ich biete Redezeit',
+          path: '/ich-biete-redezeit',
         },
         {
-          title: "Supporter und Medien",
-          path: "/supporter-und-medien",
+          title: 'Supporter und Medien',
+          path: '/supporter-und-medien',
         },
       ],
-    };
+    }
   },
 
   watch: {
     navExpanded(newValue) {
-      this.$emit("navigation-active", newValue);
+      this.$emit('navigation-active', newValue)
     },
   },
 
   methods: {
     toggleNav() {
-      this.navExpanded = !this.navExpanded;
+      this.navExpanded = !this.navExpanded
     },
     closeNav() {
-      this.navExpanded = false;
+      this.navExpanded = false
     },
   },
-};
+}
 </script>
 
 <style module>
@@ -97,7 +97,7 @@ export default {
 .burger::before,
 .burger::after {
   display: inline-block;
-  content: "";
+  content: '';
   background-color: var(--colorTextDefault);
   height: 2px;
   width: 24px;
@@ -151,7 +151,7 @@ export default {
   text-decoration: none;
 }
 
-.headerNav li a[data-current="current item"] {
+.headerNav li a[data-current='current item'] {
   background-color: white;
 }
 

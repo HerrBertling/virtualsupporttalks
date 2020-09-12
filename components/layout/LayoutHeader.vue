@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "LayoutHeader",
+  name: 'LayoutHeader',
 
   data() {
     return {
@@ -31,46 +31,46 @@ export default {
       whiteBackground: false,
       navItems: [
         {
-          to: "/ich-suche-redezeit",
-          title: "Ich suche Redezeit",
+          to: '/ich-suche-redezeit',
+          title: 'Ich suche Redezeit',
         },
         {
-          to: "/ich-biete-redezeit",
-          title: "Ich biete Redezeit",
+          to: '/ich-biete-redezeit',
+          title: 'Ich biete Redezeit',
         },
       ],
-    };
+    }
   },
 
   mounted() {
-    window.addEventListener("scroll", (e) => {
-      this.lastKnownScrollPos = window.scrollY;
+    window.addEventListener('scroll', (e) => {
+      this.lastKnownScrollPos = window.scrollY
 
       if (!this.ticking) {
         window.requestAnimationFrame(() => {
-          this.toggleScrollClass(this.lastKnownScrollPos);
-          this.ticking = false;
-        });
+          this.toggleScrollClass(this.lastKnownScrollPos)
+          this.ticking = false
+        })
 
-        this.ticking = true;
+        this.ticking = true
       }
-    });
+    })
   },
 
   methods: {
     toggleScrollClass(scrollPos) {
       if (scrollPos > this.scrollThreshold && !this.hasScrolled) {
-        this.hasScrolled = true;
+        this.hasScrolled = true
       }
       if (scrollPos < this.scrollThreshold && this.hasScrolled) {
-        this.hasScrolled = false;
+        this.hasScrolled = false
       }
     },
     setHeaderBg(bool) {
-      this.whiteBackground = bool;
+      this.whiteBackground = bool
     },
   },
-};
+}
 </script>
 
 <style module>
@@ -91,7 +91,7 @@ export default {
 }
 
 .header::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 0;
