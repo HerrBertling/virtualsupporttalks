@@ -25,7 +25,8 @@
     "contentful": "^7.14.6",
     "contentful-rich-text-vue-renderer": "^1.1.5",
     "nuxt": "^2.14.5",
-    "nuxt-esbuild": "^1.0.2"
+    "nuxt-esbuild": "^1.0.2",
+    "vue-observe-visibility": "^0.4.6"
   },
   "devDependencies": {
     "@nuxt/components": "^1.1.0",

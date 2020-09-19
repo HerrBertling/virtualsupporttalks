@@ -1,16 +1,20 @@
 <template>
   <section :class="$style.img_link_wrapper">
-    <nuxt-link :class="$style.img_link" :to="link1">
-      <img :src="image1" :alt="text1" />
+    <fade-in>
+      <nuxt-link :class="$style.img_link" :to="link1">
+        <img :src="image1" :alt="text1" />
 
-      <h2>{{ text1 }}</h2>
-    </nuxt-link>
+        <h2>{{ text1 }}</h2>
+      </nuxt-link>
+    </fade-in>
 
-    <nuxt-link :class="$style.img_link" :to="link2">
-      <img :src="image2" :alt="text2" />
+    <fade-in>
+      <nuxt-link :class="$style.img_link" :to="link2">
+        <img :src="image2" :alt="text2" />
 
-      <h2>{{ text2 }}</h2>
-    </nuxt-link>
+        <h2>{{ text2 }}</h2>
+      </nuxt-link>
+    </fade-in>
   </section>
 </template>
 <script>
@@ -61,17 +65,18 @@ export default {
   }
 }
 
-.img_link[href]:link,
-.img_link[href]:visited {
+.img_link:link,
+.img_link:visited {
+  display: block;
   max-width: 100%;
   overflow: hidden;
   text-decoration: none;
   background: #c0c0c0;
 }
 
-.img_link[href]:hover img,
-.img_link[href]:focus img,
-.img_link[href]:active img {
+.img_link:hover img,
+.img_link:focus img,
+.img_link:active img {
   opacity: 0.8;
 }
 

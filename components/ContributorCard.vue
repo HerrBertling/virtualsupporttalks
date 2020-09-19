@@ -1,18 +1,20 @@
 <template>
-  <article :class="[$style.contWrapper, $style.plzAnimateMe]">
-    <nuxt-link :to="permalink">
-      <figure :class="$style.contImage" role="figure" :aria-label="name">
-        <img :src="image" :alt="name" loading="lazy" />
-        <figcaption>{{ name }}</figcaption>
-      </figure>
-    </nuxt-link>
-    <div>
-      <h3>{{ name }}</h3>
-      <nuxt-link :class="$style.button" :to="permalink">
-        Mehr zu {{ firstName }}
+  <fade-in>
+    <article :class="[$style.contWrapper, $style.plzAnimateMe]">
+      <nuxt-link :to="permalink">
+        <figure :class="$style.contImage" role="figure" :aria-label="name">
+          <img :src="image" :alt="name" loading="lazy" />
+          <figcaption>{{ name }}</figcaption>
+        </figure>
       </nuxt-link>
-    </div>
-  </article>
+      <div>
+        <h3>{{ name }}</h3>
+        <nuxt-link :class="$style.button" :to="permalink">
+          Mehr zu {{ firstName }}
+        </nuxt-link>
+      </div>
+    </article>
+  </fade-in>
 </template>
 
 <script>
