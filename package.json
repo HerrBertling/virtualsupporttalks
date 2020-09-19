@@ -24,7 +24,7 @@
     "@nuxtjs/pwa": "^3.0.2",
     "contentful": "^7.14.6",
     "contentful-rich-text-vue-renderer": "^1.1.5",
-    "nuxt": "^2.14.4",
+    "nuxt": "^2.14.5",
     "nuxt-esbuild": "^1.0.2"
   },
   "devDependencies": {
@@ -33,13 +33,13 @@
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^7.8.1",
+    "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.0.0",
-    "lint-staged": "^10.3.0",
-    "prettier": "^2.1.1",
-    "stylelint": "^13.7.0"
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "stylelint": "^13.7.1"
   }
 }
