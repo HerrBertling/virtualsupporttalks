@@ -1,5 +1,4 @@
 export default {
-  mode: 'universal',
   target: 'static',
   components: [{ path: '~/components' }],
   publicRuntimeConfig: {
