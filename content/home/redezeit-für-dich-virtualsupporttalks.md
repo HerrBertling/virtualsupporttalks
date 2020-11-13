@@ -1,6 +1,6 @@
 ---
 title: "REDEZEIT FÜR DICH #virtualsupporttalks"
-type: contentImageBg
+type: contentWithFullSizeImageLeft
 order: 0
 image: /assets/img/headerwebsite_neu-kopie.jpg
 ---
