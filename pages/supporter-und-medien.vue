@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <section v-if="!!supporter" :class="$style.tileSection">
+    <section v-if="supporter.length > 0" :class="$style.tileSection">
       <h2>Unsere Supporter</h2>
       <div :class="$style.tiles">
         <SupporterTile
@@ -11,7 +11,7 @@
         />
       </div>
     </section>
-    <section v-if="!!network" :class="$style.tileSection">
+    <section v-if="network.length > 0" :class="$style.tileSection">
       <h2>Unser Netzwerk</h2>
       <div :class="$style.tiles">
         <SupporterTile
@@ -23,7 +23,7 @@
       </div>
     </section>
     <ContentBlocks :blocks="content" />
-    <section v-if="!!media" :class="$style.tileSection">
+    <section v-if="media.length > 0" :class="$style.tileSection">
       <h2>Redezeit in den Medien</h2>
       <div :class="$style.tiles">
         <SupporterTile
