@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <section :class="$style.tileSection">
+    <section v-if="!!supporter" :class="$style.tileSection">
       <h2>Unsere Supporter</h2>
       <div :class="$style.tiles">
         <SupporterTile
@@ -11,8 +11,19 @@
         />
       </div>
     </section>
+    <section v-if="!!network" :class="$style.tileSection">
+      <h2>Unser Netzwerk</h2>
+      <div :class="$style.tiles">
+        <SupporterTile
+          v-for="entry in network"
+          :key="entry.fields.url"
+          :url="entry.fields.url"
+          :image="entry.fields.image.fields.file.url"
+        />
+      </div>
+    </section>
     <ContentBlocks :blocks="content" />
-    <section :class="$style.tileSection">
+    <section v-if="!!media" :class="$style.tileSection">
       <h2>Redezeit in den Medien</h2>
       <div :class="$style.tiles">
         <SupporterTile
@@ -29,31 +40,36 @@
 
 <script>
 export default {
-  name: 'SupportMedia',
+  name: "SupportMedia",
 
   meta: {
     inMainNav: true,
-    title: 'Supporter und Medien',
+    title: "Supporter und Medien",
   },
 
   async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry('25tWaqDQRtqkh9Bh2idI2A')
+    const { fields } = await $contentful.getEntry("25tWaqDQRtqkh9Bh2idI2A");
     const media = await $contentful.getEntries({
-      content_type: 'media',
-      order: 'fields.title',
-    })
+      content_type: "media",
+      order: "fields.title",
+    });
     const supporter = await $contentful.getEntries({
-      content_type: 'supporter',
-      order: 'fields.title',
-    })
+      content_type: "supporter",
+      order: "fields.title",
+    });
+    const network = await $contentful.getEntries({
+      content_type: "network",
+      order: "fields.title",
+    });
     return {
       title: fields.title,
       content: fields.content,
       media: media.items,
       supporter: supporter.items,
-    }
+      network: network.items,
+    };
   },
-}
+};
 </script>
 
 <style module>
