@@ -40,36 +40,36 @@
 
 <script>
 export default {
-  name: "SupportMedia",
+  name: 'SupportMedia',
 
   meta: {
     inMainNav: true,
-    title: "Supporter und Medien",
+    title: 'Supporter und Medien',
   },
 
   async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry("25tWaqDQRtqkh9Bh2idI2A");
+    const { fields } = await $contentful.getEntry('25tWaqDQRtqkh9Bh2idI2A')
     const media = await $contentful.getEntries({
-      content_type: "media",
-      order: "fields.title",
-    });
+      content_type: 'media',
+      order: 'fields.title',
+    })
     const supporter = await $contentful.getEntries({
-      content_type: "supporter",
-      order: "fields.title",
-    });
+      content_type: 'supporter',
+      order: 'fields.title',
+    })
     const network = await $contentful.getEntries({
-      content_type: "network",
-      order: "fields.title",
-    });
+      content_type: 'network',
+      order: 'fields.title',
+    })
     return {
       title: fields.title,
       content: fields.content,
       media: media.items,
       supporter: supporter.items,
       network: network.items,
-    };
+    }
   },
-};
+}
 </script>
 
 <style module>
