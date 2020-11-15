@@ -1,14 +1,14 @@
 <template>
   <fade-in>
-    <article :class="[$style.contWrapper, $style.plzAnimateMe]">
+    <article :class="$style.contWrapper">
       <nuxt-link :to="permalink">
         <figure :class="$style.contImage" role="figure" :aria-label="name">
           <img :src="image" :alt="name" loading="lazy" />
           <figcaption>{{ name }}</figcaption>
         </figure>
       </nuxt-link>
+      <h3>{{ name }}</h3>
       <div>
-        <h3>{{ name }}</h3>
         <nuxt-link :class="$style.button" :to="permalink">
           Mehr zu {{ firstName }}
         </nuxt-link>
@@ -52,6 +52,21 @@ export default {
 </script>
 
 <style module>
+.contWrapper {
+  display: grid;
+  grid-template-rows: 450px 90px 70px;
+  grid-gap: 1rem;
+}
+
+.contWrapper h3 {
+  margin: 0;
+}
+
+.contImage {
+  display: inline-flex;
+  margin: 0;
+}
+
 .contImage figcaption {
   position: absolute;
   height: 1px;
@@ -62,7 +77,7 @@ export default {
 
 .contImage img {
   max-width: 100%;
-  height: auto;
+  height: 450px;
   object-fit: cover;
   transition: opacity 300ms ease-in;
 }

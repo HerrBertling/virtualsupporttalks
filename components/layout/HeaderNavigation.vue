@@ -35,8 +35,8 @@ export default {
           path: '/ich-biete-redezeit',
         },
         {
-          title: 'Supporter und Medien',
-          path: '/supporter-und-medien',
+          title: 'Netzwerk, Partner + Medien',
+          path: '/netzwerk-partner-medien',
         },
       ],
     }

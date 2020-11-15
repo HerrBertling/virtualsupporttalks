@@ -41,6 +41,8 @@ export default {
   justify-content: center;
   transition: opacity 300ms ease-in;
   text-decoration: none;
+  content-visibility: auto;
+  contain-intrinsic-size: 350px;
 }
 
 .supporter:hover,

@@ -1,21 +1,21 @@
 <template>
   <div :class="$style.wrapper">
-    <section v-if="supporter.length > 0" :class="$style.tileSection">
-      <h2>Unsere Supporter</h2>
+    <section v-if="network.length > 0" :class="$style.tileSection">
+      <h2>Unser Netzwerk</h2>
       <div :class="$style.tiles">
         <SupporterTile
-          v-for="entry in supporter"
+          v-for="entry in network"
           :key="entry.fields.url"
           :url="entry.fields.url"
           :image="entry.fields.image.fields.file.url"
         />
       </div>
     </section>
-    <section v-if="network.length > 0" :class="$style.tileSection">
-      <h2>Unser Netzwerk</h2>
+    <section v-if="supporter.length > 0" :class="$style.tileSection">
+      <h2>Unsere Unternehmenspartner</h2>
       <div :class="$style.tiles">
         <SupporterTile
-          v-for="entry in network"
+          v-for="entry in supporter"
           :key="entry.fields.url"
           :url="entry.fields.url"
           :image="entry.fields.image.fields.file.url"
@@ -44,7 +44,7 @@ export default {
 
   meta: {
     inMainNav: true,
-    title: 'Supporter und Medien',
+    title: 'Netzwerk, Partner + Medien',
   },
 
   async asyncData({ $contentful }) {
