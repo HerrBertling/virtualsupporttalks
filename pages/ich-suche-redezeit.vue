@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <!-- <div v-if="tags" :class="$style.coachSearch">
+    <div v-if="tags" :class="$style.coachSearch">
       <h5>Coach-Liste filtern</h5>
       <button
         v-for="tag in tags"
@@ -11,11 +11,11 @@
       >
         {{ tag }}
       </button>
-    </div> -->
+    </div>
     <section :class="$style.coachesList">
       <CoachCard
         v-for="(coach, index) in coaches"
-        v-show="shouldShowCoach(coach)"
+        v-show="shouldShowCoach(coach.fields.tags)"
         :key="index"
         :name="coach.fields.name"
         :url="coach.fields.url"
@@ -40,7 +40,11 @@ export default {
       content_type: 'coach',
       order: 'fields.name',
     })
-    return { title: fields.title, content: fields.content, coaches: items }
+    return {
+      title: fields.title,
+      content: fields.content,
+      coaches: items,
+    }
   },
 
   data() {
@@ -50,31 +54,34 @@ export default {
   },
 
   computed: {
-    // tags() {
-    //   let internalTags = [];
-    //   this.coaches.forEach((coach) => {
-    //     if (coach.tags) {
-    //       const coachTags = coach.tags.split(", ");
-    //       internalTags = [...internalTags, ...coachTags];
-    //     }
-    //   });
-    //   return [...new Set(internalTags)];
-    // },
+    tags() {
+      let internalTags = []
+      this.coaches.forEach((coach) => {
+        if (coach.fields.tags) {
+          internalTags = [...internalTags, ...coach.fields.tags]
+        }
+      })
+      const allTags = [...new Set(internalTags)]
+      return allTags.sort((a, b) =>
+        a.toLowerCase().localeCompare(b.toLowerCase())
+      )
+    },
   },
 
   methods: {
-    // toggleCurrentTag(tag) {
-    //   const tagIsActive = this.currentTag === tag;
-    //   this.currentTag = tagIsActive ? null : tag;
-    // },
-    shouldShowCoach(coach) {
+    toggleCurrentTag(tag) {
+      const tagIsActive = this.currentTag === tag
+      this.currentTag = tagIsActive ? null : tag
+    },
+
+    shouldShowCoach(tags) {
       if (!this.currentTag) {
         return true
       }
-      if (this.currentTag && !coach.tags) {
+      if (this.currentTag && !tags) {
         return false
       }
-      return coach.tags.includes(this.currentTag)
+      return tags.includes(this.currentTag)
     },
   },
 
@@ -95,7 +102,7 @@ export default {
 
 .coachesList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 1.5rem;
   padding: 3rem 1rem;
   max-width: 1280px;
