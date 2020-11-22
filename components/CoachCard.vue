@@ -6,18 +6,47 @@
       rel="noopener"
       :class="$style.coachImage"
     >
-      <img :src="image" :alt="name" loading="lazy" />
+      <picture>
+        <source
+          :srcset="`${image}?w=80&h=80&fm=webp&f=face&fit=thumb`"
+          type="image/webp"
+        />
+        <source
+          :srcset="`${image}?w=80&h=80&fm=jpeg&f=face&fit=thumb`"
+          type="image/webp"
+        />
+        <img
+          :src="`${image}?w=80&h=80&f=face&fit=thumb`"
+          :alt="name"
+          loading="lazy"
+        />
+      </picture>
     </a>
-    <a
-      :href="url ? url : `mailto:${email}`"
-      target="_blank"
-      rel="noopener"
-      :class="$style.title"
-    >
+    <header :class="$style.title">
       <h3 :class="$style.headline">
         {{ name }}
       </h3>
-    </a>
+      <a
+        v-if="url"
+        :href="url"
+        target="_blank"
+        rel="noopener"
+        :class="$style.link"
+      >
+        <WebIcon :width="16" :height="16" :class="$style.gap" />
+        <span> Webseite </span>
+      </a>
+      <a
+        v-if="email"
+        :href="email"
+        target="_blank"
+        rel="noopener"
+        :class="$style.link"
+      >
+        <MailIcon :width="16" :height="16" :class="$style.gap" />
+        <span>E-Mail</span>
+      </a>
+    </header>
     <div :class="$style.content">
       <p><strong>Meine Schwerpunkte:</strong></p>
       <slot />
@@ -26,8 +55,15 @@
 </template>
 
 <script>
+import MailIcon from '~/components/icons/mail.vue'
+import WebIcon from '~/components/icons/web.vue'
 export default {
   name: 'CoachCard',
+
+  components: {
+    MailIcon,
+    WebIcon,
+  },
 
   props: {
     email: {
@@ -97,6 +133,20 @@ export default {
 
 .headline {
   font-size: 0.75rem;
+  margin: 0 0 0.5rem;
+}
+
+.link[href],
+.link[href]:visited {
+  display: flex;
+  align-items: center;
+  font-size: 0.625rem;
+  margin: 0 0 0.5rem;
+  text-decoration: none;
+}
+
+.gap {
+  margin-right: 0.5rem;
 }
 
 .content {

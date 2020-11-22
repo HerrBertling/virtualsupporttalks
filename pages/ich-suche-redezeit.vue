@@ -1,8 +1,10 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <div v-if="tags" :class="$style.coachSearch">
-      <h5>Coach-Liste filtern</h5>
+    <details v-if="tags" :class="$style.coachSearch">
+      <summary>
+        <h5 :class="$style.tagToggle">Coach-Liste filtern</h5>
+      </summary>
       <button
         v-for="tag in tags"
         :key="tag"
@@ -11,7 +13,7 @@
       >
         {{ tag }}
       </button>
-    </div>
+    </details>
     <section :class="$style.coachesList">
       <CoachCard
         v-for="(coach, index) in coaches"
@@ -53,6 +55,12 @@ export default {
     }
   },
 
+  head() {
+    return {
+      title: 'Ich suche Redezeit',
+    }
+  },
+
   computed: {
     tags() {
       let internalTags = []
@@ -84,12 +92,6 @@ export default {
       return tags.includes(this.currentTag)
     },
   },
-
-  head() {
-    return {
-      title: 'Ich suche Redezeit',
-    }
-  },
 }
 </script>
 
@@ -98,6 +100,11 @@ export default {
   padding: 2rem 1rem;
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.tagToggle {
+  display: inline-block;
+  margin: 0;
 }
 
 .coachesList {

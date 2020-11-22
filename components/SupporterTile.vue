@@ -7,7 +7,21 @@
     loading="lazy"
   >
     <div>
-      <img :src="image" :alt="title" />
+      <picture>
+        <source
+          :srcset="`${image}?w=240&h=240&fit=fill&fm=webp`"
+          type="image/webp"
+        />
+        <source
+          :srcset="`${image}?w=240&h=240&fit=fill&fm=jpeg`"
+          type="image/webp"
+        />
+        <img
+          :src="`${image}?w=240&h=240&fit=fill`"
+          :alt="name"
+          loading="lazy"
+        />
+      </picture>
       <h3 v-if="title">{{ title }}</h3>
     </div>
   </a>
