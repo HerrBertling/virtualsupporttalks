@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import pageIds from '~/utils/pageIds'
 export default {
   name: 'SupportMedia',
 
@@ -48,7 +49,7 @@ export default {
   },
 
   async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry('25tWaqDQRtqkh9Bh2idI2A')
+    const { fields } = await $contentful.getEntry(pageIds.NETWORK)
     const media = await $contentful.getEntries({
       content_type: 'media',
       order: 'fields.title',

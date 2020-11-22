@@ -1,6 +1,5 @@
 export default {
   target: 'static',
-  modern: true,
   components: [{ path: '~/components' }],
   publicRuntimeConfig: {
     contentfulKey: process.env.CONTENTFUL_ACCESSTOKEN,
@@ -48,6 +47,10 @@ export default {
       },
     ],
   },
+  sitemap: {
+    hostname: 'https://www.virtualsupporttalks.de',
+    gzip: true,
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -73,7 +76,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/sitemap', '@nuxtjs/robots'],
   /*
    ** Build configuration
    */

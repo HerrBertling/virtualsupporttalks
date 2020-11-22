@@ -1,23 +1,23 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <details v-if="tags" :class="$style.coachSearch">
-      <summary>
+    <details v-if="hasTags" :class="$style.coachSearch">
+      <summary :class="$style.summary">
         <h5 :class="$style.tagToggle">Coach-Liste filtern</h5>
       </summary>
       <button
         v-for="tag in tags"
         :key="tag"
-        :class="[$style.tag, tag === currentTag && $style.selected]"
-        @click="toggleCurrentTag(tag)"
+        :class="[$style.tag, tag.sys.id === currentTag && $style.selected]"
+        @click="toggleCurrentTag(tag.sys.id)"
       >
-        {{ tag }}
+        {{ tag.fields.tag }}
       </button>
     </details>
     <section :class="$style.coachesList">
       <CoachCard
         v-for="(coach, index) in coaches"
-        v-show="shouldShowCoach(coach.fields.tags)"
+        v-show="shouldShowCoach(coach.fields.tag)"
         :key="index"
         :name="coach.fields.name"
         :url="coach.fields.url"
@@ -30,6 +30,8 @@
   </div>
 </template>
 <script>
+import pageIds from '~/utils/pageIds'
+
 export default {
   meta: {
     inMainNav: true,
@@ -37,15 +39,22 @@ export default {
   },
 
   async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry('3tWiFBv2glxL9ouznQYrG5')
-    const { items } = await $contentful.getEntries({
-      content_type: 'coach',
-      order: 'fields.name',
-    })
+    const [page, coaches, tags] = await Promise.all([
+      $contentful.getEntry(pageIds.SEARCH_HELP),
+      $contentful.getEntries({
+        content_type: 'coach',
+        order: 'fields.name',
+      }),
+      $contentful.getEntries({
+        content_type: 'coachtag',
+        order: 'fields.tag',
+      }),
+    ])
     return {
-      title: fields.title,
-      content: fields.content,
-      coaches: items,
+      title: page.fields.title,
+      content: page.fields.content,
+      coaches: coaches.items,
+      tags: tags.items,
     }
   },
 
@@ -62,24 +71,15 @@ export default {
   },
 
   computed: {
-    tags() {
-      let internalTags = []
-      this.coaches.forEach((coach) => {
-        if (coach.fields.tags) {
-          internalTags = [...internalTags, ...coach.fields.tags]
-        }
-      })
-      const allTags = [...new Set(internalTags)]
-      return allTags.sort((a, b) =>
-        a.toLowerCase().localeCompare(b.toLowerCase())
-      )
+    hasTags() {
+      return this.tags.length > 0
     },
   },
 
   methods: {
-    toggleCurrentTag(tag) {
-      const tagIsActive = this.currentTag === tag
-      this.currentTag = tagIsActive ? null : tag
+    toggleCurrentTag(tagId) {
+      const tagIsActive = this.currentTag === tagId
+      this.currentTag = tagIsActive ? null : tagId
     },
 
     shouldShowCoach(tags) {
@@ -89,7 +89,7 @@ export default {
       if (this.currentTag && !tags) {
         return false
       }
-      return tags.includes(this.currentTag)
+      return tags.some((tag) => tag.sys.id === this.currentTag)
     },
   },
 }
@@ -100,6 +100,10 @@ export default {
   padding: 2rem 1rem;
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.summary {
+  margin-bottom: 1rem;
 }
 
 .tagToggle {

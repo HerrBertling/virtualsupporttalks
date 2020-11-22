@@ -4,6 +4,8 @@
   </div>
 </template>
 <script>
+import pageIds from '~/utils/pageIds'
+
 export default {
   meta() {
     return {
@@ -13,10 +15,7 @@ export default {
   },
 
   async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry('2WBTRHlycqG57zkTI0G5K3')
-    // const { items } = await $contentful.getEntries({
-    //   content_type: 'contributor',
-    // })
+    const { fields } = await $contentful.getEntry(pageIds.GIVE_HELP)
     return { title: fields.title, content: fields.content }
   },
 

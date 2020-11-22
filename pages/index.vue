@@ -14,9 +14,11 @@
   </div>
 </template>
 <script>
+import pageIds from '~/utils/pageIds'
+
 export default {
   async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry('2W0lOJiaTbb5Dptc3mjRhN')
+    const { fields } = await $contentful.getEntry(pageIds.STARTPAGE)
     const { items } = await $contentful.getEntries({
       content_type: 'contributor',
     })
