@@ -18,7 +18,7 @@
         />
         <img
           :src="`${image}?w=240&h=240&fit=fill`"
-          :alt="name"
+          :alt="title"
           loading="lazy"
         />
       </picture>
