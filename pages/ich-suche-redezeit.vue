@@ -42,6 +42,7 @@ export default {
     const [page, coaches, tags] = await Promise.all([
       $contentful.getEntry(pageIds.SEARCH_HELP),
       $contentful.getEntries({
+        limit: 500,
         content_type: 'coach',
         order: 'fields.name',
       }),
