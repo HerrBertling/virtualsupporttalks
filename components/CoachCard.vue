@@ -18,6 +18,8 @@
         <img
           :src="`${image}?w=80&h=80&f=face&fit=thumb`"
           :alt="name"
+          width="80"
+          height="80"
           loading="lazy"
         />
       </picture>

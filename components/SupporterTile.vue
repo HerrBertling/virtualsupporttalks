@@ -9,15 +9,15 @@
     <div>
       <picture>
         <source
-          :srcset="`${image}?w=240&h=240&fit=fill&fm=webp`"
+          :srcset="`${image}?w=240&h=240&fit=pad&fm=webp`"
           type="image/webp"
         />
         <source
-          :srcset="`${image}?w=240&h=240&fit=fill&fm=jpeg`"
+          :srcset="`${image}?w=240&h=240&fit=pad&fm=jpeg`"
           type="image/webp"
         />
         <img
-          :src="`${image}?w=240&h=240&fit=fill`"
+          :src="`${image}?w=240&h=240&fit=pad`"
           :alt="title"
           loading="lazy"
         />

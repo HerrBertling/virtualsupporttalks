@@ -1,13 +1,15 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <details v-if="hasTags" :class="$style.coachSearch">
+    <details v-if="hasTags && hasCoaches" :class="$style.coachSearch">
       <summary :class="$style.summary">
-        <h5 :class="$style.tagToggle">Coach-Liste filtern</h5>
+        <h5 :class="$style.tagToggle">
+          Liste der Coaches filtern ({{ coachesCount }} angezeigt)
+        </h5>
       </summary>
       <button
         v-for="tag in tags"
-        :key="tag"
+        :key="tag.sys.id"
         :class="[$style.tag, tag.sys.id === currentTag && $style.selected]"
         @click="toggleCurrentTag(tag.sys.id)"
       >
@@ -33,6 +35,7 @@
 import pageIds from '~/utils/pageIds'
 
 export default {
+  name: 'SucheRedezeit',
   meta: {
     inMainNav: true,
     title: 'Ich suche Redezeit',
@@ -75,9 +78,25 @@ export default {
     hasTags() {
       return this.tags.length > 0
     },
+
+    hasCoaches() {
+      return this.coaches.length > 0
+    },
+
+    coachesCount() {
+      if (!this.currentTag) {
+        return this.coaches.length
+      }
+      return this.coaches.filter((coach) => {
+        return !!coach.fields.tag && this.hasCurrentTag(coach.fields.tag)
+      }).length
+    },
   },
 
   methods: {
+    hasCurrentTag(tags) {
+      return tags.some((tag) => tag.sys.id === this.currentTag)
+    },
     toggleCurrentTag(tagId) {
       const tagIsActive = this.currentTag === tagId
       this.currentTag = tagIsActive ? null : tagId
@@ -90,7 +109,7 @@ export default {
       if (this.currentTag && !tags) {
         return false
       }
-      return tags.some((tag) => tag.sys.id === this.currentTag)
+      return this.hasCurrentTag(tags)
     },
   },
 }
@@ -110,6 +129,7 @@ export default {
 .tagToggle {
   display: inline-block;
   margin: 0;
+  font-size: 1.25rem;
 }
 
 .coachesList {
