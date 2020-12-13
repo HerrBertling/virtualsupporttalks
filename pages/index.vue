@@ -22,7 +22,16 @@ export default {
     const { items } = await $contentful.getEntries({
       content_type: 'contributor',
     })
-    return { title: fields.title, content: fields.content, contributors: items }
+    return {
+      seo: { title: fields.title, description: fields.description },
+      content: fields.content,
+      contributors: items,
+    }
+  },
+  head() {
+    return {
+      ...this.seo,
+    }
   },
 }
 </script>

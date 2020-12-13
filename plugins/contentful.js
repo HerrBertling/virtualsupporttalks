@@ -1,5 +1,6 @@
-const contentful = require('contentful')
+import 'regenerator-runtime/runtime.js'
 
+const contentful = require('contentful')
 export default (context, inject) => {
   const cms = contentful.createClient({
     space: context.$config.contentfulSpace,

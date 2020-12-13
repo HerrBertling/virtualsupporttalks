@@ -1,5 +1,6 @@
 export default {
   target: 'static',
+  modern: true,
   components: [{ path: '~/components' }],
   publicRuntimeConfig: {
     contentfulKey: process.env.CONTENTFUL_ACCESSTOKEN,
@@ -51,6 +52,10 @@ export default {
     hostname: 'https://www.virtualsupporttalks.de',
     gzip: true,
   },
+  googleAnalytics: {
+    id: ' UA-164320013-1',
+    disabled: true,
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -62,7 +67,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/contentful', '~/plugins/observe.client.js'],
+  plugins: [
+    '~/plugins/contentful',
+    '~/plugins/observe.client.js',
+    { src: '~/plugins/cookie-law', mode: 'client' },
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -72,6 +81,7 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/google-analytics',
   ],
   /*
    ** Nuxt.js modules

@@ -8,7 +8,7 @@
   >
     <em>
       <nuxt-link to="/">
-        <img src="~/assets/img/logo.jpg" alt="Virtual Support Talks Logo" />
+        <img src="~/assets/img/logo.png" alt="Virtual Support Talks Logo" />
       </nuxt-link>
     </em>
     <HeaderNavigation
