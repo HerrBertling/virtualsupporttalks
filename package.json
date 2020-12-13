@@ -4,6 +4,9 @@
   "description": "My ultimate Nuxt.js project",
   "author": "Markus Siering",
   "private": true,
+  "engines": {
+    "node": ">=12"
+ },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
