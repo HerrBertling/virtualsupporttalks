@@ -36,6 +36,9 @@ export default {
       },
     ],
   },
+  router: {
+    trailingSlash: true,
+  },
   generate: {
     routes() {
       return Promise.all([
@@ -50,6 +53,7 @@ export default {
   sitemap: {
     hostname: 'https://www.virtualsupporttalks.de',
     gzip: true,
+    trailingSlash: true,
   },
   googleAnalytics: {
     id: ' UA-164320013-1',
