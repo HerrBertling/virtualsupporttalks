@@ -16,7 +16,7 @@
         <div slot-scope="props" :class="$style.cookieBanner">
           <p>
             Diese Website verwendet Cookies. Weitere Informationen finden sich
-            auf der <nuxt-link to="/datenschutz">Datenschutz-Seite</nuxt-link>
+            auf der <nuxt-link to="/datenschutz/">Datenschutz-Seite</nuxt-link>
           </p>
           <div>
             <button :class="$style.accept" @click="acceptCookies(props.accept)">
@@ -45,11 +45,11 @@ export default {
       type: Array,
       default: () => [
         {
-          link: '/impressum',
+          link: '/impressum/',
           title: 'Impressum',
         },
         {
-          link: '/datenschutz',
+          link: '/datenschutz/',
           title: 'Datenschutz',
         },
       ],

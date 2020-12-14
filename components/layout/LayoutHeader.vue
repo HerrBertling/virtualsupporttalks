@@ -11,10 +11,7 @@
         <img src="~/assets/img/logo.png" alt="Virtual Support Talks Logo" />
       </nuxt-link>
     </em>
-    <HeaderNavigation
-      :navigation-items="navItems"
-      @navigation-active="setHeaderBg"
-    />
+    <HeaderNavigation @navigation-active="setHeaderBg" />
   </header>
 </template>
 
@@ -29,16 +26,6 @@ export default {
       ticking: false,
       hasScrolled: false,
       whiteBackground: false,
-      navItems: [
-        {
-          to: '/ich-suche-redezeit',
-          title: 'Ich suche Redezeit',
-        },
-        {
-          to: '/ich-biete-redezeit',
-          title: 'Ich biete Redezeit',
-        },
-      ],
     }
   },
 

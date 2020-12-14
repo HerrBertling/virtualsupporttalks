@@ -28,15 +28,15 @@ export default {
       navigationItems: [
         {
           title: 'Ich suche Redezeit',
-          path: '/ich-suche-redezeit',
+          path: '/ich-suche-redezeit/',
         },
         {
           title: 'Ich biete Redezeit',
-          path: '/ich-biete-redezeit',
+          path: '/ich-biete-redezeit/',
         },
         {
           title: 'Netzwerk, Partner + Medien',
-          path: '/netzwerk-partner-medien',
+          path: '/netzwerk-partner-medien/',
         },
       ],
     }
