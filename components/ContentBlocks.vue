@@ -42,7 +42,7 @@
         :link1="block.fields.link1"
         :link2="block.fields.link2"
       />
-      <GenericContent v-else :key="index" v-bind="block" />
+      <GenericContent v-else :key="index" :block="block" />
     </template>
   </div>
 </template>

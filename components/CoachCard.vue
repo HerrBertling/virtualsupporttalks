@@ -40,7 +40,7 @@
       </a>
       <a
         v-if="email"
-        :href="email"
+        :href="`mailto:${email}`"
         target="_blank"
         rel="noopener"
         :class="$style.link"

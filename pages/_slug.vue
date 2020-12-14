@@ -1,7 +1,7 @@
 <template>
-  <article :class="$style.basicContent">
-    <ContentfulRichText :content="content" />
-  </article>
+  <div>
+    <ContentBlocks :blocks="blocks" />
+  </div>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
       'fields.slug[in]': params.slug,
     })
     return {
-      content: items[0].fields.content[0].fields.content,
+      blocks: items[0].fields.content,
     }
   },
   watch: {
@@ -28,12 +28,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.basicContent {
-  padding: 6rem 1rem 3rem;
-  min-height: 75vh;
-  max-width: var(--widthContentMax);
-  margin: 0 auto;
-}
-</style>

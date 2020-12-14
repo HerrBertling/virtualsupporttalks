@@ -4,19 +4,25 @@
       v-if="block.fields.content"
       :content="block.fields.content"
     />
-    <slot v-else />
   </section>
 </template>
 <script>
 export default {
   name: 'GenericContent',
+  props: {
+    block: {
+      type: Object,
+      default: () => {},
+    },
+  },
 }
 </script>
 <style module>
 .cb_genericContent {
-  max-width: 1280px;
-  width: 100vw;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 6rem 1rem 3rem;
+  min-height: 75vh;
+  width: 100vw;
+  max-width: var(--widthContentMax);
 }
 </style>

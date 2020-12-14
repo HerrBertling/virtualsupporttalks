@@ -1,3 +1,10 @@
+import { createClient } from 'contentful'
+
+const contentfulClient = createClient({
+  space: process.env.CONTENTFUL_SPACE,
+  accessToken: process.env.CONTENTFUL_ACCESSTOKEN,
+})
+
 export default {
   target: 'static',
   modern: true,
@@ -27,25 +34,18 @@ export default {
         href:
           'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☎️</text></svg>',
       },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossorigin: true,
-      },
-      {
-        rel: 'preload',
-        as: 'style',
-        href:
-          'https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&display=swap',
-      },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&display=swap',
-        media: 'print',
-        onload: "this.media='all'",
-      },
     ],
+  },
+  generate: {
+    routes() {
+      return Promise.all([
+        contentfulClient.getEntries({
+          content_type: 'page',
+        }),
+      ]).then(([pages]) => {
+        return [...pages.items.map((entry) => entry.fields.slug)]
+      })
+    },
   },
   sitemap: {
     hostname: 'https://www.virtualsupporttalks.de',
