@@ -45,7 +45,7 @@ export default {
       return `${this.firstName} ${this.lastName}`
     },
     permalink() {
-      return `/initiatoren/${this.slug}`
+      return `/initiatoren/${this.slug}/`
     },
   },
 }
