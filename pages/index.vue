@@ -17,6 +17,8 @@
 import pageIds from '~/utils/pageIds'
 
 export default {
+  transition: 'page',
+
   async asyncData({ $contentful }) {
     const { fields } = await $contentful.getEntry(pageIds.STARTPAGE)
     const { items } = await $contentful.getEntries({

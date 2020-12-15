@@ -7,6 +7,8 @@
 <script>
 export default {
   name: 'BasicContent',
+  transition: 'page',
+
   async asyncData({ $contentful, params }) {
     const { items } = await $contentful.getEntries({
       content_type: 'page',

@@ -42,6 +42,7 @@
 import pageIds from '~/utils/pageIds'
 export default {
   name: 'SupportMedia',
+  transition: 'page',
 
   meta: {
     inMainNav: true,

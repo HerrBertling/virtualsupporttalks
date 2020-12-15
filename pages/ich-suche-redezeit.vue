@@ -36,6 +36,8 @@ import pageIds from '~/utils/pageIds'
 
 export default {
   name: 'SucheRedezeit',
+  transition: 'page',
+
   meta: {
     inMainNav: true,
     title: 'Ich suche Redezeit',

@@ -22,6 +22,7 @@
 <script>
 export default {
   name: 'ContributorPage',
+  transition: 'page',
 
   async asyncData({ $contentful, params }) {
     const { items } = await $contentful.getEntries({

@@ -7,6 +7,9 @@
 import pageIds from '~/utils/pageIds'
 
 export default {
+  name: 'IchBieteRedezeit',
+  transition: 'page',
+
   meta() {
     return {
       inMainNav: true,

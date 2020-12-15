@@ -20,6 +20,8 @@ import pageIds from '~/utils/pageIds'
 
 export default {
   name: 'DataPrivacy',
+  transition: 'page',
+
   async asyncData({ $contentful }) {
     const { fields } = await $contentful.getEntry(pageIds.DATA_PRIVACY)
     return { title: fields.title, content: fields.content }
