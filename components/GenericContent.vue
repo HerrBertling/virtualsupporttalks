@@ -1,9 +1,6 @@
 <template>
   <section :class="$style.cb_genericContent">
-    <ContentfulRichText
-      v-if="block.fields.content"
-      :content="block.fields.content"
-    />
+    <ContentfulRichText :content="block.fields.content" />
   </section>
 </template>
 <script>
@@ -12,7 +9,7 @@ export default {
   props: {
     block: {
       type: Object,
-      default: () => {},
+      required: true,
     },
   },
 }

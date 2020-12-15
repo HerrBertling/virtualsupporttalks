@@ -3,13 +3,13 @@
     <template v-for="(block, index) in blocks">
       <HeaderBlock
         v-if="block.sys.contentType.sys.id === 'headerBlock'"
-        :key="index"
+        :key="block.sys.id"
         :background-color="block.fields.backgroundcolor"
         :background-image="block.fields.image.fields.file.url"
       />
       <ContentCentered
         v-else-if="block.sys.contentType.sys.id === 'centeredContent'"
-        :key="index"
+        :key="block.sys.id"
         :background-color="block.fields.backgroundcolor"
         :text-color="block.fields.textcolor"
       >
@@ -17,7 +17,7 @@
       </ContentCentered>
       <ContentImageBg
         v-else-if="block.sys.contentType.sys.id === 'contentImageBg'"
-        :key="index"
+        :key="block.sys.id"
         :with-padding-top="index === 0"
         :background-image="block.fields.backgroundImage.fields.file.url"
       >
@@ -25,7 +25,7 @@
       </ContentImageBg>
       <ContentWithFullSizeImage
         v-else-if="block.sys.contentType.sys.id === 'contentWithFullSizeImage'"
-        :key="index"
+        :key="block.sys.id"
         :background-color="block.fields.backgroundcolor"
         :image="block.fields.image.fields.file.url"
         :image-right="block.fields.imageRight"
@@ -34,7 +34,7 @@
       </ContentWithFullSizeImage>
       <TwoImages
         v-else-if="block.sys.contentType.sys.id === 'twoImages'"
-        :key="index"
+        :key="block.sys.id"
         :image1="block.fields.image1.fields.file.url"
         :image2="block.fields.image2.fields.file.url"
         :text1="block.fields.text1"
@@ -42,7 +42,7 @@
         :link1="block.fields.link1"
         :link2="block.fields.link2"
       />
-      <GenericContent v-else :key="index" :block="block" />
+      <GenericContent v-else :key="block.sys.id" :block="block" />
     </template>
   </div>
 </template>
