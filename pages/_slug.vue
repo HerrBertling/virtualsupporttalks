@@ -18,15 +18,5 @@ export default {
       blocks: items[0].fields.content,
     }
   },
-  watch: {
-    hasCookiesAccepted(newValue) {
-      localStorage['cookie:accepted'] = newValue
-    },
-  },
-  mounted() {
-    if (localStorage['cookie:accepted']) {
-      this.hasCookiesAccepted = localStorage['cookie:accepted']
-    }
-  },
 }
 </script>

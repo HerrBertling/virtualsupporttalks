@@ -17,6 +17,7 @@
 import pageIds from '~/utils/pageIds'
 
 export default {
+  name: 'StartPage',
   transition: 'page',
 
   async asyncData({ $contentful }) {
