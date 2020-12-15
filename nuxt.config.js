@@ -89,7 +89,11 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/sitemap', '@nuxtjs/robots'],
+  modules: [
+    ['@nuxtjs/pwa', { workbox: false }],
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
+  ],
   /*
    ** Build configuration
    */
