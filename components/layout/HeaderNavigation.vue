@@ -15,6 +15,13 @@
           {{ item.title }}
         </nuxt-link>
       </li>
+      <li>
+        <a
+          href="https://redezeit-fuer-dich-hashtagvirtualsupporttalks.jimdosite.com/"
+        >
+          English version
+        </a>
+      </li>
     </ul>
   </nav>
 </template>
