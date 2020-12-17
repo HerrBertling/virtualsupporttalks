@@ -26,14 +26,24 @@ export default {
       content_type: 'contributor',
     })
     return {
-      seo: { title: fields.title, description: fields.description },
+      seo: fields.seo?.fields,
       content: fields.content,
       contributors: items,
     }
   },
   head() {
+    const title = this.seo ? this.seo.title : this.title
+    const meta = this.seo
+      ? Object.entries(this.seo).map((entry) => ({
+          hid: entry[0],
+          name: entry[0],
+          content: entry[1],
+        }))
+      : []
+
     return {
-      ...this.seo,
+      title,
+      meta,
     }
   },
   mounted() {

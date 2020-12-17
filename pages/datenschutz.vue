@@ -24,7 +24,11 @@ export default {
 
   async asyncData({ $contentful }) {
     const { fields } = await $contentful.getEntry(pageIds.DATA_PRIVACY)
-    return { title: fields.title, content: fields.content }
+    return {
+      title: fields.title,
+      content: fields.content,
+      seo: fields.seo?.fields,
+    }
   },
   data() {
     return {
@@ -32,8 +36,18 @@ export default {
     }
   },
   head() {
+    const title = this.seo ? this.seo.title : this.title
+    const meta = this.seo
+      ? Object.entries(this.seo).map((entry) => ({
+          hid: entry[0],
+          name: entry[0],
+          content: entry[1],
+        }))
+      : []
+
     return {
-      title: this.title,
+      title,
+      meta,
     }
   },
   watch: {

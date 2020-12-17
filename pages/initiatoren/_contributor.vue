@@ -39,6 +39,12 @@ export default {
     }
   },
 
+  head() {
+    return {
+      title: `${this.firstName} ${this.lastName}`,
+    }
+  },
+
   computed: {
     name() {
       const { firstName, lastName } = this

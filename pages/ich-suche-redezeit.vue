@@ -61,6 +61,7 @@ export default {
       content: page.fields.content,
       coaches: coaches.items,
       tags: tags.items,
+      seo: page.fields.seo?.fields,
     }
   },
 
@@ -71,8 +72,18 @@ export default {
   },
 
   head() {
+    const title = this.seo ? this.seo.title : this.title
+    const meta = this.seo
+      ? Object.entries(this.seo).map((entry) => ({
+          hid: entry[0],
+          name: entry[0],
+          content: entry[1],
+        }))
+      : []
+
     return {
-      title: 'Ich suche Redezeit',
+      title,
+      meta,
     }
   },
 

@@ -16,6 +16,23 @@ export default {
     })
     return {
       blocks: items[0].fields.content,
+      title: items[0].fields.title,
+      seo: items[0].fields.seo?.fields,
+    }
+  },
+  head() {
+    const title = this.seo ? this.seo.title : this.title
+    const meta = this.seo
+      ? Object.entries(this.seo).map((entry) => ({
+          hid: entry[0],
+          name: entry[0],
+          content: entry[1],
+        }))
+      : []
+
+    return {
+      title,
+      meta,
     }
   },
 }
