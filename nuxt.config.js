@@ -93,7 +93,56 @@ export default {
     ['@nuxtjs/pwa', { workbox: false }],
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
+    'nuxt-i18n',
   ],
+
+  i18n: {
+    locales: ['de', 'en'],
+    defaultLocale: 'de',
+    vueI18n: {
+      fallbackLocale: 'de',
+      messages: {
+        de: {
+          coach: {
+            filter: 'Liste der Coaches filtern',
+            count: 'angezeigt',
+          },
+          network: 'Unser Netzwerk',
+          partner: 'Unsere Unternehmenspartner',
+          media: 'Redezeit in den Medien',
+          cookie: {
+            accept: 'Akzeptieren',
+            decline: 'Ablehnen',
+            intro:
+              'Diese Website verwendet Cookies. Weitere Informationen finden sich auf der',
+            privacyPage: 'Datenschutz-Seite',
+            settings: 'Cookie-Einstellungen bearbeiten',
+            deactivate: 'Cookies deaktivieren',
+            activate: 'Cookies aktivieren',
+          },
+        },
+        en: {
+          coach: {
+            filter: 'Filter list of coaches',
+            count: 'shown',
+          },
+          network: 'Our network',
+          partner: 'Our company partners',
+          media: 'Redezeit in the media',
+          cookie: {
+            accept: 'Accept',
+            decline: 'Decline',
+            intro:
+              'This website uses cookies. More informationen can be found on the',
+            privacyPage: 'privacy page',
+            settings: 'Adjust cookie settings',
+            deactivate: 'Disable cookies',
+            activate: 'Enable cookies',
+          },
+        },
+      },
+    },
+  },
   /*
    ** Build configuration
    */

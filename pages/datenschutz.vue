@@ -3,11 +3,17 @@
     <ContentfulRichText :content="content[0].fields.content" />
     <form>
       <fieldset :class="$style.fieldset">
-        <legend :class="$style.legend">Cookie-Einstellungen bearbeiten</legend>
+        <legend :class="$style.legend">
+          {{ $t('cookie.settings') }}
+        </legend>
         <label :class="$style.toggle">
           <input v-model="hasCookiesAccepted" type="checkbox" />
           <span>
-            Cookies {{ hasCookiesAccepted ? 'deaktivieren' : 'aktivieren' }}
+            {{
+              hasCookiesAccepted
+                ? $t('cookie.deactivate')
+                : $t('cookie.activate')
+            }}
           </span>
         </label>
       </fieldset>
@@ -22,8 +28,17 @@ export default {
   name: 'DataPrivacy',
   transition: 'page',
 
-  async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry(pageIds.DATA_PRIVACY)
+  nuxtI18n: {
+    paths: {
+      de: '/datenschutz',
+      en: '/privacy',
+    },
+  },
+
+  async asyncData({ app, $contentful }) {
+    const { fields } = await $contentful.getEntry(pageIds.DATA_PRIVACY, {
+      locale: app.i18n.locale,
+    })
     return {
       title: fields.title,
       content: fields.content,

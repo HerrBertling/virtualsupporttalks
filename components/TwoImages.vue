@@ -1,7 +1,7 @@
 <template>
   <section :class="$style.img_link_wrapper">
     <fade-in>
-      <nuxt-link :class="$style.img_link" :to="link1">
+      <nuxt-link :class="$style.img_link" :to="localePath(link1)">
         <img :src="image1" :alt="text1" />
 
         <h2>{{ text1 }}</h2>
@@ -9,7 +9,7 @@
     </fade-in>
 
     <fade-in>
-      <nuxt-link :class="$style.img_link" :to="link2">
+      <nuxt-link :class="$style.img_link" :to="localePath(link2)">
         <img :src="image2" :alt="text2" />
 
         <h2>{{ text2 }}</h2>

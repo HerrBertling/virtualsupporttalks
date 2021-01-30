@@ -3,11 +3,11 @@
     <ul :class="$style.footerNav_list">
       <li
         v-for="{ link, title } in footerNav"
-        :key="link"
+        :key="link.de"
         :class="$style.footerNav_item"
       >
-        <nuxt-link :class="$style.footerNav_link" :to="link">
-          {{ title }}
+        <nuxt-link :class="$style.footerNav_link" :to="link[$i18n.locale]">
+          {{ title[$i18n.locale] }}
         </nuxt-link>
       </li>
     </ul>
@@ -15,12 +15,14 @@
       <cookie-law theme="dark-lime">
         <div slot-scope="props" :class="$style.cookieBanner">
           <p>
-            Diese Website verwendet Cookies. Weitere Informationen finden sich
-            auf der <nuxt-link to="/datenschutz/">Datenschutz-Seite</nuxt-link>
+            {{ $t('cookie.intro') }}
+            <nuxt-link to="/datenschutz/">
+              {{ $t('cookie.privacyPage') }}
+            </nuxt-link>
           </p>
           <div>
             <button :class="$style.accept" @click="acceptCookies(props.accept)">
-              <span>Akzeptieren</span>
+              <span>{{ $t('cookie.accept') }}</span>
             </button>
           </div>
           <div>
@@ -28,7 +30,7 @@
               :class="$style.decline"
               @click="declineCookies(props.close)"
             >
-              <span>Ablehnen</span>
+              <span>{{ $t('cookie.decline') }}</span>
             </button>
           </div>
         </div>
@@ -45,12 +47,12 @@ export default {
       type: Array,
       default: () => [
         {
-          link: '/impressum/',
-          title: 'Impressum',
+          link: { de: '/impressum/', en: '/en/imprint/' },
+          title: { de: 'Impressum', en: 'Legal info' },
         },
         {
-          link: '/datenschutz/',
-          title: 'Datenschutz',
+          link: { de: '/datenschutz/', en: '/en/privacy/' },
+          title: { de: 'Datenschutz', en: 'Privacy' },
         },
       ],
     },

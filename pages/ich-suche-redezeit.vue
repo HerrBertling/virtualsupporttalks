@@ -4,7 +4,7 @@
     <details v-if="hasTags && hasCoaches" :class="$style.coachSearch">
       <summary :class="$style.summary">
         <h5 :class="$style.tagToggle">
-          Liste der Coaches filtern ({{ coachesCount }} angezeigt)
+          {{ $t('coach.filter') }} ({{ coachesCount }} {{ $t('coach.count') }})
         </h5>
       </summary>
       <button
@@ -43,9 +43,16 @@ export default {
     title: 'Ich suche Redezeit',
   },
 
-  async asyncData({ $contentful }) {
+  nuxtI18n: {
+    paths: {
+      de: '/ich-suche-redezeit',
+      en: '/i-need-speaking-time',
+    },
+  },
+
+  async asyncData({ app, $contentful }) {
     const [page, coaches, tags] = await Promise.all([
-      $contentful.getEntry(pageIds.SEARCH_HELP),
+      $contentful.getEntry(pageIds.SEARCH_HELP, { locale: app.i18n.locale }),
       $contentful.getEntries({
         limit: 500,
         content_type: 'coach',
