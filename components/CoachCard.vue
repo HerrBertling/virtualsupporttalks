@@ -36,7 +36,7 @@
         :class="$style.link"
       >
         <WebIcon :width="16" :height="16" :class="$style.gap" />
-        <span> Webseite </span>
+        <span> {{ $t('coach.website') }} </span>
       </a>
       <a
         v-if="email"
@@ -46,11 +46,13 @@
         :class="$style.link"
       >
         <MailIcon :width="16" :height="16" :class="$style.gap" />
-        <span>E-Mail</span>
+        <span>{{ $t('coach.email') }}</span>
       </a>
     </header>
     <div :class="$style.content">
-      <p><strong>Meine Schwerpunkte:</strong></p>
+      <p v-if="$i18n.locale === 'de'">
+        <strong>{{ $t('coach.focus') }}</strong>
+      </p>
       <slot />
     </div>
   </article>

@@ -20,8 +20,10 @@ export default {
   name: 'StartPage',
   transition: 'page',
 
-  async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry(pageIds.STARTPAGE)
+  async asyncData({ app, $contentful }) {
+    const { fields } = await $contentful.getEntry(pageIds.STARTPAGE, {
+      locale: app.i18n.locale,
+    })
     const { items } = await $contentful.getEntries({
       content_type: 'contributor',
     })

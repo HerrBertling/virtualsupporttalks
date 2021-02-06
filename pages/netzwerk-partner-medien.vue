@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.wrapper">
     <section v-if="network.length > 0" :class="$style.tileSection">
-      <h2>Unser Netzwerk</h2>
+      <h2>{{ $t('network') }}</h2>
       <div :class="$style.tiles">
         <SupporterTile
           v-for="entry in network"
@@ -12,7 +12,7 @@
       </div>
     </section>
     <section v-if="supporter.length > 0" :class="$style.tileSection">
-      <h2>Unsere Unternehmenspartner</h2>
+      <h2>{{ $t('partner') }}</h2>
       <div :class="$style.tiles">
         <SupporterTile
           v-for="entry in supporter"
@@ -24,7 +24,7 @@
     </section>
     <ContentBlocks :blocks="content" />
     <section v-if="media.length > 0" :class="$style.tileSection">
-      <h2>Redezeit in den Medien</h2>
+      <h2>{{ $t('media') }}</h2>
       <div :class="$style.tiles">
         <SupporterTile
           v-for="medium in media"
@@ -49,8 +49,17 @@ export default {
     title: 'Netzwerk, Partner + Medien',
   },
 
-  async asyncData({ $contentful }) {
-    const { fields } = await $contentful.getEntry(pageIds.NETWORK)
+  nuxtI18n: {
+    paths: {
+      de: '/netzwerk-partner-medien',
+      en: '/network-partner-media',
+    },
+  },
+
+  async asyncData({ app, $contentful }) {
+    const { fields } = await $contentful.getEntry(pageIds.NETWORK, {
+      locale: app.i18n.locale,
+    })
     const media = await $contentful.getEntries({
       content_type: 'media',
       order: 'fields.title',

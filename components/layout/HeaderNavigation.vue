@@ -10,17 +10,16 @@
       <span :class="$style.burger"></span>
     </button>
     <ul :class="[$style.headerNav, navExpanded && $style.menuExpanded]">
-      <li v-for="item in navigationItems" :key="item.path" @click="closeNav">
-        <nuxt-link :to="item.path">
-          {{ item.title }}
+      <li v-for="item in navigationItems" :key="item.path.de" @click="closeNav">
+        <nuxt-link :to="item.path[$i18n.locale]">
+          {{ item.title[$i18n.locale] }}
         </nuxt-link>
       </li>
-      <li>
-        <a
-          href="https://redezeit-fuer-dich-hashtagvirtualsupporttalks.jimdosite.com/"
-        >
-          English version
-        </a>
+      <li v-if="$i18n.locale === 'de'">
+        <nuxt-link :to="localePath('/', 'en')">English version</nuxt-link>
+      </li>
+      <li v-else>
+        <nuxt-link :to="localePath('/', 'de')">Deutsche Version</nuxt-link>
       </li>
     </ul>
   </nav>
@@ -34,16 +33,34 @@ export default {
       navExpanded: false,
       navigationItems: [
         {
-          title: 'Ich suche Redezeit',
-          path: '/ich-suche-redezeit/',
+          title: {
+            de: 'Ich suche Redezeit',
+            en: 'I need speaking time',
+          },
+          path: {
+            de: '/ich-suche-redezeit/',
+            en: '/en/i-need-speaking-time/',
+          },
         },
         {
-          title: 'Ich biete Redezeit',
-          path: '/ich-biete-redezeit/',
+          title: {
+            de: 'Ich biete Redezeit',
+            en: 'I offer speaking time',
+          },
+          path: {
+            de: '/ich-biete-redezeit/',
+            en: '/en/i-offer-speaking-time/',
+          },
         },
         {
-          title: 'Netzwerk, Partner + Medien',
-          path: '/netzwerk-partner-medien/',
+          title: {
+            de: 'Netzwerk, Partner + Medien',
+            en: 'Network, partner + media',
+          },
+          path: {
+            de: '/netzwerk-partner-medien/',
+            en: '/en/network-partner-media/',
+          },
         },
       ],
     }

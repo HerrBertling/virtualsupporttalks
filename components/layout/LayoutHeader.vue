@@ -7,7 +7,7 @@
     ]"
   >
     <em>
-      <nuxt-link to="/">
+      <nuxt-link :to="localePath('/')">
         <img src="~/assets/img/logo.png" alt="Virtual Support Talks Logo" />
       </nuxt-link>
     </em>

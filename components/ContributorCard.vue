@@ -1,7 +1,7 @@
 <template>
   <fade-in>
     <article :class="$style.contWrapper">
-      <nuxt-link :to="permalink">
+      <nuxt-link :to="localePath(permalink)">
         <figure :class="$style.contImage" role="figure" :aria-label="name">
           <img :src="image" :alt="name" loading="lazy" />
           <figcaption>{{ name }}</figcaption>
@@ -9,8 +9,8 @@
       </nuxt-link>
       <h3>{{ name }}</h3>
       <div>
-        <nuxt-link :class="$style.button" :to="permalink">
-          Mehr zu {{ firstName }}
+        <nuxt-link :class="$style.button" :to="localePath(permalink)">
+          {{ $t('initiator.more') }} {{ firstName }}
         </nuxt-link>
       </div>
     </article>
