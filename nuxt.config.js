@@ -109,6 +109,7 @@ export default {
             focus: 'Meine Schwerpunkte:',
             email: 'E-Mail',
             website: 'Webseite',
+            langFilter: 'Nach Sprache filtern',
           },
           languages: {
             de: 'Deutsch',
@@ -144,6 +145,7 @@ export default {
             focus: 'My focus areas:',
             email: 'Email',
             website: 'Website',
+            langFilter: 'Filter by language',
           },
           languages: {
             de: 'Deutsch',
