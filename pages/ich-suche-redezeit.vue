@@ -10,16 +10,28 @@
       <button
         v-for="tag in tags"
         :key="tag.sys.id"
-        :class="[$style.tag, tag.sys.id === currentTag && $style.selected]"
-        @click="toggleCurrentTag(tag.sys.id)"
+        :class="[$style.tag, tag.fields.tag === currentTag && $style.selected]"
+        @click="toggleCurrentTag(tag.fields.tag)"
       >
         {{ tag.fields.tag }}
+      </button>
+    </details>
+    <details v-if="hasLanguages && hasCoaches" :class="$style.coachSearch">
+      <summary :class="$style.summary">
+        <h5 :class="$style.tagToggle">Sprachfilter</h5>
+      </summary>
+      <button
+        v-for="lang in languages"
+        :key="lang"
+        :class="[$style.tag, lang === currentLanguage && $style.selected]"
+        @click="toggleCurrentLang(lang)"
+      >
+        {{ $t(`languages.${lang}`) }}
       </button>
     </details>
     <section :class="$style.coachesList">
       <CoachCard
         v-for="(coach, index) in coaches"
-        v-show="shouldShowCoach(coach.fields.tag)"
         :key="index"
         :name="coach.fields.name"
         :url="coach.fields.url"
@@ -57,24 +69,36 @@ export default {
         limit: 500,
         content_type: 'coach',
         order: 'fields.name',
+        locale: app.i18n.locale,
       }),
       $contentful.getEntries({
         content_type: 'coachtag',
         order: 'fields.tag',
+        locale: app.i18n.locale,
       }),
     ])
+
+    const availableLanuages = []
+    coaches.items.forEach((coach) => {
+      if (coach.fields.languages) {
+        availableLanuages.push(...coach.fields.languages)
+      }
+    })
+    const cleanedUpLangs = new Set(availableLanuages)
     return {
       title: page.fields.title,
       content: page.fields.content,
       coaches: coaches.items,
       tags: tags.items,
       seo: page.fields.seo?.fields,
+      languages: [...cleanedUpLangs],
     }
   },
 
   data() {
     return {
       currentTag: null,
+      currentLanguage: this.$i18n.locale,
     }
   },
 
@@ -96,40 +120,69 @@ export default {
 
   computed: {
     hasTags() {
-      return this.tags.length > 0
+      return !!this.tags && this.tags.length > 0
     },
 
-    hasCoaches() {
-      return this.coaches.length > 0
+    hasLanguages() {
+      return !!this.languages && this.languages.length > 0
     },
 
     coachesCount() {
-      if (!this.currentTag) {
-        return this.coaches.length
+      if (!this.coaches) {
+        return 0
       }
-      return this.coaches.filter((coach) => {
-        return !!coach.fields.tag && this.hasCurrentTag(coach.fields.tag)
-      }).length
+      return this.coaches.length
+    },
+
+    hasCoaches() {
+      return this.coachesCount > 0
+    },
+  },
+
+  watch: {
+    currentTag(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.getCoaches(newVal, this.currentLanguage)
+      }
+    },
+    currentLanguage(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.getCoaches(this.currentTag, newVal)
+      }
     },
   },
 
   methods: {
-    hasCurrentTag(tags) {
-      return tags.some((tag) => tag.sys.id === this.currentTag)
-    },
-    toggleCurrentTag(tagId) {
-      const tagIsActive = this.currentTag === tagId
-      this.currentTag = tagIsActive ? null : tagId
+    toggleCurrentTag(tag) {
+      const tagIsActive = this.currentTag === tag
+      this.currentTag = tagIsActive ? null : tag
     },
 
-    shouldShowCoach(tags) {
-      if (!this.currentTag) {
-        return true
+    toggleCurrentLang(newLang) {
+      this.currentLanguage = newLang
+    },
+
+    async getCoaches(tag = null, lang = null) {
+      let baseOptions = {
+        limit: 500,
+        content_type: 'coach',
+        order: 'fields.name',
+        locale: this.$i18n.locale,
       }
-      if (this.currentTag && !tags) {
-        return false
+      const useLanguageFilter = lang !== 'de'
+
+      if (useLanguageFilter) {
+        baseOptions = {
+          ...baseOptions,
+          'fields.languages[in]': lang,
+        }
       }
-      return this.hasCurrentTag(tags)
+
+      const coachesResponse = await this.$contentful.getEntries({
+        ...baseOptions,
+      })
+
+      this.coaches = coachesResponse.items
     },
   },
 }
@@ -171,7 +224,7 @@ export default {
 }
 
 .selected {
-  background-color: lightgrey;
+  background-color: grey;
   color: white;
 }
 </style>

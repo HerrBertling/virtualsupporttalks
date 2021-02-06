@@ -24,10 +24,11 @@ export default {
   name: 'ContributorPage',
   transition: 'page',
 
-  async asyncData({ $contentful, params }) {
+  async asyncData({ app, $contentful, params }) {
     const { items } = await $contentful.getEntries({
       content_type: 'contributor',
       'fields.slug[in]': params.contributor,
+      locale: app.i18n.locale,
     })
     const { content, firstname, lastname, url } = items[0].fields
     return {
