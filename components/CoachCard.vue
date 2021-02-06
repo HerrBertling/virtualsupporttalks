@@ -50,7 +50,7 @@
       </a>
     </header>
     <div :class="$style.content">
-      <p>
+      <p v-if="$i18n.locale === 'de'">
         <strong>{{ $t('coach.focus') }}</strong>
       </p>
       <slot />
