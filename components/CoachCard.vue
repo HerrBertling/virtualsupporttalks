@@ -8,15 +8,15 @@
     >
       <picture>
         <source
-          :srcset="`${image}?w=80&h=80&fm=webp&f=face&fit=thumb`"
+          :srcset="`${image}?w=120&h=120&fm=webp&f=face&fit=thumb, ${image}?w=240&h=240&fm=webp&f=face&fit=thumb 2x`"
           type="image/webp"
         />
         <source
-          :srcset="`${image}?w=80&h=80&fm=jpeg&f=face&fit=thumb`"
-          type="image/webp"
+          :srcset="`${image}?w=120&h=120&fm=jpeg&f=face&fit=thumb, ${image}?w=240&h=240&fm=jpeg&f=face&fit=thumb 2x`"
+          type="image/jpeg"
         />
         <img
-          :src="`${image}?w=80&h=80&f=face&fit=thumb`"
+          :src="`${image}?w=120&h=120&f=face&fit=thumb`"
           :alt="name"
           width="80"
           height="80"
