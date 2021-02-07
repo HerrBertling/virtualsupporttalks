@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <details v-if="hasLanguages && hasCoaches" :class="$style.filterWrapper">
+    <details v-if="shouldShowLanguages" :class="$style.filterWrapper">
       <summary :class="$style.summary">
         <h5 :class="$style.tagToggle">{{ $t('coach.langFilter') }}</h5>
       </summary>
@@ -14,10 +14,7 @@
         {{ $t(`languages.${lang}`) }}
       </button>
     </details>
-    <details
-      v-if="hasTags && hasCoaches && coaches.length > 1"
-      :class="$style.filterWrapper"
-    >
+    <details v-if="shouldShowTags" :class="$style.filterWrapper">
       <summary :class="$style.summary">
         <h5 :class="$style.tagToggle">
           {{ $t('coach.filter') }} ({{ coachesCount }} {{ $t('coach.count') }})
@@ -70,14 +67,8 @@ export default {
   },
 
   async asyncData({ app, $contentful }) {
-    const [page, coaches, tags] = await Promise.all([
+    const [page, tags] = await Promise.all([
       $contentful.getEntry(pageIds.SEARCH_HELP, { locale: app.i18n.locale }),
-      $contentful.getEntries({
-        limit: 500,
-        content_type: 'coach',
-        order: 'fields.name',
-        locale: app.i18n.locale,
-      }),
       $contentful.getEntries({
         content_type: 'coachtag',
         order: 'fields.tag',
@@ -85,28 +76,20 @@ export default {
       }),
     ])
 
-    const availableLanuages = []
-    coaches.items.forEach((coach) => {
-      if (coach.fields.languages) {
-        availableLanuages.push(...coach.fields.languages)
-      }
-    })
-    const cleanedUpLangs = new Set(availableLanuages)
     return {
       title: page.fields.title,
       content: page.fields.content,
-      coaches: coaches.items,
       tags: tags.items,
       seo: page.fields.seo?.fields,
-      languages: [...cleanedUpLangs],
     }
   },
 
   data() {
     return {
       currentTag: null,
-      currentLanguage: 'de',
-      loading: false,
+      currentLanguage: this.$i18n.locale,
+      loading: true,
+      coaches: [],
     }
   },
 
@@ -127,12 +110,24 @@ export default {
   },
 
   computed: {
+    languages() {
+      const availableLanuages = []
+      if (this.coaches.length > 0) {
+        this.coaches.forEach((coach) => {
+          if (coach.fields.languages) {
+            availableLanuages.push(...coach.fields.languages)
+          }
+        })
+      }
+      return [...new Set(availableLanuages)]
+    },
+
     hasTags() {
       return !!this.tags && this.tags.length > 0
     },
 
     hasLanguages() {
-      return !!this.languages && this.languages.length > 0
+      return this.languages.length > 0
     },
 
     coachesCount() {
@@ -150,6 +145,14 @@ export default {
     hasCoaches() {
       return this.coachesCount > 0
     },
+
+    shouldShowTags() {
+      return this.hasTags && this.hasCoaches && this.coaches.length > 1
+    },
+
+    shouldShowLanguages() {
+      return this.hasLanguages && this.hasCoaches
+    },
   },
 
   watch: {
@@ -158,17 +161,15 @@ export default {
         this.getCoaches(newVal)
       }
     },
-    coaches(newVal, oldVal) {
-      if (newVal.length < 2) {
+    coaches(newVal) {
+      if (!!newVal && newVal.length < 2) {
         this.currentTag = null
       }
     },
   },
 
   mounted() {
-    if (this.$i18n.locale !== 'de') {
-      this.currentLanguage = this.$i18n.locale
-    }
+    this.getCoaches(this.currentLanguage)
   },
 
   methods: {
@@ -195,6 +196,15 @@ export default {
       return this.hasCurrentTag(tags)
     },
 
+    shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)) // random index from 0 to i
+
+        ;[array[i], array[j]] = [array[j], array[i]]
+      }
+      return array
+    },
+
     async getCoaches(lang = null) {
       let baseOptions = {
         limit: 500,
@@ -215,7 +225,7 @@ export default {
         ...baseOptions,
       })
 
-      this.coaches = coachesResponse.items
+      this.coaches = this.shuffle(coachesResponse.items)
       this.loading = false
     },
   },
