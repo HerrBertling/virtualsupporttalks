@@ -6,7 +6,7 @@
         <h5 :class="$style.tagToggle">{{ $t('coach.langFilter') }}</h5>
       </summary>
       <button
-        v-for="lang in languages"
+        v-for="lang in availableLanguages"
         :key="lang"
         :class="[$style.tag, lang === currentLanguage && $style.selected]"
         @click="toggleCurrentLang(lang)"
@@ -90,6 +90,7 @@ export default {
       currentLanguage: this.$i18n.locale,
       loading: true,
       coaches: [],
+      availableLanguages: [],
     }
   },
 
@@ -110,24 +111,12 @@ export default {
   },
 
   computed: {
-    languages() {
-      const availableLanuages = []
-      if (this.coaches.length > 0) {
-        this.coaches.forEach((coach) => {
-          if (coach.fields.languages) {
-            availableLanuages.push(...coach.fields.languages)
-          }
-        })
-      }
-      return [...new Set(availableLanuages)]
-    },
-
     hasTags() {
       return !!this.tags && this.tags.length > 0
     },
 
     hasLanguages() {
-      return this.languages.length > 0
+      return this.availableLanguages.length > 0
     },
 
     coachesCount() {
@@ -147,7 +136,7 @@ export default {
     },
 
     shouldShowTags() {
-      return this.hasTags && this.hasCoaches && this.coaches.length > 1
+      return this.hasTags && this.hasCoaches && this.coaches.length > 10
     },
 
     shouldShowLanguages() {
@@ -226,6 +215,16 @@ export default {
       })
 
       this.coaches = this.shuffle(coachesResponse.items)
+      const langs = []
+      if (this.coaches.length > 0) {
+        this.coaches.forEach((coach) => {
+          if (coach.fields.languages) {
+            langs.push(...coach.fields.languages)
+          }
+        })
+      }
+      const allLangs = [...this.availableLanguages, ...langs]
+      this.availableLanguages = [...new Set(allLangs)]
       this.loading = false
     },
   },
