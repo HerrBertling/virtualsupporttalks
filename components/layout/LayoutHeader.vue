@@ -11,7 +11,7 @@
         <img src="~/assets/img/logo.png" alt="Virtual Support Talks Logo" />
       </nuxt-link>
     </em>
-    <HeaderNavigation @navigation-active="setHeaderBg" />
+    <LayoutHeaderNavigation @navigation-active="setHeaderBg" />
   </header>
 </template>
 
