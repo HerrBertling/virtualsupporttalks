@@ -110,6 +110,7 @@ export default {
             email: 'E-Mail',
             website: 'Webseite',
             langFilter: 'Nach Sprache filtern',
+            loading: 'Lade Coaches…',
           },
           languages: {
             de: 'Deutsch',
@@ -120,6 +121,10 @@ export default {
             nl: 'Nederlands',
             ukr: 'Український',
             ru: 'русский',
+            esp: 'Español',
+            fr: 'Français',
+            tur: 'Türk',
+            arab: 'عربي',
           },
           network: 'Unser Netzwerk',
           partner: 'Unsere Unternehmenspartner',
@@ -146,6 +151,7 @@ export default {
             email: 'Email',
             website: 'Website',
             langFilter: 'Filter by language',
+            loading: 'Loading coaches…',
           },
           languages: {
             de: 'Deutsch',

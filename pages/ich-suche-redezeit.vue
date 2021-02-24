@@ -43,6 +43,7 @@
       </CoachCard>
     </section>
     <section v-else :class="$style.loading">
+      <h3>{{ $t('coach.loading') }}</h3>
       <LoadingSpinner />
     </section>
   </div>
