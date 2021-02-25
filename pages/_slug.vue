@@ -9,13 +9,6 @@ export default {
   name: 'BasicContent',
   transition: 'page',
 
-  // nuxtI18n: {
-  //   paths: {
-  //     de: this.$route.params.slug,
-  //     en: '/i-need-speaking-time',
-  //   },
-  // },
-
   async asyncData({ app, $contentful, params }) {
     const slugEnMatch = {
       'i-offer-speaking-time': 'ich-biete-redezeit',
@@ -23,9 +16,13 @@ export default {
       privacy: 'datenschutz',
     }
     const isEnglish = app.i18n.locale === 'en'
+    const hasEnglishSlugMatch = !!slugEnMatch[params.slug]
     const { items } = await $contentful.getEntries({
       content_type: 'page',
-      'fields.slug[in]': isEnglish ? slugEnMatch[params.slug] : params.slug,
+      'fields.slug[in]':
+        isEnglish && hasEnglishSlugMatch
+          ? slugEnMatch[params.slug]
+          : params.slug,
       locale: app.i18n.locale,
     })
     return {

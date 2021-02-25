@@ -46,7 +46,7 @@ export default {
           content_type: 'page',
         }),
       ]).then(([pages]) => {
-        return [...pages.items.map((entry) => entry.fields.slug)]
+        return [...pages.items.map((entry) => `/${entry.fields.slug}`)]
       })
     },
   },
