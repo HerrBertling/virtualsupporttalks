@@ -6,12 +6,14 @@
       whiteBackground && $style.whiteBackground,
     ]"
   >
-    <em>
-      <nuxt-link :to="localePath('/')">
-        <img src="~/assets/img/logo.png" alt="Virtual Support Talks Logo" />
-      </nuxt-link>
-    </em>
-    <LayoutHeaderNavigation @navigation-active="setHeaderBg" />
+    <div :class="$style.wrapper">
+      <em>
+        <nuxt-link :to="localePath('/')">
+          <img src="~/assets/img/logo.png" alt="Virtual Support Talks Logo" />
+        </nuxt-link>
+      </em>
+      <LayoutHeaderNavigation @navigation-active="setHeaderBg" />
+    </div>
   </header>
 </template>
 
@@ -62,12 +64,8 @@ export default {
 
 <style module>
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 80px;
   position: fixed;
-  padding: 0 16px;
   top: 0;
   width: 100%;
   max-width: 100vw;
@@ -98,6 +96,16 @@ export default {
 .header.hasScrolled::after,
 .header.whiteBackground::after {
   opacity: 1;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 1rem;
+  height: 100%;
 }
 
 .header em,
