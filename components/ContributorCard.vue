@@ -3,7 +3,22 @@
     <article :class="$style.contWrapper">
       <nuxt-link :to="localePath(permalink)">
         <figure :class="$style.contImage" role="figure" :aria-label="name">
-          <img :src="image" :alt="name" loading="lazy" />
+          <picture>
+            <source
+              :srcset="`${image}?h=450&fm=webp, ${image}?h=900&fm=webp 2x`"
+              type="image/webp"
+            />
+            <source
+              :srcset="`${image}?h=450&fm=jpeg, ${image}?h=900&fm=jpeg 2x`"
+              type="image/jpeg"
+            />
+            <img
+              :src="`${image}?h=450`"
+              :alt="name"
+              height="450"
+              loading="lazy"
+            />
+          </picture>
           <figcaption>{{ name }}</figcaption>
         </figure>
       </nuxt-link>

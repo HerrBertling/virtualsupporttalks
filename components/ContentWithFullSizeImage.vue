@@ -68,10 +68,12 @@ export default {
   .content {
     padding: 3rem;
     padding-top: 9rem;
+    max-width: 70ch;
   }
   .content.imageRight {
     grid-column: 1;
     grid-row: 1;
+    margin-left: auto;
   }
 }
 </style>

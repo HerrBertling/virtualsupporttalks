@@ -4,4 +4,5 @@ export default {
   GIVE_HELP: '2WBTRHlycqG57zkTI0G5K3',
   NETWORK: '25tWaqDQRtqkh9Bh2idI2A',
   DATA_PRIVACY: '5BfG20EiaYrSWfnsBQKmhd',
+  DONATIONS: '3w6prXbEVMxtdD81saQoIT',
 }

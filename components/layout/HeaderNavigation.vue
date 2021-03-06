@@ -62,6 +62,16 @@ export default {
             en: '/en/network-partner-media/',
           },
         },
+        {
+          title: {
+            de: 'Redezeit unterstützen',
+            en: 'Support Redezeit',
+          },
+          path: {
+            de: '/jetzt-unterstuetzen-spende-an-redezeit/',
+            en: '/en/support-now-donate-to-redezeit/',
+          },
+        },
       ],
     }
   },
@@ -94,9 +104,9 @@ export default {
   top: 64px;
   right: 0;
   width: 100vw;
-  max-width: 40rem;
+  max-width: 50rem;
   height: calc(100vh - 64px);
-  transform: translateX(40rem);
+  transform: translateX(50rem);
   transition: transform 300ms ease-in;
   background: var(--colorWhite);
 }
@@ -198,7 +208,7 @@ export default {
 
   .nav {
     flex-grow: 1;
-    max-width: 70vw;
+    max-width: 960px;
   }
 
   .headerNav li {
