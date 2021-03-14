@@ -129,6 +129,7 @@ export default {
           network: 'Unser Netzwerk',
           partner: 'Unsere Unternehmenspartner',
           media: 'Redezeit in den Medien',
+          contributorHeadline: 'Das Team von REDEZEIT FÜR DICH',
           cookie: {
             accept: 'Akzeptieren',
             decline: 'Ablehnen',
@@ -166,6 +167,7 @@ export default {
           network: 'Our network',
           partner: 'Our company partners',
           media: 'Redezeit in the media',
+          contributorHeadline: 'The team of REDEZEIT FÜR DICH',
           cookie: {
             accept: 'Accept',
             decline: 'Decline',

@@ -64,8 +64,8 @@ export default {
         },
         {
           title: {
-            de: 'Redezeit unterstützen',
-            en: 'Support Redezeit',
+            de: 'Spenden',
+            en: 'Donate',
           },
           path: {
             de: '/jetzt-unterstuetzen-spende-an-redezeit/',

@@ -2,6 +2,9 @@
   <div>
     <ContentBlocks :blocks="content" />
     <section :class="$style.contributorList">
+      <h2 :class="$style.contributorHeadline">
+        {{ $t('contributorHeadline') }}
+      </h2>
       <ContributorCard
         v-for="contributor in contributors"
         :key="`${contributor.fields.lastname}_${contributor.fields.firstname}`"
@@ -70,5 +73,10 @@ export default {
   max-width: 1280px;
   align-items: center;
   margin: 0 auto;
+}
+
+.contributorHeadline {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
 }
 </style>
