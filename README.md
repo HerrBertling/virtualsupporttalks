@@ -1,6 +1,6 @@
 # virtualsupporttalks
 
-> My ultimate Nuxt.js project
+The website for REDEZEIT FÜR DICH – see https://www.virtualsupporttalks.de/
 
 ## Build Setup
 
