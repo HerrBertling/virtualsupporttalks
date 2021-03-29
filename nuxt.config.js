@@ -115,6 +115,7 @@ export default {
             fr: 'Français',
             tur: 'Türk',
             arab: 'عربي',
+            nor: 'Norsk',
           },
           network: 'Unser Netzwerk',
           partner: 'Unsere Unternehmenspartner',
