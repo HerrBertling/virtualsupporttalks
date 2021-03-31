@@ -36,9 +36,26 @@ export default {
       return Promise.all([
         contentfulClient.getEntries({
           content_type: 'page',
+          locale: '*',
         }),
       ]).then(([pages]) => {
-        return [...pages.items.map((entry) => `/${entry.fields.slug}`)]
+        const slugs = [
+          // the startpage
+          '/',
+          // all german slugs if available
+          ...pages.items
+            .filter((entry) => !!entry.fields.slug.de)
+            .map((entry) => {
+              return `/${entry.fields.slug.de}`
+            }),
+          // all english slugs if available
+          ...pages.items
+            .filter((entry) => !!entry.fields.slug.en)
+            .map((entry) => {
+              return `/en/${entry.fields.slug.en}`
+            }),
+        ]
+        return slugs
       })
     },
   },
