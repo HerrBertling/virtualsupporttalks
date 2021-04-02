@@ -1,11 +1,13 @@
 <template>
   <div class="richtext">
-    <RichTextRenderer :document="content" />
+    <RichTextRenderer :document="content" :node-renderers="renderNodes" />
   </div>
 </template>
 
 <script>
+import { INLINES } from '@contentful/rich-text-types'
 import RichTextRenderer from 'contentful-rich-text-vue-renderer'
+import CleverLink from '~/components/CleverLink.vue'
 
 export default {
   name: 'ContentfulRichText',
@@ -16,6 +18,24 @@ export default {
     content: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    renderNodes() {
+      return {
+        [INLINES.HYPERLINK]: (node, key, h, next) => {
+          return h(
+            CleverLink,
+            {
+              key,
+              props: {
+                to: node.data.uri,
+              },
+            },
+            next(node.content, key, h, next)
+          )
+        },
+      }
     },
   },
 }
