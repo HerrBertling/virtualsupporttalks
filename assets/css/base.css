@@ -32,7 +32,7 @@
 }
 
 :root {
-  --colorPrimary500: blue;
+  --colorPrimary: rgb(156, 195, 23);
   --colorSecondary: white;
   --colorNeutral100: #fff0eb;
   --colorTextDefault: #323335;

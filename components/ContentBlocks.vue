@@ -4,14 +4,12 @@
       <HeaderBlock
         v-if="block.sys.contentType.sys.id === 'headerBlock'"
         :key="block.sys.id"
-        :background-color="block.fields.backgroundcolor"
-        :background-image="block.fields.image.fields.file.url"
+        v-bind="block.fields"
       />
       <ContentCentered
         v-else-if="block.sys.contentType.sys.id === 'centeredContent'"
         :key="block.sys.id"
-        :background-color="block.fields.backgroundcolor"
-        :text-color="block.fields.textcolor"
+        v-bind="block.fields"
       >
         <ContentfulRichText :content="block.fields.content" />
       </ContentCentered>
@@ -19,7 +17,7 @@
         v-else-if="block.sys.contentType.sys.id === 'contentImageBg'"
         :key="block.sys.id"
         :with-padding-top="index === 0"
-        :background-image="block.fields.backgroundImage.fields.file.url"
+        v-bind="block.fields"
       >
         <ContentfulRichText :content="block.fields.content" />
       </ContentImageBg>

@@ -1,10 +1,15 @@
 <template>
   <section
-    :class="$style.wrapper"
-    :style="{ backgroundImage: `url(${backgroundImage})` }"
+    :class="[$style.wrapper, hasButton && $style.withButton]"
+    :style="{ backgroundImage: `url(${usedBackgroundImage})` }"
   >
     <div :class="[$style.content, withPaddingTop && $style.paddingTop]">
       <slot />
+    </div>
+    <div v-if="hasButton" :class="$style.buttonWrapper">
+      <clever-button :to="buttonUrl">
+        {{ buttonText }}
+      </clever-button>
     </div>
   </section>
 </template>
@@ -14,12 +19,29 @@ export default {
 
   props: {
     backgroundImage: {
-      type: String,
-      default: null,
+      type: Object,
+      default: () => ({}),
     },
     withPaddingTop: {
       type: Boolean,
       default: false,
+    },
+    buttonUrl: {
+      type: String,
+      default: null,
+    },
+    buttonText: {
+      type: String,
+      default: null,
+    },
+  },
+
+  computed: {
+    hasButton() {
+      return this.buttonUrl && this.buttonText
+    },
+    usedBackgroundImage() {
+      return this.backgroundImage?.fields?.file?.url
     },
   },
 }
@@ -35,11 +57,23 @@ export default {
   text-align: center;
 }
 
+.withButton {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  justify-items: center;
+  padding-bottom: 3rem;
+}
+
 .content {
   padding: 3rem 1rem;
   max-width: var(--widthContentMax);
   width: 100vw;
   margin: auto;
+  z-index: 1;
+}
+
+.buttonWrapper {
   z-index: 1;
 }
 

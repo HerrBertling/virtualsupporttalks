@@ -1,10 +1,14 @@
 <template>
-  <div
-    :class="$style.cb_pageHeader_wrapper"
-    :style="{ backgroundColor: backgroundColor }"
-  >
-    <header :class="$style.cb_pageHeader" :style="styleObject">
-      <slot />
+  <div :class="$style.wrapper" :style="{ backgroundColor: backgroundcolor }">
+    <header :class="[$style.header, hasButton && $style.headerPaddingBottom]">
+      <div :class="$style.content" :style="styleObject">
+        <slot />
+      </div>
+      <div v-if="hasButton">
+        <clever-button :to="buttonUrl" variant="secondary">{{
+          buttonText
+        }}</clever-button>
+      </div>
     </header>
   </div>
 </template>
@@ -13,11 +17,19 @@ export default {
   name: 'HeaderBlock',
 
   props: {
-    backgroundColor: {
+    backgroundcolor: {
       type: String,
       default: '#fff',
     },
-    backgroundImage: {
+    image: {
+      type: Object,
+      default: () => ({}),
+    },
+    buttonUrl: {
+      type: String,
+      default: null,
+    },
+    buttonText: {
       type: String,
       default: null,
     },
@@ -26,18 +38,30 @@ export default {
   computed: {
     styleObject() {
       return {
-        backgroundColor: this.backgroundColor,
-        backgroundImage: `url(${this.backgroundImage})`,
+        backgroundcolor: this.backgroundcolor,
+        backgroundImage: `url(${this.image.fields.file.url})`,
       }
+    },
+    hasButton() {
+      return this.buttonUrl && this.buttonText
     },
   },
 }
 </script>
 <style module>
-.cb_pageHeader_wrapper {
+.wrapper {
   padding-top: 120px;
 }
-.cb_pageHeader {
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  justify-items: center;
+}
+.headerPaddingBottom {
+  padding-bottom: 3rem;
+}
+.content {
   height: 40vh;
   min-height: 300px;
   width: 100%;

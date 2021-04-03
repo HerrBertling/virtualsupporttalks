@@ -24,9 +24,9 @@
       </nuxt-link>
       <h3>{{ name }}</h3>
       <div>
-        <nuxt-link :class="$style.button" :to="localePath(permalink)">
+        <clever-button :to="permalink" variant="secondary">
           {{ $t('initiator.more') }} {{ firstName }}
-        </nuxt-link>
+        </clever-button>
       </div>
     </article>
   </fade-in>
@@ -100,27 +100,6 @@ export default {
 .contWrapper > a:hover img,
 .contWrapper > a:focus img,
 .contWrapper > a:active img {
-  opacity: 0.8;
-}
-
-.button,
-.button[href]:link,
-.button[href]:visited {
-  background: var(--colorTextDefault);
-  color: var(--colorWhite);
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-family: inherit;
-  border-radius: 4px;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  transition: opacity 300ms ease-in;
-}
-
-.button[href]:hover,
-.button[href]:focus,
-.button[href]:active {
   opacity: 0.8;
 }
 </style>
