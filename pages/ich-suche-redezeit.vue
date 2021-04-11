@@ -24,7 +24,7 @@
         v-for="tag in tags"
         :key="tag.sys.id"
         :class="[$style.tag, tag.sys.id === currentTag && $style.selected]"
-        @click="toggleCurrentTag(tag.sys.id)"
+        @click="toggleCurrentTag(tag.sys.id, tag.fields.tag)"
       >
         {{ tag.fields.tag }}
       </button>
@@ -167,12 +167,12 @@ export default {
       return tags.some((tag) => tag.sys.id === this.currentTag)
     },
 
-    toggleCurrentTag(tag) {
+    toggleCurrentTag(tag, tagName) {
       const tagIsActive = this.currentTag === tag
       this.$ga.event({
         eventCategory: 'coachTag',
         eventAction: tagIsActive ? 'unselect' : 'select',
-        eventLabel: tag,
+        eventLabel: tagName,
       })
       this.currentTag = tagIsActive ? null : tag
     },
