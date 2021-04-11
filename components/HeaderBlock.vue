@@ -50,8 +50,15 @@ export default {
 </script>
 <style module>
 .wrapper {
-  padding-top: 120px;
+  padding-top: 80px;
 }
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-top: 120px;
+  }
+}
+
 .header {
   display: grid;
   grid-template-columns: 1fr;
@@ -62,11 +69,16 @@ export default {
   padding-bottom: 3rem;
 }
 .content {
-  height: 40vh;
-  min-height: 300px;
+  height: clamp(200px, 35vh, 300px);
   width: 100%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .content {
+    height: clamp(300px, 40vh, 500px);
+  }
 }
 </style>

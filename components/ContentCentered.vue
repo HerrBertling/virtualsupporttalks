@@ -16,9 +16,8 @@
 <script>
 export default {
   name: 'CenteredContent',
-
   props: {
-    backgroundColor: {
+    backgroundcolor: {
       type: String,
       default: '#fff',
     },
@@ -35,13 +34,9 @@ export default {
       default: null,
     },
   },
-
   computed: {
     styleObject() {
-      return {
-        backgroundColor: this.backgroundColor,
-        color: this.textColor,
-      }
+      return { backgroundColor: this.backgroundcolor, color: this.textColor }
     },
     hasButton() {
       return this.buttonUrl && this.buttonText
