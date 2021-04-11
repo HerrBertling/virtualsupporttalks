@@ -94,9 +94,8 @@ export default {
     trackCoachClick(type, coach) {
       this.$ga.event({
         eventCategory: 'coachClick',
-        eventAction: 'click',
-        eventLabel: type,
-        eventValue: coach,
+        eventAction: type,
+        eventLabel: coach,
       })
     },
   },
