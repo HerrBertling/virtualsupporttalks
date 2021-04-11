@@ -21,7 +21,7 @@ export default {
       type: String,
       default: '#fff',
     },
-    textColor: {
+    textcolor: {
       type: String,
       default: '#000',
     },
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     styleObject() {
-      return { backgroundColor: this.backgroundcolor, color: this.textColor }
+      return { backgroundColor: this.backgroundcolor, color: this.textcolor }
     },
     hasButton() {
       return this.buttonUrl && this.buttonText
