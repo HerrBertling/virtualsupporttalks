@@ -169,11 +169,32 @@ export default {
 
     toggleCurrentTag(tag) {
       const tagIsActive = this.currentTag === tag
+      const gaEvent = tagIsActive
+        ? {
+            eventCategory: 'coachTag',
+            eventAction: 'unselect',
+            eventLabel: 'tag',
+            eventValue: tag,
+          }
+        : {
+            eventCategory: 'coachTag',
+            eventAction: 'select',
+            eventLabel: 'tag',
+            eventValue: tag,
+          }
+      this.$ga.event(gaEvent)
       this.currentTag = tagIsActive ? null : tag
     },
 
     toggleCurrentLang(newLang) {
-      this.currentLanguage = newLang
+      const languageIsActive = this.currentTag === newLang
+      this.$ga.event({
+        eventCategory: 'coachLanguage',
+        eventAction: 'select',
+        eventLabel: 'language',
+        eventValue: newLang,
+      })
+      this.currentLanguage = languageIsActive ? this.$i18n.locale : newLang
     },
 
     shouldShowCoach(tags) {

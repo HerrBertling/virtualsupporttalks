@@ -5,6 +5,7 @@
       target="_blank"
       rel="noopener"
       :class="$style.coachImage"
+      @click="trackCoachClick('image', name)"
     >
       <picture>
         <source
@@ -34,6 +35,7 @@
         target="_blank"
         rel="noopener"
         :class="$style.link"
+        @click="trackCoachClick('website', name)"
       >
         <WebIcon :width="16" :height="16" :class="$style.gap" />
         <span> {{ $t('coach.website') }} </span>
@@ -44,6 +46,7 @@
         target="_blank"
         rel="noopener"
         :class="$style.link"
+        @click="trackCoachClick('email', name)"
       >
         <MailIcon :width="16" :height="16" :class="$style.gap" />
         <span>{{ $t('coach.email') }}</span>
@@ -85,6 +88,16 @@ export default {
     image: {
       type: String,
       default: null,
+    },
+  },
+  methods: {
+    trackCoachClick(type, coach) {
+      this.$ga.event({
+        eventCategory: 'coachClick',
+        eventAction: 'click',
+        eventLabel: type,
+        eventValue: coach,
+      })
     },
   },
 }
