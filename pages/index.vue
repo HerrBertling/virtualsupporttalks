@@ -46,9 +46,17 @@ export default {
         }))
       : []
 
+    const gverification = {
+      hid: 'google-site-verification',
+      name: 'google-site-verification',
+      content: 'L3i7mNfABWt59rswWMPKe_fjYDpV7KpDRDe372TaPGY',
+    }
+
+    const fullMeta = [...meta, gverification]
+
     return {
       title,
-      meta,
+      meta: fullMeta,
     }
   },
   mounted() {
