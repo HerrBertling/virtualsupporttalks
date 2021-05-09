@@ -52,10 +52,7 @@ export default {
       content: 'L3i7mNfABWt59rswWMPKe_fjYDpV7KpDRDe372TaPGY',
     }
 
-    const fullMeta = {
-      ...meta,
-      ...gverification,
-    }
+    const fullMeta = [...meta, gverification]
 
     return {
       title,
