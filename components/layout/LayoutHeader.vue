@@ -32,9 +32,10 @@ export default {
   },
 
   mounted() {
-    window.addEventListener('scroll', (e) => {
+    this.lastKnownScrollPos = window.scrollY
+    this.toggleScrollClass(this.lastKnownScrollPos)
+    window.addEventListener('scroll', (_e) => {
       this.lastKnownScrollPos = window.scrollY
-
       if (!this.ticking) {
         window.requestAnimationFrame(() => {
           this.toggleScrollClass(this.lastKnownScrollPos)
