@@ -18,39 +18,33 @@
     "*.{js,vue}": "yarn lint",
     "*.{css,vue}": "stylelint"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
-    "contentful": "^8.3.5",
+    "contentful": "^8.4.2",
     "contentful-rich-text-vue-renderer": "^2.0.0",
-    "nuxt": "^2.15.5",
-    "nuxt-esbuild": "^1.0.2",
-    "nuxt-i18n": "^6.27.0",
+    "nuxt": "^2.15.7",
+    "nuxt-esbuild": "^1.1.0",
+    "nuxt-i18n": "^6.27.3",
     "regenerator-runtime": "^0.13.7",
     "vue-cookie-law": "^1.13.3",
     "vue-observe-visibility": "^1.0.0"
   },
   "devDependencies": {
-    "@contentful/rich-text-types": "^14.1.2",
+    "@contentful/rich-text-types": "^15.0.0",
     "@nuxt/components": "^2.1.8",
-    "@nuxtjs/eslint-config": "^6.0.0",
+    "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^7.26.0",
+    "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": ">=2.0.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^4.3.8",
-    "lint-staged": "^11.0.0",
-    "prettier": "^2.2.1",
+    "lint-staged": "^11.0.1",
+    "prettier": "^2.3.2",
     "stylelint": "^13.13.1"
   }
 }

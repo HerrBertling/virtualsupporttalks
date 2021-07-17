@@ -10,6 +10,7 @@
       <clever-button :to="buttonUrl">
         {{ buttonText }}
       </clever-button>
+      <AmazonCharityBanner v-if="withCharityBanner" />
     </div>
   </section>
 </template>
@@ -33,6 +34,10 @@ export default {
     buttonText: {
       type: String,
       default: null,
+    },
+    withCharityBanner: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -79,6 +84,15 @@ export default {
 
 .paddingTop {
   padding: 7rem 1rem 3rem;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .wrapper::after {
