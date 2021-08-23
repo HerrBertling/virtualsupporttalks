@@ -42,5 +42,7 @@ export default {
 .wrapper {
   display: flex;
   justify-content: center;
+  min-width: 310px;
+  min-height: 256px;
 }
 </style>
