@@ -1,51 +1,57 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <details v-if="shouldShowLanguages" :class="$style.filterWrapper">
-      <summary :class="$style.summary">
-        <h5 :class="$style.tagToggle">{{ $t('coach.langFilter') }}</h5>
-      </summary>
-      <button
-        v-for="lang in availableLanguages"
-        :key="lang"
-        :class="[$style.tag, lang === currentLanguage && $style.selected]"
-        @click="toggleCurrentLang(lang)"
-      >
-        {{ $t(`languages.${lang}`) }}
-      </button>
-    </details>
-    <details v-if="shouldShowTags" :class="$style.filterWrapper">
-      <summary :class="$style.summary">
-        <h5 :class="$style.tagToggle">
-          {{ $t('coach.filter') }} ({{ coachesCount }} {{ $t('coach.count') }})
-        </h5>
-      </summary>
-      <button
-        v-for="tag in tags"
-        :key="tag.sys.id"
-        :class="[$style.tag, tag.sys.id === currentTag && $style.selected]"
-        @click="toggleCurrentTag(tag.sys.id, tag.fields.tag)"
-      >
-        {{ tag.fields.tag }}
-      </button>
-    </details>
-    <section v-if="!loading" :class="$style.coachesList">
-      <CoachCard
-        v-for="(coach, index) in coaches"
-        v-show="shouldShowCoach(coach.fields.tag)"
-        :key="index"
-        :name="coach.fields.name"
-        :url="coach.fields.url"
-        :email="coach.fields.email"
-        :image="coach.fields.image.fields.file.url"
-      >
-        <ContentfulRichText :content="coach.fields.description" />
-      </CoachCard>
-    </section>
-    <section v-else :class="$style.loading">
+    <section v-if="loading" :class="$style.loading">
       <h3>{{ $t('coach.loading') }}</h3>
       <LoadingSpinner />
     </section>
+    <div v-else>
+      <details v-if="hasLanguages" :class="$style.filterWrapper">
+        <summary :class="$style.summary">
+          <h5 :class="$style.tagToggle">{{ $t('coach.langFilter') }}</h5>
+        </summary>
+        <button
+          v-for="lang in availableLanguages"
+          :key="lang"
+          :class="[$style.tag, lang === currentLanguage && $style.selected]"
+          @click="toggleCurrentLang(lang)"
+        >
+          {{ $t(`languages.${lang}`) }}
+        </button>
+      </details>
+      <details v-if="hasTags" :class="$style.filterWrapper">
+        <summary :class="$style.summary">
+          <h5 :class="$style.tagToggle">
+            {{ $t('coach.filter') }} ({{ coachesCount }}
+            {{ $t('coach.count') }})
+          </h5>
+        </summary>
+        <button
+          v-for="tag in tags"
+          :key="tag.sys.id"
+          :class="[$style.tag, tagIsActive(tag.sys.id) && $style.selected]"
+          @click="toggleTag(tag.sys.id, tag.fields.tag)"
+        >
+          {{ tag.fields.tag }}
+        </button>
+      </details>
+      <section v-if="coachesCount > 0" :class="$style.coachesList">
+        <CoachCard
+          v-for="(coach, index) in coaches"
+          v-show="shouldShowCoach(coach.fields.tag)"
+          :key="index"
+          :name="coach.fields.name"
+          :url="coach.fields.url"
+          :email="coach.fields.email"
+          :image="coach.fields.image.fields.file.url"
+        >
+          <ContentfulRichText :content="coach.fields.description" />
+        </CoachCard>
+      </section>
+      <section v-else :class="$style.coachesList">
+        <h3>Keine Coaches zu diesen Filtern gefunden :(</h3>
+      </section>
+    </div>
   </div>
 </template>
 <script>
@@ -87,7 +93,7 @@ export default {
 
   data() {
     return {
-      currentTag: null,
+      currentTags: [],
       currentLanguage: this.$i18n.locale,
       loading: true,
       coaches: [],
@@ -120,40 +126,41 @@ export default {
       return this.availableLanguages.length > 0
     },
 
+    hasCurrentTags() {
+      return this.currentTags.length > 0
+    },
+
     coachesCount() {
       if (!this.coaches) {
         return 0
       }
-      if (!this.currentTag) {
+      if (!this.hasCurrentTags) {
         return this.coaches.length
       }
+      return this.currentCoaches.length
+    },
+
+    currentCoaches() {
       return this.coaches.filter((coach) => {
-        return !!coach.fields.tag && this.hasCurrentTag(coach.fields.tag)
-      }).length
+        return !!coach.fields.tag && this.matchesTags(coach.fields.tag)
+      })
     },
 
     hasCoaches() {
       return this.coachesCount > 0
-    },
-
-    shouldShowTags() {
-      return this.hasTags && this.hasCoaches && this.coaches.length > 10
-    },
-
-    shouldShowLanguages() {
-      return this.hasLanguages && this.hasCoaches
     },
   },
 
   watch: {
     currentLanguage(newVal, oldVal) {
       if (newVal !== oldVal) {
+        this.resetTags()
         this.getCoaches(newVal)
       }
     },
     coaches(newVal) {
       if (!!newVal && newVal.length < 2) {
-        this.currentTag = null
+        this.resetTags()
       }
     },
   },
@@ -163,18 +170,30 @@ export default {
   },
 
   methods: {
-    hasCurrentTag(tags) {
-      return tags.some((tag) => tag.sys.id === this.currentTag)
+    resetTags() {
+      this.currentTags = []
     },
 
-    toggleCurrentTag(tag, tagName) {
-      const tagIsActive = this.currentTag === tag
+    matchesTags(coachTags) {
+      return this.currentTags.every((currentTag) =>
+        coachTags.some((coachTag) => coachTag.sys.id === currentTag)
+      )
+    },
+
+    tagIsActive(tag) {
+      return this.currentTags.includes(tag)
+    },
+
+    toggleTag(tag, tagName) {
+      const isActive = this.tagIsActive(tag)
       this.$ga.event({
         eventCategory: 'coachTag',
-        eventAction: tagIsActive ? 'unselect' : 'select',
+        eventAction: isActive ? 'unselect' : 'select',
         eventLabel: tagName,
       })
-      this.currentTag = tagIsActive ? null : tag
+      this.currentTags = isActive
+        ? this.currentTags.filter((tagsEntry) => tagsEntry !== tag)
+        : [...this.currentTags, tag]
     },
 
     toggleCurrentLang(newLang) {
@@ -187,13 +206,13 @@ export default {
     },
 
     shouldShowCoach(tags) {
-      if (!this.currentTag) {
+      if (!this.hasCurrentTags) {
         return true
       }
-      if (this.currentTag && !tags) {
+      if (this.hasCurrentTags && !tags) {
         return false
       }
-      return this.hasCurrentTag(tags)
+      return this.matchesTags(tags)
     },
 
     shuffle(array) {
@@ -234,7 +253,9 @@ export default {
           }
         })
       }
-      const allLangs = [...this.availableLanguages, ...langs]
+      const allLangs = [...this.availableLanguages, ...langs].map((lang) =>
+        lang.toLowerCase()
+      )
       this.availableLanguages = [...new Set(allLangs)]
       this.loading = false
     },
