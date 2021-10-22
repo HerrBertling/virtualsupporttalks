@@ -40,6 +40,11 @@
         :link1="block.fields.link1"
         :link2="block.fields.link2"
       />
+      <ContentBlockImageCollection
+        v-if="block.sys.contentType.sys.id === 'imageCollection'"
+        :key="block.sys.id"
+        :images="block.fields.images"
+      />
       <GenericContent v-else :key="block.sys.id" :block="block" />
     </template>
   </div>
