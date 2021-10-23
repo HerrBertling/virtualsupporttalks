@@ -18,7 +18,7 @@ export default {
 .cb_genericContent {
   margin: 0 auto;
   padding: 6rem 1rem 3rem;
-  min-height: 75vh;
+  min-height: 50vh;
   width: 100vw;
   max-width: var(--widthContentMax);
 }

@@ -1,6 +1,10 @@
 <template>
   <div class="richtext">
-    <RichTextRenderer :document="content" :node-renderers="renderNodes" />
+    <RichTextRenderer
+      v-if="!!content"
+      :document="content"
+      :node-renderers="renderNodes"
+    />
   </div>
 </template>
 

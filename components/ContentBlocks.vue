@@ -9,7 +9,10 @@
       <ContentCentered
         v-else-if="block.sys.contentType.sys.id === 'centeredContent'"
         :key="block.sys.id"
-        v-bind="block.fields"
+        :backgroundcolor="block.fields.backgroundcolor"
+        :textcolor="block.fields.textcolor"
+        :button-url="block.fields.buttonUrl"
+        :button-text="block.fields.buttonText"
       >
         <ContentfulRichText :content="block.fields.content" />
       </ContentCentered>
@@ -41,7 +44,7 @@
         :link2="block.fields.link2"
       />
       <ContentBlockImageCollection
-        v-if="block.sys.contentType.sys.id === 'imageCollection'"
+        v-else-if="block.sys.contentType.sys.id === 'imageCollection'"
         :key="block.sys.id"
         :images="block.fields.images"
       />
