@@ -14,6 +14,7 @@ export default {
       content_type: 'page',
       'fields.slug[in]': params.slug,
       locale: app.i18n.locale,
+      include: 5,
     })
     return {
       blocks: items[0].fields.content,

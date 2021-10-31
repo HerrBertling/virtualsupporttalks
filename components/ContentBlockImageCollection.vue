@@ -1,30 +1,37 @@
 <template>
-  <div :class="$style.imageCollection">
+  <div
+    :class="[$style.imageCollection, withPaddingTop && $style.withPaddingTop]"
+  >
     <figure
       v-for="{ sys, fields } in images"
       :key="sys.id"
       :class="$style.collectionImage"
       role="figure"
-      :aria-label="fields.title"
+      :aria-label="fields.image.fields.title"
     >
-      <picture>
-        <source
-          :srcset="`${fields.file.url}?h=450&fm=webp, ${fields.file.url}?h=900&fm=webp 2x`"
-          type="image/webp"
-        />
-        <source
-          :srcset="`${fields.file.url}?h=450&fm=jpeg, ${fields.file.url}?h=900&fm=jpeg 2x`"
-          type="image/jpeg"
-        />
-        <img
-          :src="`${fields.file.url}?h=450`"
-          :alt="name"
-          height="450"
-          loading="lazy"
-          :class="$style.image"
-        />
-      </picture>
-      <figcaption>{{ name }}</figcaption>
+      <component :is="getComponent(fields)" v-bind="getFieldData(fields)">
+        <picture>
+          <source
+            :srcset="`
+              ${fields.image.fields.file.url}?h=450&fm=webp,
+              ${fields.image.fields.file.url}?h=900&fm=webp 2x`"
+            type="image/webp"
+          />
+          <source
+            :srcset="`
+              ${fields.image.fields.file.url}?h=450&fm=jpeg,
+              ${fields.image.fields.file.url}?h=900&fm=jpeg 2x`"
+            type="image/jpeg"
+          />
+          <img
+            :src="`${fields.image.fields.file.url}?h=450`"
+            :alt="fields.image.fields.title"
+            height="450"
+            loading="lazy"
+            :class="$style.image"
+          />
+        </picture>
+      </component>
     </figure>
   </div>
 </template>
@@ -37,6 +44,29 @@ export default {
     images: {
       type: Array,
       default: () => [],
+    },
+    withPaddingTop: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  methods: {
+    getComponent(fields) {
+      if (fields.url) {
+        return 'a'
+      }
+      return 'div'
+    },
+
+    getFieldData(fields) {
+      if (fields.url) {
+        return {
+          href: fields.url,
+          target: '_blank',
+        }
+      }
+      return {}
     },
   },
 }
@@ -55,6 +85,10 @@ export default {
   .imageCollection {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+.withPaddingTop {
+  padding-top: 5rem;
 }
 
 .image {

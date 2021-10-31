@@ -47,6 +47,7 @@
         v-else-if="block.sys.contentType.sys.id === 'imageCollection'"
         :key="block.sys.id"
         :images="block.fields.images"
+        :with-padding-top="index === 0"
       />
       <GenericContent v-else :key="block.sys.id" :block="block" />
     </template>
