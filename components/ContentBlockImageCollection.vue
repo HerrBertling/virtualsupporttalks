@@ -87,6 +87,12 @@ export default {
   }
 }
 
+@media (min-width: 1024px) {
+  .imageCollection {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 .withPaddingTop {
   padding-top: 5rem;
 }
