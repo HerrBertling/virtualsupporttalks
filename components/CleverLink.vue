@@ -40,6 +40,7 @@ export default {
         ...this.$attrs,
         href: usedLink,
         rel: 'noopener',
+        target: '_blank',
       }
     },
   },

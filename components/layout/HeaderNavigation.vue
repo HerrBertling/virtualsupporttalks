@@ -11,9 +11,9 @@
     </button>
     <ul :class="[$style.headerNav, navExpanded && $style.menuExpanded]">
       <li v-for="item in navigationItems" :key="item.path.de" @click="closeNav">
-        <nuxt-link :to="item.path[$i18n.locale]">
+        <clever-link :to="item.path[$i18n.locale]">
           {{ item.title[$i18n.locale] }}
-        </nuxt-link>
+        </clever-link>
       </li>
       <li v-if="$i18n.locale === 'de'">
         <nuxt-link :to="localePath('/', 'en')">English version</nuxt-link>
@@ -70,6 +70,16 @@ export default {
           path: {
             de: '/jetzt-unterstuetzen-spende-an-redezeit/',
             en: '/en/support-now-donate-to-redezeit/',
+          },
+        },
+        {
+          title: {
+            de: 'Feedback',
+            en: 'Feedback',
+          },
+          path: {
+            de: 'https://bit.ly/redezeitfeedback',
+            en: 'https://bit.ly/redezeitfeedback',
           },
         },
       ],
