@@ -62,7 +62,7 @@ export default {
 
 <style module>
 .header {
-  padding: 3rem 1rem;
+  padding: 6rem 1rem 0;
   width: 100%;
   max-width: var(--widthContentMax);
   margin: 0 auto;
@@ -70,11 +70,18 @@ export default {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2rem;
-  margin: 2rem auto;
+  grid-template-columns: 1fr;
+  grid-gap: 4rem;
+  margin: 1rem auto;
   padding: 0 1rem;
   max-width: var(--widthContentMax);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+  }
 }
 
 .blogpost {
@@ -82,7 +89,6 @@ export default {
   grid-template-columns: 1fr;
   align-content: start;
   grid-gap: 0.5rem;
-  padding: 2rem 1rem;
   text-decoration: none !important;
 }
 

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container mx-auto">
     <header :class="$style.header">
-      <div :class="$style.headerInner">
+      <div :class="[$style.headerInner, !mainImage && $style.withPlaceholder]">
         <img
           v-if="mainImage"
           :class="$style.mainImage"
@@ -56,7 +56,7 @@ export default {
   padding: 6rem 1rem 0;
   width: 100%;
   max-width: var(--widthContentMax);
-  margin: 0 auto -6rem;
+  margin: 0 auto;
 }
 .headerInner {
   display: grid;
@@ -64,7 +64,14 @@ export default {
   grid-template-rows: 1fr;
   border-radius: 0.5rem;
   overflow: hidden;
+  min-height: 16rem;
 }
+
+.withPlaceholder {
+  background: var(--colorPrimary) url(@/assets/img/logo.png) no-repeat center;
+  background-size: contain;
+}
+
 .headerInner:after {
   content: '';
   display: block;
@@ -89,8 +96,7 @@ export default {
   grid-column: 1;
   grid-row: 1;
   width: 100%;
-  height: auto;
-  max-height: 16rem;
+  height: 16rem;
   object-fit: cover;
   max-width: var(--widthContentMax);
   position: relative;
