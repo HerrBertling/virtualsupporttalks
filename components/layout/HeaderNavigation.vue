@@ -72,6 +72,16 @@ export default {
             en: '/en/support-now-donate-to-redezeit/',
           },
         },
+        {
+          title: {
+            de: 'Blog',
+            en: 'Blog',
+          },
+          path: {
+            de: '/blog/',
+            en: '/en/blog/',
+          },
+        },
       ],
     }
   },

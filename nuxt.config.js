@@ -110,6 +110,11 @@ export default {
       fallbackLocale: 'de',
       messages: {
         de: {
+          blog: {
+            overview: {
+              title: 'Die neuesten Blog-Beiträge',
+            },
+          },
           coach: {
             filter: 'Liste der Coaches filtern',
             count: 'angezeigt',
@@ -153,6 +158,11 @@ export default {
           },
         },
         en: {
+          blog: {
+            overview: {
+              title: 'Latest blogposts',
+            },
+          },
           coach: {
             filter: 'Filter list of coaches',
             count: 'shown',
