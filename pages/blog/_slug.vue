@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import getSiteMeta from '~/utils/getSiteMeta'
+
 export default {
   name: 'BlogPost',
   transition: 'page',
@@ -29,22 +31,23 @@ export default {
     return {
       blocks: items[0].fields.content,
       title: items[0].fields.title,
+      description: items[0].fields.description,
       seo: items[0].fields.seo?.fields,
       mainImage: items[0].fields.mainImage,
     }
   },
   head() {
-    const title = this.seo ? this.seo.title : this.title
-    const meta = this.seo
-      ? Object.entries(this.seo).map((entry) => ({
-          hid: entry[0],
-          name: entry[0],
-          content: entry[1],
-        }))
-      : []
+    const metaInput = {
+      title: this.seo?.title || this.title,
+      description: this.seo?.description || this.description,
+      url: this.$route.path,
+      image: this.mainImage?.fields.file.url,
+    }
+
+    const meta = getSiteMeta(metaInput)
 
     return {
-      title,
+      title: metaInput.title,
       meta,
     }
   },
