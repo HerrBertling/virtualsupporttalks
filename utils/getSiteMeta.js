@@ -13,6 +13,7 @@ const twitterCard = 'summary_large_image'
 
 export default (meta) => {
   const fullPath = `${url}${meta.url}`
+  const socialImage = `https:${meta.image}?w=1200&h=630&fm=jpeg`
   return [
     {
       hid: 'description',
@@ -42,7 +43,7 @@ export default (meta) => {
     {
       hid: 'og:image',
       property: 'og:image',
-      content: meta.image || image,
+      content: socialImage || image,
     },
     {
       hid: 'twitter:url',
@@ -62,12 +63,12 @@ export default (meta) => {
     {
       hid: 'twitter:image',
       name: 'twitter:image',
-      content: meta.image || image,
+      content: socialImage || image,
     },
     {
       hid: 'twitter:card',
       name: 'twitter:card',
-      content: meta.twitterCard || twitterCard,
+      content: twitterCard,
     },
   ]
 }
