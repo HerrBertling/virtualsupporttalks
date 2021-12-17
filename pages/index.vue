@@ -18,6 +18,7 @@
 </template>
 <script>
 import pageIds from '~/utils/pageIds'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   name: 'StartPage',
@@ -38,13 +39,14 @@ export default {
   },
   head() {
     const title = this.seo ? this.seo.title : this.title
-    const meta = this.seo
-      ? Object.entries(this.seo).map((entry) => ({
-          hid: entry[0],
-          name: entry[0],
-          content: entry[1],
-        }))
-      : []
+    const metaInput = {
+      title,
+      description: this.seo?.description,
+      url: this.$route.path,
+      image: this.seo?.image?.fields.file?.url,
+    }
+
+    const meta = getSiteMeta(metaInput)
 
     const gverification = {
       hid: 'google-site-verification',
