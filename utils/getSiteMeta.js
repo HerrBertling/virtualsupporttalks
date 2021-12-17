@@ -13,7 +13,7 @@ const twitterCard = 'summary_large_image'
 
 export default (meta) => {
   const fullPath = `${url}${meta.url}`
-  const socialImage = `https:${meta.image}?w=1200&h=630`
+  const socialImage = `https:${meta.image}?w=1200&h=630&fm=jpg`
   return [
     {
       hid: 'description',
