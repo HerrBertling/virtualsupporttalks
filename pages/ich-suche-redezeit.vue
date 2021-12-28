@@ -1,27 +1,34 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <section v-if="loading" :class="$style.loading">
+    <section
+      v-if="loading"
+      class="grid place-items-center px-4 py-12 min-h-[20vh] max-w-7xl mx-auto"
+    >
       <h3>{{ $t('coach.loading') }}</h3>
       <LoadingSpinner />
     </section>
     <div v-else>
-      <details v-if="hasLanguages" :class="$style.filterWrapper">
-        <summary :class="$style.summary">
-          <h5 :class="$style.tagToggle">{{ $t('coach.langFilter') }}</h5>
+      <details v-if="hasLanguages" class="py-8 px-4 max-w-7xl mx-auto">
+        <summary class="mb-4">
+          <h5 class="inline-block text-xl">{{ $t('coach.langFilter') }}</h5>
         </summary>
         <button
           v-for="lang in availableLanguages"
           :key="lang"
-          :class="[$style.tag, lang === currentLanguage && $style.selected]"
+          :class="[
+            'inline-block border rounded-md py-1 px-2 w-auto mr-2 mb-2 transition-colors hover:bg-gray-100',
+            lang === currentLanguage &&
+              'bg-gray-400 text-white hover:bg-gray-300',
+          ]"
           @click="toggleCurrentLang(lang)"
         >
           {{ $t(`languages.${lang}`) }}
         </button>
       </details>
-      <details v-if="hasTags" :class="$style.filterWrapper">
-        <summary :class="$style.summary">
-          <h5 :class="$style.tagToggle">
+      <details v-if="hasTags" class="pt-0 pb-8 px-4 max-w-7xl mx-auto">
+        <summary class="mb-4">
+          <h5 class="inline-block text-xl">
             {{ $t('coach.filter') }} ({{ coachesCount }}
             {{ $t('coach.count') }})
           </h5>
@@ -29,26 +36,40 @@
         <button
           v-for="tag in tags"
           :key="tag.sys.id"
-          :class="[$style.tag, tagIsActive(tag.sys.id) && $style.selected]"
+          :class="[
+            'inline-block border rounded-md py-1 px-2 w-auto mr-2 mb-2 hover:bg-gray-100',
+            tagIsActive(tag.sys.id) &&
+              'bg-gray-400 text-white hover:bg-gray-300',
+          ]"
           @click="toggleTag(tag.sys.id, tag.fields.tag)"
         >
           {{ tag.fields.tag }}
         </button>
       </details>
-      <section v-if="coachesCount > 0" :class="$style.coachesList">
-        <CoachCard
-          v-for="(coach, index) in coaches"
-          v-show="shouldShowCoach(coach.fields.tag)"
-          :key="index"
-          :name="coach.fields.name"
-          :url="coach.fields.url"
-          :email="coach.fields.email"
-          :image="coach.fields.image.fields.file.url"
+      <div v-if="coachesCount > 0" class="bg-gray-100">
+        <section
+          class="grid grid-cols-coachgrid items-start gap-x-6 gap-y-12 py-12 px-4 max-w-7xl mx-auto"
         >
-          <ContentfulRichText :content="coach.fields.description" />
-        </CoachCard>
-      </section>
-      <section v-else :class="$style.coachesList">
+          <CoachCard
+            v-for="(coach, index) in coaches"
+            v-show="shouldShowCoach(coach.fields.tag)"
+            :key="index"
+            :name="coach.fields.name"
+            :url="coach.fields.url"
+            :email="coach.fields.email"
+            :image="coach.fields.image.fields.file.url"
+          >
+            <ContentfulRichText
+              :content="coach.fields.description"
+              :with-prose="false"
+            />
+          </CoachCard>
+        </section>
+      </div>
+      <section
+        v-else
+        class="grid grid-cols-coachgrid gap-x-6 gap-y-12 py-12 px-4 max-w-7xl mx-auto"
+      >
         <h3>Keine Coaches zu diesen Filtern gefunden :(</h3>
       </section>
     </div>
@@ -264,57 +285,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.filterWrapper {
-  padding: 2rem 1rem;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-.filterWrapper + .filterWrapper {
-  padding-top: 0;
-}
-
-.summary {
-  margin-bottom: 1rem;
-}
-
-.tagToggle {
-  display: inline-block;
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.coachesList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  grid-gap: 1.5rem;
-  padding: 3rem 1rem;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-.loading {
-  display: grid;
-  place-items: center;
-  padding: 3rem 1rem;
-  min-height: 20vh;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-.tag {
-  display: inline-block;
-  border: 1px solid;
-  border-radius: 3px;
-  padding: 0.25rem 0.5rem;
-  width: auto;
-  margin: 0 0.5rem 0.5rem 0;
-}
-
-.selected {
-  background-color: grey;
-  color: white;
-}
-</style>

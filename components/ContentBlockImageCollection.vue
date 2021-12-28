@@ -1,11 +1,13 @@
 <template>
   <div
-    :class="[$style.imageCollection, withPaddingTop && $style.withPaddingTop]"
+    :class="[
+      'p-4 max-w-7xl mx-auto grid gap-4 grid-cols-1 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-12',
+      withPaddingTop && 'pt-20',
+    ]"
   >
     <figure
       v-for="{ sys, fields } in images"
       :key="sys.id"
-      :class="$style.collectionImage"
       role="figure"
       :aria-label="fields.image.fields.title"
     >
@@ -28,7 +30,7 @@
             :alt="fields.image.fields.title"
             height="450"
             loading="lazy"
-            :class="$style.image"
+            class="max-w-full h-auto"
           />
         </picture>
       </component>
@@ -71,34 +73,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.imageCollection {
-  padding: 1rem;
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 768px) {
-  .imageCollection {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1024px) {
-  .imageCollection {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-.withPaddingTop {
-  padding-top: 5rem;
-}
-
-.image {
-  max-width: 100%;
-  height: auto;
-}
-</style>

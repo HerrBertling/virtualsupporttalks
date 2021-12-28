@@ -1,5 +1,5 @@
 <template>
-  <div class="richtext">
+  <div :class="['richtext', withProse && 'prose lg:prose-lg max-w-none']">
     <RichTextRenderer
       v-if="!!content"
       :document="content"
@@ -22,6 +22,10 @@ export default {
     content: {
       type: Object,
       required: true,
+    },
+    withProse: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {

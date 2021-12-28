@@ -1,13 +1,17 @@
 <template>
-  <article :class="$style.basicContent">
+  <article class="max-w-3xl pt-24 px-4 pb-3 mx-auto">
     <ContentfulRichText :content="content[0].fields.content" />
     <form>
-      <fieldset :class="$style.fieldset">
-        <legend :class="$style.legend">
+      <fieldset class="my-8">
+        <legend class="mb-4 font-bold text-xl">
           {{ $t('cookie.settings') }}
         </legend>
-        <label :class="$style.toggle">
-          <input v-model="hasCookiesAccepted" type="checkbox" />
+        <label class="grid grid-cols-[20px_1fr] items-center">
+          <input
+            v-model="hasCookiesAccepted"
+            class="accent-vsp-500"
+            type="checkbox"
+          />
           <span>
             {{
               hasCookiesAccepted
@@ -83,28 +87,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.basicContent {
-  padding: 6rem 1rem 3rem;
-  min-height: 75vh;
-  max-width: var(--widthContentMax);
-  margin: 0 auto;
-}
-
-.fieldset {
-  border: 0;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-.legend {
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-
-.toggle {
-  display: grid;
-  grid-template-columns: 40px auto;
-}
-</style>

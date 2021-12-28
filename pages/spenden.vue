@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.wrapper">
+  <div class="pt-24">
     <ContentBlocks :blocks="content" />
     <BetterplaceWidget />
     <AmazonCharityBanner />
@@ -49,9 +49,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.wrapper {
-  padding-top: 6rem;
-}
-</style>

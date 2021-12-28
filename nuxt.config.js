@@ -92,6 +92,7 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/google-analytics',
+    '@nuxt/postcss8',
   ],
   /*
    ** Nuxt.js modules
@@ -214,6 +215,12 @@ export default {
         },
       },
     },
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
     html: {
       minify: {
         collapseBooleanAttributes: true,
@@ -224,8 +231,8 @@ export default {
         removeEmptyAttributes: true,
         removeRedundantAttributes: true,
         trimCustomFragments: true,
-        useShortDoctype: true
-      }
-    }
+        useShortDoctype: true,
+      },
+    },
   },
 }

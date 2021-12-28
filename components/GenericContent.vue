@@ -1,5 +1,5 @@
 <template>
-  <section :class="$style.cb_genericContent">
+  <section class="mx-auto pt-24 px-4 pb-12 min-h-[50vh] w-screen max-w-3xl">
     <ContentfulRichText :content="block.fields.content" />
   </section>
 </template>
@@ -14,12 +14,3 @@ export default {
   },
 }
 </script>
-<style module>
-.cb_genericContent {
-  margin: 0 auto;
-  padding: 6rem 1rem 3rem;
-  min-height: 50vh;
-  width: 100vw;
-  max-width: var(--widthContentMax);
-}
-</style>

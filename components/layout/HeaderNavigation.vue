@@ -1,26 +1,65 @@
 <template>
-  <nav :class="$style.nav" aria-role="navigation">
+  <nav class="relative z-30 lg:max-w-4xl" aria-role="navigation">
     <button
-      :class="[$style.menuToggle, navExpanded && $style.menuActive]"
+      class="lg:hidden"
       :aria-expanded="navExpanded"
       aria-controls="navigation"
       @click="toggleNav"
     >
-      <span :class="$style.menuText">Menu</span>
-      <span :class="$style.burger"></span>
+      <span class="sr-only">Menu</span>
+      <span class="w-6 h-6">
+        <svg
+          v-if="!navExpanded"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h8m-8 6h16"
+          />
+        </svg>
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </span>
     </button>
-    <ul :class="[$style.headerNav, navExpanded && $style.menuExpanded]">
-      <li v-for="item in navigationItems" :key="item.path.de" @click="closeNav">
-        <nuxt-link :to="item.path[$i18n.locale]">
-          {{ item.title[$i18n.locale] }}
-        </nuxt-link>
-      </li>
-      <li v-if="$i18n.locale === 'de'">
-        <nuxt-link :to="localePath('/', 'en')">English version</nuxt-link>
-      </li>
-      <li v-else>
-        <nuxt-link :to="localePath('/', 'de')">Deutsche Version</nuxt-link>
-      </li>
+    <ul
+      :class="[
+        'flex flex-col fixed top-16 right-0 w-screen max-w-[50rem] transition-transform duration-300 translate-x-[50rem] bg-white lg:flex-row lg:static lg:w-auto lg:bg-transparent lg:justify-end lg:items-center lg:h-auto lg:transform-none lg:top-auto lg:left-auto z-30',
+        navExpanded && 'translate-x-0',
+      ]"
+    >
+      <LayoutNavItem
+        v-for="item in navigationItems"
+        :key="item.path.de"
+        :to="item.path[$i18n.locale]"
+        @click="closeNav"
+      >
+        {{ item.title[$i18n.locale] }}
+      </LayoutNavItem>
+      <LayoutNavItem v-if="$i18n.locale === 'de'" :to="localePath('/', 'en')">
+        English version
+      </LayoutNavItem>
+      <LayoutNavItem v-else :to="localePath('/', 'de')">
+        Deutsche Version
+      </LayoutNavItem>
     </ul>
   </nav>
 </template>
@@ -85,13 +124,11 @@ export default {
       ],
     }
   },
-
   watch: {
     navExpanded(newValue) {
       this.$emit('navigation-active', newValue)
     },
   },
-
   methods: {
     toggleNav() {
       this.navExpanded = !this.navExpanded
@@ -102,133 +139,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.headerNav {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 64px;
-  right: 0;
-  width: 100vw;
-  max-width: 50rem;
-  height: calc(100vh - 64px);
-  transform: translateX(50rem);
-  transition: transform 300ms ease-in;
-  background: var(--colorWhite);
-}
-
-.headerNav.menuExpanded {
-  transform: translateX(0);
-}
-
-.menuText {
-  position: absolute;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-.burger {
-  position: relative;
-}
-
-.burger,
-.burger::before,
-.burger::after {
-  display: inline-block;
-  content: '';
-  background-color: var(--colorTextDefault);
-  height: 2px;
-  width: 24px;
-  transition: transform 200ms ease-in;
-}
-.burger::before,
-.burger::after {
-  position: absolute;
-  left: 0;
-  width: 100%;
-}
-
-.burger::before {
-  top: -6px;
-}
-
-.burger::after {
-  top: 6px;
-}
-
-.menuActive .burger {
-  background-color: white;
-}
-
-.menuActive .burger::before,
-.menuActive .burger::after {
-  top: 0;
-}
-
-.menuActive .burger::before {
-  transform: scale(1.0876) rotate(45deg);
-}
-
-.menuActive .burger::after {
-  transform: scale(1.0876) rotate(-45deg);
-}
-
-.headerNav li {
-  display: block;
-  width: 100%;
-  margin: 0;
-}
-
-.headerNav li a {
-  display: block;
-  padding: 1rem;
-  border-radius: 0.25rem;
-}
-
-.headerNav li a[href]:not(:hover) {
-  text-decoration: none;
-}
-
-.headerNav li a[data-current='current item'] {
-  background-color: white;
-}
-
-@media (min-width: 960px) {
-  .menuToggle {
-    display: none;
-  }
-  .headerNav {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    position: static;
-    width: auto;
-    height: auto;
-    transform: none;
-    background: transparent;
-    top: auto;
-    left: auto;
-  }
-
-  .nav {
-    flex-grow: 1;
-    max-width: 960px;
-  }
-
-  .headerNav li {
-    width: auto;
-    margin-right: 0.25rem;
-  }
-
-  .headerNav li a {
-    display: inline-block;
-    padding: 0.25rem 0.5rem;
-  }
-}
-</style>

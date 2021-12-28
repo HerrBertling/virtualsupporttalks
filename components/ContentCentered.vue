@@ -1,9 +1,12 @@
 <template>
   <section
-    :class="[$style.wrapper, hasButton && $style.withButton]"
+    :class="[
+      'py-12 px-4 md:px-12',
+      hasButton && 'grid grid-cols-1 gap-4 justify-items-center pb-12',
+    ]"
     :style="styleObject"
   >
-    <div :class="$style.content">
+    <div class="w-full mx-auto max-w-3xl">
       <slot />
     </div>
     <div v-if="hasButton">
@@ -44,28 +47,3 @@ export default {
   },
 }
 </script>
-<style module>
-.wrapper {
-  padding: 3rem 1rem;
-}
-
-@media (min-width: 768px) {
-  .wrapper {
-    padding: 3rem;
-  }
-}
-
-.withButton {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1rem;
-  justify-items: center;
-  padding-bottom: 3rem;
-}
-
-.content {
-  max-width: var(--widthContentMax);
-  width: 100%;
-  margin: 0 auto;
-}
-</style>

@@ -1,33 +1,38 @@
 <template>
-  <nav :class="$style.footerNav">
-    <ul :class="$style.footerNav_list">
-      <li
-        v-for="{ link, title } in footerNav"
-        :key="link.de"
-        :class="$style.footerNav_item"
-      >
-        <nuxt-link :class="$style.footerNav_link" :to="link[$i18n.locale]">
+  <nav class="p-8 text-xs">
+    <ul class="flex flex-col items-center justify-center md:flex-row">
+      <li v-for="{ link, title } in footerNav" :key="link.de">
+        <nuxt-link
+          class="block p-2 underline md:py-4 md:px-2"
+          :to="link[$i18n.locale]"
+        >
           {{ title[$i18n.locale] }}
         </nuxt-link>
       </li>
     </ul>
     <client-only>
       <cookie-law theme="dark-lime">
-        <div slot-scope="props" :class="$style.cookieBanner">
-          <p>
+        <div
+          slot-scope="props"
+          class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-8"
+        >
+          <p class="text-sm m-0 col-span-2">
             {{ $t('cookie.intro') }}
-            <nuxt-link to="/datenschutz/">
+            <nuxt-link class="text-inherit" to="/datenschutz/">
               {{ $t('cookie.privacyPage') }}
             </nuxt-link>
           </p>
-          <div>
-            <button :class="$style.accept" @click="acceptCookies(props.accept)">
+          <div class="md:text-center">
+            <button
+              class="bg-vsp-500 py-2 px-4 rounded-md border-2 text-sm text-white font-[inherit] border-vsp-500"
+              @click="acceptCookies(props.accept)"
+            >
               <span>{{ $t('cookie.accept') }}</span>
             </button>
           </div>
-          <div>
+          <div class="md:text-center">
             <button
-              :class="$style.decline"
+              class="bg-transparent py-2 px-4 rounded-md border-2 text-sm text-white font-[inherit] border-vsp-500"
               @click="declineCookies(props.close)"
             >
               <span>{{ $t('cookie.decline') }}</span>
@@ -69,77 +74,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.footerNav {
-  padding: 2rem;
-  font-size: 0.8rem;
-}
-.footerNav_list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.footerNav_link {
-  display: block;
-  padding: 8px;
-  color: var(--colorTextDefault);
-  text-decoration: underline;
-}
-
-.cookieBanner {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .cookieBanner {
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-gap: 2rem;
-  }
-}
-
-.cookieBanner a[href]:link,
-.cookieBanner a[href]:visited {
-  color: inherit !important;
-}
-
-.cookieBanner p {
-  font-size: 0.75rem;
-  margin: 0;
-}
-
-.accept,
-.decline {
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  border: 2px solid;
-  font-family: inherit;
-  font-size: 0.75rem;
-  color: white;
-}
-
-.accept {
-  background: rgb(156, 195, 23);
-  border-color: rgb(156, 195, 23);
-}
-
-.decline {
-  background: transparent;
-}
-
-@media (min-width: 768px) {
-  .footerNav_list {
-    flex-direction: row;
-  }
-  .footerNav_link {
-    padding: 16px 8px;
-  }
-}
-</style>

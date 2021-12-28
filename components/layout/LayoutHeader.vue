@@ -1,15 +1,25 @@
 <template>
   <header
     :class="[
-      $style.header,
-      hasScrolled && $style.hasScrolled,
-      whiteBackground && $style.whiteBackground,
+      'h-20 fixed top-0 w-full max-w-screen bg-transparent z-50 transition-all duration-300',
+      'after:content-[\'\'] after:block after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:bg-white after:opacity-0 after:z-10 after:transition-opacity after:duration-300',
+      hasScrolled && 'h-16 after:opacity-100',
+      whiteBackground && 'after:opacity-100',
     ]"
   >
-    <div :class="$style.wrapper">
-      <em>
+    <div
+      class="flex justify-between items-center mx-auto max-w-6xl px-4 h-full w-full"
+    >
+      <em class="relative z-20">
         <nuxt-link :to="localePath('/')">
-          <img src="~/assets/img/logo.png" alt="Virtual Support Talks Logo" />
+          <img
+            :class="[
+              'max-h-12 w-auto transition-transform',
+              hasScrolled && 'scale-[0.8]',
+            ]"
+            src="~/assets/img/logo.png"
+            alt="Virtual Support Talks Logo"
+          />
         </nuxt-link>
       </em>
       <LayoutHeaderNavigation @navigation-active="setHeaderBg" />
@@ -62,66 +72,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.header {
-  height: 80px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  max-width: 100vw;
-  background-color: transparent;
-  z-index: 1337;
-  transition: height 300ms ease-in;
-  font-size: 16px;
-}
-
-.header::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: white;
-  opacity: 0;
-  z-index: 1;
-  transition: opacity 300ms ease-in;
-}
-
-.header.hasScrolled {
-  height: 64px;
-}
-
-.header.hasScrolled::after,
-.header.whiteBackground::after {
-  opacity: 1;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 1280px;
-  padding: 0 1rem;
-  height: 100%;
-}
-
-.header em,
-.header nav {
-  position: relative;
-  z-index: 2;
-}
-
-.header.hasScrolled img {
-  transform: scale(0.8);
-}
-
-.header img {
-  max-height: 48px;
-  width: auto;
-  transition: transform 300ms ease-in;
-}
-</style>

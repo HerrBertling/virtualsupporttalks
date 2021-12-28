@@ -1,27 +1,37 @@
 <template>
-  <div>
-    <header :class="$style.header">
-      <h2>
+  <div class="container mx-auto">
+    <header class="pt-24 px-4 w-full">
+      <h2 class="text-3xl font-bold font-headline">
         {{ $t('blog.overview.title') }}
       </h2>
     </header>
-    <div :class="$style.grid">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 my-4 mx-auto px-4 md:gap-8"
+    >
       <CleverLink
         v-for="post in posts"
         :key="post.sys.id"
-        :class="$style.blogpost"
+        class="group grid grid-cols-1 content-start gap-2 no-underline"
         :to="`/blog/${post.fields.slug}/`"
       >
         <div v-if="post.fields.mainImage">
           <img
             :src="post.fields.mainImage.fields.file.url"
-            :class="$style.image"
+            class="opacity-80 group-hover:opacity-100 transition-opacity duration-300 object-cover rounded-lg h-auto w-full max-h-40"
           />
         </div>
-        <div v-else :class="$style.imagePlaceholder" />
-        <h3 :class="$style.title">{{ post.fields.title }}</h3>
+        <div
+          v-else
+          :class="
+            ('opacity-80 group-hover:opacity-100 transition-opacity duration-300 object-cover rounded-lg h-40 w-full max-h-40 bg-contain bg-vsp-500 bg-no-repeat bg-center',
+            $style.imagePlaceholder)
+          "
+        />
+        <h3 class="text-xl font-bold group-hover:text-vsp-500">
+          {{ post.fields.title }}
+        </h3>
         <p :class="$style.description">{{ post.fields.description }}</p>
-        <span>Weiterlesen…</span>
+        <span class="block underline">Weiterlesen…</span>
       </CleverLink>
     </div>
   </div>
@@ -64,70 +74,7 @@ export default {
 </script>
 
 <style module>
-.header {
-  padding: 6rem 1rem 0;
-  width: 100%;
-  max-width: var(--widthContentMax);
-  margin: 0 auto;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 4rem;
-  margin: 1rem auto;
-  padding: 0 1rem;
-  max-width: var(--widthContentMax);
-}
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 2rem;
-  }
-}
-
-.blogpost {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: start;
-  grid-gap: 0.5rem;
-  text-decoration: none !important;
-}
-
-.blogpost:hover * {
-  opacity: 1;
-}
-
-.image,
 .imagePlaceholder {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 10rem;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  opacity: 0.8;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.imagePlaceholder {
-  height: 10rem;
-  background: var(--colorPrimary) url(@/assets/img/logo.png) no-repeat center;
-  background-size: contain;
-}
-.title {
-  margin: 0;
-  opacity: 0.8;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.description {
-  margin: 0;
-}
-
-.blogpost span {
-  display: block;
-  text-decoration: underline;
+  background-image: url(@/assets/img/logo.png);
 }
 </style>
