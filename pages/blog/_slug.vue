@@ -9,11 +9,11 @@
       >
         <img
           v-if="mainImage"
-          class="col-start-1 row-start-1 w-full min-h-64 object-cover max-w-4xl relative z-0"
+          class="col-start-1 row-start-1 w-full min-h-[16rem] object-cover max-w-4xl relative z-0"
           :src="mainImage.fields.file.url"
         />
         <h1
-          class="col-start-1 row-start-1 relative z-20 self-end m-0 p-4 text-white text-5xl font-bold font-headline"
+          class="col-start-1 row-start-1 relative z-20 self-end m-0 p-4 text-white text-3xl md:text-4xl lg:text-5xl font-bold font-headline"
         >
           {{ title }}
         </h1>
