@@ -1,6 +1,6 @@
 <template>
   <section
-    class="grid grid-cols-1 w-screen lg:grid-cols-2"
+    class="grid grid-cols-1 w-screen max-w-full lg:grid-cols-2"
     :style="{ backgroundColor: backgroundColor }"
   >
     <img

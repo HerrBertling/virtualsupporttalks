@@ -13,7 +13,7 @@
           :src="mainImage.fields.file.url"
         />
         <h1
-          class="col-start-1 row-start-1 relative z-20 self-end m-0 p-4 text-white text-5xl font-bold"
+          class="col-start-1 row-start-1 relative z-20 self-end m-0 p-4 text-white text-5xl font-bold font-headline"
         >
           {{ title }}
         </h1>

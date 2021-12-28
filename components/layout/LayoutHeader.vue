@@ -22,7 +22,7 @@
           />
         </nuxt-link>
       </em>
-      <LayoutHeaderNavigation @navigation-active="setHeaderBg" />
+      <LayoutHeaderNavigation />
     </div>
   </header>
 </template>
@@ -66,9 +66,9 @@ export default {
         this.hasScrolled = false
       }
     },
-    setHeaderBg(bool) {
-      this.whiteBackground = bool
-    },
+    // setHeaderBg(bool) {
+    //   this.whiteBackground = bool
+    // },
   },
 }
 </script>

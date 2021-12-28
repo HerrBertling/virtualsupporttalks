@@ -1,8 +1,8 @@
 <template>
   <li class="w-full block lg:w-auto lg:mr-1" @click="$emit('click')">
     <nuxt-link
-      class="block p-4 rounded-md no-underline lg:inline-block lg:py-1 lg:px-2"
-      active-class="bg-white"
+      class="block p-4 no-underline lg:inline-block lg:py-1 lg:px-2 lg:rounded-md"
+      active-class="bg-gray-100 lg:bg-white border-l-4 border-l-vsp-500 lg:border-none"
       :to="to"
     >
       <slot />

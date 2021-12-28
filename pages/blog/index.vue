@@ -27,7 +27,7 @@
             $style.imagePlaceholder)
           "
         />
-        <h3 class="text-xl font-bold group-hover:text-vsp-500">
+        <h3 class="text-xl font-headline font-bold group-hover:text-vsp-500">
           {{ post.fields.title }}
         </h3>
         <p :class="$style.description">{{ post.fields.description }}</p>

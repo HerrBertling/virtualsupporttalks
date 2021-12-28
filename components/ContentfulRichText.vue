@@ -2,7 +2,7 @@
   <div
     :class="[
       'richtext prose-a:text-vsp-600 hover:prose-a:text-vsp-700',
-      withProse && 'prose lg:prose-lg max-w-none ',
+      withProse && 'prose lg:prose-lg max-w-none prose-headings:font-headline',
       useWhiteProse &&
         'prose-white prose-a:text-vsp-300 hover:prose-a:text-vsp-100',
     ]"

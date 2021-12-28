@@ -29,7 +29,7 @@
           </figcaption>
         </figure>
       </nuxt-link>
-      <h3 class="font-bold text-2xl">{{ name }}</h3>
+      <h3 class="font-bold font-headline text-2xl">{{ name }}</h3>
       <div>
         <clever-button :to="permalink" variant="secondary">
           {{ $t('initiator.more') }} {{ firstName }}

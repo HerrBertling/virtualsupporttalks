@@ -1,7 +1,7 @@
 <template>
   <nav class="relative z-30 lg:max-w-4xl" aria-role="navigation">
     <button
-      class="lg:hidden"
+      :class="['lg:hidden rounded-full p-4', navExpanded && 'bg-white']"
       :aria-expanded="navExpanded"
       aria-controls="navigation"
       @click="toggleNav"
@@ -42,8 +42,9 @@
     </button>
     <ul
       :class="[
-        'flex flex-col fixed top-16 right-0 w-screen max-w-[50rem] transition-transform duration-300 translate-x-[50rem] bg-white lg:flex-row lg:static lg:w-auto lg:bg-transparent lg:justify-end lg:items-center lg:h-auto lg:transform-none lg:top-auto lg:left-auto z-30',
-        navExpanded && 'translate-x-0',
+        'flex flex-col rounded-md overflow-hidden shadow-2xl fixed top-24 right-0 w-screen max-w-[90vw] transition-transform duration-300 bg-white lg:flex-row lg:static lg:w-auto lg:shadow-none lg:rounded-none lg:bg-transparent lg:justify-end lg:items-center lg:h-auto lg:transform-none lg:top-auto lg:left-auto z-30',
+        navExpanded && '-translate-x-[5vw]',
+        !navExpanded && 'translate-x-[90vw]',
       ]"
     >
       <LayoutNavItem

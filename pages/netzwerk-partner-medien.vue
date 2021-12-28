@@ -4,7 +4,9 @@
       v-if="network.length > 0"
       class="max-w-7xl mx-auto py-12 px-4 md:px-12"
     >
-      <h2>{{ $t('network') }}</h2>
+      <h2 class="font-headline text-4xl font-bold mb-12">
+        {{ $t('network') }}
+      </h2>
       <div :class="[$style.tiles, 'grid grid-rows-auto gap-x-4 gap-y-8']">
         <SupporterTile
           v-for="entry in network"
@@ -14,8 +16,13 @@
         />
       </div>
     </section>
-    <section v-if="supporter.length > 0" :class="$style.tileSection">
-      <h2>{{ $t('partner') }}</h2>
+    <section
+      v-if="supporter.length > 0"
+      class="max-w-7xl mx-auto py-12 px-4 md:px-12"
+    >
+      <h2 class="font-headline text-4xl font-bold mb-12">
+        {{ $t('partner') }}
+      </h2>
       <div :class="[$style.tiles, 'grid grid-rows-auto gap-x-4 gap-y-8']">
         <SupporterTile
           v-for="entry in supporter"
@@ -26,8 +33,11 @@
       </div>
     </section>
     <ContentBlocks :blocks="content" />
-    <section v-if="media.length > 0" :class="$style.tileSection">
-      <h2>{{ $t('media') }}</h2>
+    <section
+      v-if="media.length > 0"
+      class="max-w-7xl mx-auto py-12 px-4 md:px-12"
+    >
+      <h2 class="font-headline text-4xl font-bold mb-12">{{ $t('media') }}</h2>
       <div :class="[$style.tiles, 'grid grid-rows-auto gap-x-4 gap-y-8']">
         <SupporterTile
           v-for="medium in media"

@@ -2,39 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Roboto';
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-  src: url('../fonts/Roboto-Regular.woff2') format('woff2'),
-    url('../fonts/Roboto-Regular.ttf') format('truetype');
+@layer base {
+  @font-face {
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src: url('../fonts/Roboto-Regular.woff2') format('woff2'),
+      url('../fonts/Roboto-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    src: url('../fonts/Roboto-Bold.woff2') format('woff2'),
+      url('../fonts/Roboto-Bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Poppins';
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src: url('../fonts/Poppins-Regular.woff2') format('woff2'),
+      url('../fonts/Poppins-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Poppins';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    src: url('../fonts/Poppins-Bold.woff2') format('woff2'),
+      url('../fonts/Poppins-Bold.ttf') format('truetype');
+  }
 }
-@font-face {
-  font-family: 'Roboto';
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-  src: url('../fonts/Roboto-Bold.woff2') format('woff2'),
-    url('../fonts/Roboto-Bold.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Poppins';
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-  src: url('../fonts/Poppins-Regular.woff2') format('woff2'),
-    url('../fonts/Poppins-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Poppins';
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-  src: url('../fonts/Poppins-Bold.woff2') format('woff2'),
-    url('../fonts/Poppins-Bold.ttf') format('truetype');
-}
-
 /* PAGE TRANSITIONS */
 
 .page-enter-active,
