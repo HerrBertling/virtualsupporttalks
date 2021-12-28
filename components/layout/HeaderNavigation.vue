@@ -7,7 +7,7 @@
       @click="toggleNav"
     >
       <span class="sr-only">Menu</span>
-      <span class="w-6 h-6">
+      <span class="inline-block w-6 h-6">
         <svg
           v-if="!navExpanded"
           xmlns="http://www.w3.org/2000/svg"
