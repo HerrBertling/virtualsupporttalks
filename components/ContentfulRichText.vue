@@ -1,5 +1,12 @@
 <template>
-  <div :class="['richtext', withProse && 'prose lg:prose-lg max-w-none']">
+  <div
+    :class="[
+      'richtext prose-a:text-vsp-600 hover:prose-a:text-vsp-700',
+      withProse && 'prose lg:prose-lg max-w-none ',
+      useWhiteProse &&
+        'prose-white prose-a:text-vsp-300 hover:prose-a:text-vsp-100',
+    ]"
+  >
     <RichTextRenderer
       v-if="!!content"
       :document="content"
@@ -26,6 +33,10 @@ export default {
     withProse: {
       type: Boolean,
       default: true,
+    },
+    useWhiteProse: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

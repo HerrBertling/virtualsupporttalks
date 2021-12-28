@@ -24,7 +24,10 @@ export default {
     },
 
     isInternalLink() {
-      return this.to.startsWith('https://www.virtualsupporttalks.de/')
+      return (
+        this.to.startsWith('https://www.virtualsupporttalks.de/') ||
+        this.to.startsWith('/')
+      )
     },
 
     linkAttrs() {
@@ -40,6 +43,7 @@ export default {
         ...this.$attrs,
         href: usedLink,
         rel: 'noopener',
+        target: '_blank',
       }
     },
   },

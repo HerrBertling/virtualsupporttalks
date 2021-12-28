@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto max-w-6xl">
     <header class="pt-24 px-4 w-full">
       <h2 class="text-3xl font-bold font-headline">
         {{ $t('blog.overview.title') }}

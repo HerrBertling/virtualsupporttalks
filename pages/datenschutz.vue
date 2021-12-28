@@ -6,19 +6,30 @@
         <legend class="mb-4 font-bold text-xl">
           {{ $t('cookie.settings') }}
         </legend>
-        <label class="grid grid-cols-[20px_1fr] items-center">
-          <input
-            v-model="hasCookiesAccepted"
-            class="accent-vsp-500"
-            type="checkbox"
-          />
-          <span>
-            {{
-              hasCookiesAccepted
-                ? $t('cookie.deactivate')
-                : $t('cookie.activate')
-            }}
-          </span>
+        <label for="toggleB" class="flex items-center cursor-pointer">
+          <div class="relative">
+            <input
+              id="toggleB"
+              v-model="hasCookiesAccepted"
+              type="checkbox"
+              class="sr-only peer"
+            />
+            <div
+              class="bg-gray-600 w-14 h-8 rounded-full peer-checked:bg-vsp-500"
+            />
+            <div
+              class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition peer-checked:translate-x-full"
+            />
+          </div>
+          <div class="ml-3 text-gray-700 font-medium">
+            <span>
+              {{
+                hasCookiesAccepted
+                  ? $t('cookie.deactivate')
+                  : $t('cookie.activate')
+              }}
+            </span>
+          </div>
         </label>
       </fieldset>
     </form>
