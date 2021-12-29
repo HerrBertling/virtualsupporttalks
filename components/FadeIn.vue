@@ -1,7 +1,10 @@
 <template>
   <div
     v-observe-visibility="visibilityChanged"
-    :class="[$style.wrapper, isVisible && $style.visible]"
+    :class="[
+      'opacity-0 translate-y-10 scale-95 transition-all duration-300',
+      isVisible && 'opacity-100 transform-none',
+    ]"
   >
     <slot />
   </div>
@@ -26,16 +29,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.wrapper {
-  opacity: 0;
-  transform: translateY(40px) scale(0.95);
-  transition: opacity 300ms ease-in, transform 300ms ease-in;
-}
-
-.visible {
-  opacity: 1;
-  transform: none;
-}
-</style>

@@ -1,10 +1,12 @@
 <template>
   <section
-    :class="[$style.wrapper, hasButton && $style.withButton]"
-    :style="styleObject"
+    :class="[
+      `py-12 px-4 md:px-12 ${colors}`,
+      hasButton && 'grid grid-cols-1 gap-4 justify-items-center pb-12',
+    ]"
   >
-    <div :class="$style.content">
-      <slot />
+    <div class="w-full mx-auto max-w-4xl">
+      <ContentfulRichText :content="content" :use-white-prose="useWhiteProse" />
     </div>
     <div v-if="hasButton">
       <clever-button :to="buttonUrl" variant="secondary">
@@ -33,10 +35,30 @@ export default {
       type: String,
       default: null,
     },
+    content: {
+      type: Object,
+      default: () => ({}),
+    },
+    bgcolor: {
+      type: String,
+      default: 'white',
+    },
   },
   computed: {
     styleObject() {
       return { backgroundColor: this.backgroundcolor, color: this.textcolor }
+    },
+    colors() {
+      if (this.bgcolor === 'gray') {
+        return 'bg-gray-400'
+      }
+      if (this.bgcolor === 'green') {
+        return 'bg-vsp-500'
+      }
+      return 'bg-white'
+    },
+    useWhiteProse() {
+      return this.bgcolor !== 'white'
     },
     hasButton() {
       return this.buttonUrl && this.buttonText
@@ -44,28 +66,3 @@ export default {
   },
 }
 </script>
-<style module>
-.wrapper {
-  padding: 3rem 1rem;
-}
-
-@media (min-width: 768px) {
-  .wrapper {
-    padding: 3rem;
-  }
-}
-
-.withButton {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1rem;
-  justify-items: center;
-  padding-bottom: 3rem;
-}
-
-.content {
-  max-width: var(--widthContentMax);
-  width: 100%;
-  margin: 0 auto;
-}
-</style>

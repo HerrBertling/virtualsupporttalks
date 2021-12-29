@@ -1,20 +1,35 @@
 <template>
-  <article :class="$style.basicContent">
+  <article class="max-w-3xl pt-24 px-4 pb-3 mx-auto">
     <ContentfulRichText :content="content[0].fields.content" />
     <form>
-      <fieldset :class="$style.fieldset">
-        <legend :class="$style.legend">
+      <fieldset class="my-8">
+        <legend class="mb-4 font-bold text-xl">
           {{ $t('cookie.settings') }}
         </legend>
-        <label :class="$style.toggle">
-          <input v-model="hasCookiesAccepted" type="checkbox" />
-          <span>
-            {{
-              hasCookiesAccepted
-                ? $t('cookie.deactivate')
-                : $t('cookie.activate')
-            }}
-          </span>
+        <label for="toggleB" class="flex items-center cursor-pointer">
+          <div class="relative">
+            <input
+              id="toggleB"
+              v-model="hasCookiesAccepted"
+              type="checkbox"
+              class="sr-only peer"
+            />
+            <div
+              class="bg-gray-600 w-14 h-8 rounded-full peer-checked:bg-vsp-500"
+            />
+            <div
+              class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition peer-checked:translate-x-full"
+            />
+          </div>
+          <div class="ml-3 text-gray-700 font-medium">
+            <span>
+              {{
+                hasCookiesAccepted
+                  ? $t('cookie.deactivate')
+                  : $t('cookie.activate')
+              }}
+            </span>
+          </div>
         </label>
       </fieldset>
     </form>
@@ -83,28 +98,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.basicContent {
-  padding: 6rem 1rem 3rem;
-  min-height: 75vh;
-  max-width: var(--widthContentMax);
-  margin: 0 auto;
-}
-
-.fieldset {
-  border: 0;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-.legend {
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-
-.toggle {
-  display: grid;
-  grid-template-columns: 40px auto;
-}
-</style>

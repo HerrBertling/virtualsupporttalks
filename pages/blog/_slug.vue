@@ -1,13 +1,22 @@
 <template>
   <div class="container mx-auto">
-    <header :class="$style.header">
-      <div :class="[$style.headerInner, !mainImage && $style.withPlaceholder]">
+    <header class="pt-24 px-4 pb-6 w-full max-w-4xl mx-auto">
+      <div
+        :class="[
+          'grid grid-cols-1 grid-rows-1 rounded-lg overflow-hidden shadow-lg min-h-[16rem] after:row-start-1 after:col-start-1 after:content-[\'\'] after:block after:z-10 after:bg-vsp-500 after:mix-blend-multiply after:relative',
+          !mainImage && `bg-contain ${$style.withPlaceholder}`,
+        ]"
+      >
         <img
           v-if="mainImage"
-          :class="$style.mainImage"
+          class="col-start-1 row-start-1 w-full min-h-[16rem] object-cover max-w-4xl relative z-0"
           :src="mainImage.fields.file.url"
         />
-        <h1 :class="$style.title">{{ title }}</h1>
+        <h1
+          class="col-start-1 row-start-1 relative z-20 self-end m-0 p-4 text-white text-3xl md:text-4xl lg:text-5xl font-bold font-headline"
+        >
+          {{ title }}
+        </h1>
       </div>
     </header>
     <ContentBlocks :blocks="blocks" />
@@ -55,54 +64,7 @@ export default {
 </script>
 
 <style module>
-.header {
-  padding: 6rem 1rem 0;
-  width: 100%;
-  max-width: var(--widthContentMax);
-  margin: 0 auto;
-}
-.headerInner {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  min-height: 16rem;
-}
-
 .withPlaceholder {
   background: var(--colorPrimary) url(@/assets/img/logo.png) no-repeat center;
-  background-size: contain;
-}
-
-.headerInner:after {
-  content: '';
-  display: block;
-  grid-column: 1;
-  grid-row: 1;
-  z-index: 1;
-  background-color: var(--colorPrimary);
-  mix-blend-mode: multiply;
-}
-
-.title {
-  grid-column: 1;
-  grid-row: 1;
-  position: relative;
-  z-index: 2;
-  align-self: end;
-  margin: 0;
-  padding: 1rem;
-  color: white;
-}
-.mainImage {
-  grid-column: 1;
-  grid-row: 1;
-  width: 100%;
-  height: 16rem;
-  object-fit: cover;
-  max-width: var(--widthContentMax);
-  position: relative;
-  z-index: 0;
 }
 </style>

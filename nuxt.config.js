@@ -92,6 +92,7 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/google-analytics',
+    '@nuxt/postcss8',
   ],
   /*
    ** Nuxt.js modules
@@ -150,8 +151,8 @@ export default {
               'Diese Website verwendet Cookies. Weitere Informationen finden sich auf der',
             privacyPage: 'Datenschutz-Seite',
             settings: 'Cookie-Einstellungen bearbeiten',
-            deactivate: 'Cookies deaktivieren',
-            activate: 'Cookies aktivieren',
+            deactivate: 'Cookies aktiv',
+            activate: 'Cookies nicht aktiv',
           },
           initiator: {
             more: 'Mehr über',
@@ -193,8 +194,8 @@ export default {
               'This website uses cookies. More informationen can be found on the',
             privacyPage: 'privacy page',
             settings: 'Adjust cookie settings',
-            deactivate: 'Disable cookies',
-            activate: 'Enable cookies',
+            deactivate: 'Cookies enabled',
+            activate: 'Cookies disabled',
           },
           initiator: {
             more: 'More about',
@@ -214,18 +215,11 @@ export default {
         },
       },
     },
-    html: {
-      minify: {
-        collapseBooleanAttributes: true,
-        decodeEntities: true,
-        minifyCSS: false,
-        minifyJS: false,
-        processConditionalComments: true,
-        removeEmptyAttributes: true,
-        removeRedundantAttributes: true,
-        trimCustomFragments: true,
-        useShortDoctype: true
-      }
-    }
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
   },
 }

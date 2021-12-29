@@ -1,8 +1,13 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <section :class="$style.contributorList">
-      <h2 :class="$style.contributorHeadline">
+    <section
+      :class="[
+        $style.contributorList,
+        'grid gap-12 py-12 px-4 w-full max-w-7xl items-start mx-auto',
+      ]"
+    >
+      <h2 class="col-span-full text-2xl">
         {{ $t('contributorHeadline') }}
       </h2>
       <ContributorCard
@@ -75,18 +80,6 @@ export default {
 
 <style module>
 .contributorList {
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 3rem;
-  padding: 3rem 1rem;
-  width: 100%;
-  max-width: 1280px;
-  align-items: center;
-  margin: 0 auto;
-}
-
-.contributorHeadline {
-  grid-column: 1 / -1;
-  margin-bottom: 0;
 }
 </style>

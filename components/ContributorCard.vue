@@ -1,8 +1,12 @@
 <template>
   <fade-in>
-    <article :class="$style.contWrapper">
-      <nuxt-link :to="localePath(permalink)">
-        <figure :class="$style.contImage" role="figure" :aria-label="name">
+    <article class="flex flex-col gap-4">
+      <nuxt-link :to="localePath(permalink)" class="group">
+        <figure
+          class="inline-flex m-0 overflow-hidden rounded-md shadow-lg"
+          role="figure"
+          :aria-label="name"
+        >
           <picture>
             <source
               :srcset="`${image}?h=450&fm=webp, ${image}?h=900&fm=webp 2x`"
@@ -15,14 +19,17 @@
             <img
               :src="`${image}?h=450`"
               :alt="name"
+              class="max-w-full h-[450px] object-cover transition-opacity duration-300 group-hover:opacity-80 group-focus:opacity-80 group-active:opacity-80"
               height="450"
               loading="lazy"
             />
           </picture>
-          <figcaption>{{ name }}</figcaption>
+          <figcaption class="sr-only">
+            {{ name }}
+          </figcaption>
         </figure>
       </nuxt-link>
-      <h3>{{ name }}</h3>
+      <h3 class="font-bold font-headline text-2xl">{{ name }}</h3>
       <div>
         <clever-button :to="permalink" variant="secondary">
           {{ $t('initiator.more') }} {{ firstName }}
@@ -65,41 +72,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.contWrapper {
-  display: grid;
-  grid-template-rows: 450px 90px 70px;
-  grid-gap: 1rem;
-}
-
-.contWrapper h3 {
-  margin: 0;
-}
-
-.contImage {
-  display: inline-flex;
-  margin: 0;
-}
-
-.contImage figcaption {
-  position: absolute;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-.contImage img {
-  max-width: 100%;
-  height: 450px;
-  object-fit: cover;
-  transition: opacity 300ms ease-in;
-}
-
-.contWrapper > a:hover img,
-.contWrapper > a:focus img,
-.contWrapper > a:active img {
-  opacity: 0.8;
-}
-</style>

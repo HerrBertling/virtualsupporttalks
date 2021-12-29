@@ -1,12 +1,24 @@
 <template>
   <section
-    :class="[$style.wrapper, hasButton && $style.withButton]"
+    :class="[
+      'relative flex bg-cover bg-center bg-no-repeat min-h-[400px] text-center',
+      'after:content-[\'\'], after:block after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after::z-0 after:bg-gray-400/80',
+      hasButton && 'grid grid-cols-1 gap-4 justify-center pb-12',
+    ]"
     :style="{ backgroundImage: `url(${usedBackgroundImage})` }"
   >
-    <div :class="[$style.content, withPaddingTop && $style.paddingTop]">
+    <div
+      :class="[
+        'py-12 px-4 max-w-4xl w-screen m-auto z-10',
+        withPaddingTop && 'pt-28 px-4 py-12',
+      ]"
+    >
       <slot />
     </div>
-    <div v-if="hasButton" :class="$style.buttonWrapper">
+    <div
+      v-if="hasButton"
+      class="flex flex-row flex-wrap items-center justify-center gap-8 z-10"
+    >
       <clever-button :to="buttonUrl">
         {{ buttonText }}
       </clever-button>
@@ -51,59 +63,3 @@ export default {
   },
 }
 </script>
-<style module>
-.wrapper {
-  position: relative;
-  display: flex;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 400px;
-  text-align: center;
-}
-
-.withButton {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1rem;
-  justify-items: center;
-  padding-bottom: 3rem;
-}
-
-.content {
-  padding: 3rem 1rem;
-  max-width: var(--widthContentMax);
-  width: 100vw;
-  margin: auto;
-  z-index: 1;
-}
-
-.buttonWrapper {
-  z-index: 1;
-}
-
-.paddingTop {
-  padding: 7rem 1rem 3rem;
-}
-
-.buttonWrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.wrapper::after {
-  content: '';
-  display: block;
-  background-color: rgba(192, 192, 192, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-}
-</style>

@@ -1,18 +1,21 @@
 <template>
-  <section :class="$style.img_link_wrapper">
-    <fade-in>
-      <nuxt-link :class="$style.img_link" :to="localePath(link1)">
-        <img :src="image1" :alt="text1" />
+  <section
+    class="grid grid-cols-1 md:grid-cols-2 gap-6 py-16 px-4 max-w-7xl mx-auto"
+  >
+    <fade-in v-for="{ image, link, text } in images" :key="link">
+      <nuxt-link
+        class="group block max-w-full overflow-hidden rounded-md shadow-lg no-underline bg-gray-300"
+        :to="localePath(link)"
+      >
+        <img
+          :src="image"
+          :alt="text"
+          class="w-full h-[400px] object-cover transition-opacity duration-300 group-hover:opacity-80"
+        />
 
-        <h2>{{ text1 }}</h2>
-      </nuxt-link>
-    </fade-in>
-
-    <fade-in>
-      <nuxt-link :class="$style.img_link" :to="localePath(link2)">
-        <img :src="image2" :alt="text2" />
-
-        <h2>{{ text2 }}</h2>
+        <h2 class="m-0 px-4 py-8 text-2xl font-bold font-headline">
+          {{ text }}
+        </h2>
       </nuxt-link>
     </fade-in>
   </section>
@@ -47,48 +50,22 @@ export default {
       default: '',
     },
   },
+
+  computed: {
+    images() {
+      return [
+        {
+          image: this.image1,
+          text: this.text1,
+          link: this.link1,
+        },
+        {
+          image: this.image2,
+          text: this.text2,
+          link: this.link2,
+        },
+      ]
+    },
+  },
 }
 </script>
-<style module>
-.img_link_wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 24px;
-  padding: 4rem 1rem;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .img_link_wrapper {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.img_link:link,
-.img_link:visited {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-decoration: none;
-  background: #c0c0c0;
-}
-
-.img_link:hover img,
-.img_link:focus img,
-.img_link:active img {
-  opacity: 0.8;
-}
-
-.img_link img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  transition: opacity 300ms ease-in;
-}
-
-.img_link h2 {
-  margin: 0;
-  padding: 1rem;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.donationWrapper">
+  <div class="mx-auto py-12 max-w-2xl">
     <script type="text/javascript">
       /* Configure at https://www.betterplace.org/de/projects/91473-redezeit-fuer-dich-wir-hoeren-dir-zu-kostenlos/manage/iframe_donation_form/new */
       var _bp_iframe = _bp_iframe || {}
@@ -48,11 +48,3 @@ export default {
   name: 'BetterplaceWidget',
 }
 </script>
-
-<style module>
-.donationWrapper {
-  margin: 0 auto;
-  padding: 3rem 0;
-  max-width: 600px;
-}
-</style>

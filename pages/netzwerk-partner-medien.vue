@@ -1,8 +1,13 @@
 <template>
-  <div :class="$style.wrapper">
-    <section v-if="network.length > 0" :class="$style.tileSection">
-      <h2>{{ $t('network') }}</h2>
-      <div :class="$style.tiles">
+  <div class="pt-24">
+    <section
+      v-if="network.length > 0"
+      class="max-w-7xl mx-auto py-12 px-4 md:px-12"
+    >
+      <h2 class="font-headline text-4xl font-bold mb-12">
+        {{ $t('network') }}
+      </h2>
+      <div :class="[$style.tiles, 'grid grid-rows-auto gap-x-4 gap-y-8']">
         <SupporterTile
           v-for="entry in network"
           :key="entry.fields.url"
@@ -11,9 +16,14 @@
         />
       </div>
     </section>
-    <section v-if="supporter.length > 0" :class="$style.tileSection">
-      <h2>{{ $t('partner') }}</h2>
-      <div :class="$style.tiles">
+    <section
+      v-if="supporter.length > 0"
+      class="max-w-7xl mx-auto py-12 px-4 md:px-12"
+    >
+      <h2 class="font-headline text-4xl font-bold mb-12">
+        {{ $t('partner') }}
+      </h2>
+      <div :class="[$style.tiles, 'grid grid-rows-auto gap-x-4 gap-y-8']">
         <SupporterTile
           v-for="entry in supporter"
           :key="entry.fields.url"
@@ -23,9 +33,12 @@
       </div>
     </section>
     <ContentBlocks :blocks="content" />
-    <section v-if="media.length > 0" :class="$style.tileSection">
-      <h2>{{ $t('media') }}</h2>
-      <div :class="$style.tiles">
+    <section
+      v-if="media.length > 0"
+      class="max-w-7xl mx-auto py-12 px-4 md:px-12"
+    >
+      <h2 class="font-headline text-4xl font-bold mb-12">{{ $t('media') }}</h2>
+      <div :class="[$style.tiles, 'grid grid-rows-auto gap-x-4 gap-y-8']">
         <SupporterTile
           v-for="medium in media"
           :key="medium.fields.url"
@@ -103,27 +116,7 @@ export default {
 </script>
 
 <style module>
-.wrapper {
-  padding-top: 6rem;
-}
-
-.tileSection {
-  max-width: 1280px;
-  padding: 3rem 1rem;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .tileSection {
-    padding: 3rem;
-  }
-}
-
 .tiles {
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  grid-template-rows: auto;
-  grid-column-gap: 1rem;
-  grid-row-gap: 2rem;
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <ClientOnly>
-    <div id="amznCharityBanner" :class="$style.wrapper">
+    <div
+      id="amznCharityBanner"
+      class="flex justify-center min-w-[310px] min-h-[256px]"
+    >
       <script type="text/javascript">
         ;(function () {
           var iFrame = document.createElement('iframe')
@@ -37,12 +40,3 @@ export default {
   name: 'AmazonCharityBanner',
 }
 </script>
-
-<style module>
-.wrapper {
-  display: flex;
-  justify-content: center;
-  min-width: 310px;
-  min-height: 256px;
-}
-</style>

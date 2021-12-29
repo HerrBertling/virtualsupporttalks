@@ -1,12 +1,12 @@
 <template>
   <a
     :href="url"
-    class="supporter"
+    class="flex items-center justify-center transition-opacity no-underline hover:opacity-80 focus:opacity-80 active:opacity-80 supporter"
     target="_blank"
     rel="noreferrer noopener"
     loading="lazy"
   >
-    <div>
+    <div class="text-center">
       <picture>
         <source
           :srcset="`${image}?w=240&h=240&fit=pad&fm=webp`"
@@ -20,9 +20,10 @@
           :src="`${image}?w=240&h=240&fit=pad`"
           :alt="title"
           loading="lazy"
+          class="object-cover max-w-[300px] max-h-[300px] w-[80%] m-auto"
         />
       </picture>
-      <h3 v-if="title">{{ title }}</h3>
+      <h3 v-if="title" class="m-0 font-bold text-lg">{{ title }}</h3>
     </div>
   </a>
 </template>
@@ -50,33 +51,7 @@ export default {
 
 <style scoped>
 .supporter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 300ms ease-in;
-  text-decoration: none;
   content-visibility: auto;
   contain-intrinsic-size: 350px;
-}
-
-.supporter:hover,
-.supporter:focus,
-.supporter:active {
-  opacity: 0.8;
-}
-.supporter div {
-  text-align: center;
-}
-
-.supporter h3 {
-  margin: 0;
-}
-
-.supporter img {
-  object-fit: cover;
-  max-width: 300px;
-  max-height: 300px;
-  width: 80%;
-  margin: auto;
 }
 </style>

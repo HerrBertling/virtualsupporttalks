@@ -13,9 +13,9 @@
         :textcolor="block.fields.textcolor"
         :button-url="block.fields.buttonUrl"
         :button-text="block.fields.buttonText"
-      >
-        <ContentfulRichText :content="block.fields.content" />
-      </ContentCentered>
+        :bgcolor="block.fields.bgcolor"
+        :content="block.fields.content"
+      />
       <ContentImageBg
         v-else-if="block.sys.contentType.sys.id === 'contentImageBg'"
         :key="block.sys.id"
@@ -48,6 +48,10 @@
         :key="block.sys.id"
         :images="block.fields.images"
         :with-padding-top="index === 0"
+      />
+      <ContentBlockCoachList
+        v-else-if="block.sys.contentType.sys.id === 'coachList'"
+        :key="block.sys.id"
       />
       <GenericContent v-else :key="block.sys.id" :block="block" />
     </template>

@@ -1,13 +1,21 @@
 <template>
-  <div :class="$style.wrapper" :style="{ backgroundColor: backgroundcolor }">
-    <header :class="[$style.header, hasButton && $style.headerPaddingBottom]">
-      <div :class="$style.content" :style="styleObject">
+  <div class="pt-20 md:pt-32" :style="{ backgroundColor: backgroundcolor }">
+    <header
+      :class="[
+        'grid grid-cols-1 gap-4 justify-items-center',
+        hasButton && 'pb-12',
+      ]"
+    >
+      <div
+        :class="[$style.content, 'w-full bg-contain bg-center bg-no-repeat']"
+        :style="styleObject"
+      >
         <slot />
       </div>
       <div v-if="hasButton">
-        <clever-button :to="buttonUrl" variant="secondary">{{
-          buttonText
-        }}</clever-button>
+        <clever-button :to="buttonUrl" variant="secondary">
+          {{ buttonText }}
+        </clever-button>
       </div>
     </header>
   </div>
@@ -49,31 +57,8 @@ export default {
 }
 </script>
 <style module>
-.wrapper {
-  padding-top: 80px;
-}
-
-@media (min-width: 768px) {
-  .wrapper {
-    padding-top: 120px;
-  }
-}
-
-.header {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1rem;
-  justify-items: center;
-}
-.headerPaddingBottom {
-  padding-bottom: 3rem;
-}
 .content {
   height: clamp(200px, 35vh, 300px);
-  width: 100%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 @media (min-width: 768px) {
