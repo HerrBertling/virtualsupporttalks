@@ -2,7 +2,7 @@
   <section
     :class="[
       'relative flex bg-cover bg-center bg-no-repeat min-h-[400px] text-center',
-      'after:content-[\'\'], after:block after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after::z-0 after:bg-gray-400/70',
+      'after:content-[\'\'], after:block after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after::z-0 after:bg-gray-400/80',
       hasButton && 'grid grid-cols-1 gap-4 justify-center pb-12',
     ]"
     :style="{ backgroundImage: `url(${usedBackgroundImage})` }"

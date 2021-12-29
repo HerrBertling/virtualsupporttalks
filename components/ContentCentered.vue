@@ -5,7 +5,7 @@
       hasButton && 'grid grid-cols-1 gap-4 justify-items-center pb-12',
     ]"
   >
-    <div class="w-full mx-auto max-w-3xl">
+    <div class="w-full mx-auto max-w-4xl">
       <ContentfulRichText :content="content" :use-white-prose="useWhiteProse" />
     </div>
     <div v-if="hasButton">
