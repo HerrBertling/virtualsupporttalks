@@ -49,6 +49,10 @@
         :images="block.fields.images"
         :with-padding-top="index === 0"
       />
+      <ContentBlockCoachList
+        v-else-if="block.sys.contentType.sys.id === 'coachList'"
+        :key="block.sys.id"
+      />
       <GenericContent v-else :key="block.sys.id" :block="block" />
     </template>
   </div>
