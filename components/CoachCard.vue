@@ -43,7 +43,7 @@
           :title="$t('coach.website')"
           target="_blank"
           rel="noopener"
-          class="flex items-center no-underline hover:text-vsp-500 focus:text-vsp-500 active:text-vsp-500"
+          class="flex items-center no-underline transition-colors duration-200 hover:text-vsp-500 focus:text-vsp-500 active:text-vsp-500"
           @click="trackCoachClick(method.type, name)"
         >
           <component :is="method.icon" :width="24" :height="24" class="mr-2" />
