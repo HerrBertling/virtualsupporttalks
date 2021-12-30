@@ -32,7 +32,7 @@
       </picture>
     </a>
     <header class="row-start-1 col-start-2 self-start">
-      <h3 class="font-bold mb-2">
+      <h3 class="font-bold text-lg text-gray-600">
         {{ name }}
       </h3>
       <div class="flex flex-row">
