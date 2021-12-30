@@ -53,6 +53,7 @@
           :name="coach.fields.name"
           :url="coach.fields.url"
           :email="coach.fields.email"
+          :phone="coach.fields.phone"
           :image="coach.fields.image.fields.file.url"
         >
           <ContentfulRichText
