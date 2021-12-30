@@ -32,35 +32,27 @@
       </picture>
     </a>
     <header class="row-start-1 col-start-2 self-start">
-      <h3 class="text-sm font-bold mb-2">
+      <h3 class="font-bold mb-2">
         {{ name }}
       </h3>
-      <a
-        v-if="url"
-        :href="url"
-        target="_blank"
-        rel="noopener"
-        class="flex items-center text-[10px] mb-2 no-underline hover:text-vsp-500 focus:text-vsp-500 active:text-vsp-500"
-        @click="trackCoachClick('website', name)"
-      >
-        <WebIcon :width="16" :height="16" class="mr-2" />
-        <span> {{ $t('coach.website') }} </span>
-      </a>
-      <a
-        v-if="email"
-        :href="`mailto:${email}`"
-        target="_blank"
-        rel="noopener"
-        class="flex items-center text-[10px] mb-2 no-underline hover:text-vsp-500 focus:text-vsp-500 active:text-vsp-500"
-        @click="trackCoachClick('email', name)"
-      >
-        <MailIcon :width="16" :height="16" class="mr-2" />
-        <span>{{ $t('coach.email') }}</span>
-      </a>
+      <div class="flex flex-row">
+        <a
+          v-for="method in contactMethods"
+          :key="method.type"
+          :href="method.address"
+          :title="$t('coach.website')"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center no-underline hover:text-vsp-500 focus:text-vsp-500 active:text-vsp-500"
+          @click="trackCoachClick(method.type, name)"
+        >
+          <component :is="method.icon" :width="24" :height="24" class="mr-2" />
+        </a>
+      </div>
     </header>
     <div class="row-start-2 col-span-full prose prose-sm mt-4">
       <p v-if="$i18n.locale === 'de'">
-        <strong>{{ $t('coach.focus') }}</strong>
+        <strong class="text-gray-600">{{ $t('coach.focus') }}</strong>
       </p>
       <slot />
     </div>
@@ -69,12 +61,14 @@
 
 <script>
 import MailIcon from '~/components/icons/mail.vue'
+import PhoneIcon from '~/components/icons/phone.vue'
 import WebIcon from '~/components/icons/web.vue'
 export default {
   name: 'CoachCard',
 
   components: {
     MailIcon,
+    PhoneIcon,
     WebIcon,
   },
 
@@ -87,6 +81,10 @@ export default {
       type: String,
       default: null,
     },
+    phone: {
+      type: String,
+      default: null,
+    },
     name: {
       type: String,
       default: null,
@@ -94,6 +92,28 @@ export default {
     image: {
       type: String,
       default: null,
+    },
+  },
+  computed: {
+    contactMethods() {
+      const methods = [
+        {
+          type: 'email',
+          icon: 'MailIcon',
+          address: this.email ? `mailto:${this.email}` : null,
+        },
+        {
+          type: 'website',
+          icon: 'WebIcon',
+          address: this.url,
+        },
+        {
+          type: 'phone',
+          icon: 'PhoneIcon',
+          address: this.phone ? `tel:${this.phone}` : null,
+        },
+      ]
+      return methods.filter((method) => !!method.address)
     },
   },
   methods: {
