@@ -1,7 +1,10 @@
 <template>
   <nav class="relative z-30 lg:max-w-4xl" aria-role="navigation">
     <button
-      :class="['lg:hidden rounded-full p-4', navExpanded && 'bg-white']"
+      :class="[
+        'lg:hidden rounded-full w-12 h-12 flex items-center justify-center',
+        navExpanded && 'bg-white',
+      ]"
       :aria-expanded="navExpanded"
       aria-controls="navigation"
       @click="toggleNav"
