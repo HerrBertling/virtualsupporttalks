@@ -55,6 +55,7 @@
           :email="coach.fields.email"
           :phone="coach.fields.phone"
           :image="coach.fields.image.fields.file.url"
+          :emergency="coach.fields.emergency"
         >
           <ContentfulRichText
             :content="coach.fields.description"

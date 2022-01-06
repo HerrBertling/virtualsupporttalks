@@ -1,7 +1,7 @@
 <template>
   <article
     :class="[
-      'grid grid-cols-[4rem_1fr] grid-rows-[4rem_1fr] gap-3 px-3 pt-6 pb-3 rounded-md shadow-lg overflow-hidden bg-white',
+      'grid grid-cols-[4rem_1fr] grid-rows-[4rem_1fr] gap-3 px-3 pt-6 pb-3 rounded-md shadow-lg overflow-hidden bg-white relative',
       $style.coachWrapper,
     ]"
   >
@@ -56,6 +56,12 @@
       </p>
       <slot />
     </div>
+    <span
+      v-if="emergency"
+      class="absolute top-0 right-4 w-48 text-center text-orange-900 text-xs transform rotate-45 translate-x-16 translate-y-8 py-1 bg-orange-300 shadow-md"
+    >
+      Dringende Fälle
+    </span>
   </article>
 </template>
 
@@ -92,6 +98,10 @@ export default {
     image: {
       type: String,
       default: null,
+    },
+    emergency: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
