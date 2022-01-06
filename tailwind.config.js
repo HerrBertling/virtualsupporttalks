@@ -46,7 +46,7 @@ module.exports = {
         },
       },
       gridTemplateColumns: {
-        coachgrid: 'repeat(auto-fill, minmax(280px, 1fr))',
+        coachgrid: 'repeat(auto-fill, minmax(320px, 1fr))',
       },
       typography: (theme) => ({
         DEFAULT: {
