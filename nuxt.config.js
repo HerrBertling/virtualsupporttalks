@@ -124,6 +124,7 @@ export default {
             website: 'Webseite',
             langFilter: 'Nach Sprache filtern',
             loading: 'Lade Coaches…',
+            emergency: 'Schnell erreichbar',
           },
           languages: {
             de: 'Deutsch',
@@ -172,6 +173,7 @@ export default {
             website: 'Website',
             langFilter: 'Filter by language',
             loading: 'Loading coaches…',
+            emergency: 'Quick response',
           },
           languages: {
             de: 'Deutsch',

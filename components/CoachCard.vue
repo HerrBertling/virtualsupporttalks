@@ -60,7 +60,7 @@
       v-if="emergency"
       class="absolute top-0 right-4 w-48 text-center text-orange-900 text-xs transform rotate-45 translate-x-16 translate-y-8 py-1 bg-orange-300 shadow-md"
     >
-      Dringende Fälle
+      {{ $t('coach.emergency') }}
     </span>
   </article>
 </template>
