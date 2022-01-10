@@ -117,13 +117,13 @@ export default {
             },
           },
           coach: {
-            filter: 'Liste der Coaches filtern',
+            filter: 'Liste der Zuhörer:innen filtern',
             count: 'angezeigt',
             focus: 'Meine Schwerpunkte:',
             email: 'E-Mail',
             website: 'Webseite',
             langFilter: 'Nach Sprache filtern',
-            loading: 'Lade Coaches…',
+            loading: 'Lade Zuhörer:innen…',
             emergency: 'Schnell erreichbar',
           },
           languages: {
@@ -166,13 +166,13 @@ export default {
             },
           },
           coach: {
-            filter: 'Filter list of coaches',
+            filter: 'Filter list of listeners',
             count: 'shown',
             focus: 'My focus areas:',
             email: 'Email',
             website: 'Website',
             langFilter: 'Filter by language',
-            loading: 'Loading coaches…',
+            loading: 'Loading listeners…',
             emergency: 'Quick response',
           },
           languages: {
