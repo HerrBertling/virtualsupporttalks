@@ -117,12 +117,12 @@ export default {
             },
           },
           coach: {
-            filter: 'Liste der Zuhörer:innen filtern',
+            filter: 'Was ist dein Thema?',
             count: 'angezeigt',
             focus: 'Meine Schwerpunkte:',
             email: 'E-Mail',
             website: 'Webseite',
-            langFilter: 'Nach Sprache filtern',
+            langFilter: 'In welcher Sprache möchtest du mit jemandem reden?',
             loading: 'Lade Zuhörer:innen…',
             emergency: 'Schnell erreichbar',
           },
@@ -166,7 +166,7 @@ export default {
             },
           },
           coach: {
-            filter: 'Filter list of listeners',
+            filter: 'Filter list of listeners by topic',
             count: 'shown',
             focus: 'My focus areas:',
             email: 'Email',
