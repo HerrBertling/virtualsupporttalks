@@ -2,7 +2,7 @@
   <div class="container mx-auto max-w-6xl">
     <header class="pt-24 px-4 w-full">
       <h2 class="text-3xl font-bold font-headline">
-        {{ $t('blog.overview.title') }}
+        {{ $t('blog.overview.title') }} {{ $t('blog.tag.title') }} {{ tag }}
       </h2>
     </header>
     <div
@@ -61,14 +61,17 @@
 <script>
 import getSiteMeta from '~/utils/getSiteMeta'
 import TagGroup from '~/components/TagGroup.vue'
-
+import unslugify from '~/utils/unslugify'
+import CleverLink from '~/components/CleverLink.vue'
 export default {
-  name: 'BlogPostIndex',
-  components: { TagGroup },
+  name: 'BlogPostTagIndex',
+  components: { TagGroup, CleverLink },
   transition: 'page',
   async asyncData({ app, $contentful, params }) {
+    const tag = params.tag
     const { items } = await $contentful.getEntries({
       content_type: 'blogpost',
+      'fields.tags[in]': unslugify(tag),
       locale: app.i18n.locale,
       order: '-sys.createdAt',
     })
@@ -89,6 +92,11 @@ export default {
       title,
       meta,
     }
+  },
+  computed: {
+    tag() {
+      return unslugify(this.$route.params.tag)
+    },
   },
   methods: {
     getDateString(date) {

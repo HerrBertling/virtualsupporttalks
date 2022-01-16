@@ -115,6 +115,9 @@ export default {
             overview: {
               title: 'Die neuesten Blog-Beiträge',
             },
+            tag: {
+              title: 'mit dem Schlagwort',
+            },
           },
           coach: {
             filter: 'Was ist dein Thema?',
@@ -163,6 +166,9 @@ export default {
           blog: {
             overview: {
               title: 'Latest blogposts',
+            },
+            tag: {
+              title: 'with the tag',
             },
           },
           coach: {
