@@ -19,6 +19,14 @@
         </h1>
       </div>
     </header>
+    <aside class="max-w-4xl mx-auto">
+      <time
+        :datetime="sys.createdAt"
+        class="text-gray-400 italic text-sm md:text-base"
+      >
+        {{ getDateString(sys.createdAt) }}
+      </time>
+    </aside>
     <ContentBlocks :blocks="blocks" />
   </div>
 </template>
@@ -38,6 +46,7 @@ export default {
       include: 5,
     })
     return {
+      sys: items[0].sys,
       blocks: items[0].fields.content,
       title: items[0].fields.title,
       description: items[0].fields.description,
@@ -59,6 +68,16 @@ export default {
       title: metaInput.title,
       meta,
     }
+  },
+  methods: {
+    getDateString(date) {
+      const dateObj = new Date(date)
+      return dateObj.toLocaleString(this.$i18n.locale, {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+      })
+    },
   },
 }
 </script>

@@ -30,6 +30,14 @@
         <h3 class="text-xl font-headline font-bold group-hover:text-vsp-500">
           {{ post.fields.title }}
         </h3>
+        <aside>
+          <time
+            :datetime="post.sys.createdAt"
+            class="text-gray-400 italic text-sm md:text-base"
+          >
+            {{ getDateString(post.sys.createdAt) }}
+          </time>
+        </aside>
         <p :class="$style.description">{{ post.fields.description }}</p>
         <span class="block underline">Weiterlesen…</span>
       </CleverLink>
@@ -69,6 +77,16 @@ export default {
       title,
       meta,
     }
+  },
+  methods: {
+    getDateString(date) {
+      const dateObj = new Date(date)
+      return dateObj.toLocaleString(this.$i18n.locale, {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+      })
+    },
   },
 }
 </script>
