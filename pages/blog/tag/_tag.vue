@@ -8,45 +8,52 @@
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 my-4 mx-auto px-4 md:gap-8"
     >
-      <CleverLink
+      <div
         v-for="post in posts"
         :key="post.sys.id"
         class="group grid grid-cols-1 content-start gap-2 no-underline"
-        :to="`/blog/${post.fields.slug}/`"
       >
-        <div v-if="post.fields.mainImage">
+        <CleverLink
+          v-if="post.fields.mainImage"
+          :to="`/blog/${post.fields.slug}/`"
+        >
           <img
             :src="post.fields.mainImage.fields.file.url"
             class="opacity-80 group-hover:opacity-100 transition-opacity duration-300 object-cover rounded-lg h-auto w-full max-h-40"
           />
-        </div>
-        <div
+        </CleverLink>
+        <CleverLink
           v-else
+          :to="`/blog/${post.fields.slug}/`"
           :class="
             ('opacity-80 group-hover:opacity-100 transition-opacity duration-300 object-cover rounded-lg h-40 w-full max-h-40 bg-contain bg-vsp-500 bg-no-repeat bg-center',
             $style.imagePlaceholder)
           "
         />
-        <h3 class="text-xl font-headline font-bold group-hover:text-vsp-500">
-          {{ post.fields.title }}
-        </h3>
+        <CleverLink :to="`/blog/${post.fields.slug}/`">
+          <h3 class="text-xl font-headline font-bold group-hover:text-vsp-500">
+            {{ post.fields.title }}
+          </h3>
+        </CleverLink>
         <aside
           :class="[
-            'flex',
+            'flex gap-4 items-center',
             Boolean(post.fields.tags) ? 'justify-between' : 'justify-end',
           ]"
         >
           <TagGroup v-if="Boolean(post.fields.tags)" :tags="post.fields.tags" />
           <time
             :datetime="post.sys.createdAt"
-            class="text-gray-400 italic text-sm md:text-base"
+            class="text-gray-400 italic text-xs"
           >
             {{ getDateString(post.sys.createdAt) }}
           </time>
         </aside>
         <p :class="$style.description">{{ post.fields.description }}</p>
-        <span class="block underline">Weiterlesen…</span>
-      </CleverLink>
+        <CleverLink :to="`/blog/${post.fields.slug}/`" class="block underline">
+          Weiterlesen…
+        </CleverLink>
+      </div>
     </div>
   </div>
 </template>
@@ -54,17 +61,17 @@
 <script>
 import getSiteMeta from '~/utils/getSiteMeta'
 import TagGroup from '~/components/TagGroup.vue'
-
+import unslugify from '~/utils/unslugify'
+import CleverLink from '~/components/CleverLink.vue'
 export default {
   name: 'BlogPostTagIndex',
-  components: { TagGroup },
+  components: { TagGroup, CleverLink },
   transition: 'page',
   async asyncData({ app, $contentful, params }) {
     const tag = params.tag
-    const uppercasedTag = tag.charAt(0).toUpperCase() + tag.slice(1)
     const { items } = await $contentful.getEntries({
       content_type: 'blogpost',
-      'fields.tags[in]': uppercasedTag,
+      'fields.tags[in]': unslugify(tag),
       locale: app.i18n.locale,
       order: '-sys.createdAt',
     })
@@ -88,8 +95,7 @@ export default {
   },
   computed: {
     tag() {
-      const tag = this.$route.params.tag
-      return tag.charAt(0).toUpperCase() + tag.slice(1)
+      return unslugify(this.$route.params.tag)
     },
   },
   methods: {
@@ -97,7 +103,7 @@ export default {
       const dateObj = new Date(date)
       return dateObj.toLocaleString(this.$i18n.locale, {
         year: 'numeric',
-        month: 'long',
+        month: '2-digit',
         day: '2-digit',
       })
     },

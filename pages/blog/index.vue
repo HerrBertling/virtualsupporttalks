@@ -37,14 +37,14 @@
         </CleverLink>
         <aside
           :class="[
-            'flex',
+            'flex gap-4 items-center',
             Boolean(post.fields.tags) ? 'justify-between' : 'justify-end',
           ]"
         >
           <TagGroup v-if="Boolean(post.fields.tags)" :tags="post.fields.tags" />
           <time
             :datetime="post.sys.createdAt"
-            class="text-gray-400 italic text-sm md:text-base"
+            class="text-gray-400 italic text-xs"
           >
             {{ getDateString(post.sys.createdAt) }}
           </time>
@@ -95,7 +95,7 @@ export default {
       const dateObj = new Date(date)
       return dateObj.toLocaleString(this.$i18n.locale, {
         year: 'numeric',
-        month: 'long',
+        month: '2-digit',
         day: '2-digit',
       })
     },
