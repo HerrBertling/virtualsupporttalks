@@ -118,7 +118,7 @@ export default {
           },
           coach: {
             filter: 'Was ist dein Thema?',
-            count: 'angezeigt',
+            count: 'Zuhörer*innen angezeigt',
             focus: 'Meine Schwerpunkte:',
             email: 'E-Mail',
             website: 'Webseite',
@@ -167,7 +167,7 @@ export default {
           },
           coach: {
             filter: 'Filter list of listeners by topic',
-            count: 'shown',
+            count: 'coaches shown',
             focus: 'My focus areas:',
             email: 'Email',
             website: 'Website',
