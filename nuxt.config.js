@@ -119,6 +119,9 @@ export default {
               title: 'mit dem Schlagwort',
             },
           },
+          email: 'E-Mail',
+          phone: 'Telefon',
+          website: 'Web',
           coach: {
             filter: 'Was ist dein Thema?',
             count: 'Zuhörer*innen angezeigt',
@@ -171,6 +174,9 @@ export default {
               title: 'with the tag',
             },
           },
+          email: 'Email',
+          phone: 'Phone',
+          website: 'Web',
           coach: {
             filter: 'Filter list of listeners by topic',
             count: 'coaches shown',
