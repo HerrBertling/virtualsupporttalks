@@ -19,7 +19,13 @@
         </h1>
       </div>
     </header>
-    <aside class="max-w-4xl mx-auto">
+    <aside
+      :class="[
+        'flex max-w-4xl mx-auto',
+        Boolean(tags) ? 'justify-between' : 'justify-end',
+      ]"
+    >
+      <TagGroup v-if="Boolean(tags)" :tags="tags" />
       <time
         :datetime="sys.createdAt"
         class="text-gray-400 italic text-sm md:text-base"
@@ -52,6 +58,7 @@ export default {
       description: items[0].fields.description,
       seo: items[0].fields.seo?.fields,
       mainImage: items[0].fields.mainImage,
+      tags: items[0].fields.tags,
     }
   },
   head() {
