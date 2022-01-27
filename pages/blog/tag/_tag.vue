@@ -2,7 +2,8 @@
   <div class="container mx-auto max-w-6xl">
     <header class="pt-24 px-4 w-full">
       <h2 class="text-3xl font-bold font-headline">
-        {{ $t('blog.overview.title') }} {{ $t('blog.tag.title') }} {{ tag }}
+        {{ $t('blog.overview.title') }} {{ $t('blog.tag.title') }}
+        {{ tag.fields.tagName }}
       </h2>
     </header>
     <div
@@ -38,10 +39,13 @@
         <aside
           :class="[
             'flex gap-4 items-center',
-            Boolean(post.fields.tags) ? 'justify-between' : 'justify-end',
+            Boolean(post.fields.tagList) ? 'justify-between' : 'justify-end',
           ]"
         >
-          <TagGroup v-if="Boolean(post.fields.tags)" :tags="post.fields.tags" />
+          <TagGroup
+            v-if="Boolean(post.fields.tagList)"
+            :tags="post.fields.tagList"
+          />
           <time
             :datetime="post.sys.createdAt"
             class="text-gray-400 italic text-xs"
@@ -61,7 +65,6 @@
 <script>
 import getSiteMeta from '~/utils/getSiteMeta'
 import TagGroup from '~/components/TagGroup.vue'
-import unslugify from '~/utils/unslugify'
 import CleverLink from '~/components/CleverLink.vue'
 export default {
   name: 'BlogPostTagIndex',
@@ -71,12 +74,20 @@ export default {
     const tag = params.tag
     const { items } = await $contentful.getEntries({
       content_type: 'blogpost',
-      'fields.tags[in]': unslugify(tag),
       locale: app.i18n.locale,
       order: '-sys.createdAt',
     })
+    const currentTag = await $contentful.getEntries({
+      content_type: 'tag',
+      'fields.slug[in]': tag,
+    })
+    const postsWithTags = items.filter((post) => !!post.fields.tagList)
+    const postsWithCurrentTag = postsWithTags.filter((item) =>
+      item.fields.tagList.some((tag) => tag.fields.slug === params.tag)
+    )
     return {
-      posts: items,
+      posts: postsWithCurrentTag,
+      tag: currentTag.items[0],
     }
   },
   head() {
@@ -92,11 +103,6 @@ export default {
       title,
       meta,
     }
-  },
-  computed: {
-    tag() {
-      return unslugify(this.$route.params.tag)
-    },
   },
   methods: {
     getDateString(date) {

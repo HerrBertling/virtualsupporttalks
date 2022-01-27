@@ -58,7 +58,7 @@ export default {
       description: items[0].fields.description,
       seo: items[0].fields.seo?.fields,
       mainImage: items[0].fields.mainImage,
-      tags: items[0].fields.tags,
+      tags: items[0].fields.tagList,
     }
   },
   head() {

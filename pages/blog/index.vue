@@ -38,10 +38,13 @@
         <aside
           :class="[
             'flex gap-4 items-center',
-            Boolean(post.fields.tags) ? 'justify-between' : 'justify-end',
+            Boolean(post.fields.tagList) ? 'justify-between' : 'justify-end',
           ]"
         >
-          <TagGroup v-if="Boolean(post.fields.tags)" :tags="post.fields.tags" />
+          <TagGroup
+            v-if="Boolean(post.fields.tagList)"
+            :tags="post.fields.tagList"
+          />
           <time
             :datetime="post.sys.createdAt"
             class="text-gray-400 italic text-xs"
