@@ -13,7 +13,7 @@
           :src="mainImage.fields.file.url"
         />
         <h1
-          class="col-start-1 row-start-1 relative z-20 self-end m-0 p-4 text-white text-3xl md:text-4xl lg:text-5xl font-bold font-headline"
+          class="col-start-1 row-start-1 relative z-20 self-end m-0 p-4 text-white text-3xl md:text-4xl lg:text-5xl font-bold font-headline break-words"
         >
           {{ title }}
         </h1>
@@ -21,17 +21,20 @@
     </header>
     <aside
       :class="[
-        'flex max-w-4xl mx-auto',
+        'flex max-w-4xl mx-auto px-4 gap-4 flex-wrap',
         Boolean(tags) ? 'justify-between' : 'justify-end',
       ]"
     >
       <TagGroup v-if="Boolean(tags)" :tags="tags" />
-      <time
-        :datetime="sys.createdAt"
-        class="text-gray-400 italic text-sm md:text-base"
-      >
-        {{ getDateString(sys.createdAt) }}
-      </time>
+      <div class="flex gap-4">
+        <ShareButton :title="title" :text="description" :url="url" />
+        <time
+          :datetime="sys.createdAt"
+          class="text-gray-400 italic text-sm md:text-base"
+        >
+          {{ getDateString(sys.createdAt) }}
+        </time>
+      </div>
     </aside>
     <ContentBlocks :blocks="blocks" />
   </div>
@@ -75,6 +78,11 @@ export default {
       title: metaInput.title,
       meta,
     }
+  },
+  computed: {
+    url() {
+      return this.$route.path
+    },
   },
   methods: {
     getDateString(date) {
