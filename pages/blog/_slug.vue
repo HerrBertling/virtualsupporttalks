@@ -81,7 +81,7 @@ export default {
   },
   computed: {
     url() {
-      return this.$route.path
+      return `https://www.virtualsupporttalks.de${this.$route.path}`
     },
   },
   methods: {
