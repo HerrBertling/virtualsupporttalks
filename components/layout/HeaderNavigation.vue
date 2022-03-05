@@ -51,12 +51,12 @@
       ]"
     >
       <LayoutNavItem
-        v-for="item in navigationItems"
-        :key="item.path.de"
-        :to="item.path[$i18n.locale]"
+        v-for="item in navigation"
+        :key="item.sys.id"
+        :to="getNavLink(item)"
         @click="closeNav"
       >
-        {{ item.title[$i18n.locale] }}
+        {{ item.fields.title }}
       </LayoutNavItem>
       <LayoutNavItem v-if="$i18n.locale === 'de'" :to="localePath('/', 'en')">
         English version
@@ -74,63 +74,29 @@ export default {
   data() {
     return {
       navExpanded: false,
-      navigationItems: [
-        {
-          title: {
-            de: 'Ich suche Redezeit',
-            en: 'I need speaking time',
-          },
-          path: {
-            de: '/ich-suche-redezeit/',
-            en: '/en/i-need-speaking-time/',
-          },
-        },
-        {
-          title: {
-            de: 'Ich biete Redezeit',
-            en: 'I offer speaking time',
-          },
-          path: {
-            de: '/ich-biete-redezeit/',
-            en: '/en/i-offer-speaking-time/',
-          },
-        },
-        {
-          title: {
-            de: 'Netzwerk, Partner + Medien',
-            en: 'Network, partner + media',
-          },
-          path: {
-            de: '/netzwerk-partner-medien/',
-            en: '/en/network-partner-media/',
-          },
-        },
-        {
-          title: {
-            de: 'Spenden',
-            en: 'Donate',
-          },
-          path: {
-            de: '/jetzt-unterstuetzen-spende-an-redezeit/',
-            en: '/en/support-now-donate-to-redezeit/',
-          },
-        },
-        {
-          title: {
-            de: 'Blog',
-            en: 'Blog',
-          },
-          path: {
-            de: '/blog/',
-            en: '/en/blog/',
-          },
-        },
-      ],
+      navigation: [],
     }
+  },
+  async fetch() {
+    const navItems = await this.$contentful.getEntry('67EXX84GGCZfZayO0JxrFg', {
+      include: 3,
+      locale: this.$i18n.locale,
+    })
+    this.navigation = navItems.fields.items
+  },
+  computed: {
+    lang() {
+      return this.$i18n.locale
+    },
   },
   watch: {
     navExpanded(newValue) {
       this.$emit('navigation-active', newValue)
+    },
+    lang(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.$fetch()
+      }
     },
   },
   methods: {
@@ -139,6 +105,17 @@ export default {
     },
     closeNav() {
       this.navExpanded = false
+    },
+    getNavLink(item) {
+      const isEnglish = this.$i18n.locale === 'en'
+      return item.fields.page
+        ? `${isEnglish ? '/en/' : '/'}${item.fields.page.fields.slug}/`
+        : isEnglish
+        ? `${item.fields.url.replace(
+            'https://www.virtualsupporttalks.de',
+            '/en'
+          )}`
+        : item.fields.url.replace('https://www.virtualsupporttalks.de', '')
     },
   },
 }
