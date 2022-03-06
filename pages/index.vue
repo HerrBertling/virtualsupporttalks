@@ -1,24 +1,6 @@
 <template>
   <div>
     <ContentBlocks :blocks="content" />
-    <section
-      :class="[
-        $style.contributorList,
-        'grid gap-12 py-12 px-4 w-full max-w-7xl items-start mx-auto',
-      ]"
-    >
-      <h2 class="col-span-full text-2xl">
-        {{ $t('contributorHeadline') }}
-      </h2>
-      <ContributorCard
-        v-for="contributor in contributors"
-        :key="`${contributor.fields.lastname}_${contributor.fields.firstname}`"
-        :first-name="contributor.fields.firstname"
-        :last-name="contributor.fields.lastname"
-        :image="contributor.fields.image.fields.file.url"
-        :slug="contributor.fields.slug"
-      />
-    </section>
   </div>
 </template>
 <script>
@@ -33,13 +15,9 @@ export default {
     const { fields } = await $contentful.getEntry(pageIds.STARTPAGE, {
       locale: app.i18n.locale,
     })
-    const { items } = await $contentful.getEntries({
-      content_type: 'contributor',
-    })
     return {
       seo: fields.seo?.fields,
       content: fields.content,
-      contributors: items,
     }
   },
   head() {
@@ -77,9 +55,3 @@ export default {
   },
 }
 </script>
-
-<style module>
-.contributorList {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-</style>
