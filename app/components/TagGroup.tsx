@@ -7,14 +7,14 @@ type TagGroupProps = {
 };
 export default function TagGroup({ tags, locale }: TagGroupProps) {
   return (
-    <div className="flex gap-2 items-start">
+    <div className="flex items-start gap-2">
       {tags?.map((tag) => {
         const { tagName, slug } = tag.fields;
         return (
           <CleverLink
             key={tagName}
             to={`/${locale}/blog/tag/${slug}`}
-            className="inline-block bg-vsp-200 text-vsp-900 hover:bg-vsp-300 rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap"
+            className="inline-block whitespace-nowrap rounded-full bg-vsp-200 px-3 py-1 text-xs font-semibold text-vsp-900 hover:bg-vsp-300"
           >
             {tagName}
           </CleverLink>

@@ -23,7 +23,7 @@ export default function CleverButton({
   return (
     <CleverLink
       to={to}
-      className={`inline-flex justify-center text-white items-center font-inherit rounded-md py-4 px-8 no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg ${variantClass}`}
+      className={`font-inherit inline-flex items-center justify-center rounded-md py-4 px-8 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg ${variantClass}`}
     >
       {children}
     </CleverLink>

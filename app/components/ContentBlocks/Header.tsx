@@ -17,7 +17,7 @@ export default function Header({
   return (
     <div className="pt-20 md:pt-32" style={headerStyle}>
       <header
-        className={`headerBlockHeight grid grid-cols-1 gap-4 justify-items-center ${
+        className={`headerBlockHeight grid grid-cols-1 justify-items-center gap-4 ${
           hasButton && "pb-12"
         }`}
       >

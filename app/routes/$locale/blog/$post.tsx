@@ -38,25 +38,25 @@ export default function Blogpost() {
 
   return (
     <>
-      <header className="pt-24 px-4 pb-6 w-full max-w-4xl mx-auto">
+      <header className="mx-auto w-full max-w-4xl px-4 pt-24 pb-6">
         <div
-          className={`grid grid-cols-1 grid-rows-1 rounded-lg overflow-hidden shadow-lg min-h-[16rem] after:row-start-1 after:col-start-1 after:content-[\'\'] after:block after:z-10 after:bg-vsp-500 after:mix-blend-multiply after:relative ${
+          className={`grid min-h-[16rem] grid-cols-1 grid-rows-1 overflow-hidden rounded-lg shadow-lg after:relative after:z-10 after:col-start-1 after:row-start-1 after:block after:bg-vsp-500 after:mix-blend-multiply after:content-[\'\'] ${
             !mainImage && "bg-contain"
           }`}
         >
           {mainImage && (
             <img
-              className="col-start-1 row-start-1 w-full min-h-[16rem] object-cover max-w-4xl relative z-0"
+              className="relative z-0 col-start-1 row-start-1 min-h-[16rem] w-full max-w-4xl object-cover"
               src={mainImage.fields.file.url}
             />
           )}
-          <h1 className="col-start-1 row-start-1 relative z-20 self-end m-0 p-4 text-white text-3xl md:text-4xl lg:text-5xl font-bold font-headline break-words">
+          <h1 className="relative z-20 col-start-1 row-start-1 m-0 self-end break-words p-4 font-headline text-3xl font-bold text-white md:text-4xl lg:text-5xl">
             {title}
           </h1>
         </div>
       </header>
       <aside
-        className={`flex max-w-4xl mx-auto px-4 gap-4 flex-wrap ${
+        className={`mx-auto flex max-w-4xl flex-wrap gap-4 px-4 ${
           Boolean(tagList) ? "justify-between" : "justify-end"
         }`}
       >
@@ -65,7 +65,7 @@ export default function Blogpost() {
           {/* <ShareButton :title="title" :text="description" :url="url" /> */}
           <time
             dateTime="sys.createdAt"
-            className="text-gray-400 italic text-sm md:text-base"
+            className="text-sm italic text-gray-400 md:text-base"
           >
             {date}
           </time>
@@ -79,7 +79,7 @@ export default function Blogpost() {
 export function CatchBoundary() {
   const caught = useCatch();
   return (
-    <div className="mt-32 container mx-auto">
+    <div className="container mx-auto mt-32">
       <h2>Oh noez! We failed.</h2>
       <p>
         {caught.status}: {caught.statusText}
@@ -89,7 +89,7 @@ export function CatchBoundary() {
 }
 export function ErrorBoundary(error) {
   return (
-    <div className="mt-32 container mx-auto">
+    <div className="container mx-auto mt-32">
       <h2>Oh noez! Something went wrong.</h2>
       <p>{JSON.stringify(error)}</p>
     </div>

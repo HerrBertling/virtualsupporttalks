@@ -24,20 +24,20 @@ export default function ContentBlockImageBg({
     : {};
   return (
     <section
-      className={`relative flex bg-cover bg-center bg-no-repeat min-h-[400px] text-center after:content-[\'\'], after:block after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after::z-0 after:bg-gray-400/80 ${
-        hasButton && "grid grid-cols-1 gap-4 justify-center pb-12"
+      className={`after:content-[\'\'], after::z-0 relative flex min-h-[400px] bg-cover bg-center bg-no-repeat text-center after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:block after:bg-gray-400/80 ${
+        hasButton && "grid grid-cols-1 justify-center gap-4 pb-12"
       }`}
       style={backgroundStyle}
     >
       <div
-        className={`py-12 px-4 max-w-4xl w-screen m-auto z-10 ${
-          withPaddingTop && "pt-28 px-4 py-12"
+        className={`z-10 m-auto w-screen max-w-4xl py-12 px-4 ${
+          withPaddingTop && "px-4 py-12 pt-28"
         }`}
       >
         {children}
       </div>
       {hasButton && (
-        <div className="flex flex-row flex-wrap items-center justify-center gap-8 z-10">
+        <div className="z-10 flex flex-row flex-wrap items-center justify-center gap-8">
           <CleverButton to={buttonUrl}>{buttonText}</CleverButton>
           {withCharityBanner && (
             <AmazonCharityBanner v-if="withCharityBanner" />

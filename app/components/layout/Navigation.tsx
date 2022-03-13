@@ -32,7 +32,7 @@ export default function Navigation({
   return (
     <nav className="relative z-30 lg:max-w-4xl">
       <button
-        className={`lg:hidden rounded-full w-12 h-12 flex items-center justify-center ${
+        className={`flex h-12 w-12 items-center justify-center rounded-full lg:hidden ${
           open && "bg-white"
         }`}
         aria-expanded={open}
@@ -40,7 +40,7 @@ export default function Navigation({
         onClick={() => setOpen(!open)}
       >
         <span className="sr-only">Menu</span>
-        <span className="inline-block w-6 h-6">
+        <span className="inline-block h-6 w-6">
           {!open ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ export default function Navigation({
         </span>
       </button>
       <ul
-        className={`flex flex-col rounded-md overflow-hidden shadow-2xl fixed top-24 right-0 w-screen max-w-[90vw] transition-transform duration-300 bg-white lg:flex-row lg:static lg:w-auto lg:shadow-none lg:rounded-none lg:bg-transparent lg:justify-end lg:items-center lg:h-auto lg:transform-none lg:top-auto lg:left-auto z-30 ${
+        className={`fixed top-24 right-0 z-30 flex w-screen max-w-[90vw] flex-col overflow-hidden rounded-md bg-white shadow-2xl transition-transform duration-300 lg:static lg:top-auto lg:left-auto lg:h-auto lg:w-auto lg:transform-none lg:flex-row lg:items-center lg:justify-end lg:rounded-none lg:bg-transparent lg:shadow-none ${
           open ? "-translate-x-[5vw]" : "translate-x-[90vw]"
         }`}
       >

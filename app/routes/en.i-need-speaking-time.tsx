@@ -52,27 +52,27 @@ export default function SearchingCoach() {
     <BasicLayout nav={navigation.fields.items} lang="en">
       <div>
         <ContentBlocks content={page.fields.content} />
-        <details open={true} className="py-8 px-4 max-w-7xl mx-auto">
+        <details open={true} className="mx-auto max-w-7xl py-8 px-4">
           <summary>
             <h5 className="inline-block text-xl">Show filters</h5>
           </summary>
           <Form>
             <fieldset className="mt-8">
-              <legend className="inline-block text-xl mb-4">
+              <legend className="mb-4 inline-block text-xl">
                 Filter by language
               </legend>
               {languages.map((lang: string) => (
-                <label className="min-h-4 inline-block mr-1 mb-1" key={lang}>
+                <label className="min-h-4 mr-1 mb-1 inline-block" key={lang}>
                   <input
-                    className="sr-only peer"
+                    className="peer sr-only"
                     type="radio"
                     name="lang"
                     value={lang}
                     defaultChecked={currentLang === lang}
                   />
-                  <span className="px-2 py-1 inline-flex gap-1 items-center rounded-md border peer-checked:text-fuchsia-500">
+                  <span className="inline-flex items-center gap-1 rounded-md border px-2 py-1 peer-checked:text-fuchsia-500">
                     {currentLang === lang ? (
-                      <CheckIcon className="w-4 h-4" />
+                      <CheckIcon className="h-4 w-4" />
                     ) : null}
                     <span>{lang}</span>
                   </span>
@@ -80,26 +80,26 @@ export default function SearchingCoach() {
               ))}
             </fieldset>
             <fieldset className="mt-8">
-              <legend className="inline-block text-xl mb-4">
+              <legend className="mb-4 inline-block text-xl">
                 Filter by tags
               </legend>
               {tags.map((tag: string) => (
                 <label key={tag}>
                   <input
-                    className="sr-only peer"
+                    className="peer sr-only"
                     type="checkbox"
                     name="tag"
                     value={tag}
                     defaultChecked={checkedTags.includes(tag)}
                   />
-                  <span className="px-2 py-1 inline-block rounded-md mr-1 mb-1 border peer-checked:text-fuchsia-500">
+                  <span className="mr-1 mb-1 inline-block rounded-md border px-2 py-1 peer-checked:text-fuchsia-500">
                     {tag}
                   </span>
                 </label>
               ))}
             </fieldset>
             <button
-              className="inline-flex justify-center text-white items-center font-inherit rounded-md py-2 px-4 my-8 no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg bg-vsp-500"
+              className="font-inherit my-8 inline-flex items-center justify-center rounded-md bg-vsp-500 py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg"
               type="submit"
             >
               Apply filter
@@ -107,7 +107,7 @@ export default function SearchingCoach() {
           </Form>
         </details>
         <div className="bg-gray-100">
-          <section className="grid grid-cols-coachgrid items-start gap-x-6 gap-y-12 py-12 px-4 max-w-7xl mx-auto">
+          <section className="mx-auto grid max-w-7xl grid-cols-coachgrid items-start gap-x-6 gap-y-12 py-12 px-4">
             {coaches.map((coach: ICoach) => {
               const { email, name, url, phone, emergency, image, description } =
                 coach.fields;

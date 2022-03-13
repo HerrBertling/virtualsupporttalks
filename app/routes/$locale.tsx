@@ -44,7 +44,7 @@ export function CatchBoundary() {
   const { nav, locale } = useLoaderData();
   return (
     <BasicLayout nav={nav} lang={locale}>
-      <div className="mt-32 container mx-auto">
+      <div className="container mx-auto mt-32">
         <h2>Oh noez! We failed.</h2>
         <p>
           {caught.status}: {caught.statusText}

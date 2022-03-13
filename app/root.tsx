@@ -76,14 +76,14 @@ export default function App() {
             />
           </>
         ) : (
-          <div className="fixed bottom-0 max-w-lg -translate-x-1/2 left-1/2 right-0 rounded-t-md px-8 py-4 bg-gray-100 text-gray-700 shadow-lg z-50 text-center">
+          <div className="fixed bottom-0 left-1/2 right-0 z-50 max-w-lg -translate-x-1/2 rounded-t-md bg-gray-100 px-8 py-4 text-center text-gray-700 shadow-lg">
             <analyticsFetcher.Form method="post" action="/enable-analytics">
               <span className="mr-8">Wir nutzen Cookies.</span>
               <button
                 name="accept-gdpr"
                 value="true"
                 type="submit"
-                className="inline-flex justify-center text-white items-center font-inherit rounded-md py-2 px-4 no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg bg-gray-400"
+                className="font-inherit inline-flex items-center justify-center rounded-md bg-gray-400 py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg"
               >
                 Akzeptieren
               </button>

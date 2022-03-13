@@ -30,10 +30,10 @@ export default function ContentCentered({
   return (
     <section
       className={`py-12 px-4 md:px-12 ${colors} ${
-        hasButton && "grid grid-cols-1 gap-4 justify-items-center pb-12"
+        hasButton && "grid grid-cols-1 justify-items-center gap-4 pb-12"
       }`}
     >
-      <div className="w-full mx-auto max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl">
         {content && (
           <ContentfulRichText content={content} useWhiteProse={useWhiteProse} />
         )}

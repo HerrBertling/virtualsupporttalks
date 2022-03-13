@@ -10,8 +10,8 @@ export default function FadeIn({ children }: { children: React.ReactNode }) {
   return (
     <div
       ref={ref}
-      className={`opacity-0 translate-y-10 scale-95 transition-all duration-300 ${
-        isVisible && "opacity-100 transform-none"
+      className={`translate-y-10 scale-95 opacity-0 transition-all duration-300 ${
+        isVisible && "transform-none opacity-100"
       }`}
     >
       {children}

@@ -13,19 +13,19 @@ export default function FullSizeImageBg({
   const styleObject = { backgroundColor: backgroundcolor };
   return (
     <section
-      className="grid grid-cols-1 w-screen max-w-full lg:grid-cols-2"
+      className="grid w-screen max-w-full grid-cols-1 lg:grid-cols-2"
       style={styleObject}
     >
       {image && (
         <img
           src={image.fields.file.url}
-          className={`object-cover h-auto max-h-[60vh] w-full lg:h-full lg:max-h-max ${
+          className={`h-auto max-h-[60vh] w-full object-cover lg:h-full lg:max-h-max ${
             imageRight && "lg:col-start-2 lg:row-start-1"
           }`}
         />
       )}
       <div
-        className={`py-8 px-4 lg:px-12 lg:pb-12 lg:pt-36 lg:max-w-[70ch] ${
+        className={`py-8 px-4 lg:max-w-[70ch] lg:px-12 lg:pb-12 lg:pt-36 ${
           imageRight && "col-start-1 row-start-1 ml-auto"
         }`}
       >

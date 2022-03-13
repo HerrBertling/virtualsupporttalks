@@ -8,12 +8,12 @@ type NavItemProps = {
 
 export default function NavItem({ to, children }: NavItemProps) {
   return (
-    <li className="w-full block lg:w-auto lg:mr-1">
+    <li className="block w-full lg:mr-1 lg:w-auto">
       <NavLink
         className={({ isActive }) =>
-          `block p-4 no-underline lg:inline-block lg:py-1 lg:px-2 lg:rounded-md ${
+          `block p-4 no-underline lg:inline-block lg:rounded-md lg:py-1 lg:px-2 ${
             isActive &&
-            "bg-gray-100 lg:bg-white border-l-4 border-l-vsp-500 lg:border-none"
+            "border-l-4 border-l-vsp-500 bg-gray-100 lg:border-none lg:bg-white"
           }`
         }
         to={to}

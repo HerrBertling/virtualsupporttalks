@@ -41,20 +41,20 @@ export default function ContentBlockTwoImages({
     },
   ];
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 gap-6 py-16 px-4 max-w-7xl mx-auto">
+    <section className="mx-auto grid max-w-7xl grid-cols-1 gap-6 py-16 px-4 md:grid-cols-2">
       {images.map(({ image, link, text }) => (
         <FadeIn key={link}>
           <CleverLink
-            className="group block max-w-full overflow-hidden rounded-md shadow-lg no-underline bg-gray-300"
+            className="group block max-w-full overflow-hidden rounded-md bg-gray-300 no-underline shadow-lg"
             to={`/${locale}${link}`}
           >
             <img
               src={image}
               alt={text}
-              className="w-full h-[400px] object-cover transition-opacity duration-300 group-hover:opacity-80"
+              className="h-[400px] w-full object-cover transition-opacity duration-300 group-hover:opacity-80"
             />
 
-            <h2 className="m-0 px-4 py-8 text-2xl font-bold font-headline">
+            <h2 className="m-0 px-4 py-8 font-headline text-2xl font-bold">
               {text}
             </h2>
           </CleverLink>

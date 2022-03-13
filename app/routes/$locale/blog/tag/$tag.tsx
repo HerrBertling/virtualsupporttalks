@@ -40,12 +40,12 @@ export default function Index() {
 
   return (
     <>
-      <header className="pt-24 px-4 w-full">
-        <h2 className="text-3xl font-bold font-headline">
+      <header className="w-full px-4 pt-24">
+        <h2 className="font-headline text-3xl font-bold">
           BLOGPOSTS for the tag {tag}
         </h2>
       </header>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-16 my-4 mx-auto px-4 md:gap-8">
+      <div className="my-4 mx-auto grid grid-cols-1 gap-y-24 gap-x-16 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
         {posts.map((post: IBlogpost) => (
           <BlogpostCard post={post} locale={locale} key={post.sys.id} />
         ))}
@@ -57,7 +57,7 @@ export default function Index() {
 export function CatchBoundary() {
   const caught = useCatch();
   return (
-    <div className="mt-32 container mx-auto">
+    <div className="container mx-auto mt-32">
       <h2>Oh noez! We failed.</h2>
       <p>
         {caught.status}: {caught.statusText}
