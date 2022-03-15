@@ -80,6 +80,13 @@ export const getPage = async (slug: Slug, locale: LOCALE_CODE = "de") => {
   return entries.items[0] as IPage;
 };
 
+function createResult(items: any[]) {
+  if (items.length === 0) {
+    return null;
+  }
+  return items;
+}
+
 export const getBlogposts = async (locale: LOCALE_CODE = "de") => {
   const client = createContentfulClient();
   const { items } = await client.getEntries({
@@ -89,11 +96,7 @@ export const getBlogposts = async (locale: LOCALE_CODE = "de") => {
     order: "sys.updatedAt",
   });
 
-  if (items.length === 0) {
-    return null;
-  }
-
-  return items;
+  return createResult(items);
 };
 
 export const getBlogpostTags = async (
@@ -107,12 +110,7 @@ export const getBlogpostTags = async (
     "fields.slug[in]": tag,
     order: "sys.updatedAt",
   });
-
-  if (items.length === 0) {
-    return null;
-  }
-
-  return items;
+  return createResult(items);
 };
 
 export const getBlogpost = async (slug: string, locale: LOCALE_CODE = "de") => {
@@ -205,4 +203,35 @@ export const getCoaches = async (
   });
 
   return shuffle(coachesResponse.items);
+};
+
+export const getNetwork = async () => {
+  const client = createContentfulClient();
+  const { items } = await client.getEntries({
+    content_type: "network",
+    order: "fields.title",
+  });
+
+  return createResult(items);
+};
+
+export const getSupporters = async () => {
+  const client = createContentfulClient();
+
+  const { items } = await client.getEntries({
+    content_type: "supporter",
+    order: "fields.title",
+  });
+  return createResult(items);
+};
+
+export const getMedia = async () => {
+  const client = createContentfulClient();
+
+  const { items } = await client.getEntries({
+    content_type: "media",
+    order: "fields.title",
+  });
+
+  return createResult(items);
 };
