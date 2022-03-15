@@ -12,16 +12,15 @@ import ContentBlocks from "~/components/ContentBlocks";
 import pageIds from "~/utils/pageIds";
 import CoachCard from "~/components/CoachCard";
 import ContentfulRichText from "~/components/ContentfulRichText";
-import { CheckIcon } from "@heroicons/react/outline";
 import BasicLayout from "~/components/layout/BasicLayout";
 
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader: LoaderFunction = async ({ request }) => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || "de";
   const checkedTags = searchParams.getAll("tag");
-  const locale = params.locale || "de";
+  const locale = "de";
 
-  const page = getPageById(pageIds.SEARCH_HELP);
+  const page = getPageById(pageIds.SEARCH_HELP, locale);
   const coaches: Promise<ICoach[]> = getCoaches(lang);
   const languages = getLanguages();
   const tags = getTags();

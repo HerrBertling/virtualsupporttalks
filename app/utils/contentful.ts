@@ -34,7 +34,7 @@ export const createContentfulClient = () => {
 
 type Slug = IPageFields["slug"];
 
-export const getPageById = async (id: string, locale: LOCALE_CODE = "de") => {
+export const getPageById = async (id: string, locale: LOCALE_CODE) => {
   const client = createContentfulClient();
   const entry: Entry<IPageFields> = await client.getEntry(id, {
     locale: locale,
@@ -47,7 +47,7 @@ export const getPageById = async (id: string, locale: LOCALE_CODE = "de") => {
   return entry as IPage;
 };
 
-export const getMainNav = async (locale: LOCALE_CODE = "de") => {
+export const getMainNav = async (locale: LOCALE_CODE) => {
   const client = createContentfulClient();
   const entry: Entry<INavigation> = await client.getEntry(
     "67EXX84GGCZfZayO0JxrFg",
@@ -64,7 +64,7 @@ export const getMainNav = async (locale: LOCALE_CODE = "de") => {
   return entry as INavigation;
 };
 
-export const getPage = async (slug: Slug, locale: LOCALE_CODE = "de") => {
+export const getPage = async (slug: Slug, locale: LOCALE_CODE) => {
   const client = createContentfulClient();
   const entries = await client.getEntries({
     content_type: "page",
@@ -80,7 +80,14 @@ export const getPage = async (slug: Slug, locale: LOCALE_CODE = "de") => {
   return entries.items[0] as IPage;
 };
 
-export const getBlogposts = async (locale: LOCALE_CODE = "de") => {
+function createResult(items: any[]) {
+  if (items.length === 0) {
+    return null;
+  }
+  return items;
+}
+
+export const getBlogposts = async (locale: LOCALE_CODE) => {
   const client = createContentfulClient();
   const { items } = await client.getEntries({
     content_type: "blogpost",
@@ -89,15 +96,11 @@ export const getBlogposts = async (locale: LOCALE_CODE = "de") => {
     order: "sys.updatedAt",
   });
 
-  if (items.length === 0) {
-    return null;
-  }
-
-  return items;
+  return createResult(items);
 };
 
 export const getBlogpostTags = async (
-  locale: LOCALE_CODE = "de",
+  locale: LOCALE_CODE,
   tag: ITag["fields"]["slug"]
 ) => {
   const client = createContentfulClient();
@@ -107,15 +110,10 @@ export const getBlogpostTags = async (
     "fields.slug[in]": tag,
     order: "sys.updatedAt",
   });
-
-  if (items.length === 0) {
-    return null;
-  }
-
-  return items;
+  return createResult(items);
 };
 
-export const getBlogpost = async (slug: string, locale: LOCALE_CODE = "de") => {
+export const getBlogpost = async (slug: string, locale: LOCALE_CODE) => {
   const client = createContentfulClient();
   const { items } = await client.getEntries({
     content_type: "blogpost",
@@ -205,4 +203,35 @@ export const getCoaches = async (
   });
 
   return shuffle(coachesResponse.items);
+};
+
+export const getNetwork = async () => {
+  const client = createContentfulClient();
+  const { items } = await client.getEntries({
+    content_type: "network",
+    order: "fields.title",
+  });
+
+  return createResult(items);
+};
+
+export const getSupporters = async () => {
+  const client = createContentfulClient();
+
+  const { items } = await client.getEntries({
+    content_type: "supporter",
+    order: "fields.title",
+  });
+  return createResult(items);
+};
+
+export const getMedia = async () => {
+  const client = createContentfulClient();
+
+  const { items } = await client.getEntries({
+    content_type: "media",
+    order: "fields.title",
+  });
+
+  return createResult(items);
 };

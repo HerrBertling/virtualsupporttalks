@@ -5,6 +5,7 @@ import {
   IPageFields,
   IContentImageBgFields,
   ITwoImagesFields,
+  IImageCollectionFields,
   IBlogpostFields,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
@@ -14,6 +15,7 @@ import ContentBlockCentered from "./ContentBlocks/Centered";
 import ContentBlockFullSizeImageBg from "./ContentBlocks/FullSizeImageBg";
 import ContentBlockImageBg from "./ContentBlocks/ImageBg";
 import ContentBlockTwoImages from "./ContentBlocks/TwoImages";
+import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection"
 import ContentfulRichText from "./ContentfulRichText";
 
 type ContentBlockProps = {
@@ -107,6 +109,18 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
               link2={link2}
               locale={locale}
             />
+          );
+        }
+        if (id === "imageCollection") {
+          const {internalTitle,images
+          } = item.fields as IImageCollectionFields;
+          return (
+            <ContentBlockImageCollection
+              key={item.sys.id}
+              images={images}
+              internalTitle={internalTitle}
+              withPaddingTop={index === 0}
+           />
           );
         }
         if (id === "coachList") {
