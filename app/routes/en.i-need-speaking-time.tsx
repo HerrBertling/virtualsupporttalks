@@ -15,7 +15,7 @@ import ContentfulRichText from "~/components/ContentfulRichText";
 import { CheckIcon } from "@heroicons/react/outline";
 import BasicLayout from "~/components/layout/BasicLayout";
 
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader: LoaderFunction = async ({ request }) => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || "en";
   const checkedTags = searchParams.getAll("tag");

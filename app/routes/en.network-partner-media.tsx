@@ -12,8 +12,8 @@ import pageIds from "~/utils/pageIds";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SupporterTile from "~/components/SupporterTile";
 
-export const loader: LoaderFunction = async ({ params }: { params: any }) => {
-  const locale = params.locale || "en";
+export const loader: LoaderFunction = async () => {
+  const locale = "en";
 
   const page = getPageById(pageIds.NETWORK, locale);
   const navigation = getMainNav("en");

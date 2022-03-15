@@ -12,7 +12,7 @@ import pageIds from "~/utils/pageIds";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SupporterTile from "~/components/SupporterTile";
 
-export const loader: LoaderFunction = async ({ params }: { params: any }) => {
+export const loader: LoaderFunction = async () => {
   const locale = "de";
 
   const page = getPageById(pageIds.NETWORK, locale);
