@@ -15,7 +15,7 @@ import SupporterTile from "~/components/SupporterTile";
 export const loader: LoaderFunction = async ({ params }: { params: any }) => {
   const locale = params.locale || "en";
 
-  const page = getPageById(pageIds.NETWORK);
+  const page = getPageById(pageIds.NETWORK, locale);
   const navigation = getMainNav("en");
   const network = getNetwork();
   const supporters = getSupporters();

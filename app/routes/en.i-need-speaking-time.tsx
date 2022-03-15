@@ -15,12 +15,13 @@ import ContentfulRichText from "~/components/ContentfulRichText";
 import { CheckIcon } from "@heroicons/react/outline";
 import BasicLayout from "~/components/layout/BasicLayout";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request, params }) => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || "en";
   const checkedTags = searchParams.getAll("tag");
+  const locale = "en";
 
-  const page = getPageById(pageIds.SEARCH_HELP);
+  const page = getPageById(pageIds.SEARCH_HELP, locale);
   const coaches: Promise<ICoach[]> = getCoaches(lang);
   const languages = getLanguages();
   const tags = getTags();
@@ -37,7 +38,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     throw new Response("Could not load navigation", { status: 404 });
   }
 
-  return [...data, checkedTags, lang];
+  return [...data, checkedTags, lang, locale];
 };
 
 export const action: ActionFunction = async ({ request }) => {
@@ -46,12 +47,20 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function SearchingCoach() {
-  const [page, coaches, languages, tags, navigation, checkedTags, currentLang] =
-    useLoaderData();
+  const [
+    page,
+    coaches,
+    languages,
+    tags,
+    navigation,
+    checkedTags,
+    currentLang,
+    locale,
+  ] = useLoaderData();
   return (
     <BasicLayout nav={navigation.fields.items} lang="en">
       <div>
-        <ContentBlocks content={page.fields.content} />
+        <ContentBlocks content={page.fields.content} locale={locale} />
         <details open={true} className="mx-auto max-w-7xl py-8 px-4">
           <summary>
             <h5 className="inline-block text-xl">Show filters</h5>

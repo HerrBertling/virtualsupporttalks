@@ -19,9 +19,9 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || "de";
   const checkedTags = searchParams.getAll("tag");
-  const locale = params.locale || "de";
+  const locale = "de";
 
-  const page = getPageById(pageIds.SEARCH_HELP);
+  const page = getPageById(pageIds.SEARCH_HELP, locale);
   const coaches: Promise<ICoach[]> = getCoaches(lang);
   const languages = getLanguages();
   const tags = getTags();
