@@ -66,29 +66,29 @@ export default function SupportMedia() {
             )}
           </section>
         </div>
-      </div>
 
-      {supporters && (
-        <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
-          <h2 className="mb-12 font-headline text-4xl font-bold">
-            Unsere Unternehmenspartner
-          </h2>
-          <div
-            style={{
-              gridTemplateColumns: "repeat(auto-fit,minmax(270px, 1fr))",
-            }}
-            className="grid-rows-auto grid gap-x-4 gap-y-8"
-          >
-            {supporters.map((entry: any) => (
-              <SupporterTile
-                key={entry.fields.url}
-                url={entry.fields.url}
-                image={entry.fields.image.fields.file.url}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+        {supporters && (
+          <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
+            <h2 className="mb-12 font-headline text-4xl font-bold">
+              Unsere Unternehmenspartner
+            </h2>
+            <div
+              style={{
+                gridTemplateColumns: "repeat(auto-fit,minmax(270px, 1fr))",
+              }}
+              className="grid-rows-auto grid gap-x-4 gap-y-8"
+            >
+              {supporters.map((entry: any) => (
+                <SupporterTile
+                  key={entry.fields.url}
+                  url={entry.fields.url}
+                  image={entry.fields.image.fields.file.url}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
       <ContentBlocks content={page.fields.content} locale={locale} />
       {media && (
         <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">

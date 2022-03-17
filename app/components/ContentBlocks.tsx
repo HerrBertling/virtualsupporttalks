@@ -7,6 +7,7 @@ import {
   ITwoImagesFields,
   IImageCollectionFields,
   IBlogpostFields,
+  IGenericContentFields,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
 
@@ -15,7 +16,8 @@ import ContentBlockCentered from "./ContentBlocks/Centered";
 import ContentBlockFullSizeImageBg from "./ContentBlocks/FullSizeImageBg";
 import ContentBlockImageBg from "./ContentBlocks/ImageBg";
 import ContentBlockTwoImages from "./ContentBlocks/TwoImages";
-import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection"
+import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection";
+import GenericContent from "./ContentBlocks/GenericContent";
 import ContentfulRichText from "./ContentfulRichText";
 
 type ContentBlockProps = {
@@ -112,25 +114,24 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
           );
         }
         if (id === "imageCollection") {
-          const {internalTitle,images
-          } = item.fields as IImageCollectionFields;
+          const { internalTitle, images } =
+            item.fields as IImageCollectionFields;
           return (
             <ContentBlockImageCollection
               key={item.sys.id}
               images={images}
               internalTitle={internalTitle}
               withPaddingTop={index === 0}
-           />
+            />
           );
         }
         if (id === "coachList") {
           return null;
+        } else {
+          const { content } = item.fields as IGenericContentFields;
+
+          return <GenericContent key={item.sys.id} content={content} />;
         }
-        return (
-          <div key={item.sys.id}>
-            {item.fields.title + " " + item.sys.contentType.sys.id}
-          </div>
-        );
       })}
     </div>
   );

@@ -10,7 +10,7 @@ type ContentCenteredProps = {
   buttonUrl: ICenteredContentFields["buttonUrl"];
 };
 
-export default function ContentCentered({
+export default function ContentBlockCentered({
   content,
   bgcolor,
   buttonText,
@@ -24,7 +24,6 @@ export default function ContentCentered({
       : "bg-white";
 
   const useWhiteProse = bgcolor !== "white";
-
   const hasButton = buttonText && buttonUrl;
 
   return (
@@ -38,9 +37,7 @@ export default function ContentCentered({
           <ContentfulRichText content={content} useWhiteProse={useWhiteProse} />
         )}
       </div>
-      <div v-if="hasButton">
-        <button>{buttonText}</button>
-      </div>
+      {hasButton && <button>{buttonText}</button>}
     </section>
   );
 }
