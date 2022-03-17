@@ -1453,6 +1453,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 256px;
 }
 
+.min-h-\[50vh\] {
+  min-height: 50vh;
+}
+
 .min-h-\[400px\] {
   min-height: 400px;
 }
@@ -1527,6 +1531,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-full {
   max-width: 100%;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .max-w-\[90vw\] {
@@ -2707,6 +2715,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:text-5xl {
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .lg\:underline {
+    -webkit-text-decoration-line: underline;
+            text-decoration-line: underline;
+  }
+
+  .lg\:decoration-vsp-500 {
+    -webkit-text-decoration-color: #9cc317;
+            text-decoration-color: #9cc317;
   }
 
   .lg\:shadow-none {
