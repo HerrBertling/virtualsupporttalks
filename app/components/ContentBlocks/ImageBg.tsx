@@ -39,9 +39,7 @@ export default function ContentBlockImageBg({
       {hasButton && (
         <div className="z-10 flex flex-row flex-wrap items-center justify-center gap-8">
           <CleverButton to={buttonUrl}>{buttonText}</CleverButton>
-          {withCharityBanner && (
-            <AmazonCharityBanner v-if="withCharityBanner" />
-          )}
+          {withCharityBanner && <AmazonCharityBanner />}
         </div>
       )}
     </section>
