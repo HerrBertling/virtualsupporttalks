@@ -8,8 +8,8 @@ import type {
   LOCALE_CODE,
   ICoach,
   INavigation,
-  IBlogpost,
   ITag,
+  ICoachtag,
 } from "../../@types/generated/contentful";
 
 export type PageNotFoundResponse = ThrownResponse<404, string>;
@@ -163,7 +163,7 @@ export const getTags = async () => {
 
   coaches.forEach((coach) => {
     if (coach.fields.tag) {
-      coach.fields.tag.forEach((coachTag) => {
+      coach.fields.tag.forEach((coachTag: ICoachtag) => {
         tags.push(coachTag.fields.tag);
       });
     }
@@ -174,33 +174,20 @@ export const getTags = async () => {
 
 export const getCoaches = async (
   lang: string | null = null,
-  tags: string[] | null = null
+  locale: LOCALE_CODE = "de"
 ) => {
-  let baseOptions = {
+  const client = createContentfulClient();
+
+  const usedLanguage = lang === "de" ? null : lang;
+
+  const coachesResponse: EntryCollection<ICoach> = await client.getEntries({
     limit: 500,
     content_type: "coach",
     order: "fields.name",
-  };
-
-  if (lang) {
-    baseOptions = {
-      ...baseOptions,
-      "fields.languages[in]": lang,
-    };
-  }
-
-  if (tags) {
-    baseOptions = {
-      ...baseOptions,
-      "fields.tags[in]": tags,
-    };
-  }
-
-  const client = createContentfulClient();
-
-  const coachesResponse: EntryCollection<ICoach> = await client.getEntries({
-    ...baseOptions,
+    locale: usedLanguage,
   });
+
+  console.log(coachesResponse.items.length);
 
   return shuffle(coachesResponse.items);
 };

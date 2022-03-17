@@ -1,5 +1,5 @@
 import { ICoach } from "../../@types/generated/contentful";
-import { useLoaderData, useCatch, Form } from "remix";
+import { useLoaderData, useCatch, Form, useTransition } from "remix";
 import type { LoaderFunction, ActionFunction } from "remix";
 import {
   getCoaches,
@@ -22,13 +22,18 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const page = getPageById(pageIds.SEARCH_HELP, locale);
   const coaches: Promise<ICoach[]> = getCoaches(lang);
+
   const languages = getLanguages();
   const tags = getTags();
   const navigation = getMainNav("de");
 
   const data = await Promise.all([page, coaches, languages, tags, navigation]);
 
-  if (!coaches) {
+  const coachList = data[1];
+
+  const unfilteredCoachesAmount = coachList.length;
+
+  if (!coachList || coachList.length === 0) {
     throw new Response("Not Found", {
       status: 404,
     });
@@ -37,26 +42,47 @@ export const loader: LoaderFunction = async ({ request }) => {
     throw new Response("Could not load navigation", { status: 404 });
   }
 
-  return [...data, checkedTags, lang, locale];
-};
+  const filteredCoaches = coachList.filter((coach) => {
+    const coachTags = coach.fields.tag;
+    if (!checkedTags || checkedTags.length === 0) {
+      return true;
+    }
+    return (
+      !!coachTags &&
+      checkedTags.some((tag) =>
+        coachTags.some((cTag) => cTag.fields.tag === tag)
+      )
+    );
+  });
 
-export const action: ActionFunction = async ({ request }) => {
-  const form = await request.formData();
-  const language = form.get("lang");
-  const tags = form.getAll("tag");
+  return {
+    page: data[0],
+    coaches: filteredCoaches,
+    coachesAmount: filteredCoaches.length,
+    unfilteredCoachesAmount,
+    languages: data[2],
+    tags: data[3],
+    navigation: data[4],
+    checkedTags,
+    lang,
+    locale,
+  };
 };
 
 export default function SearchingCoach() {
-  const [
+  const {
     page,
     coaches,
+    coachesAmount,
+    unfilteredCoachesAmount,
     languages,
     tags,
     navigation,
     checkedTags,
     currentLang,
     locale,
-  ] = useLoaderData();
+  } = useLoaderData();
+  const state = useTransition();
   return (
     <BasicLayout nav={navigation.fields.items} lang="de">
       <div>
@@ -104,12 +130,19 @@ export default function SearchingCoach() {
                 </label>
               ))}
             </fieldset>
-            <button
-              className="font-inherit my-8 inline-flex items-center justify-center rounded-md bg-vsp-500 py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg"
-              type="submit"
-            >
-              Filter anwenden
-            </button>
+            <div className="flex items-center gap-4">
+              <button
+                className="font-inherit my-8 inline-flex items-center justify-center rounded-md bg-vsp-500 py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 disabled:bg-fuchsia-500 md:text-lg"
+                type="submit"
+                disabled={state.state === "submitting"}
+              >
+                Filter anwenden {state.state}
+              </button>
+              <span>
+                {coachesAmount} von {unfilteredCoachesAmount} Zuhörer*innen
+                gefunden.
+              </span>
+            </div>
           </Form>
         </details>
         <div className="bg-gray-100">
