@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   INavigationItem,
   LOCALE_CODE,
@@ -13,7 +14,19 @@ export default function LayoutHeader({
   nav: INavigationItem[];
   lang: LOCALE_CODE;
 }) {
-  const hasScrolled = false;
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  const handleScroll = () => {
+    window.scrollY >= 40 ? setHasScrolled(true) : setHasScrolled(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
   return (
     <header
       className={`max-w-screen fixed top-0 z-50 h-20 w-full bg-transparent transition-all duration-300 after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:z-10 after:block after:bg-white after:opacity-0 after:transition-opacity after:duration-300 after:content-[\'\'] ${
