@@ -3,11 +3,23 @@ import {
   LOCALE_CODE,
 } from "../../../../@types/generated/contentful";
 import { useCatch, useLoaderData } from "remix";
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "remix";
 import { getBlogpost } from "~/utils/contentful";
 import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
-import BasicLayout from "~/components/layout/BasicLayout";
+import { getSeoMeta } from "~/seo";
+
+export const meta: MetaFunction = ({ data }: { data: IBlogpost }) => {
+  const { title, seo, description } = data?.blogpost?.fields;
+
+  let seoMeta = getSeoMeta({
+    title: seo?.fields?.title || title,
+    description: seo?.fields?.description || description,
+  });
+  return {
+    ...seoMeta,
+  };
+};
 
 export const loader: LoaderFunction = async ({ params }) => {
   const { post, locale } = params;

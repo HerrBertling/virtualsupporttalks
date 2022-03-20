@@ -1,6 +1,6 @@
 import { ICoach } from "../../@types/generated/contentful";
 import { useLoaderData, useCatch, Form } from "remix";
-import type { LoaderFunction, ActionFunction } from "remix";
+import type { LoaderFunction, ActionFunction, MetaFunction } from "remix";
 import {
   getCoaches,
   getLanguages,
@@ -13,6 +13,19 @@ import pageIds from "~/utils/pageIds";
 import CoachCard from "~/components/CoachCard";
 import ContentfulRichText from "~/components/ContentfulRichText";
 import BasicLayout from "~/components/layout/BasicLayout";
+import { getSeoMeta } from "~/seo";
+
+export const meta: MetaFunction = ({ data }) => {
+  const { title, seo } = data?.page?.fields;
+
+  let seoMeta = getSeoMeta({
+    title: seo?.fields?.title || title,
+    description: seo?.fields?.description || null,
+  });
+  return {
+    ...seoMeta,
+  };
+};
 
 export const loader: LoaderFunction = async ({ request }) => {
   const searchParams = new URL(request.url).searchParams;
@@ -37,7 +50,16 @@ export const loader: LoaderFunction = async ({ request }) => {
     throw new Response("Could not load navigation", { status: 404 });
   }
 
-  return [...data, checkedTags, lang, locale];
+  return {
+    page: data[0],
+    coaches: data[1],
+    languages: data[2],
+    tags: data[3],
+    navigation: data[4],
+    locale,
+    checkedTags,
+    currentLang: lang,
+  };
 };
 
 export const action: ActionFunction = async ({ request }) => {
@@ -47,7 +69,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function SearchingCoach() {
-  const [
+  const {
     page,
     coaches,
     languages,
@@ -56,7 +78,7 @@ export default function SearchingCoach() {
     checkedTags,
     currentLang,
     locale,
-  ] = useLoaderData();
+  } = useLoaderData();
   return (
     <BasicLayout nav={navigation.fields.items} lang="de">
       <div>
