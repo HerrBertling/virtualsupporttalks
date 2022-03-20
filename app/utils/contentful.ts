@@ -197,8 +197,6 @@ export const getCoaches = async (
     ...options,
   });
 
-  console.log(coachesResponse.items.length);
-
   return shuffle(coachesResponse.items);
 };
 

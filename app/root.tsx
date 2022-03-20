@@ -31,7 +31,6 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  console.log(cookie);
   return json({ track: cookie.gdprConsent });
 };
 
