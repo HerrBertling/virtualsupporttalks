@@ -156,20 +156,16 @@ export const getLanguages = async () => {
   return [...new Set(lowercasedLangs)].sort();
 };
 
-export const getTags = async () => {
-  const coaches = await getCoaches("de");
+export const getTags = async (locale: LOCALE_CODE = "de") => {
+  const client = createContentfulClient();
 
-  let tags: string[] = [];
-
-  coaches.forEach((coach) => {
-    if (coach.fields.tag) {
-      coach.fields.tag.forEach((coachTag: ICoachtag) => {
-        tags.push(coachTag.fields.tag);
-      });
-    }
+  const { items } = await client.getEntries({
+    content_type: "coachtag",
+    order: "fields.tag",
+    locale: locale,
   });
 
-  return [...new Set(tags)].sort();
+  return items as ICoachtag[];
 };
 
 export const getCoaches = async (
@@ -180,11 +176,25 @@ export const getCoaches = async (
 
   const usedLanguage = lang === "de" ? null : lang;
 
-  const coachesResponse: EntryCollection<ICoach> = await client.getEntries({
+  let options = {};
+
+  const baseOptions = {
     limit: 500,
     content_type: "coach",
     order: "fields.name",
-    locale: usedLanguage,
+  };
+
+  if (usedLanguage) {
+    options = {
+      ...baseOptions,
+      "fields.languages[in]": usedLanguage,
+    };
+  } else {
+    options = baseOptions;
+  }
+
+  const coachesResponse: EntryCollection<ICoach> = await client.getEntries({
+    ...options,
   });
 
   console.log(coachesResponse.items.length);

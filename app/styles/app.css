@@ -2011,6 +2011,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(80 100 12 / var(--tw-text-opacity));
 }
 
+.text-slate-400 {
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
+}
+
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -2262,9 +2267,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   opacity: 0.8;
 }
 
+.disabled\:pointer-events-none:disabled {
+  pointer-events: none;
+}
+
 .disabled\:bg-fuchsia-500:disabled {
   --tw-bg-opacity: 1;
   background-color: rgb(217 70 239 / var(--tw-bg-opacity));
+}
+
+.disabled\:bg-vsp-300:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(194 233 68 / var(--tw-bg-opacity));
+}
+
+.disabled\:bg-vsp-200:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 242 146 / var(--tw-bg-opacity));
 }
 
 .group:hover .group-hover\:text-vsp-500 {

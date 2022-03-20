@@ -1,4 +1,4 @@
-import { ICoach } from "../../@types/generated/contentful";
+import { ICoach, ICoachtag } from "../../@types/generated/contentful";
 import { useLoaderData, useCatch, Form, useTransition } from "remix";
 import type { LoaderFunction, ActionFunction } from "remix";
 import {
@@ -15,23 +15,21 @@ import ContentfulRichText from "~/components/ContentfulRichText";
 import BasicLayout from "~/components/layout/BasicLayout";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const searchParams = new URL(request.url).searchParams;
-  const lang = searchParams.get("lang") || "de";
-  const checkedTags = searchParams.getAll("tag");
   const locale = "de";
+  const searchParams = new URL(request.url).searchParams;
+  const lang = searchParams.get("lang") || locale;
+  const checkedTags = searchParams.getAll("tag");
 
   const page = getPageById(pageIds.SEARCH_HELP, locale);
   const coaches: Promise<ICoach[]> = getCoaches(lang);
 
   const languages = getLanguages();
   const tags = getTags();
-  const navigation = getMainNav("de");
+  const navigation = getMainNav(locale);
 
   const data = await Promise.all([page, coaches, languages, tags, navigation]);
 
   const coachList = data[1];
-
-  const unfilteredCoachesAmount = coachList.length;
 
   if (!coachList || coachList.length === 0) {
     throw new Response("Not Found", {
@@ -59,7 +57,6 @@ export const loader: LoaderFunction = async ({ request }) => {
     page: data[0],
     coaches: filteredCoaches,
     coachesAmount: filteredCoaches.length,
-    unfilteredCoachesAmount,
     languages: data[2],
     tags: data[3],
     navigation: data[4],
@@ -74,7 +71,6 @@ export default function SearchingCoach() {
     page,
     coaches,
     coachesAmount,
-    unfilteredCoachesAmount,
     languages,
     tags,
     navigation,
@@ -115,32 +111,31 @@ export default function SearchingCoach() {
               <legend className="mb-4 inline-block text-xl">
                 Nach Schlagwort filtern
               </legend>
-              {tags.map((tag: string) => (
-                <label key={tag}>
+              {tags.map((tag: ICoachtag) => (
+                <label key={tag.sys.id}>
                   <input
                     className="peer sr-only"
                     type="checkbox"
                     name="tag"
-                    value={tag}
-                    defaultChecked={checkedTags.includes(tag)}
+                    value={tag.fields.tag}
+                    defaultChecked={checkedTags.includes(tag.fields.tag)}
                   />
                   <span className="mr-1 mb-1 inline-block cursor-pointer rounded-md border px-2 py-1 peer-checked:bg-gray-500 peer-checked:text-white">
-                    {tag}
+                    {tag.fields.tag}
                   </span>
                 </label>
               ))}
             </fieldset>
             <div className="flex items-center gap-4">
               <button
-                className="font-inherit my-8 inline-flex items-center justify-center rounded-md bg-vsp-500 py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 disabled:bg-fuchsia-500 md:text-lg"
+                className="font-inherit my-8 inline-flex items-center justify-center rounded-md bg-vsp-500 py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 disabled:pointer-events-none disabled:bg-vsp-200 md:text-lg"
                 type="submit"
                 disabled={state.state === "submitting"}
               >
-                Filter anwenden {state.state}
+                Filter anwenden
               </button>
-              <span>
-                {coachesAmount} von {unfilteredCoachesAmount} Zuhörer*innen
-                gefunden.
+              <span className="text-sm text-slate-400">
+                {coachesAmount} Zuhörer*innen gefunden.
               </span>
             </div>
           </Form>
