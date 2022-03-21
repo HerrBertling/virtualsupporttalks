@@ -1,8 +1,22 @@
 import { IPage, LOCALE_CODE } from "../../../@types/generated/contentful";
 import { useLoaderData } from "remix";
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "remix";
 import { getPage } from "~/utils/contentful";
 import ContentBlocks from "~/components/ContentBlocks";
+
+import { getSeoMeta } from "~/seo";
+
+export const meta: MetaFunction = ({ data }) => {
+  const { title, seo } = data?.page?.fields;
+
+  let seoMeta = getSeoMeta({
+    title: seo?.fields?.title || title,
+    description: seo?.fields?.description || null,
+  });
+  return {
+    ...seoMeta,
+  };
+};
 
 export const loader: LoaderFunction = async ({ params }) => {
   const { slug, locale } = params;
