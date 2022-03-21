@@ -11,7 +11,6 @@ import {
   useFetcher,
   useLoaderData,
 } from "remix";
-
 import type { LinksFunction, MetaFunction } from "remix";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -35,7 +34,6 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-
   return json({ track: cookie.gdprConsent });
 };
 
@@ -49,7 +47,6 @@ export default function App() {
       gtag.pageview(location.pathname);
     }
   }, [location]);
-
   return (
     <html lang="en">
       <head>

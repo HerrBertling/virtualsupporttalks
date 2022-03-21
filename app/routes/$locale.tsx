@@ -6,8 +6,7 @@ import { LoaderFunction, useCatch } from "remix";
 import { Outlet, useLoaderData, redirect } from "remix";
 import { getMainNav } from "~/utils/contentful";
 import BasicLayout from "~/components/layout/BasicLayout";
-import { i18n } from "../utils/i18n.server"; // modified
-import { useSetupTranslations } from "remix-i18next"; // modified
+import { useSetupTranslations } from "remix-i18next";
 
 type WrapperLoaderItems = {
   nav: INavigationItem[];
