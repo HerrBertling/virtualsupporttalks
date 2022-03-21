@@ -16,16 +16,19 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import * as gtag from "~/utils/gtag";
 
+import { getSeo } from "~/seo";
+let [seoMeta, seoLinks] = getSeo();
+
 import { gdprConsent } from "./cookies";
 
 import styles from "./styles/app.css";
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
+  return [...seoLinks, { rel: "stylesheet", href: styles }];
 };
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { ...seoMeta };
 };
 
 export const loader: LoaderFunction = async ({ request }) => {

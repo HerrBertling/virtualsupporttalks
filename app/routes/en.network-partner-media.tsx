@@ -1,5 +1,5 @@
 import { useLoaderData } from "remix";
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "remix";
 import {
   getMainNav,
   getPageById,
@@ -11,12 +11,25 @@ import ContentBlocks from "~/components/ContentBlocks";
 import pageIds from "~/utils/pageIds";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SupporterTile from "~/components/SupporterTile";
+import { getSeoMeta } from "~/seo";
+
+export const meta: MetaFunction = ({ data }) => {
+  const { title, seo } = data?.page?.fields;
+
+  let seoMeta = getSeoMeta({
+    title: seo?.fields?.title || title,
+    description: seo?.fields?.description || null,
+  });
+  return {
+    ...seoMeta,
+  };
+};
 
 export const loader: LoaderFunction = async () => {
   const locale = "en";
 
   const page = getPageById(pageIds.NETWORK, locale);
-  const navigation = getMainNav("en");
+  const navigation = getMainNav(locale);
   const network = getNetwork();
   const supporters = getSupporters();
   const media = getMedia();

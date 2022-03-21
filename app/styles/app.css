@@ -1349,6 +1349,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.25rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mt-32 {
   margin-top: 8rem;
 }
@@ -1359,10 +1363,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mb-4 {
   margin-bottom: 1rem;
-}
-
-.mb-1 {
-  margin-bottom: 0.25rem;
 }
 
 .mb-12 {
@@ -1501,16 +1501,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 32rem;
 }
 
+.max-w-7xl {
+  max-width: 80rem;
+}
+
 .max-w-none {
   max-width: none;
 }
 
 .max-w-\[300px\] {
   max-width: 300px;
-}
-
-.max-w-7xl {
-  max-width: 80rem;
 }
 
 .max-w-6xl {
@@ -1873,11 +1873,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.25rem;
 }
 
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1886,6 +1881,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-12 {
   padding-top: 3rem;
   padding-bottom: 3rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .py-16 {
@@ -2289,6 +2289,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .peer:checked ~ .peer-checked\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.peer:disabled ~ .peer-disabled\:pointer-events-none {
+  pointer-events: none;
+}
+
+.peer:disabled ~ .peer-disabled\:cursor-default {
+  cursor: default;
+}
+
+.peer:disabled ~ .peer-disabled\:opacity-40 {
+  opacity: 0.4;
 }
 
 .prose-headings\:font-headline :is(:where(h1, h2, h3, h4, th):not(:where([class~="not-prose"] *))) {

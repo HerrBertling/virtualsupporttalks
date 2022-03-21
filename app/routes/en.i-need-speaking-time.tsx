@@ -1,15 +1,33 @@
 import { ICoachtag } from "../../@types/generated/contentful";
 import { useLoaderData, useCatch, Form, useTransition } from "remix";
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "remix";
 import ContentBlocks from "~/components/ContentBlocks";
 import BasicLayout from "~/components/layout/BasicLayout";
-import { getSearchPageContents } from "~/utils/getSearchPageContents";
+import {
+  getSearchPageContents,
+  SearchPageContentResponse,
+} from "~/utils/getSearchPageContents";
 import CoachList from "~/components/CoachList";
 import CoachFilterTag from "~/components/CoachFilterTag";
+import { getSeoMeta } from "~/seo";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({
+  request,
+}): Promise<SearchPageContentResponse> => {
   const data = await getSearchPageContents(request, "en");
   return data;
+};
+
+export const meta: MetaFunction = ({ data }) => {
+  const { title, seo } = data?.page?.fields;
+
+  let seoMeta = getSeoMeta({
+    title: seo?.fields?.title || title,
+    description: seo?.fields?.description || null,
+  });
+  return {
+    ...seoMeta,
+  };
 };
 
 export default function SearchingCoach() {
@@ -23,6 +41,7 @@ export default function SearchingCoach() {
     checkedTags,
     currentLang,
     locale,
+    availableTagIDs,
   } = useLoaderData();
   const state = useTransition();
   return (
@@ -40,8 +59,10 @@ export default function SearchingCoach() {
               </legend>
               {languages.map((lang: string) => (
                 <CoachFilterTag
+                  disabled={false}
                   key={lang}
                   value={lang}
+                  name="lang"
                   defaultValue={currentLang === lang}
                   type="radio"
                 >
@@ -55,8 +76,10 @@ export default function SearchingCoach() {
               </legend>
               {tags.map((tag: ICoachtag) => (
                 <CoachFilterTag
+                  disabled={!availableTagIDs.includes(tag.sys.id)}
                   key={tag.sys.id}
                   value={tag.fields.tag}
+                  name="tag"
                   defaultValue={checkedTags.includes(tag.fields.tag)}
                   type="checkbox"
                 >

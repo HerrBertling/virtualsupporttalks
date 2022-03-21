@@ -23,11 +23,12 @@ type PromiseResponse = [
   INavigation | null
 ];
 
-type SearchPageContentResponse = {
+export type SearchPageContentResponse = {
   page: IPage | null;
   coaches: ICoach[] | null;
   languages: string[] | null;
   tags: ICoachtag[] | null;
+  availableTagIDs: string[];
   navigation: INavigation | null;
   checkedTags: string[] | null;
   currentLang: string;
@@ -74,6 +75,13 @@ export const getSearchPageContents = async (
     );
   });
 
+  // get available tags from all coaches
+  const availableTagIDs = filteredCoaches
+    .map((coach) => coach.fields.tag)
+    .filter((tags) => !!tags)
+    .map((tags) => tags.map((tag) => tag.sys.id))
+    .flat();
+
   return {
     page,
     coaches: filteredCoaches,
@@ -83,6 +91,7 @@ export const getSearchPageContents = async (
     checkedTags,
     locale,
     currentLang: lang,
-    coachesAmount: coaches?.length || 0,
+    coachesAmount: filteredCoaches?.length || 0,
+    availableTagIDs,
   };
 };
