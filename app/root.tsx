@@ -11,8 +11,7 @@ import {
   useFetcher,
   useLoaderData,
 } from "remix";
-import { i18n } from "./utils/i18n.server"; // modified
-import { useSetupTranslations } from "remix-i18next"; // modified
+
 import type { LinksFunction, MetaFunction } from "remix";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -36,17 +35,15 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  const locale = await i18n.getLocale(request);
 
-  return json({ track: cookie.gdprConsent, locale });
+  return json({ track: cookie.gdprConsent });
 };
 
 export default function App() {
-  const { track, locale } = useLoaderData();
+  const { track } = useLoaderData();
   const analyticsFetcher = useFetcher();
   const location = useLocation();
 
-  useSetupTranslations(locale);
   useEffect(() => {
     if (track) {
       gtag.pageview(location.pathname);

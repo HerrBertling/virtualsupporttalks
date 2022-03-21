@@ -1,8 +1,6 @@
-import { json, LoaderFunction, useLoaderData } from "remix";
-
 import { useTranslation } from "react-i18next";
 
-export default function SupportMedia() {
+export default function test() {
   const { t } = useTranslation("common");
 
   return (
