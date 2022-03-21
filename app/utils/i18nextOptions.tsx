@@ -1,19 +1,28 @@
 export default {
-  debug: process.env.NODE_ENV !== "production",
+  debug: false,
+  // process.env.NODE_ENV !== "production",
   fallbackLng: "de",
   supportedLngs: ["en", "de"],
-  defaultNS: "common",
-  ns: ["common"],
+  defaultNS: "networkPartnerMedia",
+  ns: ["networkPartnerMedia"],
   react: { useSuspense: true },
   resources: {
     en: {
-      common: {
-        key: "hello from english site",
+      networkPartnerMedia: {
+        title: {
+          network: "Our network",
+          partner: "Our company partners",
+          media: "Redezeit in de Media",
+        },
       },
     },
     de: {
-      common: {
-        key: "this is the german page",
+      networkPartnerMedia: {
+        title: {
+          network: "Unser Netzwerk",
+          partner: "Unsere Unternehmenspartner",
+          media: "Redezeit in den Medien",
+        },
       },
     },
   },
