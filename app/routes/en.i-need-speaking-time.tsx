@@ -1,69 +1,15 @@
-import { ICoach, ICoachtag } from "../../@types/generated/contentful";
+import { ICoachtag } from "../../@types/generated/contentful";
 import { useLoaderData, useCatch, Form, useTransition } from "remix";
-import type { LoaderFunction, ActionFunction } from "remix";
-import {
-  getCoaches,
-  getLanguages,
-  getMainNav,
-  getPageById,
-  getTags,
-} from "~/utils/contentful";
+import type { LoaderFunction } from "remix";
 import ContentBlocks from "~/components/ContentBlocks";
-import pageIds from "~/utils/pageIds";
-import CoachCard from "~/components/CoachCard";
-import ContentfulRichText from "~/components/ContentfulRichText";
 import BasicLayout from "~/components/layout/BasicLayout";
+import { getSearchPageContents } from "~/utils/getSearchPageContents";
+import CoachList from "~/components/CoachList";
+import CoachFilterTag from "~/components/CoachFilterTag";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const locale = "en";
-  const searchParams = new URL(request.url).searchParams;
-  const lang = searchParams.get("lang") || locale;
-  const checkedTags = searchParams.getAll("tag");
-
-  const page = getPageById(pageIds.SEARCH_HELP, locale);
-  const coaches: Promise<ICoach[]> = getCoaches(lang);
-
-  const languages = getLanguages();
-  const tags = getTags(locale);
-  const navigation = getMainNav(locale);
-
-  const data = await Promise.all([page, coaches, languages, tags, navigation]);
-
-  const coachList = data[1];
-
-  if (!coachList || coachList.length === 0) {
-    throw new Response("Not Found", {
-      status: 404,
-    });
-  }
-  if (!navigation) {
-    throw new Response("Could not load navigation", { status: 404 });
-  }
-
-  const filteredCoaches = coachList.filter((coach) => {
-    const coachTags = coach.fields.tag;
-    if (!checkedTags || checkedTags.length === 0) {
-      return true;
-    }
-    return (
-      !!coachTags &&
-      checkedTags.some((tag) =>
-        coachTags.some((cTag) => cTag.fields.tag === tag)
-      )
-    );
-  });
-
-  return {
-    page: data[0],
-    coaches: filteredCoaches,
-    coachesAmount: filteredCoaches.length,
-    languages: data[2],
-    tags: data[3],
-    navigation: data[4],
-    checkedTags,
-    lang,
-    locale,
-  };
+  const data = await getSearchPageContents(request, "en");
+  return data;
 };
 
 export default function SearchingCoach() {
@@ -93,18 +39,14 @@ export default function SearchingCoach() {
                 Filter by language
               </legend>
               {languages.map((lang: string) => (
-                <label className="min-h-4 mr-1 mb-1 inline-block" key={lang}>
-                  <input
-                    className="peer sr-only"
-                    type="radio"
-                    name="lang"
-                    value={lang}
-                    defaultChecked={currentLang === lang}
-                  />
-                  <span className="inline-flex cursor-pointer items-center gap-1 rounded-md border px-2 py-1 peer-checked:bg-gray-500 peer-checked:text-white">
-                    <span>{lang}</span>
-                  </span>
-                </label>
+                <CoachFilterTag
+                  key={lang}
+                  value={lang}
+                  defaultValue={currentLang === lang}
+                  type="radio"
+                >
+                  {lang}
+                </CoachFilterTag>
               ))}
             </fieldset>
             <fieldset className="mt-8">
@@ -112,18 +54,14 @@ export default function SearchingCoach() {
                 Filter by tag
               </legend>
               {tags.map((tag: ICoachtag) => (
-                <label key={tag.sys.id}>
-                  <input
-                    className="peer sr-only"
-                    type="checkbox"
-                    name="tag"
-                    value={tag.fields.tag}
-                    defaultChecked={checkedTags.includes(tag.fields.tag)}
-                  />
-                  <span className="mr-1 mb-1 inline-block cursor-pointer rounded-md border px-2 py-1 peer-checked:bg-gray-500 peer-checked:text-white">
-                    {tag.fields.tag}
-                  </span>
-                </label>
+                <CoachFilterTag
+                  key={tag.sys.id}
+                  value={tag.fields.tag}
+                  defaultValue={checkedTags.includes(tag.fields.tag)}
+                  type="checkbox"
+                >
+                  {tag.fields.tag}
+                </CoachFilterTag>
               ))}
             </fieldset>
             <div className="flex items-center gap-4">
@@ -140,32 +78,7 @@ export default function SearchingCoach() {
             </div>
           </Form>
         </details>
-        <div className="bg-gray-100">
-          <section className="mx-auto grid max-w-7xl grid-cols-coachgrid items-start gap-x-6 gap-y-12 py-12 px-4">
-            {coaches.map((coach: ICoach) => {
-              const { email, name, url, phone, emergency, image, description } =
-                coach.fields;
-              return (
-                <CoachCard
-                  key={coach.sys.id}
-                  name={name}
-                  email={email}
-                  url={url}
-                  phone={phone}
-                  emergency={emergency}
-                  image={image}
-                >
-                  {description && (
-                    <ContentfulRichText
-                      content={description}
-                      withProse={false}
-                    />
-                  )}
-                </CoachCard>
-              );
-            })}
-          </section>
-        </div>
+        <CoachList coaches={coaches} />
       </div>
     </BasicLayout>
   );

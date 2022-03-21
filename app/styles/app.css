@@ -1413,10 +1413,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100%;
 }
 
-.h-4 {
-  height: 1rem;
-}
-
 .h-\[400px\] {
   height: 400px;
 }
@@ -1483,10 +1479,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[80\%\] {
   width: 80%;
-}
-
-.w-4 {
-  width: 1rem;
 }
 
 .w-screen {
@@ -2271,16 +2263,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   pointer-events: none;
 }
 
-.disabled\:bg-fuchsia-500:disabled {
-  --tw-bg-opacity: 1;
-  background-color: rgb(217 70 239 / var(--tw-bg-opacity));
-}
-
-.disabled\:bg-vsp-300:disabled {
-  --tw-bg-opacity: 1;
-  background-color: rgb(194 233 68 / var(--tw-bg-opacity));
-}
-
 .disabled\:bg-vsp-200:disabled {
   --tw-bg-opacity: 1;
   background-color: rgb(220 242 146 / var(--tw-bg-opacity));
@@ -2307,11 +2289,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .peer:checked ~ .peer-checked\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.peer:checked ~ .peer-checked\:text-fuchsia-500 {
-  --tw-text-opacity: 1;
-  color: rgb(217 70 239 / var(--tw-text-opacity));
 }
 
 .prose-headings\:font-headline :is(:where(h1, h2, h3, h4, th):not(:where([class~="not-prose"] *))) {

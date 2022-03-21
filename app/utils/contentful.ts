@@ -47,7 +47,9 @@ export const getPageById = async (id: string, locale: LOCALE_CODE) => {
   return entry as IPage;
 };
 
-export const getMainNav = async (locale: LOCALE_CODE) => {
+export const getMainNav = async (
+  locale: LOCALE_CODE
+): Promise<INavigation | null> => {
   const client = createContentfulClient();
   const entry: Entry<INavigation> = await client.getEntry(
     "67EXX84GGCZfZayO0JxrFg",
@@ -138,7 +140,7 @@ function shuffle(array: any[]) {
   return array;
 }
 
-export const getLanguages = async () => {
+export const getLanguages = async (): Promise<string[]> => {
   const coaches = await getCoaches("de");
 
   let languages: string[] = [];
@@ -168,10 +170,7 @@ export const getTags = async (locale: LOCALE_CODE = "de") => {
   return items as ICoachtag[];
 };
 
-export const getCoaches = async (
-  lang: string | null = null,
-  locale: LOCALE_CODE = "de"
-) => {
+export const getCoaches = async (lang: string | null = null) => {
   const client = createContentfulClient();
 
   const usedLanguage = lang === "de" ? null : lang;
@@ -197,7 +196,7 @@ export const getCoaches = async (
     ...options,
   });
 
-  return shuffle(coachesResponse.items);
+  return shuffle(coachesResponse.items) as ICoach[];
 };
 
 export const getNetwork = async () => {
