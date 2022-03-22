@@ -45,7 +45,7 @@ export default function SearchingCoach() {
   } = useLoaderData();
   const state = useTransition();
   return (
-    <BasicLayout nav={navigation.fields.items} lang="de">
+    <BasicLayout nav={navigation.fields.items} lang={locale}>
       <div>
         <ContentBlocks content={page.fields.content} locale={locale} />
         <details open={true} className="mx-auto max-w-7xl py-8 px-4">
