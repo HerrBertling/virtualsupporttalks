@@ -1,3 +1,6 @@
+import translationEN from "../../public/locales/en/translation.json";
+import translationDE from "../../public/locales/de/translation.json";
+
 export default {
   debug: false,
   // process.env.NODE_ENV !== "production",
@@ -7,30 +10,7 @@ export default {
   ns: ["networkPartnerMedia", "searchingCoach"],
   react: { useSuspense: false },
   resources: {
-    en: {
-      networkPartnerMedia: {
-        title: {
-          network: "Our network",
-          partner: "Our company partners",
-          media: "Redezeit in de Media",
-        },
-      },
-      searchingCoach: {
-        filter: {
-          language: "TESTFilter by language",
-          tag: "TESTFilter by tag",
-          submitCta: "TESTApply filter",
-        },
-      },
-    },
-    de: {
-      networkPartnerMedia: {
-        title: {
-          network: "Unser Netzwerk",
-          partner: "Unsere Unternehmenspartner",
-          media: "Redezeit in den Medien",
-        },
-      },
-    },
+    en: translationEN,
+    de: translationDE,
   },
 };

@@ -1,0 +1,16 @@
+{
+  "networkPartnerMedia": {
+    "title": {
+      "network": "Our network",
+      "partner": "Our company partners",
+      "media": "Redezeit in de Media"
+    }
+  },
+  "searchingCoach": {
+    "filter": {
+      "language": "TESTFilter by language",
+      "tag": "TESTFilter by tag",
+      "submitCta": "TESTApply filter"
+    }
+  }
+}

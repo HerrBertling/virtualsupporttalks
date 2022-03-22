@@ -1,0 +1,16 @@
+{
+  "networkPartnerMedia": {
+    "title": {
+      "network": "Unser Netzwerk",
+      "partner": "Unsere Unternehmenspartner",
+      "media": "Redezeit in den Medien"
+    }
+  },
+  "searchingCoach": {
+    "filter": {
+      "language": "Nach Sprache filtern",
+      "tag": "Nach Schlagwort filtern",
+      "submitCta": "Filter anwenden"
+    }
+  }
+}

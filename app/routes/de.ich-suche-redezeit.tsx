@@ -10,6 +10,7 @@ import {
 import CoachList from "~/components/CoachList";
 import CoachFilterTag from "~/components/CoachFilterTag";
 import { getSeoMeta } from "~/seo";
+import { useTranslation } from "react-i18next";
 
 export const loader: LoaderFunction = async ({
   request,
@@ -44,6 +45,7 @@ export default function SearchingCoach() {
     availableTagIDs,
   } = useLoaderData();
   const state = useTransition();
+  const { t } = useTranslation("searchingCoach");
   return (
     <BasicLayout nav={navigation.fields.items} lang={locale}>
       <div>
@@ -55,7 +57,7 @@ export default function SearchingCoach() {
           <Form replace>
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Filter by language
+                {t("filter.language")}
               </legend>
               {languages.map((lang: string) => (
                 <CoachFilterTag
@@ -72,7 +74,7 @@ export default function SearchingCoach() {
             </fieldset>
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Filter by tag
+                {t("filter.tag")}
               </legend>
               {tags.map((tag: ICoachtag) => (
                 <CoachFilterTag
@@ -93,7 +95,7 @@ export default function SearchingCoach() {
                 type="submit"
                 disabled={state.state === "submitting"}
               >
-                Filter anwenden
+                {t("filter.submitCta")}
               </button>
               <span className="text-sm text-slate-400">
                 {coachesAmount} Zuhörer*innen gefunden.
