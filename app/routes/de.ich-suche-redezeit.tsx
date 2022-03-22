@@ -88,7 +88,7 @@ export default function SearchingCoach() {
             </fieldset>
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Filter by tag
+                Nach Thema filtern
               </legend>
               {tags.map((tag: ICoachtag) => {
                 const isNotSelectable =
@@ -119,7 +119,9 @@ export default function SearchingCoach() {
                 </button>
               </noscript>
               <span className="py-2 px-4 text-sm text-slate-400">
-                {coachesAmount} Zuhörer*innen gefunden.
+                {coachesAmount
+                  ? `${coachesAmount} Zuhörer*innen gefunden.`
+                  : `Keine Zuhörer*innen zu diesen Filtern gefunden :(`}
               </span>
             </div>
           </Form>
