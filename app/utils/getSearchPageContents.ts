@@ -75,7 +75,7 @@ export const getSearchPageContents = async (
   });
 
   // get available tags from all coaches
-  const availableTagIDs = filteredCoaches
+  const availableTagIDs = coaches
     .map((coach) => coach.fields.tag)
     .filter((tags) => !!tags)
     .map((tags) => tags.map((tag) => tag.sys.id))

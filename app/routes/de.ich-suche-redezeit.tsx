@@ -90,18 +90,23 @@ export default function SearchingCoach() {
               <legend className="mb-4 inline-block text-xl">
                 Filter by tag
               </legend>
-              {tags.map((tag: ICoachtag) => (
-                <CoachFilterTag
-                  disabled={!availableTagIDs.includes(tag.sys.id)}
-                  key={tag.sys.id}
-                  value={tag.fields.tag}
-                  name="tag"
-                  defaultValue={checkedTags.includes(tag.fields.tag)}
-                  type="checkbox"
-                >
-                  {tag.fields.tag}
-                </CoachFilterTag>
-              ))}
+              {tags.map((tag: ICoachtag) => {
+                const isNotSelectable =
+                  !availableTagIDs.includes(tag.sys.id) &&
+                  !checkedTags.includes(tag.fields.tag);
+                return (
+                  <CoachFilterTag
+                    disabled={isNotSelectable}
+                    key={tag.sys.id}
+                    value={tag.fields.tag}
+                    name="tag"
+                    defaultValue={checkedTags.includes(tag.fields.tag)}
+                    type="checkbox"
+                  >
+                    {tag.fields.tag}
+                  </CoachFilterTag>
+                );
+              })}
             </fieldset>
             <div className="flex items-center gap-4">
               <noscript>
