@@ -18,7 +18,7 @@ export const meta: MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
 
   let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
+    title: seo?.fields?.title || title || null,
     description: seo?.fields?.description || null,
   });
   return {
@@ -47,15 +47,22 @@ export const loader: LoaderFunction = async () => {
     throw new Response("Could not load navigation", { status: 404 });
   }
 
-  return [...data, locale];
+  return {
+    page: data[0],
+    navigation: data[1],
+    network: data[2],
+    supporters: data[3],
+    media: data[4],
+    locale,
+  };
 };
 
 export default function SupportMedia() {
-  const [page, navigation, network, supporters, media, locale] =
+  const { page, navigation, network, supporters, media, locale } =
     useLoaderData();
   const { t } = useTranslation("networkPartnerMedia");
   return (
-    <BasicLayout nav={navigation.fields.items} lang="de">
+    <BasicLayout nav={navigation.fields.items} lang={locale}>
       <div className="container mx-auto max-w-6xl">
         <div className="pt-24">
           <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">

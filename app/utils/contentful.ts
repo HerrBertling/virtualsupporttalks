@@ -8,8 +8,8 @@ import type {
   LOCALE_CODE,
   ICoach,
   INavigation,
-  IBlogpost,
   ITag,
+  ICoachtag,
 } from "../../@types/generated/contentful";
 
 export type PageNotFoundResponse = ThrownResponse<404, string>;
@@ -47,7 +47,9 @@ export const getPageById = async (id: string, locale: LOCALE_CODE) => {
   return entry as IPage;
 };
 
-export const getMainNav = async (locale: LOCALE_CODE) => {
+export const getMainNav = async (
+  locale: LOCALE_CODE
+): Promise<INavigation | null> => {
   const client = createContentfulClient();
   const entry: Entry<INavigation> = await client.getEntry(
     "67EXX84GGCZfZayO0JxrFg",
@@ -138,7 +140,7 @@ function shuffle(array: any[]) {
   return array;
 }
 
-export const getLanguages = async () => {
+export const getLanguages = async (): Promise<string[]> => {
   const coaches = await getCoaches("de");
 
   let languages: string[] = [];
@@ -156,53 +158,45 @@ export const getLanguages = async () => {
   return [...new Set(lowercasedLangs)].sort();
 };
 
-export const getTags = async () => {
-  const coaches = await getCoaches("de");
+export const getTags = async (locale: LOCALE_CODE = "de") => {
+  const client = createContentfulClient();
 
-  let tags: string[] = [];
-
-  coaches.forEach((coach) => {
-    if (coach.fields.tag) {
-      coach.fields.tag.forEach((coachTag) => {
-        tags.push(coachTag.fields.tag);
-      });
-    }
+  const { items } = await client.getEntries({
+    content_type: "coachtag",
+    order: "fields.tag",
+    locale: locale,
   });
 
-  return [...new Set(tags)].sort();
+  return items as ICoachtag[];
 };
 
-export const getCoaches = async (
-  lang: string | null = null,
-  tags: string[] | null = null
-) => {
-  let baseOptions = {
+export const getCoaches = async (lang: string | null = null) => {
+  const client = createContentfulClient();
+
+  const usedLanguage = lang === "de" ? null : lang;
+
+  let options = {};
+
+  const baseOptions = {
     limit: 500,
     content_type: "coach",
     order: "fields.name",
   };
 
-  if (lang) {
-    baseOptions = {
+  if (usedLanguage) {
+    options = {
       ...baseOptions,
-      "fields.languages[in]": lang,
+      "fields.languages[in]": usedLanguage,
     };
+  } else {
+    options = baseOptions;
   }
-
-  if (tags) {
-    baseOptions = {
-      ...baseOptions,
-      "fields.tags[in]": tags,
-    };
-  }
-
-  const client = createContentfulClient();
 
   const coachesResponse: EntryCollection<ICoach> = await client.getEntries({
-    ...baseOptions,
+    ...options,
   });
 
-  return shuffle(coachesResponse.items);
+  return shuffle(coachesResponse.items) as ICoach[];
 };
 
 export const getNetwork = async () => {
