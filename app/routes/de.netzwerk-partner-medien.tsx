@@ -61,7 +61,7 @@ export default function SupportMedia() {
     useLoaderData();
 
   return (
-    <BasicLayout nav={navigation.fields.items} lang="de">
+    <BasicLayout nav={navigation.fields.items} lang={locale}>
       <div className="container mx-auto max-w-6xl">
         <div className="pt-24">
           <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
