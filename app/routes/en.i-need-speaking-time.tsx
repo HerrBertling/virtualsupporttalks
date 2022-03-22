@@ -3,6 +3,8 @@ import { useLoaderData, useCatch, Form, useTransition } from "remix";
 import type { LoaderFunction, MetaFunction } from "remix";
 import ContentBlocks from "~/components/ContentBlocks";
 import BasicLayout from "~/components/layout/BasicLayout";
+import { useTranslation } from "react-i18next";
+
 import {
   getSearchPageContents,
   SearchPageContentResponse,
@@ -43,7 +45,10 @@ export default function SearchingCoach() {
     locale,
     availableTagIDs,
   } = useLoaderData();
+  const { t } = useTranslation("searchingCoach");
   const state = useTransition();
+
+  console.log("SEARCH", t("filter.language"));
   return (
     <BasicLayout nav={navigation.fields.items} lang={locale}>
       <div>
@@ -55,7 +60,7 @@ export default function SearchingCoach() {
           <Form replace>
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Filter by language
+                {t("filter.language")}
               </legend>
               {languages.map((lang: string) => (
                 <CoachFilterTag
@@ -72,7 +77,7 @@ export default function SearchingCoach() {
             </fieldset>
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Filter by tag
+                {t("filter.tag")}
               </legend>
               {tags.map((tag: ICoachtag) => (
                 <CoachFilterTag
@@ -93,7 +98,7 @@ export default function SearchingCoach() {
                 type="submit"
                 disabled={state.state === "submitting"}
               >
-                Apply filter
+                {t("filter.submitCta")}
               </button>
               <span className="text-sm text-slate-400">
                 {coachesAmount} listeners found.

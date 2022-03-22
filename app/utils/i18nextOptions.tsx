@@ -3,9 +3,9 @@ export default {
   // process.env.NODE_ENV !== "production",
   fallbackLng: "de",
   supportedLngs: ["en", "de"],
-  defaultNS: "networkPartnerMedia",
-  ns: ["networkPartnerMedia"],
-  react: { useSuspense: true },
+  defaultNS: "",
+  ns: ["networkPartnerMedia", "searchingCoach"],
+  react: { useSuspense: false },
   resources: {
     en: {
       networkPartnerMedia: {
@@ -13,6 +13,13 @@ export default {
           network: "Our network",
           partner: "Our company partners",
           media: "Redezeit in de Media",
+        },
+      },
+      searchingCoach: {
+        filter: {
+          language: "TESTFilter by language",
+          tag: "TESTFilter by tag",
+          submitCta: "TESTApply filter",
         },
       },
     },
