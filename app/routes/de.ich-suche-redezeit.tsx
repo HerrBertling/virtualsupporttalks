@@ -1,4 +1,4 @@
-import { ICoach, ICoachtag } from "../../@types/generated/contentful";
+import { ICoachtag } from "../../@types/generated/contentful";
 import { useLoaderData, useCatch, Form, useTransition } from "remix";
 import type { LoaderFunction, MetaFunction } from "remix";
 import ContentBlocks from "~/components/ContentBlocks";

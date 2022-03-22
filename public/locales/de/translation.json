@@ -9,8 +9,11 @@
   "searchingCoach": {
     "filter": {
       "language": "Nach Sprache filtern",
-      "tag": "Nach Schlagwort filtern",
+      "tag": "Nach Thema filtern",
       "submitCta": "Filter anwenden"
     }
+  }, 
+  "blogpostByTag":{
+    "title":"BLOGPOSTS für den Tag "
   }
 }

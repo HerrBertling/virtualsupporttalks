@@ -8,9 +8,14 @@
   },
   "searchingCoach": {
     "filter": {
-      "language": "TESTFilter by language",
-      "tag": "TESTFilter by tag",
-      "submitCta": "TESTApply filter"
+      "language": "Filter by language",
+      "tag": "Filter by topic",
+      "submitCta": "Apply filter"
     }
+  },
+  "blogpostByTag":{
+    "title":"BLOGPOSTS for the tag "
   }
+
 }
+
