@@ -17,7 +17,7 @@ export const meta: MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
 
   let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
+    title: seo?.fields?.title || title || null,
     description: seo?.fields?.description || null,
   });
   return {
@@ -46,11 +46,18 @@ export const loader: LoaderFunction = async () => {
     throw new Response("Could not load navigation", { status: 404 });
   }
 
-  return [...data, locale];
+  return {
+    page: data[0],
+    navigation: data[1],
+    network: data[2],
+    supporters: data[3],
+    media: data[4],
+    locale,
+  };
 };
 
 export default function SupportMedia() {
-  const [page, navigation, network, supporters, media, locale] =
+  const { page, navigation, network, supporters, media, locale } =
     useLoaderData();
 
   return (
