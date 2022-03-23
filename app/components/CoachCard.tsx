@@ -1,6 +1,8 @@
 import type { Asset } from "contentful";
 import type { ReactNode } from "react";
 import { PhoneIcon, MailIcon, GlobeIcon } from "@heroicons/react/outline";
+import ReactCountryFlag from "react-country-flag";
+import getFlagCode from "~/utils/getFlagCodes";
 
 type CoachProps = {
   email?: string;
@@ -10,13 +12,16 @@ type CoachProps = {
   image?: Asset;
   emergency?: boolean;
   children: ReactNode;
+  languages: string[] | undefined;
 };
 
 export default function CoachCard(props: CoachProps) {
-  const { url, name, image, emergency, phone, email, children } = props;
+  const { url, name, image, emergency, phone, email, languages, children } =
+    props;
+
+  const flagCodes = getFlagCode(languages);
 
   const contactMethods = [];
-
   if (email) {
     contactMethods.push({
       type: "email",
@@ -81,6 +86,21 @@ export default function CoachCard(props: CoachProps) {
           <h3 className="text-xl font-bold text-gray-500 transition-colors hover:text-vsp-500">
             {name}
           </h3>
+          <h2 className="text-sm font-extralight text-gray-500">
+            Sprachen:
+            {flagCodes.map((lang, index) => {
+              return (
+                <ReactCountryFlag
+                  key={index}
+                  className="px-1"
+                  style={{
+                    fontSize: "1.2em",
+                  }}
+                  countryCode={lang}
+                />
+              );
+            })}
+          </h2>
         </a>
       </header>
       <div className="prose prose-sm col-span-full row-start-2">
