@@ -9,11 +9,6 @@ if (!i18next.isInitialized)
     .use(initReactI18next)
     .init(i18nextOptions)
     .then(() => {
-      // then hydrate your app wrapped in the RemixI18NextProvider
-      i18next.services.backendConnector.backend = {
-        read: (language, namespace, callback) => callback(null, {}),
-      };
-
       return hydrate(
         <I18nextProvider i18n={i18next}>
           <RemixBrowser />

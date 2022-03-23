@@ -12,8 +12,11 @@
       "tag": "Nach Thema filtern",
       "submitCta": "Filter anwenden"
     }
-  }, 
-  "blogpostByTag":{
-    "title":"BLOGPOSTS für den Tag "
+  },
+  "blogpostCard": {
+    "ctaToBlogpost": "Weiterlesen..."
+  },
+  "blogpostByTag": {
+    "title": "BLOGPOSTS für den Tag "
   }
 }

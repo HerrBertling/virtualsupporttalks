@@ -13,6 +13,9 @@
       "submitCta": "Apply filter"
     }
   },
+  "blogpostCard": {
+    "ctaToBlogpost": "Continue reading..."
+  },
   "blogpostByTag":{
     "title":"BLOGPOSTS for the tag "
   }
