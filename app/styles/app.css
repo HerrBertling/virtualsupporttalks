@@ -1254,24 +1254,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   bottom: 0px;
 }
 
-.left-1\/2 {
-  left: 50%;
-}
-
-.right-0 {
-  right: 0px;
+.right-4 {
+  right: 1rem;
 }
 
 .top-0 {
   top: 0px;
 }
 
-.right-4 {
-  right: 1rem;
-}
-
 .top-24 {
   top: 6rem;
+}
+
+.right-0 {
+  right: 0px;
 }
 
 .z-50 {
@@ -1397,6 +1393,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: contents;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-auto {
   height: auto;
 }
@@ -1497,10 +1497,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-width: 310px;
 }
 
-.max-w-lg {
-  max-width: 32rem;
-}
-
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -1535,11 +1531,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-grow {
   flex-grow: 1;
-}
-
-.-translate-x-1\/2 {
-  --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .translate-x-16 {
@@ -1766,9 +1757,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-left-color: rgb(156 195 23 / var(--tw-border-opacity));
 }
 
-.bg-gray-100 {
+.bg-vsp-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+  background-color: rgb(243 251 219 / var(--tw-bg-opacity));
 }
 
 .bg-gray-400 {
@@ -1789,6 +1780,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-orange-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 186 116 / var(--tw-bg-opacity));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .bg-vsp-200 {
@@ -2028,6 +2024,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-100 {
   opacity: 1;
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .shadow-lg {
@@ -2328,6 +2330,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 768px) {
+  .md\:max-w-lg {
+    max-width: 32rem;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

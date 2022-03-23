@@ -14,7 +14,7 @@ import {
 import type { LinksFunction, MetaFunction } from "remix";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import * as gtag from "~/utils/gtag";
+import * as gtag from "~/utils/gtag.client";
 
 import { getSeo } from "~/seo";
 let [seoMeta, seoLinks] = getSeo();
@@ -56,17 +56,16 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+        />
         {track ? (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-            />
-            <script
-              async
-              id="gtag-init"
-              dangerouslySetInnerHTML={{
-                __html: `
+          <script
+            async
+            id="gtag-init"
+            dangerouslySetInnerHTML={{
+              __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -74,11 +73,10 @@ export default function App() {
               page_path: window.location.pathname,
             });
           `,
-              }}
-            />
-          </>
+            }}
+          />
         ) : (
-          <div className="fixed bottom-0 left-1/2 right-0 z-50 max-w-lg -translate-x-1/2 rounded-t-md bg-gray-100 px-8 py-4 text-center text-gray-700 shadow-lg">
+          <div className="fixed bottom-0 right-4 z-50 w-full rounded-t-md bg-vsp-100 px-8 py-4 text-center text-gray-700 shadow-xl md:max-w-lg">
             <analyticsFetcher.Form method="post" action="/enable-analytics">
               <span className="mr-8">Wir nutzen Cookies.</span>
               <button

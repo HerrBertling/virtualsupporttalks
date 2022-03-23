@@ -11,6 +11,7 @@ import {
 import CoachList from "~/components/CoachList";
 import CoachFilterTag from "~/components/CoachFilterTag";
 import { getSeoMeta } from "~/seo";
+// import * as gtag from "~/utils/gtag.client";
 
 export const loader: LoaderFunction = async ({
   request,
