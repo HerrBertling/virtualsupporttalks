@@ -9,9 +9,9 @@ import { getBlogposts } from "~/utils/contentful";
 import BlogpostCard from "~/components/BlogpostCard";
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const posts = (await getBlogposts()) as IBlogpost[];
   const tag = params.tag;
   const locale = (params.locale as string) || "de";
+  const posts = (await getBlogposts(locale as LOCALE_CODE)) as IBlogpost[];
 
   if (!posts) {
     throw new Response("Not Found", { status: 404 });
@@ -65,7 +65,7 @@ export function CatchBoundary() {
     </div>
   );
 }
-export function ErrorBoundary(error) {
+export function ErrorBoundary(error: Error) {
   return (
     <div>
       <h2>Oh noez! Something went wrong.</h2>
