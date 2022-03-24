@@ -20,6 +20,13 @@ export const loader: LoaderFunction = async ({
   return data;
 };
 
+export const loader: LoaderFunction = async ({
+  request,
+}): Promise<SearchPageContentResponse> => {
+  const data = await getSearchPageContents(request, "de");
+  return data;
+};
+
 export const meta: MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
 
@@ -48,7 +55,9 @@ export default function SearchingCoach() {
 
   const submit = useSubmit();
   const formRef = useRef<HTMLFormElement>(null);
+
   const { t } = useTranslation("searchingCoach");
+
   const handleChange = () => {
     if (formRef) {
       submit(formRef.current, { replace: true });
@@ -73,6 +82,7 @@ export default function SearchingCoach() {
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
                 {t("filter.language")}
+
               </legend>
               {languages.map((lang: string) => (
                 <CoachFilterTag
@@ -89,7 +99,9 @@ export default function SearchingCoach() {
             </fieldset>
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                {t("filter.tag")}{" "}
+
+                {t("filter.tag")}
+
               </legend>
               {tags.map((tag: ICoachtag) => {
                 const isNotSelectable =
@@ -117,6 +129,7 @@ export default function SearchingCoach() {
                   disabled={state.state === "submitting"}
                 >
                   {t("filter.submitCta")}
+
                 </button>
               </noscript>
               <span className="py-2 px-4 text-sm text-slate-400">

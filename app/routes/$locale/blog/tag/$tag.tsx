@@ -10,9 +10,10 @@ import BlogpostCard from "~/components/BlogpostCard";
 import { useTranslation } from "react-i18next";
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const locale = params.locale;
-  const posts = (await getBlogposts(locale as LOCALE_CODE)) as IBlogpost[];
+
   const tag = params.tag;
+  const locale = (params.locale as string) || "de";
+  const posts = (await getBlogposts(locale as LOCALE_CODE)) as IBlogpost[];
 
   if (!posts) {
     throw new Response("Not Found", { status: 404 });

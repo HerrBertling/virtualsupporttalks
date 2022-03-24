@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useLoaderData, useCatch, Form, useTransition, useSubmit } from "remix";
 import type { LoaderFunction, MetaFunction } from "remix";
+
 import { useTranslation } from "react-i18next";
 import ContentBlocks from "~/components/ContentBlocks";
 import BasicLayout from "~/components/layout/BasicLayout";
