@@ -7,8 +7,16 @@ export default function CoachList({ coaches }: { coaches: ICoach[] }) {
     <div className="bg-gray-100">
       <section className="mx-auto grid max-w-7xl grid-cols-coachgrid items-start gap-x-6 gap-y-12 py-12 px-4">
         {coaches.map((coach: ICoach) => {
-          const { email, name, url, phone, emergency, image, description } =
-            coach.fields;
+          const {
+            email,
+            name,
+            url,
+            phone,
+            emergency,
+            image,
+            description,
+            languages,
+          } = coach.fields;
           return (
             <CoachCard
               key={coach.sys.id}
@@ -18,6 +26,7 @@ export default function CoachList({ coaches }: { coaches: ICoach[] }) {
               phone={phone}
               emergency={emergency}
               image={image}
+              languages={languages}
             >
               {description && (
                 <ContentfulRichText content={description} withProse={false} />
