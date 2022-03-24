@@ -45,12 +45,15 @@ export default function App() {
   const [shouldTrack, setShouldTrack] = useState(track);
 
   useEffect(() => {
+    setShouldTrack(track);
+  }, [track]);
+
+  useEffect(() => {
     if (shouldTrack) {
       console.log("INitializing gtag");
       gtag.init();
     }
-    setShouldTrack(track);
-  }, [track]);
+  }, [shouldTrack]);
 
   useEffect(() => {
     if (shouldTrack) {
@@ -58,6 +61,7 @@ export default function App() {
       gtag.pageview(location.pathname);
     }
   }, [location]);
+
   return (
     <html lang="en">
       <head>
