@@ -1,25 +1,23 @@
 export default function getFlagCode(languages: string[] | undefined) {
   const flagCodes = {
-    ukr: "UA",
-    ru: "RU",
+    dan: "DK",
     de: "DE",
     en: "GB",
     esp: "ES",
+    fr: "FR",
     nl: "NL",
     nor: "NO",
     pol: "PL",
     por: "PT",
+    ru: "RU",
+    ukr: "UA",
   };
-  const result = [];
+  const result = ["DE"];
 
-  // Add DE language always and as default
-  if (!languages) {
-    result.push("DE");
-  } else {
-    if (!languages.includes("de")) {
-      result.unshift("DE");
-    }
-    languages.forEach((lang: string) => result.push(flagCodes[lang]));
-  }
-  return result;
+  languages &&
+    languages.forEach((lang) => {
+      result.push(flagCodes[lang as keyof typeof flagCodes]);
+    });
+
+  return [...new Set(result)];
 }
