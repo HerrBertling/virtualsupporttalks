@@ -1,5 +1,6 @@
 import { useLoaderData } from "remix";
 import type { LoaderFunction, MetaFunction } from "remix";
+import { useTranslation } from "react-i18next";
 import {
   getMainNav,
   getPageById,
@@ -12,6 +13,7 @@ import pageIds from "~/utils/pageIds";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SupporterTile from "~/components/SupporterTile";
 import { getSeoMeta } from "~/seo";
+import { useEffect } from "react";
 
 export const meta: MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
@@ -59,6 +61,7 @@ export const loader: LoaderFunction = async () => {
 export default function SupportMedia() {
   const { page, navigation, network, supporters, media, locale } =
     useLoaderData();
+  const { t } = useTranslation("networkPartnerMedia");
 
   return (
     <BasicLayout nav={navigation.fields.items} lang={locale}>
@@ -66,7 +69,7 @@ export default function SupportMedia() {
         <div className="pt-24">
           <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
             <h2 className="mb-12 font-headline text-4xl font-bold">
-              Unser Netzwerk
+              {t("title.network")}
             </h2>
             {network.length && (
               <div
@@ -90,7 +93,7 @@ export default function SupportMedia() {
         {supporters && (
           <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
             <h2 className="mb-12 font-headline text-4xl font-bold">
-              Unsere Unternehmenspartner
+              {t("title.partner")}
             </h2>
             <div
               style={{
@@ -113,7 +116,7 @@ export default function SupportMedia() {
       {media && (
         <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
           <h2 className="mb-12 font-headline text-4xl font-bold">
-            Redezeit in den Medien
+            {t("title.media")}
           </h2>
           <div
             style={{

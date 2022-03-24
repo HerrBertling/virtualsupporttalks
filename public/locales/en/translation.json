@@ -1,0 +1,26 @@
+{
+  "networkPartnerMedia": {
+    "title": {
+      "network": "Our network",
+      "partner": "Our company partners",
+      "media": "Redezeit in de Media"
+    }
+  },
+  "searchingCoach": {
+    "filter": {
+      "language": "Filter by language",
+      "tag": "Filter by topic",
+      "submitCta": "Apply filter"
+    },
+    "result":"listeners found.",
+    "noResult":"No listeners found for these filters :("
+  },
+  "blogpostCard": {
+    "ctaToBlogpost": "Continue reading..."
+  },
+  "blogpostByTag":{
+    "title":"BLOGPOSTS for the tag "
+  }
+
+}
+

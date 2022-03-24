@@ -6,6 +6,7 @@ import { LoaderFunction, useCatch } from "remix";
 import { Outlet, useLoaderData, redirect } from "remix";
 import { getMainNav } from "~/utils/contentful";
 import BasicLayout from "~/components/layout/BasicLayout";
+import { useSetupTranslations } from "remix-i18next";
 
 type WrapperLoaderItems = {
   nav: INavigationItem[];
@@ -20,6 +21,7 @@ export const loader: LoaderFunction = async ({
     console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);
     throw redirect(`/de/${locale}`, 301);
   }
+
   const navObject = await getMainNav(locale);
   const nav = navObject?.fields?.items;
   if (!nav || nav.length === 0) {
@@ -30,6 +32,8 @@ export const loader: LoaderFunction = async ({
 
 export default function Wrapper() {
   const { nav, locale } = useLoaderData();
+  useSetupTranslations(locale);
+
   return (
     <BasicLayout nav={nav} lang={locale}>
       <div>

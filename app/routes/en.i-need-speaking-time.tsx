@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { useLoaderData, useCatch, Form, useTransition, useSubmit } from "remix";
 import type { LoaderFunction, MetaFunction } from "remix";
+
+import { useTranslation } from "react-i18next";
 import ContentBlocks from "~/components/ContentBlocks";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { ICoachtag } from "../../@types/generated/contentful";
@@ -47,6 +49,7 @@ export default function SearchingCoach() {
 
   const submit = useSubmit();
   const formRef = useRef<HTMLFormElement>(null);
+  const { t } = useTranslation("searchingCoach");
 
   const handleChange = () => {
     if (formRef) {
@@ -71,7 +74,7 @@ export default function SearchingCoach() {
           >
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Filter by language
+                {t("filter.language")}
               </legend>
               {languages.map((lang: string) => (
                 <CoachFilterTag
@@ -88,7 +91,7 @@ export default function SearchingCoach() {
             </fieldset>
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Filter by topic
+                {t("filter.tag")}
               </legend>
               {tags.map((tag: ICoachtag) => {
                 const isNotSelectable =
@@ -115,13 +118,13 @@ export default function SearchingCoach() {
                   type="submit"
                   disabled={state.state === "submitting"}
                 >
-                  Apply filter
+                  {t("filter.submitCta")}
                 </button>
               </noscript>
               <span className="py-2 px-4 text-sm text-slate-400">
                 {coachesAmount
-                  ? `${coachesAmount} listeners found.`
-                  : `No listeners found for these filters :(`}
+                  ? `${coachesAmount} ${t("result")}`
+                  : t("noResult")}
               </span>
             </div>
           </Form>
