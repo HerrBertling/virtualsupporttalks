@@ -1,35 +1,22 @@
-export const GA_TRACKING_ID = "G-3203CF2NDT";
+import ReactGA from "react-ga4";
 
-declare global {
-  interface Window {
-    gtag: (
-      option: string,
-      gaTrackingId: string,
-      options: Record<string, unknown>
-    ) => void;
-  }
-}
+const GA_TRACKING_ID = "G-3203CF2NDT";
+
+export const init = () => {
+  ReactGA.initialize(GA_TRACKING_ID);
+};
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
-  if (window.gtag) {
-    console.log("Tracking pageview", url);
-    window.gtag("config", GA_TRACKING_ID, {
-      page_path: url,
-    });
-  }
+  ReactGA.send({ hitType: "pageview", page: url });
 };
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({
-  action,
-  category,
-  label,
-  value,
-}: Record<string, string>) => {
-  window.gtag("event", action, {
-    event_category: category,
-    event_label: label,
-    value: value,
+export const event = ({ action, category, label, value }) => {
+  ReactGA.event({
+    category,
+    action,
+    label,
+    value,
   });
 };

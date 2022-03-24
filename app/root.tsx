@@ -13,7 +13,7 @@ import {
 } from "remix";
 import type { LinksFunction, MetaFunction } from "remix";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as gtag from "~/utils/gtag.client";
 
 import { getSeo } from "~/seo";
@@ -42,8 +42,19 @@ export default function App() {
   const analyticsFetcher = useFetcher();
   const location = useLocation();
 
+  const [shouldTrack, setShouldTrack] = useState(track);
+
   useEffect(() => {
-    if (track) {
+    if (shouldTrack) {
+      console.log("INitializing gtag");
+      gtag.init();
+    }
+    setShouldTrack(track);
+  }, [track]);
+
+  useEffect(() => {
+    if (shouldTrack) {
+      console.log("Tracking pageview", location.pathname);
       gtag.pageview(location.pathname);
     }
   }, [location]);
@@ -56,26 +67,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-        />
-        {track ? (
-          <script
-            async
-            id="gtag-init"
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gtag.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-            }}
-          />
-        ) : (
+        {shouldTrack ? null : (
           <div className="fixed bottom-0 right-4 z-50 w-full rounded-t-md bg-vsp-100 px-8 py-4 text-center text-gray-700 shadow-xl md:max-w-lg">
             <analyticsFetcher.Form method="post" action="/enable-analytics">
               <span className="mr-8">Wir nutzen Cookies.</span>

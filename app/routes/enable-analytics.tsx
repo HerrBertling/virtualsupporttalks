@@ -8,15 +8,28 @@ export const action: ActionFunction = async ({ request }) => {
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
 
   if (formData.get("accept-gdpr") === "true") {
-    cookie.gdprConsent = true;
+    return json(
+      { success: true },
+      {
+        headers: {
+          "Set-Cookie": await gdprConsent.serialize({
+            gdprConsent: true,
+          }),
+        },
+      }
+    );
   }
 
-  return json(
-    { success: true },
-    {
-      headers: {
-        "Set-Cookie": await gdprConsent.serialize(cookie),
-      },
-    }
-  );
+  if (formData.get("accept-gdpr") === "false") {
+    return json(
+      { success: true },
+      {
+        headers: {
+          "Set-Cookie": await gdprConsent.serialize({
+            maxAge: -99999,
+          }),
+        },
+      }
+    );
+  }
 };
