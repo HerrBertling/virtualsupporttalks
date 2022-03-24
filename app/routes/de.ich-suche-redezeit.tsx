@@ -11,6 +11,14 @@ import {
 import CoachList from "~/components/CoachList";
 import CoachFilterTag from "~/components/CoachFilterTag";
 import { getSeoMeta } from "~/seo";
+import { useTranslation } from "react-i18next";
+
+export const loader: LoaderFunction = async ({
+  request,
+}): Promise<SearchPageContentResponse> => {
+  const data = await getSearchPageContents(request, "de");
+  return data;
+};
 
 export const loader: LoaderFunction = async ({
   request,
@@ -48,6 +56,8 @@ export default function SearchingCoach() {
   const submit = useSubmit();
   const formRef = useRef<HTMLFormElement>(null);
 
+  const { t } = useTranslation("searchingCoach");
+
   const handleChange = () => {
     if (formRef) {
       submit(formRef.current, { replace: true });
@@ -71,7 +81,8 @@ export default function SearchingCoach() {
           >
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Filter by language
+                {t("filter.language")}
+
               </legend>
               {languages.map((lang: string) => (
                 <CoachFilterTag
@@ -88,7 +99,9 @@ export default function SearchingCoach() {
             </fieldset>
             <fieldset className="mt-8">
               <legend className="mb-4 inline-block text-xl">
-                Nach Thema filtern
+
+                {t("filter.tag")}
+
               </legend>
               {tags.map((tag: ICoachtag) => {
                 const isNotSelectable =
@@ -115,13 +128,14 @@ export default function SearchingCoach() {
                   type="submit"
                   disabled={state.state === "submitting"}
                 >
-                  Filter anwenden
+                  {t("filter.submitCta")}
+
                 </button>
               </noscript>
               <span className="py-2 px-4 text-sm text-slate-400">
                 {coachesAmount
-                  ? `${coachesAmount} Zuhörer*innen gefunden.`
-                  : `Keine Zuhörer*innen zu diesen Filtern gefunden :(`}
+                  ? `${coachesAmount} ${t("result")}`
+                  : t("noResult")}
               </span>
             </div>
           </Form>

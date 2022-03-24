@@ -1,6 +1,7 @@
 import { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
 import CleverLink from "./CleverLink";
 import TagGroup from "./TagGroup";
+import { useTranslation } from "react-i18next";
 
 export default function BlogpostCard({
   post,
@@ -17,6 +18,8 @@ export default function BlogpostCard({
     month: "2-digit",
     day: "2-digit",
   });
+  const { t } = useTranslation("blogpostCard");
+
   return (
     <div
       key={post.sys.id}
@@ -57,7 +60,7 @@ export default function BlogpostCard({
       </aside>
       <p>{description}</p>
       <CleverLink to={slug} className="block underline">
-        Weiterlesen…
+        {t("ctaToBlogpost")}
       </CleverLink>
     </div>
   );

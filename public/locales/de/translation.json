@@ -1,0 +1,24 @@
+{
+  "networkPartnerMedia": {
+    "title": {
+      "network": "Unser Netzwerk",
+      "partner": "Unsere Unternehmenspartner",
+      "media": "Redezeit in den Medien"
+    }
+  },
+  "searchingCoach": {
+    "filter": {
+      "language": "Nach Sprache filtern",
+      "tag": "Nach Thema filtern",
+      "submitCta": "Filter anwenden"
+    },
+    "result": "Zuhörer*innen gefunden.",
+    "noResult": "Keine Zuhörer*innen zu diesen Filtern gefunden :("
+  },
+  "blogpostCard": {
+    "ctaToBlogpost": "Weiterlesen..."
+  },
+  "blogpostByTag": {
+    "title": "BLOGPOSTS für den Tag "
+  }
+}
