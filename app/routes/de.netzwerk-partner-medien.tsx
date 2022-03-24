@@ -13,6 +13,7 @@ import pageIds from "~/utils/pageIds";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SupporterTile from "~/components/SupporterTile";
 import { getSeoMeta } from "~/seo";
+import { useEffect } from "react";
 
 export const meta: MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
@@ -61,6 +62,7 @@ export default function SupportMedia() {
   const { page, navigation, network, supporters, media, locale } =
     useLoaderData();
   const { t } = useTranslation("networkPartnerMedia");
+
   return (
     <BasicLayout nav={navigation.fields.items} lang={locale}>
       <div className="container mx-auto max-w-6xl">
