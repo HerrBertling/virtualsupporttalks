@@ -8,8 +8,8 @@ import { getBlogposts } from "~/utils/contentful";
 import BlogpostCard from "~/components/BlogpostCard";
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const posts = await getBlogposts();
   const locale = (params.locale as string) || "de";
+  const posts = await getBlogposts(locale as LOCALE_CODE);
 
   if (!posts) {
     throw new Response("Not Found", { status: 404 });
@@ -21,7 +21,6 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function Index() {
   const { posts, locale }: { posts: IBlogpost[]; locale: LOCALE_CODE } =
     useLoaderData();
-
   return (
     <>
       <header className="w-full px-4 pt-24">
@@ -47,7 +46,7 @@ export function CatchBoundary() {
     </div>
   );
 }
-export function ErrorBoundary(error) {
+export function ErrorBoundary(error: Error) {
   return (
     <div>
       <h2>Oh noez! Something went wrong.</h2>

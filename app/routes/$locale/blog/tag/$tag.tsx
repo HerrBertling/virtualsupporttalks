@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const locale = params.locale;
-  const posts = (await getBlogposts(locale)) as IBlogpost[];
+  const posts = (await getBlogposts(locale as LOCALE_CODE)) as IBlogpost[];
   const tag = params.tag;
 
   if (!posts) {
@@ -67,7 +67,7 @@ export function CatchBoundary() {
     </div>
   );
 }
-export function ErrorBoundary(error) {
+export function ErrorBoundary(error: Error) {
   return (
     <div>
       <h2>Oh noez! Something went wrong.</h2>
