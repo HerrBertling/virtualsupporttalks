@@ -121,8 +121,8 @@ export default function SearchingCoach() {
               </noscript>
               <span className="py-2 px-4 text-sm text-slate-400">
                 {coachesAmount
-                  ? `${coachesAmount} Zuhörer*innen gefunden.`
-                  : `Keine Zuhörer*innen zu diesen Filtern gefunden :(`}
+                  ? `${coachesAmount} ${t("result")}`
+                  : t("noResult")}
               </span>
             </div>
           </Form>

@@ -11,7 +11,9 @@
       "language": "Nach Sprache filtern",
       "tag": "Nach Thema filtern",
       "submitCta": "Filter anwenden"
-    }
+    },
+    "result": "Zuhörer*innen gefunden.",
+    "noResult": "Keine Zuhörer*innen zu diesen Filtern gefunden :("
   },
   "blogpostCard": {
     "ctaToBlogpost": "Weiterlesen..."

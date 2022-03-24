@@ -7,7 +7,12 @@ export default {
   fallbackLng: "de",
   supportedLngs: ["en", "de"],
   defaultNS: "",
-  ns: ["networkPartnerMedia", "searchingCoach"],
+  ns: [
+    "networkPartnerMedia",
+    "searchingCoach",
+    "blogpostCard",
+    "blogpostByTag",
+  ],
   react: { useSuspense: false },
   resources: {
     en: translationEN,

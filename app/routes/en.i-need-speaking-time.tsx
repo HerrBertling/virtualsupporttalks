@@ -122,8 +122,8 @@ export default function SearchingCoach() {
               </noscript>
               <span className="py-2 px-4 text-sm text-slate-400">
                 {coachesAmount
-                  ? `${coachesAmount} listeners found.`
-                  : `No listeners found for these filters :(`}
+                  ? `${coachesAmount} ${t("result")}`
+                  : t("noResult")}
               </span>
             </div>
           </Form>

@@ -11,7 +11,9 @@
       "language": "Filter by language",
       "tag": "Filter by topic",
       "submitCta": "Apply filter"
-    }
+    },
+    "result":"listeners found.",
+    "noResult":"No listeners found for these filters :("
   },
   "blogpostCard": {
     "ctaToBlogpost": "Continue reading..."
