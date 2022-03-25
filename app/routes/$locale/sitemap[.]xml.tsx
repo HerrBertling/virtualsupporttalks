@@ -1,38 +1,47 @@
 import { type LoaderFunction } from "remix";
-import formatDate from "date-fns/format";
+import { getAllPages } from "~/utils/contentful";
 
-import { getAllDePages, getAllEnPages } from "~/utils/contentful";
+type PageResult = {
+  fields: {
+    slug: {
+      en?: "en";
+      de?: "de";
+    };
+  };
+};
 
-export const loader: LoaderFunction = async ({ params, request }) => {
-  const searchParams = new URL(request.url).searchParams;
-  const locale = "de";
-  const lang = searchParams.get("lang") || "en";
-
+export const loader: LoaderFunction = async ({ request }) => {
   const encoding = request.headers.get("accept-encoding") ?? "";
-  const allEnPages = await getAllEnPages().catch(() => {
+  const allPages = await getAllPages().catch(() => {
     throw new Error();
   });
-  const allDePages = await getAllDePages().catch(() => {
-    throw new Error();
-  });
-  const allPages = [...allDePages, ...allEnPages];
-  allPages.forEach((el, index) => console.log("PAGES", index, el));
+
   const postPages =
     allPages &&
-    allPages.map((page) => {
-      return [
-        `<url>`,
-
-        `<loc>https://www.virtualsupporttalks.de/${
-          page.sys.locale === "en" ? "en/" : ""
-        }${page.fields.slug}</loc>`,
-        `</url>`,
-      ].join("");
+    allPages.map((page: PageResult) => {
+      let resultEn =
+        (page.fields.slug.en && [
+          `<url>`,
+          `<loc>https://www.virtualsupporttalks.de/en/${page.fields.slug.en}</loc>`,
+          `</url>`,
+        ]) ||
+        "";
+      let resultDe =
+        (page.fields.slug.de && [
+          `<url>`,
+          `<loc>https://www.virtualsupporttalks.de/${page.fields.slug.de}</loc>`,
+          `</url>`,
+        ]) ||
+        "";
+      return [...resultEn, ...resultDe].join("");
     });
 
   const xml = [
     `<?xml version="1.0" encoding="UTF-8"?>`,
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+    `<url>`,
+    `<loc>https://www.virtualsupporttalks.de</loc>`,
+    `</url>`,
     ...postPages,
     `</urlset>`,
   ];
