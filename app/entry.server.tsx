@@ -11,11 +11,11 @@ export default async function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  if (!i18next.isInitialized)
-    await i18next.use(initReactI18next).init(i18nextOptions);
+  let i18n = i18next.createInstance();
+  await i18n.use(initReactI18next).init(i18nextOptions);
 
   let markup = renderToString(
-    <I18nextProvider i18n={i18next}>
+    <I18nextProvider i18n={i18n}>
       <RemixServer context={remixContext} url={request.url} />
     </I18nextProvider>
   );
