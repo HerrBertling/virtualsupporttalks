@@ -19,17 +19,4 @@ export const action: ActionFunction = async ({ request }) => {
       }
     );
   }
-
-  if (formData.get("accept-gdpr") === "false") {
-    return json(
-      { success: true },
-      {
-        headers: {
-          "Set-Cookie": await gdprConsent.serialize({
-            maxAge: -99999,
-          }),
-        },
-      }
-    );
-  }
 };
