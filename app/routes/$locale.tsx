@@ -30,9 +30,8 @@ export const loader: LoaderFunction = async ({
   return { nav, locale };
 };
 
-export default function Wrapper() {
+export default function LocaleWrapper() {
   const { nav, locale } = useLoaderData();
-  useSetupTranslations(locale);
 
   return (
     <BasicLayout nav={nav} lang={locale}>

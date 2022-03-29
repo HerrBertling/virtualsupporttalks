@@ -14,6 +14,7 @@ import {
 import type { LinksFunction, MetaFunction } from "remix";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useSetupTranslations } from "remix-i18next";
 import * as gtag from "~/utils/gtag";
 
 import { getSeo } from "~/seo";
@@ -22,6 +23,7 @@ let [seoMeta, seoLinks] = getSeo();
 import { gdprConsent } from "./cookies";
 
 import styles from "./styles/app.css";
+import { i18n } from "./utils/i18n.server";
 
 export const links: LinksFunction = () => {
   return [...seoLinks, { rel: "stylesheet", href: styles }];
@@ -34,13 +36,16 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  return json({ track: cookie.gdprConsent });
+  let locale = await i18n.getLocale(request);
+  return json({ track: cookie.gdprConsent, locale });
 };
 
 export default function App() {
   const { track } = useLoaderData();
   const analyticsFetcher = useFetcher();
   const location = useLocation();
+  let { locale } = useLoaderData<{ locale: string }>();
+  useSetupTranslations(locale);
 
   useEffect(() => {
     if (track) {
