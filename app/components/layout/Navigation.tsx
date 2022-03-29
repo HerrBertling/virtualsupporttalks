@@ -1,5 +1,6 @@
 import NavItem from "./NavItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import type {
   INavigationItem,
   LOCALE_CODE,
@@ -13,6 +14,12 @@ export default function Navigation({
   lang: LOCALE_CODE;
 }) {
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   const navItems = nav.map((item) => {
     const { page, title, url } = item.fields;
     const id = item.sys.id;
