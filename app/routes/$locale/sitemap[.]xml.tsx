@@ -4,8 +4,8 @@ import { getAllPages } from "~/utils/contentful";
 type PageResult = {
   fields: {
     slug: {
-      en?: "en";
-      de?: "de";
+      en?: string;
+      de?: string;
     };
   };
 };
@@ -29,7 +29,7 @@ export const loader: LoaderFunction = async ({ request }) => {
       let resultDe =
         (page.fields.slug.de && [
           `<url>`,
-          `<loc>https://www.virtualsupporttalks.de/${page.fields.slug.de}</loc>`,
+          `<loc>https://www.virtualsupporttalks.de/de/${page.fields.slug.de}</loc>`,
           `</url>`,
         ]) ||
         "";
