@@ -89,6 +89,16 @@ function createResult(items: any[]) {
   return items;
 }
 
+export const getAllPages = async () => {
+  const client = createContentfulClient();
+  const { items } = await client.getEntries({
+    content_type: "page",
+    locale: "*",
+  });
+
+  return createResult(items);
+};
+
 export const getBlogposts = async (locale: LOCALE_CODE) => {
   const client = createContentfulClient();
   const { items } = await client.getEntries({
