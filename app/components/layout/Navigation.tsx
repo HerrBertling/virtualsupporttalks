@@ -18,7 +18,7 @@ export default function Navigation({
     const id = item.sys.id;
     let path = "/";
     if (url) {
-      path = url.replace("https://www.virtualsupporttalks.de/", "");
+      path = url.replace("https://www.virtualsupporttalks.de", "");
     }
     if (page?.fields?.slug) {
       path = `/${lang}/${page.fields.slug}`;
