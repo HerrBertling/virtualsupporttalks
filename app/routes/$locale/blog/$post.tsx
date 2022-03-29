@@ -9,7 +9,11 @@ import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
 import { getSeoMeta } from "~/seo";
 
-export const meta: MetaFunction = ({ data }: { data: IBlogpost }) => {
+export const meta: MetaFunction = ({
+  data,
+}: {
+  data: { blogpost: IBlogpost };
+}) => {
   const { title, seo, description } = data?.blogpost?.fields;
 
   let seoMeta = getSeoMeta({
