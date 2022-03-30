@@ -105,7 +105,7 @@ export const getBlogposts = async (locale: LOCALE_CODE) => {
     content_type: "blogpost",
     locale: locale,
     include: 5,
-    order: "sys.updatedAt",
+    order: "-sys.createdAt",
   });
 
   return createResult(items);
