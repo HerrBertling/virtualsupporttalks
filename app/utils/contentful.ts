@@ -1,5 +1,5 @@
-import contentful, { EntryCollection } from "contentful";
-import type { Entry } from "contentful";
+import * as contentful from "contentful";
+import type { Entry, EntryCollection } from "contentful";
 import type { ThrownResponse } from "remix";
 
 import type {
@@ -16,20 +16,24 @@ export type PageNotFoundResponse = ThrownResponse<404, string>;
 
 export const createContentfulClient = () => {
   const space = process.env.CONTENTFUL_SPACE;
-
   if (!space) {
     throw new Error("Contentful space environment variable is not set");
   }
-
   const accessToken = process.env.CONTENTFUL_ACCESSTOKEN;
-
   if (!accessToken) {
     throw new Error("Contentful access token environment variable is not set");
   }
-  return contentful.createClient({
-    space,
-    accessToken,
-  });
+  let client;
+  try {
+    client = contentful.createClient({
+      space,
+      accessToken,
+    });
+  } catch (error) {
+    console.log("Could not create client", error);
+    throw new Error("CMS client not available");
+  }
+  return client;
 };
 
 type Slug = IPageFields["slug"];

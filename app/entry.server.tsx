@@ -4,6 +4,7 @@ import type { EntryContext } from "remix";
 import { RemixServer } from "remix";
 import i18nextOptions from "./utils/i18nextOptions";
 import i18next from "i18next";
+import { etag } from "remix-etag";
 
 export default async function handleRequest(
   request: Request,
@@ -22,8 +23,9 @@ export default async function handleRequest(
 
   responseHeaders.set("Content-Type", "text/html");
 
-  return new Response("<!DOCTYPE html>" + markup, {
+  const response = new Response("<!DOCTYPE html>" + markup, {
     status: responseStatusCode,
     headers: responseHeaders,
   });
+  return etag({ request, response });
 }

@@ -24,7 +24,11 @@ import { gdprConsent } from "./cookies";
 import styles from "./styles/app.css";
 
 export const links: LinksFunction = () => {
-  return [...seoLinks, { rel: "stylesheet", href: styles }];
+  return [
+    ...seoLinks,
+    { rel: "stylesheet", href: styles },
+    { rel: "icon", href: "/icon.png", type: "image/png" },
+  ];
 };
 
 export const meta: MetaFunction = () => {
