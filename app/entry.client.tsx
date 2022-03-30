@@ -3,11 +3,9 @@ import { hydrate } from "react-dom";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { RemixBrowser } from "remix";
 import i18nextOptions from "./utils/i18nextOptions";
-import LanguageDetector from "i18next-browser-languagedetector";
 
 if (!i18next.isInitialized)
   i18next
-    .use(LanguageDetector)
     .use(initReactI18next)
     .init(i18nextOptions)
     .then(() => {
