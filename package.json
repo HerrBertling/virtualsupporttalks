@@ -44,11 +44,11 @@
   },
   "sideEffects": false,
   "scripts": {
-    "postinstall": "remix setup node",
-    "build": "remix build",
+    "build": "npm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"npm run dev:css\" \"cross-env NODE_ENV=development netlify dev\"",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "postinstall": "remix setup node",
     "start": "cross-env NODE_ENV=production netlify dev",
     "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
   }

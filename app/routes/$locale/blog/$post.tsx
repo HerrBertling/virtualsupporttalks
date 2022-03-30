@@ -87,7 +87,7 @@ export default function Blogpost() {
           </time>
         </div>
       </aside>
-      <ContentBlocks content={content} />
+      <ContentBlocks content={content} locale={locale} />
     </>
   );
 }
