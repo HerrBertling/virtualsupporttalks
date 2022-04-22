@@ -58,12 +58,12 @@
       >
         {{ item.fields.title }}
       </LayoutNavItem>
-      <LayoutNavItem v-if="$i18n.locale === 'de'" :to="localePath('/', 'en')">
-        English version
-      </LayoutNavItem>
-      <LayoutNavItem v-else :to="localePath('/', 'de')">
-        Deutsche Version
-      </LayoutNavItem>
+      <LayoutNavItem
+        v-for="locale in availableLocales"
+        :key="locale.code"
+        :to="localePath('/', locale.code)"
+        >{{ locale.name }}</LayoutNavItem
+      >
     </ul>
   </nav>
 </template>
@@ -88,6 +88,9 @@ export default {
     lang() {
       return this.$i18n.locale
     },
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
+    },
   },
   watch: {
     navExpanded(newValue) {
@@ -107,15 +110,18 @@ export default {
       this.navExpanded = false
     },
     getNavLink(item) {
-      const isEnglish = this.$i18n.locale === 'en'
+      const isGerman = this.$i18n.locale === 'de'
       return item.fields.page
-        ? `${isEnglish ? '/en/' : '/'}${item.fields.page.fields.slug}/`
-        : isEnglish
-        ? `${item.fields.url.replace(
-            'https://www.virtualsupporttalks.de',
-            '/en'
-          )}`
-        : item.fields.url.replace('https://www.virtualsupporttalks.de', '')
+        ? `${isGerman ? '/' : `/${this.$i18n.locale}`}/${
+            item.fields.page.fields.slug
+          }/`
+        : item.fields.url.replace(
+            `${
+              isGerman
+                ? 'https://www.virtualsupporttalks.de/'
+                : `https://www.virtualsupporttalks.de/${this.$i18n.locale}`
+            }`
+          )
     },
   },
 }

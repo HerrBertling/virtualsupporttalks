@@ -64,12 +64,32 @@ export default {
       type: Array,
       default: () => [
         {
-          link: { de: '/impressum/', en: '/en/imprint/' },
-          title: { de: 'Impressum', en: 'Legal info' },
+          link: {
+            de: '/impressum/',
+            en: '/en/imprint/',
+            ru: '/en/imprint/',
+            uk: '/en/imprint/',
+          },
+          title: {
+            de: 'Impressum',
+            en: 'Legal info',
+            ru: 'отпечаток',
+            uk: 'Відбік',
+          },
         },
         {
-          link: { de: '/datenschutz/', en: '/en/privacy/' },
-          title: { de: 'Datenschutz', en: 'Privacy' },
+          link: {
+            de: '/datenschutz/',
+            en: '/en/privacy/',
+            ru: '/en/privacy/',
+            uk: '/en/privacy/',
+          },
+          title: {
+            de: 'Datenschutz',
+            en: 'Privacy',
+            ru: 'Защита данных',
+            uk: 'Захист даних',
+          },
         },
       ],
     },

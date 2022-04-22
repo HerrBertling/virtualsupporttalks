@@ -105,7 +105,24 @@ export default {
   ],
 
   i18n: {
-    locales: ['de', 'en'],
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+      },
+      {
+        code: 'de',
+        name: 'Deutsch',
+      },
+      {
+        code: 'uk',
+        name: 'Ukrainian',
+      },
+      {
+        code: 'ru',
+        name: 'Russian',
+      },
+    ],
     defaultLocale: 'de',
     vueI18n: {
       fallbackLocale: 'de',
@@ -213,6 +230,18 @@ export default {
           },
           initiator: {
             more: 'More about',
+          },
+        },
+        uk: {
+          coach: {
+            filter: 'Urainian test',
+            count: 'Urainian count',
+          },
+        },
+        ru: {
+          coach: {
+            filter: 'Russian test',
+            count: 'Russian count',
           },
         },
       },
