@@ -111,17 +111,18 @@ export default {
     },
     getNavLink(item) {
       const isGerman = this.$i18n.locale === 'de'
-      return item.fields.page
-        ? `${isGerman ? '/' : `/${this.$i18n.locale}`}/${
+
+      const finalUrl = item.fields.page
+        ? `${isGerman ? '/' : `/${this.$i18n.locale}/`}${
             item.fields.page.fields.slug
           }/`
+        : isGerman
+        ? `${item.fields.url.replace('https://www.virtualsupporttalks.de', '')}`
         : item.fields.url.replace(
-            `${
-              isGerman
-                ? 'https://www.virtualsupporttalks.de/'
-                : `https://www.virtualsupporttalks.de/${this.$i18n.locale}`
-            }`
+            'https://www.virtualsupporttalks.de/',
+            `/${this.$i18n.locale}/`
           )
+      return finalUrl
     },
   },
 }
