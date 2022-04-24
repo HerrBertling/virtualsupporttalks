@@ -1,5 +1,8 @@
 <template>
-  <nav class="relative z-30 lg:max-w-4xl" aria-role="navigation">
+  <nav
+    class="relative z-30 lg:max-w-4xl flex items-center"
+    aria-role="navigation"
+  >
     <button
       :class="[
         'lg:hidden rounded-full w-12 h-12 flex items-center justify-center',
@@ -43,7 +46,7 @@
         </svg>
       </span>
     </button>
-    <ul
+    <div
       :class="[
         'flex flex-col rounded-md overflow-hidden shadow-2xl fixed top-24 right-0 w-screen max-w-[90vw] transition-transform duration-300 bg-white lg:flex-row lg:static lg:w-auto lg:shadow-none lg:rounded-none lg:bg-transparent lg:justify-end lg:items-center lg:h-auto lg:transform-none lg:top-auto lg:left-auto z-30',
         navExpanded && '-translate-x-[5vw]',
@@ -58,13 +61,14 @@
       >
         {{ item.fields.title }}
       </LayoutNavItem>
-      <LayoutNavItem
+      <!-- <LayoutNavItem
         v-for="locale in availableLocales"
         :key="locale.code"
         :to="localePath('/', locale.code)"
         >{{ locale.name }}</LayoutNavItem
-      >
-    </ul>
+      > -->
+    </div>
+    <LanguageSwitcher />
   </nav>
 </template>
 
@@ -120,7 +124,7 @@ export default {
     getNavLink(item) {
       const isGerman = this.$i18n.locale === 'de'
 
-      const finalUrl = item.fields.page
+      return item.fields.page
         ? `${isGerman ? '/' : `/${this.$i18n.locale}/`}${
             item.fields.page.fields.slug
           }/`
@@ -130,7 +134,6 @@ export default {
             'https://www.virtualsupporttalks.de/',
             `/${this.$i18n.locale}/`
           )
-      return finalUrl
     },
   },
 }
