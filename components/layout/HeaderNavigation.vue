@@ -82,7 +82,15 @@ export default {
       include: 3,
       locale: this.$i18n.locale,
     })
-    this.navigation = navItems.fields.items
+    // remove Blog link if uk or ru
+    if (this.$i18n.locale === 'uk' || this.$i18n.locale === 'ru') {
+      this.navigation = navItems.fields.items.filter(
+        (item) => item.fields.title !== 'Blog'
+      )
+    } else {
+      this.navigation = navItems.fields.items
+    }
+    return this.navigation
   },
   computed: {
     lang() {
