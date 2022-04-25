@@ -67,7 +67,7 @@ export default {
           link: {
             de: '/impressum/',
             en: '/en/imprint/',
-            ru: '/ru/Выходные-данные /',
+            ru: '/ru/Выходные-данные/',
             uk: '/uk/Відомості/',
           },
           title: {
