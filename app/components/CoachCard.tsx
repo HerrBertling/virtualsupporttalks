@@ -1,7 +1,9 @@
 import type { Asset } from "contentful";
 import type { ReactNode } from "react";
-import { PhoneIcon, MailIcon, GlobeIcon } from "@heroicons/react/outline";
 import ReactCountryFlag from "react-country-flag";
+import GlobeIcon from "~/components/icons/GlobeIcon";
+import MailIcon from "~/components/icons/MailIcon";
+import PhoneIcon from "~/components/icons/PhoneIcon";
 import getFlagCode from "~/utils/getFlagCodes";
 
 type CoachProps = {
@@ -120,11 +122,11 @@ export default function CoachCard(props: CoachProps) {
             // @click="trackCoachClick(method.type, name)"
           >
             {method.type === "phone" ? (
-              <PhoneIcon className="h6 mr-1 w-6" />
+              <PhoneIcon classNames="h6 mr-1 w-6" />
             ) : method.type === "email" ? (
-              <MailIcon className="h6 mr-1 w-6" />
+              <MailIcon classNames="h6 mr-1 w-6" />
             ) : (
-              <GlobeIcon className="h6 mr-1 w-6" />
+              <GlobeIcon classNames="h6 mr-1 w-6" />
             )}
             <span>{method.type}</span>
           </a>

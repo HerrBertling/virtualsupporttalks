@@ -1,4 +1,4 @@
-import { IHeaderBlockFields } from "../../../@types/generated/contentful";
+import type { IHeaderBlockFields } from "../../../@types/generated/contentful";
 
 export default function Header({
   backgroundcolor,

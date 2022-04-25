@@ -1,6 +1,6 @@
 import * as contentful from "contentful";
 import type { Entry, EntryCollection } from "contentful";
-import type { ThrownResponse } from "remix";
+import type { ThrownResponse } from "@remix-run/react";
 
 import type {
   IPage,

@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 import type { IContentImageBgFields } from "../../../@types/generated/contentful";
-
-import CleverButton from "../CleverButton";
 import AmazonCharityBanner from "../AmazonCharityBanner";
+import CleverButton from "../CleverButton";
 
 interface ContentBlockImageBgProps extends IContentImageBgFields {
   children: ReactNode;

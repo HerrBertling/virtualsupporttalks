@@ -1,4 +1,4 @@
-import { ICoach } from "../../@types/generated/contentful";
+import type { ICoach } from "../../@types/generated/contentful";
 import CoachCard from "./CoachCard";
 import ContentfulRichText from "./ContentfulRichText";
 

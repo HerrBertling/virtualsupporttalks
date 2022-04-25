@@ -1,10 +1,10 @@
-import NavItem from "./NavItem";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import type {
   INavigationItem,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
+import NavItem from "./NavItem";
 
 export default function Navigation({
   nav,

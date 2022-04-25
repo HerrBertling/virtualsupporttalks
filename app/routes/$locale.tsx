@@ -2,8 +2,8 @@ import type {
   INavigationItem,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
-import { LoaderFunction, useCatch } from "remix";
-import { Outlet, useLoaderData, redirect } from "remix";
+import { LoaderFunction, redirect } from "@remix-run/node";
+import { Outlet, useCatch, useLoaderData } from "@remix-run/react";
 import { getMainNav } from "~/utils/contentful";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { useSetupTranslations } from "remix-i18next";

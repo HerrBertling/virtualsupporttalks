@@ -1,5 +1,5 @@
-import type { IContentWithFullSizeImageFields } from "../../../@types/generated/contentful";
 import type { ReactNode } from "react";
+import type { IContentWithFullSizeImageFields } from "../../../@types/generated/contentful";
 interface FullSizeImageBgProps extends IContentWithFullSizeImageFields {
   children: ReactNode;
 }

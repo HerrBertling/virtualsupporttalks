@@ -1,10 +1,9 @@
+import { NavLink } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import {
+import type {
   INavigationItem,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
-import { NavLink } from "remix";
-
 import HeaderNavigation from "./Navigation";
 
 export default function LayoutHeader({

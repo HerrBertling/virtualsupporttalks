@@ -1,9 +1,8 @@
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import type { Options } from "@contentful/rich-text-react-renderer";
-import { INLINES } from "@contentful/rich-text-types";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import type { Document } from "@contentful/rich-text-types";
+import { INLINES } from "@contentful/rich-text-types";
 import { ReactNode } from "react";
-import { Link } from "remix";
 import CleverLink from "./CleverLink";
 
 type ContentfulRichTextProps = {

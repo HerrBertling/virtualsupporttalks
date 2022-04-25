@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import type { IImageCollectionFields } from "../../../@types/generated/contentful";
 
 interface ImageCollectionProps extends IImageCollectionFields {
@@ -25,7 +24,7 @@ function Image({ image, text }: { image?: string; text?: string }) {
         alt={text}
         height="450"
         loading="lazy"
-        className="max-w-full h-auto"
+        className="h-auto max-w-full"
       />
     </picture>
   );
@@ -44,7 +43,7 @@ export default function ContentBlockImageCollection({
 
   return (
     <div
-      className={`p-4 max-w-7xl mx-auto grid gap-4 grid-cols-1 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-12${
+      className={`mx-auto grid max-w-7xl grid-cols-1 gap-4 p-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-12${
         withPaddingTop && "pt-20"
       }`}
     >

@@ -1,4 +1,4 @@
-import { IGenericContentFields } from "../../../@types/generated/contentful";
+import type { IGenericContentFields } from "../../../@types/generated/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
 export default function GenericContent({ content }: IGenericContentFields) {

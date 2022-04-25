@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import type { IImageCollectionFields } from "../../@types/generated/contentful";
 
 interface ImageCollectionProps extends IImageCollectionFields {

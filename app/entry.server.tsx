@@ -1,10 +1,10 @@
+import type { EntryContext } from "@remix-run/node";
+import { RemixServer } from "@remix-run/react";
+import i18next from "i18next";
 import { renderToString } from "react-dom/server";
 import { I18nextProvider, initReactI18next } from "react-i18next";
-import type { EntryContext } from "remix";
-import { RemixServer } from "remix";
-import i18nextOptions from "./utils/i18nextOptions";
-import i18next from "i18next";
 import { etag } from "remix-etag";
+import i18nextOptions from "./utils/i18nextOptions";
 
 export default async function handleRequest(
   request: Request,

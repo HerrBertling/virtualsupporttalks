@@ -1,5 +1,6 @@
 import { IPage, LOCALE_CODE } from "../../../@types/generated/contentful";
-import { LoaderFunction, MetaFunction, useLoaderData } from "remix";
+import { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 import ContentBlocks from "~/components/ContentBlocks";

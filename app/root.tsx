@@ -1,8 +1,12 @@
+import type {
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
+import { json } from "@remix-run/node";
 import {
-  json,
   Links,
   LiveReload,
-  LoaderFunction,
   Meta,
   Outlet,
   Scripts,
@@ -10,18 +14,15 @@ import {
   useCatch,
   useFetcher,
   useLoaderData,
-} from "remix";
-import type { LinksFunction, MetaFunction } from "remix";
-import { useLocation } from "react-router-dom";
+} from "@remix-run/react";
 import { useEffect, useState } from "react";
-import * as gtag from "~/utils/gtag.client";
-
+import { useLocation } from "react-router-dom";
 import { getSeo } from "~/seo";
-let [seoMeta, seoLinks] = getSeo();
-
+import * as gtag from "~/utils/gtag.client";
 import { gdprConsent } from "./cookies";
-
 import styles from "./styles/app.css";
+
+let [seoMeta, seoLinks] = getSeo();
 
 export const links: LinksFunction = () => {
   return [
@@ -64,7 +65,7 @@ export default function App() {
       console.log("Tracking pageview", location.pathname);
       gtag.pageview(location.pathname);
     }
-  }, [location]);
+  }, [location, shouldTrack]);
 
   return (
     <html lang="en">

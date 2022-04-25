@@ -1,8 +1,8 @@
-import {
+import type { ReactNode } from "react";
+import type {
   INavigationItem,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
-import type { ReactNode } from "react";
 import LayoutFooter from "./Footer";
 import LayoutHeader from "./Header";
 

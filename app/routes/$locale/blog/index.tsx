@@ -2,8 +2,8 @@ import {
   IBlogpost,
   LOCALE_CODE,
 } from "../../../../@types/generated/contentful";
-import { useCatch, useLoaderData } from "remix";
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction } from "@remix-run/node";
+import { useCatch, useLoaderData } from "@remix-run/react";
 import { getBlogposts } from "~/utils/contentful";
 import BlogpostCard from "~/components/BlogpostCard";
 

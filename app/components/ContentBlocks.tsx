@@ -1,23 +1,22 @@
-import {
-  ICenteredContentFields,
-  IContentWithFullSizeImageFields,
-  IHeaderBlockFields,
-  IPageFields,
-  IContentImageBgFields,
-  ITwoImagesFields,
-  IImageCollectionFields,
+import type {
   IBlogpostFields,
+  ICenteredContentFields,
+  IContentImageBgFields,
+  IContentWithFullSizeImageFields,
   IGenericContentFields,
+  IHeaderBlockFields,
+  IImageCollectionFields,
+  IPageFields,
+  ITwoImagesFields,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
-
-import ContentBlockHeader from "./ContentBlocks/Header";
 import ContentBlockCentered from "./ContentBlocks/Centered";
+import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection";
 import ContentBlockFullSizeImageBg from "./ContentBlocks/FullSizeImageBg";
+import GenericContent from "./ContentBlocks/GenericContent";
+import ContentBlockHeader from "./ContentBlocks/Header";
 import ContentBlockImageBg from "./ContentBlocks/ImageBg";
 import ContentBlockTwoImages from "./ContentBlocks/TwoImages";
-import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection";
-import GenericContent from "./ContentBlocks/GenericContent";
 import ContentfulRichText from "./ContentfulRichText";
 
 type ContentBlockProps = {

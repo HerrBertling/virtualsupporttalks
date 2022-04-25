@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
+! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -1413,16 +1413,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 400px;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .h-20 {
   height: 5rem;
 }
 
 .h-12 {
   height: 3rem;
-}
-
-.h-6 {
-  height: 1.5rem;
 }
 
 .max-h-40 {

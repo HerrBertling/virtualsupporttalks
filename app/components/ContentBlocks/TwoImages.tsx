@@ -1,10 +1,9 @@
-import FadeIn from "../FadeIn";
-import CleverLink from "../CleverLink";
-
 import type {
   ITwoImagesFields,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
+import CleverLink from "../CleverLink";
+import FadeIn from "../FadeIn";
 
 type ImageType = {
   image: string;

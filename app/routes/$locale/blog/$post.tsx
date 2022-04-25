@@ -2,8 +2,8 @@ import {
   IBlogpost,
   LOCALE_CODE,
 } from "../../../../@types/generated/contentful";
-import { useCatch, useLoaderData } from "remix";
-import type { LoaderFunction, MetaFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { useCatch, useLoaderData } from "@remix-run/react";
 import { getBlogpost } from "~/utils/contentful";
 import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";

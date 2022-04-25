@@ -1,7 +1,5 @@
-import { ICenteredContentFields } from "../../../@types/generated/contentful";
+import type { ICenteredContentFields } from "../../../@types/generated/contentful";
 import ContentfulRichText from "../ContentfulRichText";
-
-import type { Document } from "@contentful/rich-text-types";
 
 type ContentCenteredProps = {
   content: ICenteredContentFields["content"];

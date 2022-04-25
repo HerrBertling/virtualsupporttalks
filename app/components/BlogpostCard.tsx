@@ -1,7 +1,7 @@
-import { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
+import { useTranslation } from "react-i18next";
+import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
 import CleverLink from "./CleverLink";
 import TagGroup from "./TagGroup";
-import { useTranslation } from "react-i18next";
 
 export default function BlogpostCard({
   post,

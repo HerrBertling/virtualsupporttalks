@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import { useLoaderData, useCatch, Form, useTransition, useSubmit } from "remix";
-import type { LoaderFunction, MetaFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { Form, useCatch, useLoaderData, useSubmit, useTransition } from "@remix-run/react";
 
 import { useTranslation } from "react-i18next";
 import ContentBlocks from "~/components/ContentBlocks";

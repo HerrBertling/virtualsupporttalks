@@ -1,4 +1,4 @@
-import { ITag, LOCALE_CODE } from "./../../@types/generated/contentful";
+import type { ITag, LOCALE_CODE } from "./../../@types/generated/contentful";
 import CleverLink from "./CleverLink";
 
 type TagGroupProps = {

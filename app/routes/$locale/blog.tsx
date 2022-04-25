@@ -1,5 +1,5 @@
-import { Outlet } from "remix";
-import type { MetaFunction } from "remix";
+import type { MetaFunction } from "@remix-run/node";
+import { Outlet } from "@remix-run/react";
 import { getSeoMeta } from "~/seo";
 
 export const meta: MetaFunction = () => {
