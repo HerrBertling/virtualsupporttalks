@@ -67,28 +67,29 @@ export default {
           link: {
             de: '/impressum/',
             en: '/en/imprint/',
-            ru: '/en/imprint/',
-            uk: '/en/imprint/',
+            ru: '/ru/Выходные-данные /',
+            uk: '/uk/Відомості/',
           },
           title: {
             de: 'Impressum',
             en: 'Legal info',
-            ru: 'отпечаток',
-            uk: 'Відбік',
+            ru: 'Юридическая информация',
+            uk: 'Юридична інформація',
           },
         },
+
         {
           link: {
             de: '/datenschutz/',
             en: '/en/privacy/',
-            ru: '/en/privacy/',
-            uk: '/en/privacy/',
+            ru: '/ru/Защита-данных/',
+            uk: '/uk/Захист-даних/',
           },
           title: {
             de: 'Datenschutz',
             en: 'Privacy',
-            ru: 'Защита данных',
-            uk: 'Захист даних',
+            ru: 'Конфиденциальность',
+            uk: 'Конфіденційність',
           },
         },
       ],
