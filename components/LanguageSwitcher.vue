@@ -1,12 +1,21 @@
 <template>
-  <div class="w-auto mr-1" @mouseover="show = true" @mouseleave="show = false">
-    <div class="z-40 cursor-pointer p-4 py-1 px-2 hover:text-vsp-500">
-      <button class="justify-center flex items-center h-14">
+  <div
+    v-click-outside="onClickOutside"
+    class="w-auto mr-1"
+    @click="show = !show"
+  >
+    <div
+      class="block p-4 no-underline lg:inline-block lg:py-1 lg:px-2 lg:rounded-md rounded-md cursor-pointer hover:text-vsp-500 hover:bg-white"
+    >
+      <button class="justify-center flex items-center">
         <GlobeIcon :height="40" :width="40" class="mr-1" />
         {{ $i18n.locale.toUpperCase() }}
       </button>
     </div>
-    <div v-if="show" class="bg-white absolute flex flex-col items-center z-50">
+    <div
+      v-if="show"
+      class="bg-white absolute flex flex-col items-center z-50 mt-4 lg:rounded-md rounded-md"
+    >
       <div
         v-for="lang in availableLocales"
         :key="lang.code"
@@ -24,11 +33,14 @@
 </template>
 
 <script>
+import vClickOutside from 'v-click-outside'
 import GlobeIcon from '~/components/icons/globe.vue'
 
 export default {
   name: 'LanguageSwitcher',
-
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   components: {
     GlobeIcon,
   },
@@ -36,6 +48,10 @@ export default {
     locales: {
       type: [String],
       default: null,
+    },
+    navExpanded: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -55,6 +71,11 @@ export default {
       this.show = false
       this.displayLocales = this.locales.filter((loc) => loc !== lang)
       return (this.locale = lang)
+    },
+    onClickOutside(event) {
+      if (this.show) {
+        this.show = false
+      }
     },
   },
 }

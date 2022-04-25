@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full block lg:w-auto lg:mr-1" @click="$emit('click')">
+  <div class="w-full block lg:w-auto lg:mr-4" @click="$emit('click')">
     <nuxt-link
-      class="block p-4 no-underline lg:inline-block lg:py-1 lg:px-2 lg:rounded-md rounded-md hover:text-vsp-500"
+      class="block p-4 no-underline lg:inline-block lg:py-1 lg:px-2 lg:rounded-md rounded-md hover:text-vsp-500 hover:bg-white"
       exact-active-class="bg-gray-100 lg:bg-white border-l-4 border-b-transparent border-l-vsp-500 lg:border-l-transparent lg:underline lg:decoration-vsp-500"
       :to="to"
     >
@@ -17,6 +17,15 @@ export default {
     to: {
       type: String,
       required: true,
+    },
+    navExpanded: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  watch: {
+    navExpanded(newValue) {
+      this.$emit('navigation-active', newValue)
     },
   },
 }

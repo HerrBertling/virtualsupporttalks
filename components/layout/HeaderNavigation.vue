@@ -61,12 +61,6 @@
       >
         {{ item.fields.title }}
       </LayoutNavItem>
-      <!-- <LayoutNavItem
-        v-for="locale in availableLocales"
-        :key="locale.code"
-        :to="localePath('/', locale.code)"
-        >{{ locale.name }}</LayoutNavItem
-      > -->
     </div>
     <LanguageSwitcher />
   </nav>
