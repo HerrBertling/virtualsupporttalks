@@ -82,13 +82,13 @@ export default {
     })
 
     // remove Blog link if uk or ru
-    // if (this.$i18n.locale === 'uk' || this.$i18n.locale === 'ru') {
-    //   this.navigation = navItems.fields.items.filter(
-    //     (item) => item.fields.title !== 'Blog'
-    //   )
-    // } else {
-    this.navigation = navItems.fields.items
-    // }
+    if (this.$i18n.locale === 'uk' || this.$i18n.locale === 'ru') {
+      this.navigation = navItems.fields.items.filter(
+        (item) => item.fields.title !== 'Blog'
+      )
+    } else {
+      this.navigation = navItems.fields.items
+    }
     return this.navigation
   },
   computed: {
