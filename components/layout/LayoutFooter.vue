@@ -67,8 +67,8 @@ export default {
           link: {
             de: '/impressum/',
             en: '/en/imprint/',
-            ru: '/ru/Выходные-данные/',
-            uk: '/uk/Відомості/',
+            ru: '/ru/imprint/',
+            uk: '/uk/imprint/',
           },
           title: {
             de: 'Impressum',
@@ -82,8 +82,8 @@ export default {
           link: {
             de: '/datenschutz/',
             en: '/en/privacy/',
-            ru: '/ru/Защита-данных/',
-            uk: '/uk/Захист-даних/',
+            ru: '/ru/privacy/',
+            uk: '/uk/privacy/',
           },
           title: {
             de: 'Datenschutz',

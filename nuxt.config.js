@@ -55,12 +55,12 @@ export default {
               return `
               /en/${entry.fields.slug.en}`
             }),
-          // // all ukrainian slugs if available
-          // ...pages.items
-          //   .filter((entry) => !!entry.fields.slug.uk)
-          //   .map((entry) => {
-          //     return `/uk/${entry.fields.slug.uk}`
-          // }), // all english slugs if available
+          // all ukrainian slugs if available
+          ...pages.items
+            .filter((entry) => !!entry.fields.slug.uk)
+            .map((entry) => {
+              return `/uk/${entry.fields.slug.uk}`
+            }), // all russian slugs if available
           ...pages.items
             .filter((entry) => !!entry.fields.slug.ru)
             .map((entry) => {
