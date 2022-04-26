@@ -52,7 +52,19 @@ export default {
           ...pages.items
             .filter((entry) => !!entry.fields.slug.en)
             .map((entry) => {
-              return `/en/${entry.fields.slug.en}`
+              return `
+              /en/${entry.fields.slug.en}`
+            }),
+          // all ukrainian slugs if available
+          ...pages.items
+            .filter((entry) => !!entry.fields.slug.uk)
+            .map((entry) => {
+              return `/uk/${entry.fields.slug.uk}`
+            }), // all english slugs if available
+          ...pages.items
+            .filter((entry) => !!entry.fields.slug.ru)
+            .map((entry) => {
+              return `/ru/${entry.fields.slug.ru}`
             }),
         ]
         return slugs
