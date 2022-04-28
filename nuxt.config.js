@@ -52,7 +52,19 @@ export default {
           ...pages.items
             .filter((entry) => !!entry.fields.slug.en)
             .map((entry) => {
-              return `/en/${entry.fields.slug.en}`
+              return `
+              /en/${entry.fields.slug.en}`
+            }),
+          // all ukrainian slugs if available
+          ...pages.items
+            .filter((entry) => !!entry.fields.slug.uk)
+            .map((entry) => {
+              return `/uk/${entry.fields.slug.uk}`
+            }), // all russian slugs if available
+          ...pages.items
+            .filter((entry) => !!entry.fields.slug.ru)
+            .map((entry) => {
+              return `/ru/${entry.fields.slug.ru}`
             }),
         ]
         return slugs
@@ -105,7 +117,20 @@ export default {
   ],
 
   i18n: {
-    locales: ['de', 'en'],
+    locales: [
+      {
+        code: 'en',
+      },
+      {
+        code: 'de',
+      },
+      {
+        code: 'uk',
+      },
+      {
+        code: 'ru',
+      },
+    ],
     defaultLocale: 'de',
     vueI18n: {
       fallbackLocale: 'de',
@@ -139,7 +164,7 @@ export default {
             por: 'Português',
             pol: 'Polskie',
             nl: 'Nederlands',
-            ukr: 'Український',
+            uk: 'Український',
             ru: 'русский',
             esp: 'Español',
             fr: 'Français',
@@ -194,7 +219,7 @@ export default {
             por: 'Português',
             pol: 'Polskie',
             nl: 'Nederlands',
-            ukr: 'Український',
+            uk: 'Український',
             ru: 'русский',
           },
           network: 'Our network',
@@ -213,6 +238,106 @@ export default {
           },
           initiator: {
             more: 'More about',
+          },
+        },
+        uk: {
+          blog: {
+            overview: {
+              title: 'Останні публікації в блозі',
+            },
+            tag: {
+              title: 'з тегом',
+            },
+          },
+          email: 'електронна пошта',
+          phone: 'Телефон',
+          website: 'Інтернет',
+          coach: {
+            filter: 'Фільтрувати список слухачів за темою',
+            count: 'показані тренери',
+            focus: 'Мої напрямки діяльності:',
+            email: 'електронна пошта',
+            website: 'Інтернет',
+            langFilter: 'Фільтрувати за мовою',
+            loading: 'Завантаження слухачів…',
+            emergency: 'Швидка відповідь',
+          },
+          languages: {
+            de: 'Deutsch',
+            en: 'English',
+            dan: 'Dansk',
+            por: 'Português',
+            pol: 'Polskie',
+            nl: 'Nederlands',
+            uk: 'Український',
+            ru: 'русский',
+          },
+          network: 'Наша мережа',
+          partner: 'Партнери нашої компанії',
+          media: 'Редайт у ЗМІ',
+          contributorHeadline: 'Команда REDEZEIT FÜR DICH',
+          cookie: {
+            accept: 'Прийняти',
+            decline: 'Відхилення',
+            intro:
+              'Цей веб-сайт використовує файли cookie. Більше інформації можна знайти на',
+            privacyPage: 'сторінку конфіденційності',
+            settings: 'Налаштуйте параметри cookie',
+            deactivate: 'Файли cookie ввімкнено',
+            activate: 'Файли cookie вимкнено',
+          },
+          initiator: {
+            more: 'Більше про',
+          },
+        },
+        ru: {
+          blog: {
+            overview: {
+              title: 'Последние сообщения в блогах',
+            },
+            tag: {
+              title: 'с тегом',
+            },
+          },
+          email: 'Эл. адрес',
+          phone: 'Телефон',
+          website: 'Интернет',
+          coach: {
+            filter: 'Фильтровать список слушателей по теме',
+            count: 'показаны тренеры',
+            focus: 'Мои направления:',
+            email: 'Эл. адрес',
+            website: 'Интернет сайт',
+            langFilter: 'Фильтровать по языку',
+            loading: 'Загрузка слушателей…',
+            emergency: 'Быстрый ответ',
+          },
+          languages: {
+            de: 'Deutsch',
+            en: 'English',
+            dan: 'Dansk',
+            por: 'Português',
+            pol: 'Polskie',
+            nl: 'Nederlands',
+            uk: 'Український',
+            ru: 'русский',
+          },
+          network: 'Наша сеть',
+          partner: 'Партнеры нашей компании',
+          media: 'Редезейт в СМИ',
+          contributorHeadline: 'Команда REDEZEIT FÜR DICH',
+          cookie: {
+            accept: 'Принимать',
+            decline: 'Отклонить',
+            intro:
+              'Этот веб-сайт использует файлы cookie. Дополнительную информацию можно найти на',
+            privacyPage: 'страница конфиденциальности',
+            settings: 'Изменить настройки файлов cookie',
+            deactivate: 'Файлы cookie включены',
+            activate: 'Файлы cookie отключены',
+          },
+          initiator: {
+            more: 'Больше о',
           },
         },
       },

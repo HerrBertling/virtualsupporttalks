@@ -203,7 +203,6 @@ export default {
         locale: this.$i18n.locale,
       }
       const useLanguageFilter = lang !== 'de'
-
       if (useLanguageFilter) {
         baseOptions = {
           ...baseOptions,
@@ -227,7 +226,11 @@ export default {
       const allLangs = [...this.availableLanguages, ...langs].map((lang) =>
         lang.toLowerCase()
       )
-      this.availableLanguages = [...new Set(allLangs)]
+      // Filter 'ukr', use 'uk'.
+      // When released, we need to clean up contentful from ukr tags to keep consistency
+      this.availableLanguages = [
+        ...new Set(allLangs.filter((lang) => lang !== 'ukr')),
+      ]
       this.loading = false
     },
 
