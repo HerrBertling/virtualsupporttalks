@@ -1,11 +1,4 @@
 import {
-  ICoach,
-  ICoachtag,
-  INavigation,
-  IPage,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
-import {
   getCoaches,
   getLanguages,
   getMainNav,
@@ -13,6 +6,13 @@ import {
   getTags,
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
+import {
+  ICoach,
+  ICoachtag,
+  INavigation,
+  IPage,
+  LOCALE_CODE,
+} from "../../@types/generated/contentful";
 
 type PromiseResponse = [
   IPage | null,
@@ -68,8 +68,8 @@ export const getSearchPageContents = async (
     }
     return (
       !!coachTags &&
-      checkedTags.some((tag) =>
-        coachTags.some((cTag: ICoachtag) => cTag.fields.tag === tag)
+      checkedTags.some((tagId) =>
+        coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId)
       )
     );
   });

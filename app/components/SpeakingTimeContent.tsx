@@ -82,14 +82,14 @@ export default function SpeakingTimeContent({
             {tags.map((tag: ICoachtag) => {
               const isNotSelectable =
                 !availableTagIDs.includes(tag.sys.id) &&
-                !checkedTags.includes(tag.fields.tag);
+                !checkedTags.includes(tag.sys.id);
               return (
                 <CoachFilterTag
                   disabled={isNotSelectable}
                   key={tag.sys.id}
-                  value={tag.fields.tag}
+                  value={tag.sys.id}
                   name="tag"
-                  defaultValue={checkedTags.includes(tag.fields.tag)}
+                  defaultValue={checkedTags.includes(tag.sys.id)}
                   type="checkbox"
                 >
                   {tag.fields.tag}
