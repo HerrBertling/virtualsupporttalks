@@ -6,6 +6,7 @@ import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
 import getFlagCode from "~/utils/getFlagCodes";
+import { trackCoachClick } from "~/utils/gtag.client";
 
 type CoachProps = {
   email?: string;
@@ -56,7 +57,7 @@ export default function CoachCard(props: CoachProps) {
         target="_blank"
         rel="noopener"
         className="shadow-inset-md col-start-1 row-start-1 h-16 w-16 overflow-hidden rounded-full"
-        // @click="trackCoachClick('image', name)"
+        onClick={() => trackCoachClick({ type: "image", coachName: name! })}
       >
         {imagePath ? (
           <picture>
@@ -84,7 +85,7 @@ export default function CoachCard(props: CoachProps) {
           href={url ? url : `mailto:${email}`}
           target="_blank"
           rel="noopener"
-          // @click="trackCoachClick('image', name)"
+          onClick={() => trackCoachClick({ type: "image", coachName: name! })}
         >
           <h3 className="text-xl font-bold text-gray-500 transition-colors hover:text-vsp-500">
             {name}
@@ -120,7 +121,9 @@ export default function CoachCard(props: CoachProps) {
             target="_blank"
             rel="noopener"
             className="flex w-full flex-grow items-center justify-center rounded-md border border-vsp-400 py-2 text-sm text-gray-600 no-underline transition-colors duration-200 hover:border-vsp-700 hover:bg-vsp-100 hover:text-vsp-900 focus:border-vsp-700 focus:bg-vsp-100 focus:text-vsp-900 active:border-vsp-700 active:bg-vsp-100 active:text-vsp-900"
-            // @click="trackCoachClick(method.type, name)"
+            onClick={() =>
+              trackCoachClick({ type: method.type, coachName: name! })
+            }
           >
             {method.type === "phone" ? (
               <PhoneIcon classNames="h6 mr-1 w-6" />
