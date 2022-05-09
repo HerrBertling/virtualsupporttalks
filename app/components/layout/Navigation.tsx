@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { getCurrentLocale } from "~/utils/locales";
 import type {
   INavigationItem,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
+import LanguageSwitcher from "../LanguageSwitcher";
 import NavItem from "./NavItem";
 
 export default function Navigation({
@@ -20,24 +22,36 @@ export default function Navigation({
     setOpen(false);
   }, [pathname]);
 
-  const navItems = nav.map((item) => {
-    const { page, title, url } = item.fields;
-    const id = item.sys.id;
-    let path = "/";
-    if (url) {
-      path = url.replace("https://www.virtualsupporttalks.de", "");
-    }
-    if (page?.fields?.slug) {
-      path = `/${lang}/${page.fields.slug}`;
-    }
-    return {
-      title,
-      path,
-      id,
-    };
-  });
+  const currentLang = getCurrentLocale();
+
+  const navItems = nav
+    .map((item) => {
+      const { page, title, url } = item.fields;
+      const id = item.sys.id;
+      let path = "/";
+      if (url) {
+        path = url.replace("https://www.virtualsupporttalks.de", "");
+      }
+      if (page?.fields?.slug) {
+        path = `/${lang}/${page.fields.slug}`;
+      }
+      return {
+        title,
+        path,
+        id,
+      };
+    })
+    .filter((item) => {
+      if (["uk", "ru"].includes(currentLang)) {
+        return item.title !== "Blog";
+      }
+      return item;
+    });
   return (
-    <nav className="relative z-30 lg:max-w-4xl">
+    <nav
+      className="relative z-30 flex items-center lg:max-w-4xl"
+      aria-role="navigation"
+    >
       <button
         className={`flex h-12 w-12 items-center justify-center rounded-full lg:hidden ${
           open && "bg-white"
@@ -93,11 +107,7 @@ export default function Navigation({
             </NavItem>
           );
         })}
-        {lang === "de" ? (
-          <NavItem to="/en">English version</NavItem>
-        ) : (
-          <NavItem to="/de">Deutsche Version</NavItem>
-        )}
+        <LanguageSwitcher />
       </ul>
     </nav>
   );

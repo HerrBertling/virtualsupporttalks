@@ -740,6 +740,6 @@ export type CONTENT_TYPE =
   | "tag"
   | "twoImages";
 
-export type LOCALE_CODE = "de" | "en";
+export type LOCALE_CODE = "de" | "en" | "ru" | "uk";
 
 export type CONTENTFUL_DEFAULT_LOCALE_CODE = "de";

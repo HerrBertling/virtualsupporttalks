@@ -132,7 +132,7 @@ export default function CoachCard(props: CoachProps) {
             ) : (
               <GlobeIcon classNames="h6 mr-1 w-6" />
             )}
-            <span>{method.type}</span>
+            <span>{t(method.type)}</span>
           </a>
         ))}
       </div>

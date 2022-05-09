@@ -1,12 +1,12 @@
+import { LoaderFunction, redirect } from "@remix-run/node";
+import { Outlet, useCatch, useLoaderData } from "@remix-run/react";
+import { useSetupTranslations } from "remix-i18next";
+import BasicLayout from "~/components/layout/BasicLayout";
+import { getMainNav } from "~/utils/contentful";
 import type {
   INavigationItem,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
-import { LoaderFunction, redirect } from "@remix-run/node";
-import { Outlet, useCatch, useLoaderData } from "@remix-run/react";
-import { getMainNav } from "~/utils/contentful";
-import BasicLayout from "~/components/layout/BasicLayout";
-import { useSetupTranslations } from "remix-i18next";
 
 type WrapperLoaderItems = {
   nav: INavigationItem[];
@@ -17,7 +17,7 @@ export const loader: LoaderFunction = async ({
   params,
 }): Promise<WrapperLoaderItems> => {
   const locale = (params.locale as LOCALE_CODE) || "de";
-  if (!["en", "de"].includes(locale)) {
+  if (!["en", "de", "uk", "ru"].includes(locale)) {
     console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);
     throw redirect(`/de/${locale}`, 301);
   }

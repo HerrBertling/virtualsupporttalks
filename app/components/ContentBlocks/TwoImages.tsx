@@ -27,16 +27,22 @@ export default function ContentBlockTwoImages({
   if (!image1 || !image2 || !text1 || !text2 || !link1 || !link2) {
     return null;
   }
+  const sanityCheckForLink = (link: string) => {
+    if (link.startsWith(`https://www.virtualsupporttalks.de/${locale}/`)) {
+      return link.replace(`/${locale}/`, "/");
+    }
+    return link;
+  };
   const images: ImageType[] = [
     {
       image: image1?.fields.file.url,
       text: text1,
-      link: link1,
+      link: sanityCheckForLink(link1),
     },
     {
       image: image2?.fields.file.url,
       text: text2,
-      link: link2,
+      link: sanityCheckForLink(link2),
     },
   ];
   return (

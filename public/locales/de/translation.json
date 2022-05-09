@@ -32,7 +32,10 @@
     "result": "Zuhörer*innen gefunden.",
     "noResult": "Keine Zuhörer*innen zu diesen Filtern gefunden :(",
     "emergency": "Schnell erreichbar",
-    "languages": "Sprachen"
+    "languages": "Sprachen",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "website": "Webseite"
   },
   "blogpostCard": {
     "ctaToBlogpost": "Weiterlesen..."

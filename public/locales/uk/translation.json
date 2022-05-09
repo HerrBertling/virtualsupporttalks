@@ -1,9 +1,9 @@
 {
   "networkPartnerMedia": {
     "title": {
-      "network": "Our network",
-      "partner": "Our company partners",
-      "media": "Redezeit in de Media"
+      "network": "Наша мережа",
+      "partner": "Партнери нашої компанії",
+      "media": "Редайт у ЗМІ"
     }
   },
   "searchingCoach": {
@@ -33,9 +33,9 @@
     "noResult": "No listeners found for these filters :(",
     "emergency": "Quick response",
     "languages": "Languages",
-    "email": "Email",
-    "phone": "Phone",
-    "website": "Website"
+    "email": "електронна пошта",
+    "phone": "Телефон",
+    "website": "Інтернет"
   },
   "blogpostCard": {
     "ctaToBlogpost": "Continue reading..."
