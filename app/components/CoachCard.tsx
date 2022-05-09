@@ -1,6 +1,7 @@
 import type { Asset } from "contentful";
 import type { ReactNode } from "react";
 import ReactCountryFlag from "react-country-flag";
+import { useTranslation } from "react-i18next";
 import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
@@ -21,6 +22,7 @@ export default function CoachCard(props: CoachProps) {
   const { url, name, image, emergency, phone, email, languages, children } =
     props;
 
+  const { t } = useTranslation("searchingCoach");
   const flagCodes = getFlagCode(languages);
 
   const contactMethods = [];
@@ -48,7 +50,6 @@ export default function CoachCard(props: CoachProps) {
   return (
     <article
       className={`relative grid grid-cols-[4rem_1fr] grid-rows-[4rem_1fr] gap-3 overflow-hidden rounded-md bg-white px-3 py-3 shadow-lg`}
-      // $style.coachWrapper,
     >
       <a
         href={url ? url : `mailto:${email}`}
@@ -89,7 +90,7 @@ export default function CoachCard(props: CoachProps) {
             {name}
           </h3>
           <h2 className="text-sm font-extralight text-gray-500">
-            Sprachen:
+            {t("languages")}
             {flagCodes.map((lang, index) => {
               return (
                 <ReactCountryFlag
@@ -134,7 +135,7 @@ export default function CoachCard(props: CoachProps) {
       </div>
       {emergency ? (
         <span className="absolute top-0 right-4 w-48 translate-x-16 translate-y-8 rotate-45 transform bg-orange-300 py-1 text-center text-xs text-orange-900 shadow-md">
-          Emergency!
+          {t("emergency")}
         </span>
       ) : null}
     </article>
