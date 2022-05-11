@@ -20,11 +20,15 @@ export default function LayoutHeader({
   };
 
   useEffect(() => {
+    handleScroll();
+  }, []);
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  });
+  }, []);
 
   return (
     <header
