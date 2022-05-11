@@ -34,6 +34,8 @@ export default function Navigation({
       }
       if (page?.fields?.slug) {
         path = `/${lang}/${page.fields.slug}`;
+      } else if (lang != "de") {
+        path = `/${lang}${path}`;
       }
       return {
         title,
