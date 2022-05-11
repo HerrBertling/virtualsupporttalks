@@ -52,7 +52,7 @@ export default function Navigation({
   return (
     <nav
       className="relative z-30 flex items-center lg:max-w-4xl"
-      aria-role="navigation"
+      aria-roledescription="navigation"
     >
       <button
         className={`flex h-12 w-12 items-center justify-center rounded-full lg:hidden ${
