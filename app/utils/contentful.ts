@@ -1,15 +1,14 @@
-import * as contentful from "contentful";
-import type { Entry, EntryCollection } from "contentful";
 import type { ThrownResponse } from "@remix-run/react";
-
+import type { Entry, EntryCollection } from "contentful";
+import * as contentful from "contentful";
 import type {
+  ICoach,
+  ICoachtag,
+  INavigation,
   IPage,
   IPageFields,
-  LOCALE_CODE,
-  ICoach,
-  INavigation,
   ITag,
-  ICoachtag,
+  LOCALE_CODE,
 } from "../../@types/generated/contentful";
 
 export type PageNotFoundResponse = ThrownResponse<404, string>;
@@ -208,6 +207,7 @@ export const getCoaches = async (lang: string | null = null) => {
 
   const coachesResponse: EntryCollection<ICoach> = await client.getEntries({
     ...options,
+    locale: lang || "de",
   });
 
   return shuffle(coachesResponse.items) as ICoach[];
