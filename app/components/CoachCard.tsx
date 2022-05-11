@@ -107,12 +107,7 @@ export default function CoachCard(props: CoachProps) {
           </h2>
         </a>
       </header>
-      <div className="prose prose-sm col-span-full row-start-2">
-        <p>
-          <strong className="text-gray-500">Meine Schwerpunkte</strong>
-        </p>
-        {children}
-      </div>
+      <div className="prose prose-sm col-span-full row-start-2">{children}</div>
       <div className="col-span-2 col-start-1 flex flex-row justify-between gap-2">
         {contactMethods.map((method) => (
           <a
