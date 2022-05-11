@@ -50,10 +50,7 @@ export default function Navigation({
       return item;
     });
   return (
-    <nav
-      className="relative z-30 flex items-center lg:max-w-4xl"
-      aria-roledescription="navigation"
-    >
+    <nav className="relative z-30 flex items-center lg:max-w-4xl">
       <button
         className={`flex h-12 w-12 items-center justify-center rounded-full lg:hidden ${
           open && "bg-white"
@@ -109,8 +106,8 @@ export default function Navigation({
             </NavItem>
           );
         })}
-        <LanguageSwitcher />
       </ul>
+      <LanguageSwitcher />
     </nav>
   );
 }

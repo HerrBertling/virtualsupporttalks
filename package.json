@@ -22,7 +22,7 @@
     "remix-etag": "^0.2.1",
     "remix-i18next": "^3.0.0",
     "remix-seo": "^0.1.0",
-    "usehooks-ts": "^2.3.0"
+    "usehooks-ts": "^2.5.2"
   },
   "devDependencies": {
     "@remix-run/dev": "1.4.1",
