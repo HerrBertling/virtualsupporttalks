@@ -46,7 +46,7 @@ export default function BlogpostCard({
         </h3>
       </CleverLink>
       <aside
-        className={`flex items-center gap-4 ${
+        className={`flex items-center flex-wrap gap-4 ${
           Boolean(tagList) ? "justify-between" : "justify-end"
         }`}
       >

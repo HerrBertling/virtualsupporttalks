@@ -11,7 +11,7 @@ export default function LanguageSwitcher() {
     <div className="mr-1 w-auto" onClick={() => setShow(!show)}>
       <div className="block cursor-pointer rounded-md p-4 no-underline hover:bg-white hover:text-vsp-500 lg:inline-block lg:rounded-md lg:py-1 lg:px-2">
         <button className="flex items-center justify-center uppercase">
-          <GlobeIcon classNames="h-8 w-8" />
+          <GlobeIcon classNames="h-5 w-5" />
           {currentLang}
         </button>
       </div>
