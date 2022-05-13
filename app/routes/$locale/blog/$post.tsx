@@ -1,19 +1,25 @@
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { useCatch, useLoaderData } from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicCatchBoundary";
+import ContentBlocks from "~/components/ContentBlocks";
+import TagGroup from "~/components/TagGroup";
+import { getSeoMeta } from "~/seo";
+import { getBlogpost } from "~/utils/contentful";
 import {
   IBlogpost,
   LOCALE_CODE,
 } from "../../../../@types/generated/contentful";
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
-import { getBlogpost } from "~/utils/contentful";
-import ContentBlocks from "~/components/ContentBlocks";
-import TagGroup from "~/components/TagGroup";
-import { getSeoMeta } from "~/seo";
 
 export const meta: MetaFunction = ({
   data,
 }: {
   data: { blogpost: IBlogpost };
 }) => {
+  if (!data?.blogpost) {
+    return {
+      title: "404 – page not found",
+    };
+  }
   const { title, seo, description } = data?.blogpost?.fields;
 
   let seoMeta = getSeoMeta({
@@ -94,14 +100,7 @@ export default function Blogpost() {
 
 export function CatchBoundary() {
   const caught = useCatch();
-  return (
-    <div className="container mx-auto mt-32">
-      <h2>Oh noez! We failed.</h2>
-      <p>
-        {caught.status}: {caught.statusText}
-      </p>
-    </div>
-  );
+  return <BasicCatchBoundary {...caught} />;
 }
 export function ErrorBoundary(error) {
   return (

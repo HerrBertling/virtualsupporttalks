@@ -1,12 +1,17 @@
-import { IPage, LOCALE_CODE } from "../../../@types/generated/contentful";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { getPage } from "~/utils/contentful";
+import { useCatch, useLoaderData } from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicCatchBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
-
 import { getSeoMeta } from "~/seo";
+import { getPage } from "~/utils/contentful";
+import { IPage, LOCALE_CODE } from "../../../@types/generated/contentful";
 
 export const meta: MetaFunction = ({ data }) => {
+  if (!data?.page) {
+    return {
+      title: "404 – page not found",
+    };
+  }
   const { title, seo } = data?.page?.fields;
 
   let seoMeta = getSeoMeta({
@@ -42,4 +47,9 @@ export default function Index() {
     locale,
   }: PageProps = useLoaderData();
   return <ContentBlocks content={content} locale={locale} />;
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+  return <BasicCatchBoundary {...caught} />;
 }
