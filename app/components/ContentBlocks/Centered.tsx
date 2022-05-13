@@ -16,7 +16,7 @@ export default function ContentBlockCentered({
 }: ContentCenteredProps) {
   const colors =
     bgcolor === "gray"
-      ? "bg-gray-400"
+      ? "bg-slate-400"
       : bgcolor === "green"
       ? "bg-vsp-500"
       : "bg-white";

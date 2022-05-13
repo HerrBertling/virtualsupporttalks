@@ -87,10 +87,10 @@ export default function CoachCard(props: CoachProps) {
           rel="noopener"
           onClick={() => trackCoachClick({ type: "image", coachName: name! })}
         >
-          <h3 className="text-xl font-bold text-gray-500 transition-colors hover:text-vsp-500">
+          <h3 className="text-xl font-bold text-slate-500 transition-colors hover:text-vsp-500">
             {name}
           </h3>
-          <h2 className="text-sm font-extralight text-gray-500">
+          <h2 className="text-sm font-extralight text-slate-500">
             {t("languages")}
             {flagCodes.map((lang, index) => {
               return (
@@ -107,7 +107,9 @@ export default function CoachCard(props: CoachProps) {
           </h2>
         </a>
       </header>
-      <div className="prose prose-sm col-span-full row-start-2">{children}</div>
+      <div className="prose prose-sm prose-slate col-span-full row-start-2">
+        {children}
+      </div>
       <div className="col-span-2 col-start-1 flex flex-row justify-between gap-2">
         {contactMethods.map((method) => (
           <a
@@ -115,7 +117,7 @@ export default function CoachCard(props: CoachProps) {
             href={method.address}
             target="_blank"
             rel="noopener"
-            className="flex w-full flex-grow items-center justify-center rounded-md border border-vsp-400 py-2 text-sm text-gray-600 no-underline transition-colors duration-200 hover:border-vsp-700 hover:bg-vsp-100 hover:text-vsp-900 focus:border-vsp-700 focus:bg-vsp-100 focus:text-vsp-900 active:border-vsp-700 active:bg-vsp-100 active:text-vsp-900"
+            className="flex w-full flex-grow items-center justify-center rounded-md border border-vsp-400 py-2 text-sm text-slate-600 no-underline transition-colors duration-200 hover:border-vsp-700 hover:bg-vsp-100 hover:text-vsp-900 focus:border-vsp-700 focus:bg-vsp-100 focus:text-vsp-900 active:border-vsp-700 active:bg-vsp-100 active:text-vsp-900"
             onClick={() =>
               trackCoachClick({ type: method.type, coachName: name! })
             }

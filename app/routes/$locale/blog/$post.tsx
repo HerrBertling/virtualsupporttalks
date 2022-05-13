@@ -87,7 +87,7 @@ export default function Blogpost() {
           {/* <ShareButton :title="title" :text="description" :url="url" /> */}
           <time
             dateTime="sys.createdAt"
-            className="text-sm italic text-gray-400 md:text-base"
+            className="text-sm italic text-slate-400 md:text-base"
           >
             {date}
           </time>

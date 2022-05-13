@@ -46,14 +46,14 @@ export default function BlogpostCard({
         </h3>
       </CleverLink>
       <aside
-        className={`flex items-center flex-wrap gap-4 ${
+        className={`flex flex-wrap items-center gap-4 ${
           Boolean(tagList) ? "justify-between" : "justify-end"
         }`}
       >
         {Boolean(tagList) && <TagGroup tags={tagList} locale={locale} />}
         <time
           dateTime={post.sys.createdAt}
-          className="text-xs italic text-gray-400"
+          className="text-xs italic text-slate-400"
         >
           {date}
         </time>

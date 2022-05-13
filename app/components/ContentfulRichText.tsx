@@ -28,7 +28,8 @@ export default function ContentfulRichText({
   return (
     <div
       className={`richtext prose-a:text-vsp-600 hover:prose-a:text-vsp-700 lg:prose-h1:leading-tight ${
-        withProse && "prose max-w-none prose-headings:font-headline lg:prose-lg"
+        withProse &&
+        "prose prose-slate max-w-none prose-headings:font-headline lg:prose-lg"
       } ${
         useWhiteProse &&
         "prose-white prose-a:text-vsp-300 hover:prose-a:text-vsp-100"

@@ -23,7 +23,7 @@ export default function ContentBlockImageBg({
     : {};
   return (
     <section
-      className={`after:content-[\'\'], after::z-0 relative flex min-h-[400px] bg-cover bg-center bg-no-repeat text-center after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:block after:bg-gray-400/80 ${
+      className={`after:content-[\'\'], after::z-0 relative flex min-h-[400px] bg-cover bg-center bg-no-repeat text-center mix-blend-multiply after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:block after:bg-slate-300/80 ${
         hasButton && "grid grid-cols-1 justify-center gap-4 pb-12"
       }`}
       style={backgroundStyle}

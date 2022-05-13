@@ -50,7 +50,7 @@ export default function ContentBlockTwoImages({
       {images.map(({ image, link, text }) => (
         <FadeIn key={link}>
           <CleverLink
-            className="group block max-w-full overflow-hidden rounded-md bg-gray-300 no-underline shadow-lg"
+            className="group block max-w-full overflow-hidden rounded-md bg-slate-300 no-underline shadow-lg"
             to={`/${locale}${link}`}
           >
             <img

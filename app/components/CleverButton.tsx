@@ -1,5 +1,5 @@
-import CleverLink from "./CleverLink";
 import type { ReactNode } from "react";
+import CleverLink from "./CleverLink";
 
 type buttonVariant = "primary" | "secondary";
 
@@ -18,7 +18,7 @@ export default function CleverButton({
     variant === "primary"
       ? "bg-vsp-500"
       : variant === "secondary"
-      ? "bg-gray-400"
+      ? "bg-slate-400"
       : "";
   return (
     <CleverLink

@@ -4,7 +4,7 @@ import ContentfulRichText from "./ContentfulRichText";
 
 export default function CoachList({ coaches }: { coaches: ICoach[] }) {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-slate-100">
       <section className="mx-auto grid max-w-7xl grid-cols-coachgrid items-start gap-x-6 gap-y-12 py-12 px-4">
         {coaches.map((coach: ICoach) => {
           const {
