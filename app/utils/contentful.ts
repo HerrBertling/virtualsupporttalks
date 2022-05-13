@@ -10,6 +10,7 @@ import type {
   ITag,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
+import { availableLocales } from "./locales";
 
 export type PageNotFoundResponse = ThrownResponse<404, string>;
 
@@ -168,7 +169,7 @@ export const getLanguages = async (): Promise<string[]> => {
     lang.toLowerCase()
   );
 
-  return [...new Set(lowercasedLangs)].sort();
+  return [...new Set(lowercasedLangs)].sort().filter((lang) => lang != "ukr");
 };
 
 export const getTags = async (locale: LOCALE_CODE = "de") => {
@@ -205,9 +206,12 @@ export const getCoaches = async (lang: string | null = null) => {
     options = baseOptions;
   }
 
+  const usedLocale =
+    !lang || !availableLocales.includes(lang as LOCALE_CODE) ? "de" : lang;
+
   const coachesResponse: EntryCollection<ICoach> = await client.getEntries({
     ...options,
-    locale: lang || "de",
+    locale: usedLocale,
   });
 
   return shuffle(coachesResponse.items) as ICoach[];
