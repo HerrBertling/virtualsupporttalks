@@ -55,14 +55,12 @@ export default function App() {
 
   useEffect(() => {
     if (shouldTrack) {
-      console.log("INitializing gtag");
       gtag.init();
     }
   }, [shouldTrack]);
 
   useEffect(() => {
     if (shouldTrack) {
-      console.log("Tracking pageview", location.pathname);
       gtag.pageview(location.pathname);
     }
   }, [location, shouldTrack]);

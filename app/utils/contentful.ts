@@ -30,8 +30,7 @@ export const createContentfulClient = () => {
       accessToken,
     });
   } catch (error) {
-    console.log("Could not create client", error);
-    throw new Error("CMS client not available");
+    throw new Error(`CMS client not available: ${error}`);
   }
   return client;
 };
