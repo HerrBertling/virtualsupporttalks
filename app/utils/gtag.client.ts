@@ -44,3 +44,20 @@ export const trackCoachClick = ({
     label: coachName,
   });
 };
+
+export const trackFilterClick = ({
+  type,
+  category,
+  label,
+}: {
+  type: string;
+  category: string;
+  label: string;
+}) => {
+  console.log({ type, category, label });
+  ReactGA.event({
+    category: category,
+    action: type,
+    label,
+  });
+};

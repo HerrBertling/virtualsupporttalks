@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { trackFilterClick } from "~/utils/gtag.client";
 
 type CoachFilterTagProps = {
   value: string;
@@ -26,6 +27,18 @@ export default function CoachFilterTag({
         value={value}
         defaultChecked={defaultValue}
         disabled={disabled}
+        onClick={() =>
+          trackFilterClick({
+            category: type === "radio" ? "coachLanguage" : "coachTag",
+            type:
+              type === "radio"
+                ? "select"
+                : defaultValue
+                ? "unselect"
+                : "select",
+            label: children as string,
+          })
+        }
       />
       <span className="inline-flex cursor-pointer items-center gap-1 rounded-md border px-2 py-1 peer-checked:bg-slate-500 peer-checked:text-white peer-disabled:pointer-events-none peer-disabled:cursor-default peer-disabled:opacity-40">
         <span>{children}</span>
