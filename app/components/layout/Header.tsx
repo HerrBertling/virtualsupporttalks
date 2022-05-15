@@ -38,7 +38,7 @@ export default function LayoutHeader({
     >
       <div className="mx-auto flex h-full w-full max-w-6xl items-center justify-between px-4">
         <em className="relative z-20">
-          <NavLink to="/">
+          <NavLink to={`/${lang}`}>
             <img
               className={`max-h-12 w-auto transition-transform ${
                 hasScrolled && "scale-[0.8]"
