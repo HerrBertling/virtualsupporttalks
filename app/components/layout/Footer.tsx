@@ -53,6 +53,18 @@ export default function LayoutFooter({}) {
           </li>
         ))}
       </ul>
+      <a
+        className="my-8 mx-auto block w-full max-w-[100px]"
+        href="https://www.contentful.com/"
+        rel="nofollow"
+        target="_blank"
+      >
+        <img
+          src="https://images.ctfassets.net/fo9twyrwpveg/44baP9Gtm8qE2Umm8CQwQk/c43325463d1cb5db2ef97fca0788ea55/PoweredByContentful_LightBackground.svg"
+          className="mx-auto w-full max-w-[100px]"
+          alt="Powered by Contentful"
+        />
+      </a>
     </nav>
   );
 }
