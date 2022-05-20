@@ -68,14 +68,14 @@ export const getSearchPageContents = async (
     }
     return (
       !!coachTags &&
-      checkedTags.some((tagId) =>
+      checkedTags.every((tagId) =>
         coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId)
       )
     );
   });
 
   // get available tags from all coaches
-  const availableTagIDs = coaches
+  const availableTagIDs = filteredCoaches
     .map((coach) => coach.fields.tag)
     .filter((tags) => !!tags)
     .map((tags) => tags.map((tag) => tag.sys.id))
