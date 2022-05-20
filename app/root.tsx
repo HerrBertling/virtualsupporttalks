@@ -74,7 +74,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        {shouldTrack ? null : (
+        {!shouldTrack && (
           <div className="fixed bottom-0 right-4 z-50 w-full rounded-t-md bg-vsp-100 px-8 py-4 text-center text-slate-700 shadow-xl md:max-w-lg">
             <analyticsFetcher.Form method="post" action="/enable-analytics">
               <span className="mr-8">Wir nutzen Cookies.</span>
