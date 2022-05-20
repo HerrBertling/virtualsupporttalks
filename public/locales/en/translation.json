@@ -3,7 +3,7 @@
     "title": {
       "network": "Our network",
       "partner": "Our company partners",
-      "media": "Redezeit in de Media"
+      "media": "Redezeit in the media"
     }
   },
   "searchingCoach": {
@@ -41,6 +41,6 @@
     "ctaToBlogpost": "Continue reading..."
   },
   "blogpostByTag": {
-    "title": "BLOGPOSTS for the tag "
+    "title": "Blogposts for the tag "
   }
 }

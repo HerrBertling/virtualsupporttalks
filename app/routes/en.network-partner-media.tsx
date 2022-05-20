@@ -1,18 +1,15 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { useTranslation } from "react-i18next";
+import NetworkPartnerMediaContent from "~/components/NetworkPartnerMediaContent";
+import { getSeoMeta } from "~/seo";
 import {
   getMainNav,
-  getPageById,
-  getNetwork,
-  getSupporters,
   getMedia,
+  getNetwork,
+  getPageById,
+  getSupporters,
 } from "~/utils/contentful";
-import ContentBlocks from "~/components/ContentBlocks";
 import pageIds from "~/utils/pageIds";
-import BasicLayout from "~/components/layout/BasicLayout";
-import SupporterTile from "~/components/SupporterTile";
-import { getSeoMeta } from "~/seo";
 
 export const meta: MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
@@ -60,79 +57,15 @@ export const loader: LoaderFunction = async () => {
 export default function SupportMedia() {
   const { page, navigation, network, supporters, media, locale } =
     useLoaderData();
-  const { t } = useTranslation("networkPartnerMedia");
 
   return (
-    <BasicLayout nav={navigation.fields.items} lang={locale}>
-      <div className="container mx-auto max-w-6xl">
-        <div className="pt-24">
-          <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
-            <h2 className="mb-12 font-headline text-4xl font-bold">
-              {t("title.network")}
-            </h2>
-            {network.length && (
-              <div
-                style={{
-                  gridTemplateColumns: "repeat(auto-fit,minmax(270px, 1fr))",
-                }}
-                className={"grid-rows-auto grid gap-x-4 gap-y-8"}
-              >
-                {network.map((entry: any) => (
-                  <SupporterTile
-                    key={entry.fields.url}
-                    image={entry.fields.image.fields.file.url}
-                    url={entry.fields.url}
-                  />
-                ))}
-              </div>
-            )}
-          </section>
-        </div>
-        {supporters && (
-          <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
-            <h2 className="mb-12 font-headline text-4xl font-bold">
-              {t("title.partner")}
-            </h2>
-            <div
-              style={{
-                gridTemplateColumns: "repeat(auto-fit,minmax(270px, 1fr))",
-              }}
-              className="grid-rows-auto grid gap-x-4 gap-y-8"
-            >
-              {supporters.map((entry: any) => (
-                <SupporterTile
-                  key={entry.fields.url}
-                  url={entry.fields.url}
-                  image={entry.fields.image.fields.file.url}
-                />
-              ))}
-            </div>
-          </section>
-        )}
-      </div>
-      <ContentBlocks content={page.fields.content} locale={locale} />
-      {media && (
-        <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
-          <h2 className="mb-12 font-headline text-4xl font-bold">
-            {t("title.media")}
-          </h2>
-          <div
-            style={{
-              gridTemplateColumns: "repeat(auto-fit,minmax(270px, 1fr))",
-            }}
-            className="grid-rows-auto grid gap-x-4 gap-y-8"
-          >
-            {media.map((entry: any) => (
-              <SupporterTile
-                key={entry.fields.url}
-                url={entry.fields.url}
-                image={entry.fields.image.fields.file.url}
-                title={entry.fields.title}
-              />
-            ))}
-          </div>
-        </section>
-      )}
-    </BasicLayout>
+    <NetworkPartnerMediaContent
+      navigation={navigation}
+      media={media}
+      locale={locale}
+      page={page}
+      network={network}
+      supporters={supporters}
+    />
   );
 }

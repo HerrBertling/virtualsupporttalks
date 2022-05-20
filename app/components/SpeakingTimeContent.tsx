@@ -77,7 +77,7 @@ export default function SpeakingTimeContent({
           </fieldset>
           <fieldset className="mt-8">
             <legend className="mb-4 inline-block text-xl">
-              {t("filter.tag")}
+              {t("filter.tag")}{" "}
             </legend>
             {tags.map((tag: ICoachtag) => {
               const isNotSelectable =

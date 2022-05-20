@@ -15,7 +15,7 @@ export const meta: MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
 
   let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title || null,
+    title: seo?.fields?.title || title,
     description: seo?.fields?.description || null,
   });
   return {
@@ -24,7 +24,7 @@ export const meta: MetaFunction = ({ data }) => {
 };
 
 export const loader: LoaderFunction = async () => {
-  const locale = "de";
+  const locale = "ru";
 
   const page = getPageById(pageIds.NETWORK, locale);
   const navigation = getMainNav(locale);
