@@ -1,0 +1,115 @@
+body {
+    margin: 0 auto;
+    font-family: 'Quicksand', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: transparent;
+  }
+  
+  button, li, a, p, code {
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  }
+  
+  button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* ModalComponent CSS */
+  
+  .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+    }
+    
+    .modal__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .8);
+      cursor: pointer;
+    }
+    
+    .modal__box {
+      position: relative;
+      width: 80%;
+      margin: 0 10%;
+      padding: 50px;
+      box-sizing: border-box;
+      border-radius: 10px;
+      background-color: white;
+      cursor: auto;
+    }
+    
+    .modal__title {
+      color: #9cc317;
+      font-size: 30px;
+    }
+    
+    .modal__content {
+      margin-top: 30px;
+      color: #6B6B6B;
+      font-size: 16px;
+    }
+    
+    .modal__close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      transition: transform 250ms ease-in-out;
+      transform-origin: 50% 50%;
+    }
+  
+    .fran img {
+    margin: auto;
+    display: block;
+    width: 50%;
+    
+    }
+    
+    
+    @media screen and (min-width: 800px) {
+      .modal__box {
+        max-width: 600px;
+        margin: 0 30px;
+      }
+    }
+  
+    /* ModalButton CSS */
+  
+    .app {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .app__btn {
+      background-color: #9E25FC;
+      color: white;
+      width: 10em;
+      height: 4em;
+      border-radius: 1em;
+    }
+  
+    
