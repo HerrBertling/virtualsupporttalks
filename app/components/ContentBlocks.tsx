@@ -17,6 +17,7 @@ import GenericContent from "./ContentBlocks/GenericContent";
 import ContentBlockHeader from "./ContentBlocks/Header";
 import ContentBlockImageBg from "./ContentBlocks/ImageBg";
 import ContentBlockTwoImages from "./ContentBlocks/TwoImages";
+import VideoPlayer from "./ContentBlocks/VideoPlayer";
 import ContentfulRichText from "./ContentfulRichText";
 
 type ContentBlockProps = {
@@ -48,6 +49,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
             />
           );
         }
+
         if (id === "centeredContent") {
           const { bgcolor, content, buttonText, buttonUrl } =
             item.fields as ICenteredContentFields;
@@ -112,6 +114,20 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
             />
           );
         }
+
+        if (id === "videoPlayer") {
+          const { videoId, title, content } = item.fields;
+          console.log("video", videoId);
+          return (
+            <VideoPlayer
+              key={item.sys.id}
+              videoId={videoId}
+              content={content}
+              title={title}
+            />
+          );
+        }
+
         if (id === "imageCollection") {
           const { internalTitle, images } =
             item.fields as IImageCollectionFields;
@@ -124,6 +140,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
             />
           );
         }
+
         if (id === "coachList") {
           return null;
         } else {

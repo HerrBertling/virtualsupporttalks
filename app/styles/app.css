@@ -1483,6 +1483,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 0;
 }
 
+.visible {
+  visibility: visible;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1587,6 +1591,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2rem;
 }
 
+.my-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .mr-8 {
   margin-right: 2rem;
 }
@@ -1679,6 +1688,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 3rem;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .max-h-40 {
   max-height: 10rem;
 }
@@ -1693,6 +1706,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-h-12 {
   max-height: 3rem;
+}
+
+.max-h-\[70vh\] {
+  max-height: 70vh;
 }
 
 .min-h-\[256px\] {
@@ -1741,6 +1758,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-12 {
   width: 3rem;
+}
+
+.w-5 {
+  width: 1.25rem;
 }
 
 .min-w-\[310px\] {
@@ -1851,6 +1872,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .grid-cols-coachgrid {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grid-rows-\[4rem_1fr\] {
@@ -2618,6 +2643,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -3094,8 +3123,28 @@ Ensure the default browser behavior of the `hidden` attribute.
     left: auto;
   }
 
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .lg\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
+  .lg\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
   .lg\:col-start-2 {
     grid-column-start: 2;
+  }
+
+  .lg\:col-start-3 {
+    grid-column-start: 3;
+  }
+
+  .lg\:col-start-1 {
+    grid-column-start: 1;
   }
 
   .lg\:row-start-1 {
@@ -3104,6 +3153,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:mr-4 {
     margin-right: 1rem;
+  }
+
+  .lg\:ml-auto {
+    margin-left: auto;
   }
 
   .lg\:inline-block {
