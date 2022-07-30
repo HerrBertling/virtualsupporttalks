@@ -116,14 +116,13 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
         }
 
         if (id === "videoPlayer") {
-          const { videoId, title, content } = item.fields;
+          const { videoId, content } = item.fields;
           console.log("video", videoId);
           return (
             <VideoPlayer
               key={item.sys.id}
               videoId={videoId}
               content={content}
-              title={title}
             />
           );
         }

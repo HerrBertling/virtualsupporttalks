@@ -1,6 +1,6 @@
 import ContentfulRichText from "../ContentfulRichText";
 
-export default function VideoPlayer({ videoId, text, content }) {
+export default function VideoPlayer({ videoId, content }) {
   return (
     <section className="my-1 grid w-screen max-w-full grid-cols-1 lg:grid-cols-2">
       <div className=" flex-grid self-center py-8 px-4 lg:row-start-1 lg:ml-auto lg:max-w-[70ch] lg:px-12 lg:pt-24 lg:pb-12">
