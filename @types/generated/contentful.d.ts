@@ -562,6 +562,7 @@ export interface IPageFields {
     | IContentImageBg
     | IContentWithFullSizeImage
     | ICenteredContent
+    | IVideoPlayer
     | ITwoImages
   )[];
 
@@ -717,6 +718,36 @@ export interface ITwoImages extends Entry<ITwoImagesFields> {
   };
 }
 
+export interface IVideoPlayerFields {
+  /** videoID */
+  videoId: string;
+
+  /** title */
+  title?: string | undefined;
+
+  /** Content */
+  content?: Document | undefined;
+}
+
+/** Component to display videos */
+
+export interface IVideoPlayer extends Entry<IVideoPlayerFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "videoPlayer";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
   | "blogpost"
   | "centeredContent"
@@ -738,7 +769,8 @@ export type CONTENT_TYPE =
   | "seo"
   | "supporter"
   | "tag"
-  | "twoImages";
+  | "twoImages"
+  | "videoPlayer";
 
 export type LOCALE_CODE = "de" | "en" | "ru" | "uk";
 
