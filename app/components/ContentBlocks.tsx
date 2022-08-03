@@ -8,6 +8,7 @@ import type {
   IImageCollectionFields,
   IPageFields,
   ITwoImagesFields,
+  IVideoPlayerFields,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
 import ContentBlockCentered from "./ContentBlocks/Centered";
@@ -116,8 +117,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
         }
 
         if (id === "videoPlayer") {
-          const { videoId, content } = item.fields;
-          console.log("video", videoId);
+          const { videoId, content } = item.fields as IVideoPlayerFields;
           return (
             <VideoPlayer
               key={item.sys.id}

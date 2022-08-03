@@ -22,6 +22,7 @@ export interface IBlogpostFields {
     | IContentWithFullSizeImage
     | ICenteredContent
     | ITwoImages
+    | IVideoPlayer
   )[];
 
   /** seo */
