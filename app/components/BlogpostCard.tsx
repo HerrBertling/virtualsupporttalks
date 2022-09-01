@@ -26,7 +26,7 @@ export default function BlogpostCard({
       className="group grid grid-cols-1 content-start gap-2 no-underline"
     >
       {Boolean(image) ? (
-        <CleverLink to={slug}>
+        <CleverLink to={`/${locale}/blog/${slug}`}>
           <img
             src={image}
             className="h-auto max-h-40 w-full rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
@@ -34,13 +34,13 @@ export default function BlogpostCard({
         </CleverLink>
       ) : (
         <CleverLink
-          to={slug}
+          to={`/${locale}/blog/${slug}`}
           className={`h-40 max-h-40 w-full rounded-lg bg-vsp-500 bg-contain bg-center bg-no-repeat object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
         >
           &nbsp;
         </CleverLink>
       )}
-      <CleverLink to={slug}>
+      <CleverLink to={`/${locale}/blog/${slug}`}>
         <h3 className="font-headline text-xl font-bold group-hover:text-vsp-500">
           {title}
         </h3>
@@ -59,7 +59,7 @@ export default function BlogpostCard({
         </time>
       </aside>
       <p>{description}</p>
-      <CleverLink to={slug} className="block underline">
+      <CleverLink to={`/${locale}/blog/${slug}`} className="block underline">
         {t("ctaToBlogpost")}
       </CleverLink>
     </div>
