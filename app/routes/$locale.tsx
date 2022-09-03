@@ -1,6 +1,7 @@
 import { LoaderFunction, redirect } from "@remix-run/node";
 import { Outlet, useCatch, useLoaderData } from "@remix-run/react";
 import { useSetupTranslations } from "remix-i18next";
+import BasicCatchBoundary from "~/components/BasicCatchBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
 import type {
@@ -48,20 +49,14 @@ export function CatchBoundary() {
   const { nav, locale } = useLoaderData();
   return (
     <BasicLayout nav={nav} lang={locale}>
-      <div className="container mx-auto mt-32">
-        <h2>Oh noez! We failed.</h2>
-        <p>
-          {caught.status}: {caught.statusText}
-        </p>
-      </div>
+      <BasicCatchBoundary {...caught} />;
     </BasicLayout>
   );
 }
 export function ErrorBoundary(error) {
   return (
     <div>
-      <h2>Oh noez! Something went wrong.</h2>
-      <p>{error.message}</p>
+      <BasicCatchBoundary status={503} statusText={error.message} />;
     </div>
   );
 }

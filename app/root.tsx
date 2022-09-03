@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getSeo } from "~/seo";
 import * as gtag from "~/utils/gtag.client";
+import BasicCatchBoundary from "./components/BasicCatchBoundary";
 import { gdprConsent } from "./cookies";
 import styles from "./styles/app.css";
 
@@ -109,9 +110,7 @@ export function CatchBoundary() {
         <Links />
       </head>
       <body>
-        <h1>
-          {caught.status} {caught.statusText}
-        </h1>
+        <BasicCatchBoundary {...caught} />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
@@ -130,10 +129,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
         <Links />
       </head>
       <body>
-        <h1>Oh noez!</h1>
-        <pre>
-          <code>{error}</code>
-        </pre>
+        <BasicCatchBoundary status={503} statusText={error.message} />;
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

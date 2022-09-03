@@ -1,11 +1,12 @@
+import type { LoaderFunction } from "@remix-run/node";
+import { useCatch, useLoaderData } from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicCatchBoundary";
+import BlogpostCard from "~/components/BlogpostCard";
+import { getBlogposts } from "~/utils/contentful";
 import {
   IBlogpost,
   LOCALE_CODE,
 } from "../../../../@types/generated/contentful";
-import type { LoaderFunction } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
-import { getBlogposts } from "~/utils/contentful";
-import BlogpostCard from "~/components/BlogpostCard";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const locale = (params.locale as string) || "de";
@@ -39,20 +40,8 @@ export default function Index() {
 
 export function CatchBoundary() {
   const caught = useCatch();
-  return (
-    <div className="container mx-auto mt-32">
-      <h2>Oh noez! We failed.</h2>
-      <p>
-        {caught.status}: {caught.statusText}
-      </p>
-    </div>
-  );
+  return <BasicCatchBoundary {...caught} />;
 }
 export function ErrorBoundary(error: Error) {
-  return (
-    <div>
-      <h2>Oh noez! Something went wrong.</h2>
-      <p>{JSON.stringify(error)}</p>
-    </div>
-  );
+  return <BasicCatchBoundary status={503} statusText={error.message} />;
 }

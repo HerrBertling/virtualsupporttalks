@@ -10,10 +10,16 @@ export default function BasicCatchBoundary({
       <div className="prose prose-lg prose-slate lg:prose-xl">
         <h2>Oh no! A {status} error! 🙀</h2>
         {status === 404 && <p>We couldn't find that page! 😬</p>}
-        <p>This is what the machines tell us 🤖</p>
-        <pre className="bg-slate-700">
-          <code>{statusText}</code>
-        </pre>
+        {status !== 404 && statusText && <p>Some error happened! 😬</p>}
+        {status !== 404 && !statusText && <p>Some unkown error happened! 😬</p>}
+        {statusText && (
+          <>
+            <p>This is what the machines tell us 🤖</p>
+            <pre className="bg-slate-700">
+              <code>{statusText}</code>
+            </pre>
+          </>
+        )}
       </div>
     </div>
   );
