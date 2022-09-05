@@ -105,8 +105,7 @@ export function CatchBoundary() {
 export function ErrorBoundary(error) {
   return (
     <div className="container mx-auto mt-32">
-      <h2>Oh noez! Something went wrong.</h2>
-      <p>{JSON.stringify(error)}</p>
+      <BasicCatchBoundary status={503} statusText={error.message} />;
     </div>
   );
 }
