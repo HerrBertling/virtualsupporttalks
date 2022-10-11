@@ -7,7 +7,7 @@ export default function VideoPlayer({ videoId, content }: IVideoPlayerFields) {
       <div className="flex-grid self-center lg:row-start-1">
         {content && <ContentfulRichText content={content} />}
       </div>
-      <div className="row-start-2 h-96 w-full lg:col-start-2 lg:row-start-1">
+      <div className="row-start-2 h-96 w-full lg:col-start-2 lg:row-start-1"  style={{aspectRatio: "16/9"}}>
         <iframe
           width="100%"
           height="100%"
@@ -15,9 +15,6 @@ export default function VideoPlayer({ videoId, content }: IVideoPlayerFields) {
           frameBorder="0"
           allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          style={{
-            aspectRatio: "16/9",
-          }}
         />
       </div>
     </section>
