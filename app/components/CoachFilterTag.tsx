@@ -23,11 +23,7 @@ export default function CoachFilterTag({
     return children?.toString().includes("1.");
   };
   return (
-    <label
-      className={`min-h-4 mr-1 mb-1 ${
-        isDeepCrisisTag() ? " block" : " inline-inline"
-      }`}
-    >
+    <label className={`min-h-4 mr-1 mb-1 ${isDeepCrisisTag() && " block"}`}>
       <input
         className="peer sr-only"
         type={type}
