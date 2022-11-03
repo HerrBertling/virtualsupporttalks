@@ -40,6 +40,7 @@ export default function CoachFilterTag({
           })
         }
       />
+
       <span className="inline-flex cursor-pointer items-center gap-1 rounded-md border px-2 py-1 peer-checked:bg-slate-500 peer-checked:text-white peer-disabled:pointer-events-none peer-disabled:cursor-default peer-disabled:opacity-40">
         <span>{children}</span>
       </span>

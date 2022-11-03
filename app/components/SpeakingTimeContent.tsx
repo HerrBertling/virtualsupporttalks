@@ -10,6 +10,8 @@ import { useTranslation } from "react-i18next";
 import CoachFilterTag from "./CoachFilterTag";
 import CoachList from "./CoachList";
 import ContentBlocks from "./ContentBlocks";
+import ArrowFilterIcon from "./icons/ArrowFilterIcon";
+import FilterIcon from "./icons/FilterIcon";
 
 type SpeakingTimeContentProps = {
   page: IPage;
@@ -47,10 +49,14 @@ export default function SpeakingTimeContent({
   return (
     <div>
       <ContentBlocks content={page.fields.content} locale={locale} />
+
       <details open={true} className="mx-auto max-w-7xl py-8 px-4">
-        <summary>
+        <summary style={{ display: "inline-flex", cursor: "pointer" }}>
+          <FilterIcon />
           <h5 className="inline-block text-xl">{t("filter.showFilter")}</h5>
+          <ArrowFilterIcon />
         </summary>
+
         <Form
           onChange={handleChange}
           ref={formRef}
