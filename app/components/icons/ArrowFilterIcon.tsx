@@ -3,20 +3,6 @@ import { useState } from "react";
 export default function ArrowFilterIcon({ classNames = "h-6 w-6" }) {
   const [isActive, setIsActive] = useState(false);
 
-  const [isHover, setIsHover] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHover(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHover(false);
-  };
-
-  const arrowStyle = {
-    color: isHover ? "#9cc317" : "",
-  };
-
   return (
     <>
       <div className="accordion" style={{ margin: "0 1rem" }}>
@@ -24,9 +10,6 @@ export default function ArrowFilterIcon({ classNames = "h-6 w-6" }) {
           <div
             className="accordion-title"
             onClick={() => setIsActive(!isActive)}
-            style={arrowStyle}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
           >
             <div>
               {isActive ? (

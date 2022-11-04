@@ -3268,3 +3268,15 @@ Ensure the default browser behavior of the `hidden` attribute.
     line-height: 1.25;
   }
 }
+
+.accordion-title {
+  margin: 0 1rem;
+}
+
+.accordion-title:hover,
+.filter-icon:hover,
+#details-filter:hover {
+  color: #9cc317;
+}
+
+

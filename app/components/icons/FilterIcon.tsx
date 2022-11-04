@@ -1,6 +1,6 @@
 export default function FilterIcon({ classNames = "h-6 w-6" }) {
   return (
-    <div style={{marginRight:"1rem"}}>
+    <div style={{marginRight:"1rem"}} className="filter-icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

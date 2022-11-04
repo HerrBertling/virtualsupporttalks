@@ -10,8 +10,11 @@ import { useTranslation } from "react-i18next";
 import CoachFilterTag from "./CoachFilterTag";
 import CoachList from "./CoachList";
 import ContentBlocks from "./ContentBlocks";
+import ArrowDown from "./icons/ArrowDown";
 import ArrowFilterIcon from "./icons/ArrowFilterIcon";
+import ArrowUp from "./icons/ArrowUp";
 import FilterIcon from "./icons/FilterIcon";
+import { useState } from "react";
 
 type SpeakingTimeContentProps = {
   page: IPage;
@@ -46,17 +49,26 @@ export default function SpeakingTimeContent({
     }
   };
   const state = useTransition();
+
+  const [isActive, setIsActive] = useState(false);
+  const isOpen = isActive ? <ArrowDown /> : <ArrowUp />;
+
   return (
     <div>
       <ContentBlocks content={page.fields.content} locale={locale} />
-
-      <details open={true} className="mx-auto max-w-7xl py-8 px-4">
-        <summary style={{ display: "inline-flex", cursor: "pointer" }}>
+      <details open={false} className="mx-auto max-w-7xl py-8 px-4">
+        <summary
+          style={{ display: "inline-flex", cursor: "pointer" }}
+          onClick={() => setIsActive(!isActive)}
+        >
           <FilterIcon />
-          <h5 className="inline-block text-xl">{t("filter.showFilter")}</h5>
-          <ArrowFilterIcon />
+          <h5 className="inline-block text-xl" id="details-filter">
+            {t("filter.showFilter")}
+          </h5>
+          <div className="accordion-title">{isOpen}</div>
+          
         </summary>
-
+        
         <Form
           onChange={handleChange}
           ref={formRef}
