@@ -7,10 +7,12 @@ import type {
 } from "@types/generated/contentful";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { QUICK_RESPONSE_TAG_ID } from "~/utils/contentful";
+
 import CoachFilterTag from "./CoachFilterTag";
 import CoachList from "./CoachList";
 import ContentBlocks from "./ContentBlocks";
+
+const QUICK_RESPONSE_TAG_ID = "4dQrja372DDIuqvhTtnGda";
 
 type SpeakingTimeContentProps = {
   page: IPage;
@@ -45,6 +47,18 @@ export default function SpeakingTimeContent({
     }
   };
   const state = useTransition();
+
+  // sort tags to ensure the "quick response" one is always the first in the array
+  tags.unshift(
+    tags.splice(
+      tags
+        .map(function (tag) {
+          return tag.sys.id;
+        })
+        .indexOf(QUICK_RESPONSE_TAG_ID),
+      1
+    )[0]
+  );
 
   return (
     <div>
@@ -83,10 +97,10 @@ export default function SpeakingTimeContent({
               {t("filter.tag")}{" "}
             </legend>
             {tags.map((tag: ICoachtag) => {
+              const isHighlighted = tag.sys.id === QUICK_RESPONSE_TAG_ID;
               const isNotSelectable =
                 !availableTagIDs.includes(tag.sys.id) &&
                 !checkedTags.includes(tag.sys.id);
-              const isHighlighted = tag.sys.id === QUICK_RESPONSE_TAG_ID;
               return (
                 <CoachFilterTag
                   isHighlighted={isHighlighted}

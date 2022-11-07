@@ -13,8 +13,6 @@ import type {
 } from "../../@types/generated/contentful";
 import { availableLocales } from "./locales";
 
-export const QUICK_RESPONSE_TAG_ID = "4dQrja372DDIuqvhTtnGda";
-
 export type PageNotFoundResponse = ThrownResponse<404, string>;
 
 export const createContentfulClient = () => {
@@ -182,18 +180,6 @@ export const getTags = async (locale: LOCALE_CODE = "de") => {
     order: "fields.tag",
     locale: locale,
   });
-
-  // sort tags to ensure the emergency one is always the first in the array
-  items.unshift(
-    items.splice(
-      items
-        .map(function (e) {
-          return e.sys.id;
-        })
-        .indexOf(QUICK_RESPONSE_TAG_ID),
-      1
-    )[0]
-  );
 
   return items as ICoachtag[];
 };
