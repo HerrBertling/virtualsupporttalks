@@ -20,6 +20,5 @@ export default function getFlagCode(languages: string[] | undefined) {
       })
     : result.push("DE");
 
-  console.log(languages, [...new Set(result)]);
   return [...new Set(result)];
 }
