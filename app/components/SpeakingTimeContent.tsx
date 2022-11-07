@@ -23,6 +23,8 @@ type SpeakingTimeContentProps = {
   coachesAmount: number;
 };
 
+const QUICK_RESPONSE_TAG_ID = "4dQrja372DDIuqvhTtnGda";
+
 export default function SpeakingTimeContent({
   page,
   locale,
@@ -44,6 +46,7 @@ export default function SpeakingTimeContent({
     }
   };
   const state = useTransition();
+
   return (
     <div>
       <ContentBlocks content={page.fields.content} locale={locale} />
@@ -64,6 +67,7 @@ export default function SpeakingTimeContent({
             </legend>
             {languages.map((lang: string) => (
               <CoachFilterTag
+                isHighlighted={false}
                 disabled={false}
                 key={lang}
                 value={lang}
@@ -83,8 +87,10 @@ export default function SpeakingTimeContent({
               const isNotSelectable =
                 !availableTagIDs.includes(tag.sys.id) &&
                 !checkedTags.includes(tag.sys.id);
+              const isHighlighted = tag.sys.id === QUICK_RESPONSE_TAG_ID;
               return (
                 <CoachFilterTag
+                  isHighlighted={isHighlighted}
                   disabled={isNotSelectable}
                   key={tag.sys.id}
                   value={tag.sys.id}

@@ -9,6 +9,7 @@ type CoachFilterTagProps = {
   disabled: boolean;
   children: ReactNode;
   type: "radio" | "checkbox";
+  isHighlighted: boolean;
 };
 
 export default function CoachFilterTag({
@@ -18,12 +19,10 @@ export default function CoachFilterTag({
   disabled,
   children,
   type,
+  isHighlighted,
 }: CoachFilterTagProps) {
-  const isDeepCrisisTag = (): boolean | undefined => {
-    return children?.toString().includes("1.");
-  };
   return (
-    <label className={`min-h-4 mr-1 mb-1 ${isDeepCrisisTag() && " block"}`}>
+    <label className={`min-h-4 mr-1 mb-1 ${isHighlighted && " block"}`}>
       <input
         className="peer sr-only"
         type={type}
@@ -46,10 +45,10 @@ export default function CoachFilterTag({
       />
       <span
         className={`${
-          isDeepCrisisTag() ? "mb-4 text-orange-800" : "m-1 text-vsp-900"
+          isHighlighted ? "mb-4 text-orange-800" : "m-1 text-vsp-900"
         } " inline-flex cursor-pointer rounded-full bg-vsp-200 px-4 py-1 text-[1rem] hover:bg-vsp-300 peer-checked:bg-vsp-700 peer-checked:text-white peer-disabled:pointer-events-none peer-disabled:cursor-default peer-disabled:opacity-40`}
       >
-        {isDeepCrisisTag() && <Lifebuoy />}
+        {isHighlighted && <Lifebuoy />}
         <span>{children}</span>
       </span>
     </label>
