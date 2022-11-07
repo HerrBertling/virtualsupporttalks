@@ -62,10 +62,10 @@ export default function SpeakingTimeContent({
           onClick={() => setIsActive(!isActive)}
         >
           <FilterIcon />
-          <h5 className="inline-block text-xl" id="details-filter">
+          <h5 className="inline-block text-xl hover:text-vsp-500 px-4" id="details-filter">
             {t("filter.showFilter")}
           </h5>
-          <div className="accordion-title">{isOpen}</div>
+          <div className="hover:text-vsp-500">{isOpen}</div>
           
         </summary>
         

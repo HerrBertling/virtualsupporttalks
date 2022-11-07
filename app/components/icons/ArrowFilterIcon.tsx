@@ -1,3 +1,5 @@
+// This component is not being used at the moment
+
 import { useState } from "react";
 
 export default function ArrowFilterIcon({ classNames = "h-6 w-6" }) {
@@ -5,7 +7,7 @@ export default function ArrowFilterIcon({ classNames = "h-6 w-6" }) {
 
   return (
     <>
-      <div className="accordion" style={{ margin: "0 1rem" }}>
+      <div className="mx-4 hover:text-vsp-500" >
         <div className="accordion-item">
           <div
             className="accordion-title"
@@ -19,7 +21,7 @@ export default function ArrowFilterIcon({ classNames = "h-6 w-6" }) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="h-6 w-6"
+                  className="h-6 w-6 "
                 >
                   <path
                     strokeLinecap="round"
