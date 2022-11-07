@@ -7,7 +7,6 @@ import type {
 } from "@types/generated/contentful";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-
 import CoachFilterTag from "./CoachFilterTag";
 import CoachList from "./CoachList";
 import ContentBlocks from "./ContentBlocks";
