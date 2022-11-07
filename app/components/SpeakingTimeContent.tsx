@@ -7,6 +7,7 @@ import type {
 } from "@types/generated/contentful";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { QUICK_RESPONSE_TAG_ID } from "~/utils/contentful";
 import CoachFilterTag from "./CoachFilterTag";
 import CoachList from "./CoachList";
 import ContentBlocks from "./ContentBlocks";
@@ -22,8 +23,6 @@ type SpeakingTimeContentProps = {
   coaches: ICoach[];
   coachesAmount: number;
 };
-
-const QUICK_RESPONSE_TAG_ID = "4dQrja372DDIuqvhTtnGda";
 
 export default function SpeakingTimeContent({
   page,
