@@ -16,6 +16,8 @@ import ArrowUp from "./icons/ArrowUp";
 import FilterIcon from "./icons/FilterIcon";
 import { useState } from "react";
 
+const QUICK_RESPONSE_TAG_ID = "4dQrja372DDIuqvhTtnGda";
+
 type SpeakingTimeContentProps = {
   page: IPage;
   locale: LOCALE_CODE;
@@ -52,6 +54,17 @@ export default function SpeakingTimeContent({
 
   const [isActive, setIsActive] = useState(false);
   const isOpen = isActive ? <ArrowDown /> : <ArrowUp />;
+  // sort tags to ensure the "quick response" one is always the first in the array
+  tags.unshift(
+    tags.splice(
+      tags
+        .map(function (tag) {
+          return tag.sys.id;
+        })
+        .indexOf(QUICK_RESPONSE_TAG_ID),
+      1
+    )[0]
+  );
 
   return (
     <div>
@@ -82,6 +95,7 @@ export default function SpeakingTimeContent({
             </legend>
             {languages.map((lang: string) => (
               <CoachFilterTag
+                isHighlighted={false}
                 disabled={false}
                 key={lang}
                 value={lang}
@@ -98,11 +112,13 @@ export default function SpeakingTimeContent({
               {t("filter.tag")}{" "}
             </legend>
             {tags.map((tag: ICoachtag) => {
+              const isHighlighted = tag.sys.id === QUICK_RESPONSE_TAG_ID;
               const isNotSelectable =
                 !availableTagIDs.includes(tag.sys.id) &&
                 !checkedTags.includes(tag.sys.id);
               return (
                 <CoachFilterTag
+                  isHighlighted={isHighlighted}
                   disabled={isNotSelectable}
                   key={tag.sys.id}
                   value={tag.sys.id}
