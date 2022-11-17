@@ -12,13 +12,12 @@ export default function getFlagCode(languages: string[] | undefined) {
     ru: "RU",
     ukr: "UA",
   };
-  const result: string[] = [];
+  const result = ["DE"];
 
-  languages
-    ? languages.forEach((lang) => {
-        result.push(flagCodes[lang as keyof typeof flagCodes]);
-      })
-    : result.push("DE");
+  languages &&
+    languages.forEach((lang) => {
+      result.push(flagCodes[lang as keyof typeof flagCodes]);
+    });
 
   return [...new Set(result)];
 }
