@@ -42,7 +42,7 @@ export default function networkPartnerMedia({
                 style={{
                   gridTemplateColumns: "repeat(auto-fit,minmax(270px, 1fr))",
                 }}
-                className={"grid-rows-auto grid gap-x-4 gap-y-8"}
+                className="grid-rows-auto grid gap-x-4 gap-y-8"
               >
                 {network.map((entry: any) => (
                   <SupporterTile

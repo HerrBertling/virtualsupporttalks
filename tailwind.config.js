@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 const headlineFonts = [
   "Poppins",
   "Roboto",
@@ -11,6 +12,7 @@ const headlineFonts = [
 
 module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx}"],
+  allowList: ["h-4", "w-4", "mr-2"],
   theme: {
     fontFamily: {
       sans: [

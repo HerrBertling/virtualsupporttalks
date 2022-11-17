@@ -43,16 +43,14 @@ export default function CoachFilterTag({
           })
         }
       />
-
-      {/* <span className="inline-flex cursor-pointer items-center gap-1 rounded-md border px-2 py-1 peer-checked:bg-slate-500 peer-checked:text-white peer-disabled:pointer-events-none peer-disabled:cursor-default peer-disabled:opacity-40"> */}
-        <span
-          className={`${
-            isHighlighted ? "mb-4 text-orange-800" : "m-1 text-vsp-900"
-          } " inline-flex cursor-pointer rounded-full bg-vsp-200 px-4 py-1 text-[1rem] hover:bg-vsp-400 peer-checked:bg-vsp-700 peer-checked:text-white peer-disabled:pointer-events-none peer-disabled:cursor-default peer-disabled:opacity-40`}
-        >
-          {isHighlighted && <Lifebuoy />}
-          <span>{children}</span>
-        </span>
+      <span
+        className={`${
+          isHighlighted ? "mb-4 text-orange-800" : "m-1 text-vsp-900"
+        } " inline-flex cursor-pointer items-center rounded-full bg-vsp-200 px-4 py-1 text-[1rem] hover:bg-vsp-400 peer-checked:bg-vsp-700 peer-checked:text-white peer-disabled:pointer-events-none peer-disabled:cursor-default peer-disabled:opacity-40`}
+      >
+        {isHighlighted && <Lifebuoy classNames="h-4 w-4 mr-2" />}
+        <span>{children}</span>
+      </span>
       {/* </span> */}
     </label>
   );
