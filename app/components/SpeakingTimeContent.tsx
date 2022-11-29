@@ -142,14 +142,12 @@ export default function SpeakingTimeContent({
                 {t("filter.submitCta")}
               </button>
             </noscript>
-            <span className="py-2 px-4 text-sm text-slate-400">
-              {coachesAmount
-                ? `${coachesAmount} ${t("result")}`
-                : t("noResult")}
-            </span>
           </div>
         </Form>
       </details>
+      <div className="text-m mx-auto max-w-7xl py-4 px-4 font-semibold text-slate-700">
+        {coachesAmount ? `${coachesAmount} ${t("result")}` : t("noResult")}
+      </div>
       <CoachList coaches={coaches} />
     </div>
   );
