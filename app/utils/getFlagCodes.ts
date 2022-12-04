@@ -18,7 +18,7 @@ export default function getFlagCode(languages: string[] | undefined) {
     ? languages.forEach((lang) => {
         result.push(flagCodes[lang as keyof typeof flagCodes]);
       })
-    : ["DE"];
+    : result.push("DE");
 
   return [...new Set(result)];
 }
