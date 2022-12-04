@@ -11,6 +11,10 @@ export const pageview = (url: string) => {
   ReactGA.send({ hitType: "pageview", page: url });
 };
 
+export const conversion = () => {
+  ReactGA.gtag("config", "AW-11007581155");
+};
+
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const event = ({
   action,
