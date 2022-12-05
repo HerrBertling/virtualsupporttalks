@@ -17,6 +17,13 @@ export default function CleverLink({
   if (!to) {
     throw new Error('"to" prop is required');
   }
+  if (to.startsWith("mailto:")) {
+    return (
+      <a href={to} className={className}>
+        {children}
+      </a>
+    );
+  }
   const isInternalLink =
     to.startsWith("https://www.virtualsupporttalks.de/") ||
     to.startsWith("/") ||
