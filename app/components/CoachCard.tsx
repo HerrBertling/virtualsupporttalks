@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
+import getGender from "~/utils/getGender";
 import getFlagCode from "~/utils/getFlagCodes";
 import { trackCoachClick } from "~/utils/gtag.client";
 
@@ -17,14 +18,25 @@ type CoachProps = {
   emergency?: boolean;
   children: ReactNode;
   languages: string[] | undefined;
+  gender: string[] | undefined;
 };
 
 export default function CoachCard(props: CoachProps) {
-  const { url, name, image, emergency, phone, email, languages, children } =
-    props;
+  const {
+    url,
+    name,
+    image,
+    emergency,
+    phone,
+    email,
+    languages,
+    gender,
+    children,
+  } = props;
 
   const { t } = useTranslation("searchingCoach");
   const flagCodes = getFlagCode(languages);
+  const genderTags = getGender(gender);
 
   const contactMethods = [];
   if (email) {
@@ -102,6 +114,22 @@ export default function CoachCard(props: CoachProps) {
                   }}
                   countryCode={lang}
                 />
+              );
+            })}
+          </h2>
+          <h2 className="text-sm font-extralight text-slate-500">
+            {t("gender")}
+            {genderTags.map((gender, index) => {
+              return (
+                <div
+                  className="inline-flex px-1"
+                  style={{
+                    fontSize: "1em",
+                  }}
+                  key={index}
+                >
+                  <h2>: {gender}</h2>
+                </div>
               );
             })}
           </h2>

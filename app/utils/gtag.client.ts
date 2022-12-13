@@ -61,3 +61,20 @@ export const trackFilterClick = ({
     label,
   });
 };
+
+export const trackGenderClick = ({
+  type,
+  category,
+  label,
+}: {
+  type: string;
+  category: string;
+  label: string;
+}) => {
+  console.log({ type, category, label });
+  ReactGA.event({
+    category: category,
+    action: type,
+    label,
+  });
+};

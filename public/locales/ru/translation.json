@@ -23,9 +23,15 @@
       "arab": "عربي",
       "nor": "Norsk"
     },
+    "genderTags": {
+      "Weiblich": "Female",
+      "Männlich": "Male",
+      "Diverse": "Diverse"
+    },
     "filter": {
       "showFilter": "Filter anzeigen",
       "language": "Filter by language",
+      "gender": "Filter by gender",
       "tag": "Filter by topic",
       "submitCta": "Apply filter"
     },

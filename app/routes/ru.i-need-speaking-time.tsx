@@ -33,10 +33,12 @@ export default function SearchingCoach() {
     coaches,
     coachesAmount,
     languages,
+    gender,
     tags,
     navigation,
     checkedTags,
     currentLang,
+    currentGender,
     locale,
     availableTagIDs,
   } = useLoaderData();
@@ -45,7 +47,9 @@ export default function SearchingCoach() {
     <BasicLayout nav={navigation.fields.items} lang={locale}>
       <SpeakingTimeContent
         languages={languages}
+        gender={gender}
         currentLang={currentLang}
+        currentGender={currentGender}
         locale={locale}
         coaches={coaches}
         coachesAmount={coachesAmount}

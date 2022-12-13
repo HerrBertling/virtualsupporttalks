@@ -171,6 +171,39 @@ export const getLanguages = async (): Promise<string[]> => {
   return [...new Set(lowercasedLangs)].sort().filter((lang) => lang != "ukr");
 };
 
+// begin gender
+
+export const getGender = async (): Promise<string[]> => {
+  const coaches = await getCoaches();
+
+  let gender: string[] = [];
+
+  coaches.forEach((coach) => {
+    if (coach.fields.gender) {
+      gender.push(...coach.fields.gender);
+    }
+  });
+
+  const lowercasedLangs = [...new Set(gender)].map((gender) =>
+    gender.toLowerCase()
+  );
+
+  return [...new Set(lowercasedLangs)].sort().filter((gender) => gender != "");
+};
+
+// export const getGenderTags = async () => {
+//   const client = createContentfulClient();
+
+//   const { items } = await client.getEntries({
+//     content_type: "gender",
+//     order: "fields.gender",
+//   });
+
+//   return items as ICoachtag[];
+// };
+
+// end gender
+
 export const getTags = async (locale: LOCALE_CODE = "de") => {
   const client = createContentfulClient();
 

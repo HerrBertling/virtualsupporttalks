@@ -97,6 +97,10 @@ export interface ICenteredContent extends Entry<ICenteredContentFields> {
 }
 
 export interface ICoachFields {
+
+  /** Gender */
+  gender: string[] | undefined;
+
   /** Name */
   name: string;
 

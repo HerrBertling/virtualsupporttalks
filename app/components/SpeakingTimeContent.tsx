@@ -19,8 +19,11 @@ type SpeakingTimeContentProps = {
   page: IPage;
   locale: LOCALE_CODE;
   languages: string[];
+  gender: string[];
+  // genderTags: string[];
+  currentGender: string;
   tags: ICoachtag[];
-  currentLang: string;
+  currentLang: string;  
   availableTagIDs: string[];
   checkedTags: string[];
   coaches: ICoach[];
@@ -31,8 +34,11 @@ export default function SpeakingTimeContent({
   page,
   locale,
   languages,
+  gender,
+  // genderTags,
+  currentGender,
   tags,
-  currentLang,
+  currentLang,  
   availableTagIDs,
   checkedTags,
   coaches,
@@ -108,6 +114,30 @@ export default function SpeakingTimeContent({
               </CoachFilterTag>
             ))}
           </fieldset>
+
+          {/* Gender filter */}
+
+          <fieldset className="mt-8">
+            <legend className="mb-4 inline-block text-xl">
+              {t("filter.gender")}
+            </legend>
+            {gender.map((gender: string) => (
+              <CoachFilterTag
+                isHighlighted={false}
+                disabled={false}
+                key={gender}
+                value={gender}
+                name="gender"
+                defaultValue={currentGender === gender}
+                type="radio"
+              >
+                {t(`${gender}`)}
+              </CoachFilterTag>
+            ))}
+          </fieldset>
+
+          {/* end Gender filter */}
+
           <fieldset className="mt-8">
             <legend className="mb-4 inline-block text-xl">
               {t("filter.tag")}{" "}

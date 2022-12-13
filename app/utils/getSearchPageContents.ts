@@ -1,6 +1,7 @@
 import {
   getCoaches,
   getLanguages,
+  getGender,
   getMainNav,
   getPageById,
   getTags,
@@ -26,11 +27,13 @@ export type SearchPageContentResponse = {
   page: IPage | null;
   coaches: ICoach[] | null;
   languages: string[] | null;
+  gender: string[] | null;
   tags: ICoachtag[] | null;
   availableTagIDs: string[];
   navigation: INavigation | null;
   checkedTags: string[] | null;
   currentLang: string;
+  currentGender: string;
   locale: LOCALE_CODE;
   coachesAmount: number;
 };
@@ -43,11 +46,12 @@ export const getSearchPageContents = async (
   const lang = searchParams.get("lang") || locale;
   const checkedTags = searchParams.getAll("tag");
 
-  const [page, coaches, languages, tags, navigation]: PromiseResponse =
+  const [page, coaches, languages, gender, tags, navigation]: PromiseResponse =
     await Promise.all([
       getPageById(pageIds.SEARCH_HELP, locale),
       getCoaches(lang),
       getLanguages(),
+      getGender(),
       getTags(locale),
       getMainNav(locale),
     ]);
@@ -85,11 +89,13 @@ export const getSearchPageContents = async (
     page,
     coaches: filteredCoaches,
     languages,
+    gender,
     tags,
     navigation,
     checkedTags,
     locale,
     currentLang: lang,
+    // currentGender: gender,
     coachesAmount: filteredCoaches?.length || 0,
     availableTagIDs,
   };
