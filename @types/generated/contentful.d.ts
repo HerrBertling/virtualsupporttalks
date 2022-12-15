@@ -22,7 +22,6 @@ export interface IBlogpostFields {
     | IContentWithFullSizeImage
     | ICenteredContent
     | ITwoImages
-    | IVideoPlayer
   )[];
 
   /** seo */
@@ -97,10 +96,6 @@ export interface ICenteredContent extends Entry<ICenteredContentFields> {
 }
 
 export interface ICoachFields {
-
-  /** Gender */
-  gender: string[] | undefined;
-
   /** Name */
   name: string;
 
@@ -115,6 +110,9 @@ export interface ICoachFields {
 
   /** Sprachen */
   languages?: string[] | undefined;
+
+  /** Gender */
+  gender?: string[] | undefined;
 
   /** Bild */
   image?: Asset | undefined;
