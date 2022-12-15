@@ -130,6 +130,7 @@ export interface ICoachFields {
 /** Die Coaches */
 
 export interface ICoach extends Entry<ICoachFields> {
+  [x: string]: any;
   sys: {
     id: string;
     type: string;
