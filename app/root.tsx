@@ -63,6 +63,7 @@ export default function App() {
   useEffect(() => {
     if (shouldTrack) {
       gtag.pageview(location.pathname);
+      gtag.conversion();
     }
   }, [location, shouldTrack]);
 
