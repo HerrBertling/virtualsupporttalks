@@ -18,7 +18,7 @@ type CoachProps = {
   emergency?: boolean;
   children: ReactNode;
   languages: string[] | undefined;
-  gender: string[] | undefined;
+  gender?: string[] | undefined;
 };
 
 export default function CoachCard(props: CoachProps) {

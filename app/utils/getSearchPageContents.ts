@@ -32,6 +32,7 @@ export type SearchPageContentResponse = {
   availableTagIDs: string[];
   navigation: INavigation | null;
   checkedTags: string[] | null;
+  checkedGender: string[] | null;
   currentLang: string;
   currentGender: string;
   locale: LOCALE_CODE;
@@ -45,6 +46,7 @@ export const getSearchPageContents = async (
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || locale;
   const checkedTags = searchParams.getAll("tag");
+  const checkedGender = searchParams.getAll("gender");
 
   const [page, coaches, languages, gender, tags, navigation]: PromiseResponse =
     await Promise.all([
@@ -67,13 +69,13 @@ export const getSearchPageContents = async (
 
   const filteredCoaches = coaches.filter((coach) => {
     const coachTags = coach.fields.tag;
-    if (!checkedTags || checkedTags.length === 0) {
+    if (!checkedTags && !checkedGender || checkedTags.length === 0 && checkedGender.length === 0 ) {
       return true;
     }
     return (
       !!coachTags &&
-      checkedTags.every((tagId) =>
-        coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId)
+      checkedGender && checkedTags.every((tagId) =>
+      checkedGender && coachTags.some ((cTag: ICoachtag) => cTag.sys.id === tagId)
       )
     );
   });
@@ -93,6 +95,7 @@ export const getSearchPageContents = async (
     tags,
     navigation,
     checkedTags,
+    checkedGender,
     locale,
     currentLang: lang,
     // currentGender: gender,

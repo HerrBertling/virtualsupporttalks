@@ -199,7 +199,7 @@ export const getGender = async (): Promise<string[]> => {
 //     order: "fields.gender",
 //   });
 
-//   return items as ICoachtag[];
+//   return items as ICoachgender[];
 // };
 
 // end gender
@@ -237,6 +237,30 @@ export const getCoaches = async (lang: string | null = null) => {
   } else {
     options = baseOptions;
   }
+
+  // gender
+
+  // export const getGenders = async (lang: string | null = null) => {
+  //   const client = createContentfulClient();
+
+  // const usedGender = "gender";
+
+  // const baseOptionsGender = {
+  //   limit: 500,
+  //   content_type: "gender",
+  //   order: "fields.title",
+  // };
+
+  // if (usedGender) {
+  //   options = {
+  //     ...baseOptionsGender,
+  //     "fields.title": usedGender,
+  //   };
+  // } else {
+  //   options = baseOptionsGender;
+  // }
+
+  // end gender
 
   const usedLocale =
     !lang || !availableLocales.includes(lang as LOCALE_CODE) ? "de" : lang;

@@ -73,7 +73,7 @@ export const trackGenderClick = ({
 }) => {
   console.log({ type, category, label });
   ReactGA.event({
-    category: category,
+    category: "coachGender",
     action: type,
     label,
   });

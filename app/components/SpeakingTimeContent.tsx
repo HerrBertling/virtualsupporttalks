@@ -23,7 +23,7 @@ type SpeakingTimeContentProps = {
   // genderTags: string[];
   currentGender: string;
   tags: ICoachtag[];
-  currentLang: string;  
+  currentLang: string;
   availableTagIDs: string[];
   checkedTags: string[];
   coaches: ICoach[];
@@ -38,7 +38,7 @@ export default function SpeakingTimeContent({
   // genderTags,
   currentGender,
   tags,
-  currentLang,  
+  currentLang,
   availableTagIDs,
   checkedTags,
   coaches,
@@ -129,12 +129,12 @@ export default function SpeakingTimeContent({
                 value={gender}
                 name="gender"
                 defaultValue={currentGender === gender}
-                type="radio"
+                type="checkbox"
               >
                 {t(`${gender}`)}
               </CoachFilterTag>
             ))}
-          </fieldset>
+          </fieldset>          
 
           {/* end Gender filter */}
 

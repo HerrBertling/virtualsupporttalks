@@ -32,8 +32,8 @@ export default function CoachFilterTag({
           defaultChecked={defaultValue}
           disabled={disabled}
           onClick={() =>
-            trackFilterClick({             
-              category: type === "radio" ? "coachLanguage" : "coachTag" ? "gender" : "coachTag",
+            trackFilterClick({
+              category: type === "radio" ? "coachLanguage" : "coachTag",
               type:
                 type === "radio"
                   ? "select"
@@ -47,7 +47,7 @@ export default function CoachFilterTag({
 
         {/* Gender */}
 
-        {/* <input
+        <input
           className="peer sr-only"
           type={type}
           name={name}
@@ -56,9 +56,9 @@ export default function CoachFilterTag({
           disabled={disabled}
           onClick={() =>
             trackGenderClick({
-              category: type === "radio" ? "genderTags" : "coachTag",
+              category: type === "checkbox" ? "coachGender" : "",
               type:
-                type === "radio"
+                type === "checkbox"
                   ? "select"
                   : defaultValue
                   ? "unselect"
@@ -66,7 +66,7 @@ export default function CoachFilterTag({
               label: children as string,
             })
           }
-        /> */}
+        />
 
         {/* End gender */}
 

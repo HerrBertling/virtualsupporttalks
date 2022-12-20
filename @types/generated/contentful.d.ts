@@ -125,6 +125,9 @@ export interface ICoachFields {
   /** Tags */
   tag?: ICoachtag[] | undefined;
 
+  /** Gender */
+  // gender?: ICoachgender[] | undefined;
+
   /** In dringenden Fällen erreichbar */
   emergency?: boolean | undefined;
 }
@@ -196,6 +199,24 @@ export interface ICoachtag extends Entry<ICoachtagFields> {
   };
 }
 
+// Gender:
+
+// export interface ICoachgender extends Entry<ICoachtagFields> {
+//   sys: {
+//     id: string;
+//     type: string;
+//     createdAt: string;
+//     updatedAt: string;
+//     locale: string;
+//     contentType: {
+//       sys: {
+//         id: "coachGender";
+//         linkType: "ContentType";
+//         type: "Link";
+//       };
+//     };
+//   };
+// }
 export interface IContentImageBgFields {
   /** Hintergrundbild */
   backgroundImage?: Asset | undefined;

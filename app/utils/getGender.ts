@@ -1,8 +1,8 @@
 export default function getGender(gender: string[] | undefined) {
   const genderTags = {
-    Diverse: "Diverse",
-    Männlich: "Männlich",
-    Weiblich: "Weiblich",
+    divers: "Divers",
+    männlich: "Männlich",
+    weiblich: "Weiblich",
   };
 
   const result: string[] = [];
