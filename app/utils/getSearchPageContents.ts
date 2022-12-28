@@ -45,6 +45,7 @@ export const getSearchPageContents = async (
 ): Promise<SearchPageContentResponse> => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || locale;
+  const gend = searchParams.get("gend") || locale;
   const checkedTags = searchParams.getAll("tag");
   const checkedGender = searchParams.getAll("gender");
 
@@ -69,13 +70,21 @@ export const getSearchPageContents = async (
 
   const filteredCoaches = coaches.filter((coach) => {
     const coachTags = coach.fields.tag;
-    if (!checkedTags && !checkedGender || checkedTags.length === 0 && checkedGender.length === 0 ) {
+    const coachGender = coach.fields.gender;
+    if (
+      (!checkedTags && !checkedGender) ||
+      (checkedTags.length === 0 && checkedGender.length === 0)
+    ) {
       return true;
     }
     return (
       !!coachTags &&
-      checkedGender && checkedTags.every((tagId) =>
-      checkedGender && coachTags.some ((cTag: ICoachtag) => cTag.sys.id === tagId)
+      !!coachGender &&
+      checkedTags.every((tagId) =>
+        coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId)
+      ) &&
+      checkedGender.every((gendId) =>
+        coachGender.some((cGend) => cGend === gendId)
       )
     );
   });
@@ -98,7 +107,7 @@ export const getSearchPageContents = async (
     checkedGender,
     locale,
     currentLang: lang,
-    // currentGender: gender,
+    currentGender: gend,
     coachesAmount: filteredCoaches?.length || 0,
     availableTagIDs,
   };
