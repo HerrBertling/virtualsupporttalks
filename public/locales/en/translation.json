@@ -24,9 +24,9 @@
       "nor": "Norsk"
     },
     "genderTags": {
-      "Weiblich": "Female",
-      "Männlich": "Male",
-      "Diverse": "Diverse"
+      "weiblich": "Female",
+      "männlich": "Male",
+      "divers": "Divers"
     },
     "filter": {
       "showFilter": "Filter anzeigen",
