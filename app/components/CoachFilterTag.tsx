@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { trackFilterClick, trackGenderClick } from "~/utils/gtag.client";
+import { trackFilterClick } from "~/utils/gtag.client";
 import Lifebuoy from "./icons/Lifebuoy";
 
 type CoachFilterTagProps = {
@@ -33,42 +33,25 @@ export default function CoachFilterTag({
           disabled={disabled}
           onClick={() =>
             trackFilterClick({
-              category: type === "radio" ? "coachLanguage" : "coachTag",
+              category:
+                name === "lang"
+                  ? "coachLanguage"
+                  : name === "gender"
+                  ? "coachGender"
+                  : "coachTag",
               type:
                 type === "radio"
                   ? "select"
+                  : type === "checkbox"
+                  ? "checked"
                   : defaultValue
                   ? "unselect"
                   : "select",
+
               label: children as string,
             })
           }
         />
-
-        {/* Gender */}
-
-        <input
-          className="peer sr-only"
-          type={type}
-          name={name}
-          value={value}
-          defaultChecked={defaultValue}
-          disabled={disabled}
-          onClick={() =>
-            trackGenderClick({
-              category: type === "checkbox" ? "coachGender" : "",
-              type:
-                type === "checkbox"
-                  ? "select"
-                  : defaultValue
-                  ? "unselect"
-                  : "select",
-              label: children as string,
-            })
-          }
-        />
-
-        {/* End gender */}
 
         <span
           className={`${
