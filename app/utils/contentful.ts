@@ -172,6 +172,7 @@ export const getLanguages = async (): Promise<string[]> => {
 };
 
 // begin gender
+// TODO: getGender requires lang due to getCoaches requires it
 
 export const getGender = async (): Promise<string[]> => {
   const coaches = await getCoaches();
@@ -184,25 +185,12 @@ export const getGender = async (): Promise<string[]> => {
     }
   });
 
-  const lowercasedLangs = [...new Set(gender)].map((gender) =>
+  const lowercasedGender = [...new Set(gender)].map((gender) =>
     gender.toLowerCase()
   );
 
-  return [...new Set(lowercasedLangs)].sort().filter((gender) => gender != "");
+  return [...new Set(lowercasedGender)].sort();
 };
-
-// export const getGenderTags = async () => {
-//   const client = createContentfulClient();
-
-//   const { items } = await client.getEntries({
-//     content_type: "gender",
-//     order: "fields.gender",
-//   });
-
-//   return items as ICoachgender[];
-// };
-
-// end gender
 
 export const getTags = async (locale: LOCALE_CODE = "de") => {
   const client = createContentfulClient();
@@ -237,30 +225,6 @@ export const getCoaches = async (lang: string | null = null) => {
   } else {
     options = baseOptions;
   }
-
-  // gender
-
-  // export const getGenders = async (lang: string | null = null) => {
-  //   const client = createContentfulClient();
-
-  // const usedGender = "gender";
-
-  // const baseOptionsGender = {
-  //   limit: 500,
-  //   content_type: "gender",
-  //   order: "fields.title",
-  // };
-
-  // if (usedGender) {
-  //   options = {
-  //     ...baseOptionsGender,
-  //     "fields.title": usedGender,
-  //   };
-  // } else {
-  //   options = baseOptionsGender;
-  // }
-
-  // end gender
 
   const usedLocale =
     !lang || !availableLocales.includes(lang as LOCALE_CODE) ? "de" : lang;
