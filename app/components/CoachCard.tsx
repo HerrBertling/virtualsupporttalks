@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
-import getGender from "~/utils/getGender";
+import getGenderCode from "~/utils/getGenderCode";
 import getFlagCode from "~/utils/getFlagCodes";
 import { trackCoachClick } from "~/utils/gtag.client";
 
@@ -36,7 +36,7 @@ export default function CoachCard(props: CoachProps) {
 
   const { t } = useTranslation("searchingCoach");
   const flagCodes = getFlagCode(languages);
-  const genderTags = getGender(gender);
+  const genderTags = getGenderCode(gender);
 
   const contactMethods = [];
   if (email) {
