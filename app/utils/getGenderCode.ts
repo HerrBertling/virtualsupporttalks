@@ -1,4 +1,4 @@
-export default function getGender(gender: string[] | undefined) {
+export default function getGenderCode(gender: string[] | undefined) {
   const genderTags = {
     divers: "Divers",
     männlich: "Männlich",
