@@ -198,24 +198,6 @@ export interface ICoachtag extends Entry<ICoachtagFields> {
   };
 }
 
-// Gender:
-
-// export interface ICoachgender extends Entry<ICoachtagFields> {
-//   sys: {
-//     id: string;
-//     type: string;
-//     createdAt: string;
-//     updatedAt: string;
-//     locale: string;
-//     contentType: {
-//       sys: {
-//         id: "coachGender";
-//         linkType: "ContentType";
-//         type: "Link";
-//       };
-//     };
-//   };
-// }
 export interface IContentImageBgFields {
   /** Hintergrundbild */
   backgroundImage?: Asset | undefined;
