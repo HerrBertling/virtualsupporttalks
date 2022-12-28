@@ -65,7 +65,7 @@ export default function SpeakingTimeContent({
   return (
     <div>
       <ContentBlocks content={page.fields.content} locale={locale} />
-      <details open={false} className="mx-auto max-w-7xl py-8 px-4">
+      <details open={true} className="mx-auto max-w-7xl py-8 px-4">
         <summary
           className="inline-flex  cursor-pointer items-center hover:text-vsp-500"
           onClick={() => setIsActive(!isActive)}
