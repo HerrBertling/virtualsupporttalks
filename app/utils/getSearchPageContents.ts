@@ -19,6 +19,7 @@ type PromiseResponse = [
   IPage | null,
   ICoach[] | null,
   string[] | null,
+  string[] | null,
   ICoachtag[] | null,
   INavigation | null
 ];
@@ -34,7 +35,6 @@ export type SearchPageContentResponse = {
   checkedTags: string[] | null;
   checkedGender: string[] | null;
   currentLang: string;
-  currentGender: string;
   locale: LOCALE_CODE;
   coachesAmount: number;
 };
@@ -45,7 +45,6 @@ export const getSearchPageContents = async (
 ): Promise<SearchPageContentResponse> => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || locale;
-  const gend = searchParams.get("gend") || locale;
   const checkedTags = searchParams.getAll("tag");
   const checkedGender = searchParams.getAll("gender");
 
@@ -68,28 +67,36 @@ export const getSearchPageContents = async (
     throw new Response("Could not load navigation", { status: 404 });
   }
 
-  const filteredCoaches = coaches.filter((coach) => {
-    const coachTags = coach.fields.tag;
-    const coachGender = coach.fields.gender;
-    if (
-      (!checkedTags && !checkedGender) ||
-      (checkedTags.length === 0 && checkedGender.length === 0)
-    ) {
-      return true;
-    }
-    return (
-      !!coachTags &&
-      !!coachGender &&
-      checkedTags.every((tagId) =>
-        coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId)
-      ) &&
-      checkedGender.every((gendId) =>
-        coachGender.some((cGend) => cGend === gendId)
-      )
-    );
-  });
+  const filteredCoaches = coaches
+    .filter((coach) => {
+      const coachTags = coach.fields.tag;
+      if (!checkedTags || checkedTags.length === 0) {
+        return true;
+      }
+
+      return (
+        !!coachTags &&
+        checkedTags.every((tagId) =>
+          coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId)
+        )
+      );
+    })
+    .filter((coach) => {
+      const coachGenders = coach.fields.gender;
+      if (!checkedGender || checkedGender.length === 0) {
+        return true;
+      }
+
+      return (
+        !!coachGenders &&
+        checkedGender.every((gendId) =>
+          coachGenders.some((genderCodes) => genderCodes === gendId)
+        )
+      );
+    });
 
   // get available tags from all coaches
+
   const availableTagIDs = filteredCoaches
     .map((coach) => coach.fields.tag)
     .filter((tags) => !!tags)
@@ -107,7 +114,6 @@ export const getSearchPageContents = async (
     checkedGender,
     locale,
     currentLang: lang,
-    currentGender: gend,
     coachesAmount: filteredCoaches?.length || 0,
     availableTagIDs,
   };
