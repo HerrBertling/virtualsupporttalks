@@ -36,7 +36,7 @@ export default function CoachCard(props: CoachProps) {
 
   const { t } = useTranslation("searchingCoach");
   const flagCodes = getFlagCode(languages);
-  const genderTags = getGenderCode(gender);
+  const genderCodes = getGenderCode(gender);
 
   const contactMethods = [];
   if (email) {
@@ -119,7 +119,7 @@ export default function CoachCard(props: CoachProps) {
           </h2>
           <h2 className="text-sm font-extralight text-slate-500">
             {t("gender")}
-            {genderTags.map((gender, index) => {
+            {genderCodes.map((gender, index) => {
               return (
                 <div
                   className="inline-flex px-1"
