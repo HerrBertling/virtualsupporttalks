@@ -38,7 +38,7 @@ export default function SearchingCoach() {
     navigation,
     checkedTags,
     currentLang,
-    currentGender,
+    checkedGender,
     locale,
     availableTagIDs,
   } = useLoaderData();
@@ -49,7 +49,7 @@ export default function SearchingCoach() {
         languages={languages}
         gender={gender}
         currentLang={currentLang}
-        currentGender={currentGender}
+        checkedGender={checkedGender}
         locale={locale}
         coaches={coaches}
         coachesAmount={coachesAmount}
