@@ -185,12 +185,14 @@ export const getGender = async (): Promise<string[]> => {
     }
   });
 
-  const lowercasedGender = [...new Set(gender)].map((gender) =>
-    gender.toLowerCase()
+  const lowercasedGender = [...new Set(gender)].map((gend) =>
+    gend.toLowerCase()
   );
 
-  return [...new Set(lowercasedGender)].sort();
+  return [...new Set(lowercasedGender)].sort().filter((gend) => gend);
 };
+
+
 
 export const getTags = async (locale: LOCALE_CODE = "de") => {
   const client = createContentfulClient();
