@@ -20,7 +20,7 @@ type SpeakingTimeContentProps = {
   locale: LOCALE_CODE;
   languages: string[];
   gender: string[];
-  currentGender: string;
+  checkedGender: string[];
   tags: ICoachtag[];
   currentLang: string;
   availableTagIDs: string[];
@@ -34,7 +34,7 @@ export default function SpeakingTimeContent({
   locale,
   languages,
   gender,
-  currentGender,
+  checkedGender,
   tags,
   currentLang,
   availableTagIDs,
@@ -126,7 +126,7 @@ export default function SpeakingTimeContent({
                 key={gend}
                 value={gend}
                 name="gender"
-                defaultValue={currentGender === gend}
+                defaultValue={checkedGender.includes(gend)}
                 type="checkbox"
               >
                 {t(`genderTags.${gend}`)}
