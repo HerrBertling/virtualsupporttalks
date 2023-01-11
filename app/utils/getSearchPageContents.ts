@@ -45,8 +45,16 @@ export const getSearchPageContents = async (
 ): Promise<SearchPageContentResponse> => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || locale;
-  const checkedTags = searchParams.getAll("tag");
-  const checkedGender = searchParams.getAll("gender");
+
+  const checkedTags =
+    searchParams.getAll("tag").length > 0
+      ? searchParams.getAll("tag")[0].split(",")
+      : searchParams.getAll("tag");
+
+  const checkedGender =
+    searchParams.getAll("gender").length > 0
+      ? searchParams.getAll("gender")[0].split(",")
+      : searchParams.getAll("gender");
 
   const [page, coaches, languages, gender, tags, navigation]: PromiseResponse =
     await Promise.all([
@@ -89,9 +97,7 @@ export const getSearchPageContents = async (
 
       return (
         !!coachGenders &&
-        checkedGender.every((gendId) =>
-          coachGenders.some((genderCodes) => genderCodes === gendId)
-        )
+        coachGenders.some((gender) => checkedGender.includes(gender))
       );
     });
 
@@ -100,7 +106,7 @@ export const getSearchPageContents = async (
   const availableTagIDs = filteredCoaches
     .map((coach) => coach.fields.tag)
     .filter((tags) => !!tags)
-    .map((tags) => tags.map((tag) => tag.sys.id))
+    .map((tags) => tags?.map((tag) => tag.sys.id))
     .flat();
 
   return {
