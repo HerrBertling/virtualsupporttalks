@@ -46,15 +46,9 @@ export const getSearchPageContents = async (
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || locale;
 
-  const checkedTags =
-    searchParams.getAll("tag").length > 0
-      ? searchParams.getAll("tag")[0].split(",")
-      : searchParams.getAll("tag");
+  const checkedTags = searchParams.getAll("tag");
 
-  const checkedGender =
-    searchParams.getAll("gender").length > 0
-      ? searchParams.getAll("gender")[0].split(",")
-      : searchParams.getAll("gender");
+  const checkedGender = searchParams.getAll("gender");
 
   const [page, coaches, languages, gender, tags, navigation]: PromiseResponse =
     await Promise.all([
