@@ -1,6 +1,11 @@
+import { useEffect } from "react";
+import { trackSiteVisit } from "~/utils/gtag.client";
 import type { ITrackingGaFields } from "../../../@types/generated/contentful";
 
 export default function TrackingGa({ title }: ITrackingGaFields) {
-  console.log("title", title);
-  return <h1> {title}</h1>;
+  useEffect(() => {
+    trackSiteVisit({ label: title });
+  });
+
+  return null;
 }

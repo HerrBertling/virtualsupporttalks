@@ -65,3 +65,12 @@ export const trackFilterClick = ({
     label,
   });
 };
+
+export const trackSiteVisit = ({ label }: { label: string }) => {
+  console.log({ label });
+  ReactGA.event({
+    category: "event",
+    action: "conversion",
+    label,
+  });
+};
