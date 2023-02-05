@@ -123,9 +123,6 @@ export interface ICoachFields {
   /** Tags */
   tag?: ICoachtag[] | undefined;
 
-  /** Gender */
-  // gender?: ICoachgender[] | undefined;
-
   /** In dringenden Fällen erreichbar */
   emergency?: boolean | undefined;
 }
