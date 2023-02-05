@@ -23,9 +23,15 @@
       "arab": "عربي",
       "nor": "Norsk"
     },
+    "genderTags": {
+      "weiblich": "Weiblich",
+      "männlich": "Männlich",
+      "divers": "Divers"
+    },
     "filter": {
       "showFilter": "Filter anzeigen",
       "language": "Nach Sprache filtern",
+      "gender": "Nach Gender filtern",
       "tag": "Nach Thema filtern",
       "submitCta": "Filter anwenden"
     },
@@ -33,6 +39,7 @@
     "noResult": "Keine Zuhörer*innen zu diesen Filtern gefunden :(",
     "emergency": "Schnell erreichbar",
     "languages": "Sprachen",
+    "gender": "Gender",
     "email": "E-Mail",
     "phone": "Telefon",
     "website": "Webseite"

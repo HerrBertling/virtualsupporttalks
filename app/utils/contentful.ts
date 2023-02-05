@@ -171,6 +171,29 @@ export const getLanguages = async (): Promise<string[]> => {
   return [...new Set(lowercasedLangs)].sort().filter((lang) => lang != "ukr");
 };
 
+// begin gender
+// TODO: getGender requires lang due to getCoaches requires it
+
+export const getGender = async (): Promise<string[]> => {
+  const coaches = await getCoaches();
+
+  let gender: string[] = [];
+
+  coaches.forEach((coach) => {
+    if (coach.fields.gender) {
+      gender.push(...coach.fields.gender);
+    }
+  });
+
+  const lowercasedGender = [...new Set(gender)].map((gend) =>
+    gend.toLowerCase()
+  );
+
+  return [...new Set(lowercasedGender)].sort().filter((gend) => gend);
+};
+
+
+
 export const getTags = async (locale: LOCALE_CODE = "de") => {
   const client = createContentfulClient();
 

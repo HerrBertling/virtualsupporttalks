@@ -22,7 +22,6 @@ export interface IBlogpostFields {
     | IContentWithFullSizeImage
     | ICenteredContent
     | ITwoImages
-    | IVideoPlayer
   )[];
 
   /** seo */
@@ -112,6 +111,9 @@ export interface ICoachFields {
   /** Sprachen */
   languages?: string[] | undefined;
 
+  /** Gender */
+  gender?: string[] | undefined;
+
   /** Bild */
   image?: Asset | undefined;
 
@@ -128,6 +130,7 @@ export interface ICoachFields {
 /** Die Coaches */
 
 export interface ICoach extends Entry<ICoachFields> {
+  [x: string]: any;
   sys: {
     id: string;
     type: string;

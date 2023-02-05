@@ -16,6 +16,7 @@ export default function CoachList({ coaches }: { coaches: ICoach[] }) {
             image,
             description,
             languages,
+            gender
           } = coach.fields;
           return (
             <CoachCard
@@ -27,6 +28,7 @@ export default function CoachList({ coaches }: { coaches: ICoach[] }) {
               emergency={emergency}
               image={image}
               languages={languages}
+              gender={gender}
             >
               {description && (
                 <ContentfulRichText content={description} withProse={false} />
