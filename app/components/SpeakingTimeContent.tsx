@@ -119,17 +119,17 @@ export default function SpeakingTimeContent({
             <legend className="mb-4 inline-block text-xl">
               {t("filter.gender")}
             </legend>
-            {gender.map((gend: string) => (
+            {gender.map((genders: string) => (
               <CoachFilterTag
                 isHighlighted={false}
                 disabled={false}
-                key={gend}
-                value={gend}
+                key={genders}
+                value={genders}
                 name="gender"
-                defaultValue={checkedGender.includes(gend)}
+                defaultValue={checkedGender.includes(genders)}
                 type="checkbox"
               >
-                {t(`genderTags.${gend}`)}
+                {t(`genderTags.${genders}`)}
               </CoachFilterTag>
             ))}
           </fieldset>
