@@ -7,6 +7,7 @@ import type {
   IHeaderBlockFields,
   IImageCollectionFields,
   IPageFields,
+  ITrackingGaFields,
   ITwoImagesFields,
   IVideoPlayerFields,
   LOCALE_CODE,
@@ -17,6 +18,7 @@ import ContentBlockFullSizeImageBg from "./ContentBlocks/FullSizeImageBg";
 import GenericContent from "./ContentBlocks/GenericContent";
 import ContentBlockHeader from "./ContentBlocks/Header";
 import ContentBlockImageBg from "./ContentBlocks/ImageBg";
+import TrackingGa from "./ContentBlocks/TrackingGA";
 import ContentBlockTwoImages from "./ContentBlocks/TwoImages";
 import VideoPlayer from "./ContentBlocks/VideoPlayer";
 import ContentfulRichText from "./ContentfulRichText";
@@ -138,6 +140,11 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
               withPaddingTop={index === 0}
             />
           );
+        }
+
+        if (id === "trackingGa") {
+          const { title } = item.fields as ITrackingGaFields;
+          return <TrackingGa key={item.sys.id} title={title} />;
         }
 
         if (id === "coachList") {

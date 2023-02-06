@@ -112,7 +112,7 @@ export interface ICoachFields {
   languages?: string[] | undefined;
 
   /** Gender */
-  gender?: string[] | undefined;
+  gender: ("weiblich" | "männlich" | "divers")[];
 
   /** Bild */
   image?: Asset | undefined;
@@ -130,7 +130,6 @@ export interface ICoachFields {
 /** Die Coaches */
 
 export interface ICoach extends Entry<ICoachFields> {
-  [x: string]: any;
   sys: {
     id: string;
     type: string;
@@ -568,6 +567,7 @@ export interface IPageFields {
     | ICenteredContent
     | IVideoPlayer
     | ITwoImages
+    | ITrackingGa
   )[];
 
   /** seo */
@@ -680,6 +680,30 @@ export interface ITag extends Entry<ITagFields> {
   };
 }
 
+export interface ITrackingGaFields {
+  /** Title */
+  title: string;
+}
+
+/** Empty component to track conversion from Google Ads */
+
+export interface ITrackingGa extends Entry<ITrackingGaFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "trackingGa";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ITwoImagesFields {
   /** Interner Titel */
   title?: string | undefined;
@@ -773,6 +797,7 @@ export type CONTENT_TYPE =
   | "seo"
   | "supporter"
   | "tag"
+  | "trackingGa"
   | "twoImages"
   | "videoPlayer";
 
