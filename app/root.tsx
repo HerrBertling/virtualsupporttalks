@@ -40,13 +40,17 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  return json({ track: cookie.gdprConsent });
+  return json({
+    track: cookie.gdprConsent,
+    gaTrackingId: process.env.GA_TRACKING_ID,
+  });
 };
 
 export default function App() {
-  const { track } = useLoaderData();
+  const { track, gaTrackingId } = useLoaderData();
   const analyticsFetcher = useFetcher();
   const location = useLocation();
+  // const { gaTrackingId } = useLoaderData<typeof loader>();
 
   const [shouldTrack, setShouldTrack] = useState(track);
 
@@ -66,6 +70,12 @@ export default function App() {
       gtag.conversion();
     }
   }, [location, shouldTrack]);
+
+  useEffect(() => {
+    if (gaTrackingId?.length) {
+      gtag.pageview(location.pathname && gaTrackingId);
+    }
+  }, [location, gaTrackingId]);
 
   return (
     <html lang="en">
@@ -91,6 +101,14 @@ export default function App() {
             </analyticsFetcher.Form>
           </div>
         )}
+        {process.env.NODE_ENV === "development" || !gaTrackingId ? null : (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/ns.html?id=${gaTrackingId}`}
+            />
+          </>
+        )}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -109,6 +127,20 @@ export function CatchBoundary() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          async
+          id="gtag-init"
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+          }}
+        />
       </head>
       <body>
         <BasicCatchBoundary {...caught} />
