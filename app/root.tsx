@@ -133,7 +133,7 @@ export function CatchBoundary() {
           dangerouslySetInnerHTML={{
             __html: `
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                function gtag(){dataLayer.push(gaTrackingId);}
                 gtag('js', new Date());
                 gtag('config', '${gaTrackingId}', {
                   page_path: window.location.pathname,
