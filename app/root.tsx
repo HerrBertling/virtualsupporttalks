@@ -50,8 +50,6 @@ export default function App() {
   const { track, gaTrackingId } = useLoaderData();
   const analyticsFetcher = useFetcher();
   const location = useLocation();
-  // const { gaTrackingId } = useLoaderData<typeof loader>();
-
   const [shouldTrack, setShouldTrack] = useState(track);
 
   useEffect(() => {
@@ -84,6 +82,20 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          async
+          id="gtag-init"
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+          }}
+        />
       </head>
       <body>
         {!shouldTrack && (
@@ -102,12 +114,10 @@ export default function App() {
           </div>
         )}
         {process.env.NODE_ENV === "development" || !gaTrackingId ? null : (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/ns.html?id=${gaTrackingId}`}
-            />
-          </>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
+          />
         )}
         <Outlet />
         <ScrollRestoration />
@@ -127,20 +137,6 @@ export function CatchBoundary() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
-        <script
-          async
-          id="gtag-init"
-          dangerouslySetInnerHTML={{
-            __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(gaTrackingId);}
-                gtag('js', new Date());
-                gtag('config', '${gaTrackingId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-          }}
-        />
       </head>
       <body>
         <BasicCatchBoundary {...caught} />
