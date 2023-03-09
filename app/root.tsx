@@ -22,6 +22,7 @@ import * as gtag from "~/utils/gtag.client";
 import BasicCatchBoundary from "./components/BasicCatchBoundary";
 import { gdprConsent } from "./cookies";
 import styles from "./styles/app.css";
+import { gaTrackingId } from "Tracking";
 
 let [seoMeta, seoLinks] = getSeo();
 
@@ -42,7 +43,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
   return json({
     track: cookie.gdprConsent,
-    gaTrackingId: process.env.GA_TRACKING_ID,
+    gaTrackingId: gaTrackingId,
   });
 };
 
@@ -108,7 +109,7 @@ export default function App() {
             </analyticsFetcher.Form>
           </div>
         )}
-        {process.env.NODE_ENV === "development" || !gaTrackingId ? null : (
+        {gaTrackingId === "development" || !gaTrackingId ? null : (
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
