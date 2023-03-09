@@ -69,11 +69,6 @@ export default function App() {
     }
   }, [location, shouldTrack]);
 
-  useEffect(() => {
-    if (gaTrackingId?.length) {
-      gtag.pageview(location.pathname && gaTrackingId);
-    }
-  }, [location, gaTrackingId]);
 
   return (
     <html lang="en">
