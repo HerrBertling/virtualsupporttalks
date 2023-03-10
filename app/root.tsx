@@ -22,7 +22,6 @@ import * as gtag from "~/utils/gtag.client";
 import BasicCatchBoundary from "./components/BasicCatchBoundary";
 import { gdprConsent } from "./cookies";
 import styles from "./styles/app.css";
-import { gaTrackingId } from "Tracking";
 
 let [seoMeta, seoLinks] = getSeo();
 
@@ -38,17 +37,19 @@ export const meta: MetaFunction = () => {
   return { ...seoMeta };
 };
 
+const GA_TRACKING_ID = "GTM-NH6W3MZ";
+
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
   return json({
     track: cookie.gdprConsent,
-    gaTrackingId: gaTrackingId,
+    GA_TRACKING_ID,
   });
 };
 
 export default function App() {
-  const { track, gaTrackingId } = useLoaderData();
+  const { track, GA_TRACKING_ID } = useLoaderData();
   const analyticsFetcher = useFetcher();
   const location = useLocation();
   const [shouldTrack, setShouldTrack] = useState(track);
@@ -70,7 +71,6 @@ export default function App() {
     }
   }, [location, shouldTrack]);
 
-
   return (
     <html lang="en">
       <head>
@@ -86,7 +86,7 @@ export default function App() {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${gaTrackingId}', {
+                gtag('config', '${GA_TRACKING_ID}', {
                   page_path: window.location.pathname,
                 });
               `,
@@ -109,10 +109,10 @@ export default function App() {
             </analyticsFetcher.Form>
           </div>
         )}
-        {gaTrackingId === "development" || !gaTrackingId ? null : (
+        {GA_TRACKING_ID === "development" || !GA_TRACKING_ID ? null : (
           <script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />
         )}
         <Outlet />
