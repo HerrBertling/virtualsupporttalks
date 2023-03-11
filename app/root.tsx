@@ -37,17 +37,21 @@ export const meta: MetaFunction = () => {
   return { ...seoMeta };
 };
 
+const GA_TRACKING_ID = "GTM-NH6W3MZ";
+
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  return json({ track: cookie.gdprConsent });
+  return json({
+    track: cookie.gdprConsent,
+    GA_TRACKING_ID,
+  });
 };
 
 export default function App() {
-  const { track } = useLoaderData();
+  const { track, GA_TRACKING_ID } = useLoaderData();
   const analyticsFetcher = useFetcher();
   const location = useLocation();
-
   const [shouldTrack, setShouldTrack] = useState(track);
 
   useEffect(() => {
@@ -74,6 +78,20 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          async
+          id="gtag-init"
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+          }}
+        />
       </head>
       <body>
         {!shouldTrack && (
@@ -90,6 +108,12 @@ export default function App() {
               </button>
             </analyticsFetcher.Form>
           </div>
+        )}
+        {process.env.NODE_ENV === "development" || !GA_TRACKING_ID ? null : (
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
         )}
         <Outlet />
         <ScrollRestoration />
