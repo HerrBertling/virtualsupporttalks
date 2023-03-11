@@ -109,7 +109,7 @@ export default function App() {
             </analyticsFetcher.Form>
           </div>
         )}
-        {GA_TRACKING_ID === "development" || !GA_TRACKING_ID ? null : (
+        {process.env.NODE_ENV === "development" || !GA_TRACKING_ID ? null : (
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
