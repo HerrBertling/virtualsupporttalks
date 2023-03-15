@@ -89,14 +89,16 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript>
+        {shouldTrack && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
+        )}
         {!shouldTrack && (
           <div className="fixed bottom-0 right-4 z-50 w-full rounded-t-md bg-vsp-100 px-8 py-4 text-center text-slate-700 shadow-xl md:max-w-lg">
             <analyticsFetcher.Form method="post" action="/enable-analytics">
