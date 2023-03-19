@@ -1,7 +1,12 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { Outlet, useCatch, useLoaderData } from "@remix-run/react";
-import BasicCatchBoundary from "~/components/BasicCatchBoundary";
+import {
+  isRouteErrorResponse,
+  Outlet,
+  useLoaderData,
+  useRouteError,
+} from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
 import type {
@@ -43,19 +48,13 @@ export default function Wrapper() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  const { nav, locale } = useLoaderData<typeof loader>();
-  return (
-    <BasicLayout nav={nav} lang={locale}>
-      <BasicCatchBoundary {...caught} />;
-    </BasicLayout>
-  );
-}
-export function ErrorBoundary(error) {
-  return (
-    <div>
-      <BasicCatchBoundary status={503} statusText={error.message} />;
-    </div>
-  );
+export function ErrorBoundary() {
+  let error = useRouteError();
+  let status = isRouteErrorResponse(error) ? error.status : 500;
+  let text = isRouteErrorResponse(error)
+    ? error.statusText
+    : error instanceof Error
+    ? error.message
+    : "Unknown Error";
+  return <BasicCatchBoundary status={status} statusText={text} />;
 }

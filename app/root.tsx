@@ -1,24 +1,24 @@
 import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
+  isRouteErrorResponse,
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
   useFetcher,
   useLoaderData,
   useLocation,
+  useRouteError,
 } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import * as gtag from "~/utils/gtag.client";
-import i18next from "~/utils/i18n.server";
 import { getSeo } from "~/seo";
 import { gdprConsent } from "./cookies";
-import { Suspense, useEffect, useState } from "react";
-import BasicCatchBoundary from "./components/BasicCatchBoundary";
+import { useEffect, useState } from "react";
+import BasicCatchBoundary from "./components/BasicErrorBoundary";
 import styles from "./styles/app.css";
 import { getCurrentLocale } from "./utils/locales";
 
@@ -135,41 +135,47 @@ export default function App() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <BasicCatchBoundary {...caught} />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
-  );
-}
-
-export function ErrorBoundary({ error }: { error: Error }) {
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <BasicCatchBoundary status={503} statusText={error.message} />;
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
-  );
+export function ErrorBoundary() {
+  let error = useRouteError();
+  if (isRouteErrorResponse(error)) {
+    return (
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <Meta />
+          <Links />
+        </head>
+        <body>
+          <BasicCatchBoundary
+            status={error.status}
+            statusText={error.statusText}
+          />
+          ;
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </body>
+      </html>
+    );
+  } else if (error instanceof Error) {
+    return (
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <Meta />
+          <Links />
+        </head>
+        <body>
+          <BasicCatchBoundary status={503} statusText={error.message} />;
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </body>
+      </html>
+    );
+  } else {
+    return <h1>Unknown Error</h1>;
+  }
 }

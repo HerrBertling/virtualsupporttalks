@@ -1,5 +1,10 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
+import {
+  isRouteErrorResponse,
+  useLoaderData,
+  useRouteError,
+} from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SpeakingTimeContent from "~/components/SpeakingTimeContent";
 import { getSeoMeta } from "~/seo";
@@ -60,26 +65,13 @@ export default function SearchingCoach() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  return (
-    <>
-      <h1>Oh no!</h1>
-      <p>Status: {caught.status}</p>
-      <pre>
-        <code>{JSON.stringify(caught.data, null, 2)}</code>
-      </pre>
-    </>
-  );
-}
-
-export function ErrorBoundary({ error }: { error: Error }) {
-  return (
-    <>
-      <h1>Error</h1>
-      <p>{error.message}</p>
-      <p>The stack trace is:</p>
-      <pre>{error.stack}</pre>
-    </>
-  );
+export function ErrorBoundary() {
+  let error = useRouteError();
+  let status = isRouteErrorResponse(error) ? error.status : 500;
+  let text = isRouteErrorResponse(error)
+    ? error.statusText
+    : error instanceof Error
+    ? error.message
+    : "Unknown Error";
+  return <BasicCatchBoundary status={status} statusText={text} />;
 }

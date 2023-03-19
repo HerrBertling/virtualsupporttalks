@@ -1,6 +1,10 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
-import BasicCatchBoundary from "~/components/BasicCatchBoundary";
+import {
+  isRouteErrorResponse,
+  useLoaderData,
+  useRouteError,
+} from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
 import { getPage } from "~/utils/contentful";
@@ -49,7 +53,13 @@ export default function Index() {
   return <ContentBlocks content={content} locale={locale} />;
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  return <BasicCatchBoundary {...caught} />;
+export function ErrorBoundary() {
+  let error = useRouteError();
+  let status = isRouteErrorResponse(error) ? error.status : 500;
+  let text = isRouteErrorResponse(error)
+    ? error.statusText
+    : error instanceof Error
+    ? error.message
+    : "Unknown Error";
+  return <BasicCatchBoundary status={status} statusText={text} />;
 }

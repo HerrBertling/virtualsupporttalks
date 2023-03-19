@@ -1,4 +1,4 @@
-export default function BasicCatchBoundary({
+export default function BasicErrorBoundary({
   status,
   statusText,
 }: {
