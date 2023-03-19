@@ -56,7 +56,7 @@ export const loader: LoaderFunction = async () => {
 
 export default function SupportMedia() {
   const { page, navigation, network, supporters, media, locale } =
-    useLoaderData();
+    useLoaderData<typeof loader>();
 
   return (
     <NetworkPartnerMediaContent

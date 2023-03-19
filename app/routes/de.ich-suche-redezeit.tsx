@@ -3,10 +3,8 @@ import { useCatch, useLoaderData } from "@remix-run/react";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SpeakingTimeContent from "~/components/SpeakingTimeContent";
 import { getSeoMeta } from "~/seo";
-import {
-  getSearchPageContents,
-  SearchPageContentResponse,
-} from "~/utils/getSearchPageContents";
+import type { SearchPageContentResponse } from "~/utils/getSearchPageContents";
+import { getSearchPageContents } from "~/utils/getSearchPageContents";
 
 export const loader: LoaderFunction = async ({
   request,
@@ -41,7 +39,7 @@ export default function SearchingCoach() {
     checkedGender,
     locale,
     availableTagIDs,
-  } = useLoaderData();
+  } = useLoaderData<typeof loader>();
 
   return (
     <BasicLayout nav={navigation.fields.items} lang={locale}>

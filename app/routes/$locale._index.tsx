@@ -1,5 +1,5 @@
-import { IPage, LOCALE_CODE } from "../../../@types/generated/contentful";
-import { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { IPage, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
@@ -44,6 +44,6 @@ export default function Index() {
       fields: { content },
     },
     locale,
-  }: PageProps = useLoaderData();
+  }: PageProps = useLoaderData<typeof loader>();
   return <ContentBlocks content={content} locale={locale} />;
 }

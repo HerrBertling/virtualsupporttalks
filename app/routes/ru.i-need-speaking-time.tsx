@@ -41,7 +41,7 @@ export default function SearchingCoach() {
     checkedGender,
     locale,
     availableTagIDs,
-  } = useLoaderData();
+  } = useLoaderData<typeof loader>();
 
   return (
     <BasicLayout nav={navigation.fields.items} lang={locale}>

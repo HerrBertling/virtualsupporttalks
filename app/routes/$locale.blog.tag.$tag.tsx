@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import BasicCatchBoundary from "~/components/BasicCatchBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
 import { getBlogposts } from "~/utils/contentful";
-import {
+import type {
   IBlogpost,
   ITag,
   LOCALE_CODE,
-} from "../../../../../@types/generated/contentful";
+} from "../../@types/generated/contentful";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const tag = params.tag;
@@ -45,14 +45,16 @@ export default function Index() {
     posts: IBlogpost[];
     locale: LOCALE_CODE;
     tag: ITag["fields"]["slug"];
-  } = useLoaderData();
+  } = useLoaderData<typeof loader>();
   const { t } = useTranslation("blogpostByTag");
 
   return (
     <>
       <header className="w-full px-4 pt-24">
         <h2 className="font-headline text-3xl font-bold">
-          {t("title")} "{tag}"
+          <>
+            {t("title")} "{tag}"
+          </>
         </h2>
       </header>
       <div className="my-4 mx-auto grid grid-cols-1 gap-y-24 gap-x-16 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">

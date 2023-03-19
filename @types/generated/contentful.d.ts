@@ -801,6 +801,34 @@ export type CONTENT_TYPE =
   | "twoImages"
   | "videoPlayer";
 
+<<<<<<< HEAD
+=======
+export type IEntry =
+  | IBlogpost
+  | ICenteredContent
+  | ICoach
+  | ICoachList
+  | ICoachtag
+  | IContentImageBg
+  | IContentWithFullSizeImage
+  | IContributor
+  | IGenericContent
+  | IHeaderBlock
+  | IImageCollection
+  | IImageWithLink
+  | IMedia
+  | INavigation
+  | INavigationItem
+  | INetwork
+  | IPage
+  | ISeo
+  | ISupporter
+  | ITag
+  | ITrackingGa
+  | ITwoImages
+  | IVideoPlayer;
+
+>>>>>>> feat/upgrade-to-latest-remix
 export type LOCALE_CODE = "de" | "en" | "ru" | "uk";
 
 export type CONTENTFUL_DEFAULT_LOCALE_CODE = "de";

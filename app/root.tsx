@@ -1,8 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -14,16 +10,23 @@ import {
   useCatch,
   useFetcher,
   useLoaderData,
+  useLocation,
 } from "@remix-run/react";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getSeo } from "~/seo";
+import { useTranslation } from "react-i18next";
 import * as gtag from "~/utils/gtag.client";
-import BasicCatchBoundary from "./components/BasicCatchBoundary";
+import i18next from "~/utils/i18n.server";
+import { getSeo } from "~/seo";
 import { gdprConsent } from "./cookies";
+import { Suspense, useEffect, useState } from "react";
+import BasicCatchBoundary from "./components/BasicCatchBoundary";
 import styles from "./styles/app.css";
+import { getCurrentLocale } from "./utils/locales";
 
 let [seoMeta, seoLinks] = getSeo();
+
+const GA_TRACKING_ID = "GTM-NH6W3MZ";
+
+export const meta: MetaFunction = () => seoMeta;
 
 export const links: LinksFunction = () => {
   return [
@@ -33,26 +36,27 @@ export const links: LinksFunction = () => {
   ];
 };
 
-export const meta: MetaFunction = () => {
-  return { ...seoMeta };
-};
-
-const GA_TRACKING_ID = "GTM-NH6W3MZ";
-
-export const loader: LoaderFunction = async ({ request }) => {
+export async function loader({ request }: LoaderArgs) {
+  const url = new URL(request.url);
+  let locale = await getCurrentLocale(url.pathname);
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  return json({
-    track: cookie.gdprConsent,
-    GA_TRACKING_ID,
-  });
-};
+  return json({ locale, track: cookie.gdprConsent, GA_TRACKING_ID });
+}
+
+export function useChangeLanguage(locale: string) {
+  let { i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(locale);
+  }, [locale, i18n]);
+}
 
 export default function App() {
-  const { track, GA_TRACKING_ID } = useLoaderData();
+  let { locale, track, GA_TRACKING_ID } = useLoaderData<typeof loader>();
   const analyticsFetcher = useFetcher();
   const location = useLocation();
   const [shouldTrack, setShouldTrack] = useState(track);
+  let { i18n } = useTranslation();
 
   useEffect(() => {
     setShouldTrack(track);
@@ -71,34 +75,31 @@ export default function App() {
     }
   }, [location, shouldTrack]);
 
+  useChangeLanguage(locale);
+
   return (
-    <html lang="en">
+    <html lang={locale} dir={i18n.dir()}>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','${GA_TRACKING_ID}');`,
-          }}
-        />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        {shouldTrack && GA_TRACKING_ID && (
+          <script
+            async
+            id="gtag-init"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+            }}
+          />
+        )}
       </head>
       <body>
-        {shouldTrack && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            ></iframe>
-          </noscript>
-        )}
         {!shouldTrack && (
           <div className="fixed bottom-0 right-4 z-50 w-full rounded-t-md bg-vsp-100 px-8 py-4 text-center text-slate-700 shadow-xl md:max-w-lg">
             <analyticsFetcher.Form method="post" action="/enable-analytics">
@@ -114,7 +115,17 @@ export default function App() {
             </analyticsFetcher.Form>
           </div>
         )}
-
+        {shouldTrack && (
+          <noscript>
+            <iframe
+              title="gtm"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
+        )}
         <Outlet />
         <ScrollRestoration />
         <Scripts />

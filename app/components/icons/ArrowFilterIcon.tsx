@@ -7,7 +7,7 @@ export default function ArrowFilterIcon({ classNames = "h-6 w-6" }) {
 
   return (
     <>
-      <div className="mx-4 hover:text-vsp-500" >
+      <div className="mx-4 hover:text-vsp-500">
         <div className="accordion-item">
           <div
             className="accordion-title"

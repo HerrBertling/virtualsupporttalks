@@ -1,10 +1,10 @@
-import { Form, useSubmit, useTransition } from "@remix-run/react";
+import { Form, useSubmit, useNavigation } from "@remix-run/react";
 import type {
   ICoach,
   ICoachtag,
   IPage,
   LOCALE_CODE,
-} from "@types/generated/contentful";
+} from "../../@types/generated/contentful";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CoachFilterTag from "./CoachFilterTag";
@@ -51,7 +51,7 @@ export default function SpeakingTimeContent({
       submit(formRef.current, { replace: true });
     }
   };
-  const state = useTransition();
+  const state = useNavigation();
 
   const [isActive, setIsActive] = useState(false);
   // sort tags to ensure the "quick response" one is always the first in the array
@@ -138,7 +138,7 @@ export default function SpeakingTimeContent({
 
           <fieldset className="mt-8">
             <legend className="mb-4 inline-block text-xl">
-              {t("filter.tag")}{" "}
+              {t("filter.tag")}
             </legend>
             {tags.map((tag: ICoachtag) => {
               const isHighlighted = tag.sys.id === QUICK_RESPONSE_TAG_ID;

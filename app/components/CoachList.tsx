@@ -16,7 +16,7 @@ export default function CoachList({ coaches }: { coaches: ICoach[] }) {
             image,
             description,
             languages,
-            gender
+            gender,
           } = coach.fields;
           return (
             <CoachCard

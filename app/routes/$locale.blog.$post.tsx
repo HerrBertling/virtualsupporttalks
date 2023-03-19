@@ -5,10 +5,7 @@ import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
 import { getSeoMeta } from "~/seo";
 import { getBlogpost } from "~/utils/contentful";
-import {
-  IBlogpost,
-  LOCALE_CODE,
-} from "../../../../@types/generated/contentful";
+import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
 
 export const meta: MetaFunction = ({
   data,
@@ -48,7 +45,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function Blogpost() {
-  const { blogpost, locale } = useLoaderData();
+  const { blogpost, locale } = useLoaderData<typeof loader>();
 
   const { mainImage, content, title, tagList } = blogpost.fields;
   const dateObj = new Date(blogpost.sys.createdAt);
@@ -79,7 +76,7 @@ export default function Blogpost() {
       </header>
       <aside
         className={`mx-auto flex max-w-4xl flex-wrap gap-4 px-4 ${
-          Boolean(tagList) ? "justify-between" : "justify-end"
+          tagList ? "justify-between" : "justify-end"
         }`}
       >
         {Boolean(tagList) && <TagGroup tags={tagList} locale={locale} />}

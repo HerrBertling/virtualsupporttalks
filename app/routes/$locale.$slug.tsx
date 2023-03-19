@@ -4,7 +4,7 @@ import BasicCatchBoundary from "~/components/BasicCatchBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
 import { getPage } from "~/utils/contentful";
-import { IPage, LOCALE_CODE } from "../../../@types/generated/contentful";
+import type { IPage, LOCALE_CODE } from "../../@types/generated/contentful";
 
 export const meta: MetaFunction = ({ data }) => {
   if (!data?.page) {
@@ -45,7 +45,7 @@ export default function Index() {
       fields: { content },
     },
     locale,
-  }: PageProps = useLoaderData();
+  }: PageProps = useLoaderData<typeof loader>();
   return <ContentBlocks content={content} locale={locale} />;
 }
 

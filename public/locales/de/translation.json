@@ -49,5 +49,8 @@
   },
   "blogpostByTag": {
     "title": "BLOGPOSTS für den Tag "
+  },
+  "blogpostOverview": {
+    "title": "Die neuesten Blog-Beiträge"
   }
 }

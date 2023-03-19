@@ -7,7 +7,7 @@ import {
   getTags,
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
-import {
+import type {
   ICoach,
   ICoachtag,
   INavigation,
