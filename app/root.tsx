@@ -26,7 +26,12 @@ let [seoMeta, seoLinks] = getSeo();
 
 const GA_TRACKING_ID = "GTM-NH6W3MZ";
 
-export const meta: MetaFunction = () => seoMeta;
+export const meta: MetaFunction = () => {
+  return {
+    ...seoMeta,
+    charset: "utf-8",
+  };
+};
 
 export const links: LinksFunction = () => {
   return [
