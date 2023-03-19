@@ -26,7 +26,6 @@ export default async function handleRequest(
   const url = new URL(request.url);
   let lng = await getCurrentLocale(url.pathname);
   let ns = i18next.getRouteNamespaces(remixContext);
-  console.log({ lng, ns });
 
   await instance
     .use(initReactI18next) // Tell our instance to use react-i18next
@@ -35,8 +34,6 @@ export default async function handleRequest(
       lng, // The locale we detected above
       ns, // The namespaces the routes about to render wants to use
     });
-
-  console.log({ instance });
 
   return new Promise((resolve, reject) => {
     let didError = false;
