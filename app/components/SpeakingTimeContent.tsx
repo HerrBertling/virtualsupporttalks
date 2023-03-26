@@ -12,6 +12,7 @@ import CoachList from "./CoachList";
 import ContentBlocks from "./ContentBlocks";
 import ArrowDown from "./icons/ArrowDown";
 import FilterIcon from "./icons/FilterIcon";
+import Spinner from "./icons/Spinner";
 
 const QUICK_RESPONSE_TAG_ID = "4dQrja372DDIuqvhTtnGda";
 
@@ -48,7 +49,7 @@ export default function SpeakingTimeContent({
 
   const handleChange = () => {
     if (formRef) {
-      submit(formRef.current, { replace: true });
+      submit(formRef.current, { replace: true, preventScrollReset: true });
     }
   };
   const state = useNavigation();
@@ -176,7 +177,16 @@ export default function SpeakingTimeContent({
       <div className="text-m mx-auto max-w-7xl py-4 px-4 font-semibold text-slate-700">
         {coachesAmount ? `${coachesAmount} ${t("result")}` : t("noResult")}
       </div>
-      <CoachList coaches={coaches} />
+      <div className="relative">
+        {state.state === "loading" && (
+          <div className="absolute inset-0 z-50 flex items-start justify-center bg-white bg-opacity-50">
+            <div className="mt-8">
+              <Spinner />
+            </div>
+          </div>
+        )}
+        <CoachList coaches={coaches} />
+      </div>
     </div>
   );
 }
