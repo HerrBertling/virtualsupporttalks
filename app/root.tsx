@@ -47,7 +47,7 @@ export async function loader({ request }: LoaderArgs) {
   let locale = await getCurrentLocale(url.pathname);
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  return json({ locale, track: cookie.gdprConsent, GA_TRACKING_ID });
+  return json({ locale, track: cookie.gdprConsent });
 }
 
 export function useChangeLanguage(locale: string) {
@@ -58,7 +58,7 @@ export function useChangeLanguage(locale: string) {
 }
 
 export default function App() {
-  let { locale, track, GA_TRACKING_ID } = useLoaderData<typeof loader>();
+  let { locale, track } = useLoaderData<typeof loader>();
   const analyticsFetcher = useFetcher();
   const location = useLocation();
   const [shouldTrack, setShouldTrack] = useState(track);
@@ -106,7 +106,7 @@ export default function App() {
         )}
       </head>
       <body>
-        {!shouldTrack && (
+        {!shouldTrack ? (
           <div className="fixed bottom-0 right-4 z-50 w-full rounded-t-md bg-vsp-100 px-8 py-4 text-center text-slate-700 shadow-xl md:max-w-lg">
             <analyticsFetcher.Form method="post" action="/enable-analytics">
               <span className="mr-8">Wir nutzen Cookies.</span>
@@ -120,17 +120,22 @@ export default function App() {
               </button>
             </analyticsFetcher.Form>
           </div>
-        )}
-        {shouldTrack && (
-          <noscript>
-            <iframe
-              title="gtm"
+        ) : (
+          <>
+            <script
+              async
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            ></iframe>
-          </noscript>
+            />
+            <noscript>
+              <iframe
+                title="gtm"
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+              ></iframe>
+            </noscript>
+          </>
         )}
         <Outlet />
         <ScrollRestoration />
