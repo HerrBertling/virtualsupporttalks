@@ -19,7 +19,7 @@ export default function ContentBlockImageBg({
   const hasButton = buttonUrl && buttonText;
   const usedBackgroundImage = backgroundImage?.fields?.file?.url;
   const backgroundStyle = usedBackgroundImage
-    ? { backgroundImage: `url(${usedBackgroundImage})` }
+    ? { backgroundImage: `url(${usedBackgroundImage}?fm=avif&q=20)` }
     : {};
   return (
     <section

@@ -53,11 +53,17 @@ export default function ContentBlockTwoImages({
             className="group block max-w-full overflow-hidden rounded-md bg-slate-300 no-underline shadow-lg"
             to={`/${locale}${link}`}
           >
-            <img
-              src={image}
-              alt={text}
-              className="h-[400px] w-full object-cover transition-opacity duration-300 group-hover:opacity-80"
-            />
+            <picture>
+              <source srcSet={`${image}?fm=avif&q=80`} type="image/avif" />
+              <source srcSet={`${image}?fm=webp&q=80`} type="image/webp" />
+              <source srcSet={`${image}?fm=jpg&q=80`} type="image/jpeg" />
+              <img
+                src={image}
+                loading="lazy"
+                alt={text}
+                className="h-[400px] w-full object-cover transition-opacity duration-300 group-hover:opacity-80"
+              />
+            </picture>
 
             <h2 className="m-0 px-4 py-8 font-headline text-2xl font-bold">
               {text}
