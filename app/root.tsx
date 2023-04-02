@@ -86,24 +86,19 @@ export default function App() {
   return (
     <html lang={locale} dir={i18n.dir()}>
       <head>
-        <Meta />
-        <Links />
-        {shouldTrack && GA_TRACKING_ID && (
+        {shouldTrack && (
           <script
-            async
-            id="gtag-init"
             dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_TRACKING_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `,
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','${GA_TRACKING_ID}');`,
             }}
           />
         )}
+        <Meta />
+        <Links />
       </head>
       <body>
         {!shouldTrack ? (
@@ -121,21 +116,15 @@ export default function App() {
             </analyticsFetcher.Form>
           </div>
         ) : (
-          <>
-            <script
-              async
+          <noscript>
+            <iframe
+              title="gtm"
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-            />
-            <noscript>
-              <iframe
-                title="gtm"
-                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-                height="0"
-                width="0"
-                style={{ display: "none", visibility: "hidden" }}
-              ></iframe>
-            </noscript>
-          </>
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
         )}
         <Outlet />
         <ScrollRestoration />
