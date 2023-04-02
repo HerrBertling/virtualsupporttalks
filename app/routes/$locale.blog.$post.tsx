@@ -1,9 +1,5 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import {
-  isRouteErrorResponse,
-  useLoaderData,
-  useRouteError,
-} from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
@@ -69,6 +65,7 @@ export default function Blogpost() {
         >
           {mainImage && (
             <img
+              alt=""
               className="relative z-0 col-start-1 row-start-1 min-h-[16rem] w-full max-w-4xl object-cover"
               src={mainImage.fields.file.url}
             />
@@ -100,12 +97,5 @@ export default function Blogpost() {
 }
 
 export function ErrorBoundary() {
-  let error = useRouteError();
-  let status = isRouteErrorResponse(error) ? error.status : 500;
-  let text = isRouteErrorResponse(error)
-    ? error.statusText
-    : error instanceof Error
-    ? error.message
-    : "Unknown Error";
-  return <BasicCatchBoundary status={status} statusText={text} />;
+  return <BasicCatchBoundary />;
 }

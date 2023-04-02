@@ -1,9 +1,5 @@
 import type { LoaderFunction } from "@remix-run/node";
-import {
-  isRouteErrorResponse,
-  useLoaderData,
-  useRouteError,
-} from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
@@ -40,12 +36,5 @@ export default function Index() {
 }
 
 export function ErrorBoundary() {
-  let error = useRouteError();
-  let status = isRouteErrorResponse(error) ? error.status : 500;
-  let text = isRouteErrorResponse(error)
-    ? error.statusText
-    : error instanceof Error
-    ? error.message
-    : "Unknown Error";
-  return <BasicCatchBoundary status={status} statusText={text} />;
+  return <BasicCatchBoundary />;
 }

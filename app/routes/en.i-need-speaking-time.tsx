@@ -1,9 +1,5 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import {
-  isRouteErrorResponse,
-  useLoaderData,
-  useRouteError,
-} from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SpeakingTimeContent from "~/components/SpeakingTimeContent";
@@ -66,12 +62,5 @@ export default function SearchingCoach() {
 }
 
 export function ErrorBoundary() {
-  let error = useRouteError();
-  let status = isRouteErrorResponse(error) ? error.status : 500;
-  let text = isRouteErrorResponse(error)
-    ? error.statusText
-    : error instanceof Error
-    ? error.message
-    : "Unknown Error";
-  return <BasicCatchBoundary status={status} statusText={text} />;
+  return <BasicCatchBoundary />;
 }
