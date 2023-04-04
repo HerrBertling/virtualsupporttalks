@@ -22,7 +22,7 @@ export default function Navigation({
     setOpen(false);
   }, [pathname]);
 
-  const currentLang = getCurrentLocale();
+  const currentLang = getCurrentLocale(pathname);
 
   const navItems = nav
     .map((item) => {

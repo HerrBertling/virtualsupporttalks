@@ -25,7 +25,7 @@ export default function BlogpostCard({
       key={post.sys.id}
       className="group grid grid-cols-1 content-start gap-2 no-underline"
     >
-      {Boolean(image) ? (
+      {image ? (
         <CleverLink to={`/${locale}/blog/${slug}`}>
           <img
             src={image}
@@ -47,7 +47,7 @@ export default function BlogpostCard({
       </CleverLink>
       <aside
         className={`flex flex-wrap items-center gap-4 ${
-          Boolean(tagList) ? "justify-between" : "justify-end"
+          tagList ? "justify-between" : "justify-end"
         }`}
       >
         {Boolean(tagList) && <TagGroup tags={tagList} locale={locale} />}

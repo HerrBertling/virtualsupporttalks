@@ -1,7 +1,7 @@
-import { LoaderFunction, redirect } from "@remix-run/node";
-import { Outlet, useCatch, useLoaderData } from "@remix-run/react";
-import { useSetupTranslations } from "remix-i18next";
-import BasicCatchBoundary from "~/components/BasicCatchBoundary";
+import type { LoaderFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
+import { Outlet, useLoaderData } from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
 import type {
@@ -32,8 +32,7 @@ export const loader: LoaderFunction = async ({
 };
 
 export default function Wrapper() {
-  const { nav, locale } = useLoaderData();
-  useSetupTranslations(locale);
+  const { nav, locale } = useLoaderData<typeof loader>();
 
   return (
     <BasicLayout nav={nav} lang={locale}>
@@ -44,19 +43,6 @@ export default function Wrapper() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  const { nav, locale } = useLoaderData();
-  return (
-    <BasicLayout nav={nav} lang={locale}>
-      <BasicCatchBoundary {...caught} />;
-    </BasicLayout>
-  );
-}
-export function ErrorBoundary(error) {
-  return (
-    <div>
-      <BasicCatchBoundary status={503} statusText={error.message} />;
-    </div>
-  );
+export function ErrorBoundary() {
+  return <BasicCatchBoundary />;
 }

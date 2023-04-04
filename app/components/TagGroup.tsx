@@ -7,7 +7,7 @@ type TagGroupProps = {
 };
 export default function TagGroup({ tags, locale }: TagGroupProps) {
   return (
-    <div className="flex items-start gap-2">
+    <div className="flex flex-wrap items-start gap-2">
       {tags?.map((tag) => {
         const { tagName, slug } = tag.fields;
         return (

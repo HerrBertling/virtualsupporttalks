@@ -1,14 +1,11 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
-import BasicCatchBoundary from "~/components/BasicCatchBoundary";
+import { useLoaderData } from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
 import { getSeoMeta } from "~/seo";
 import { getBlogpost } from "~/utils/contentful";
-import {
-  IBlogpost,
-  LOCALE_CODE,
-} from "../../../../@types/generated/contentful";
+import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
 
 export const meta: MetaFunction = ({
   data,
@@ -48,7 +45,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function Blogpost() {
-  const { blogpost, locale } = useLoaderData();
+  const { blogpost, locale } = useLoaderData<typeof loader>();
 
   const { mainImage, content, title, tagList } = blogpost.fields;
   const dateObj = new Date(blogpost.sys.createdAt);
@@ -68,6 +65,7 @@ export default function Blogpost() {
         >
           {mainImage && (
             <img
+              alt=""
               className="relative z-0 col-start-1 row-start-1 min-h-[16rem] w-full max-w-4xl object-cover"
               src={mainImage.fields.file.url}
             />
@@ -79,7 +77,7 @@ export default function Blogpost() {
       </header>
       <aside
         className={`mx-auto flex max-w-4xl flex-wrap gap-4 px-4 ${
-          Boolean(tagList) ? "justify-between" : "justify-end"
+          tagList ? "justify-between" : "justify-end"
         }`}
       >
         {Boolean(tagList) && <TagGroup tags={tagList} locale={locale} />}
@@ -98,14 +96,6 @@ export default function Blogpost() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  return <BasicCatchBoundary {...caught} />;
-}
-export function ErrorBoundary(error) {
-  return (
-    <div className="container mx-auto mt-32">
-      <BasicCatchBoundary status={503} statusText={error.message} />;
-    </div>
-  );
+export function ErrorBoundary() {
+  return <BasicCatchBoundary />;
 }

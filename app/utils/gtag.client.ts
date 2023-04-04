@@ -58,7 +58,6 @@ export const trackFilterClick = ({
   category: string;
   label: string;
 }) => {
-  console.log({ type, category, label });
   ReactGA.event({
     category: category,
     action: type,
@@ -67,7 +66,6 @@ export const trackFilterClick = ({
 };
 
 export const trackSiteVisit = ({ label }: { label: string }) => {
-  console.log({ label });
   ReactGA.event({
     category: "event",
     action: "conversion",

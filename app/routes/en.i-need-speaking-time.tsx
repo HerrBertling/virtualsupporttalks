@@ -1,12 +1,11 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
+import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SpeakingTimeContent from "~/components/SpeakingTimeContent";
 import { getSeoMeta } from "~/seo";
-import {
-  getSearchPageContents,
-  SearchPageContentResponse,
-} from "~/utils/getSearchPageContents";
+import type { SearchPageContentResponse } from "~/utils/getSearchPageContents";
+import { getSearchPageContents } from "~/utils/getSearchPageContents";
 
 export const loader: LoaderFunction = async ({
   request,
@@ -41,7 +40,7 @@ export default function SearchingCoach() {
     checkedGender,
     locale,
     availableTagIDs,
-  } = useLoaderData();
+  } = useLoaderData<typeof loader>();
 
   return (
     <BasicLayout nav={navigation.fields.items} lang={locale}>
@@ -62,26 +61,6 @@ export default function SearchingCoach() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
-  return (
-    <>
-      <h1>Oh no!</h1>
-      <p>Status: {caught.status}</p>
-      <pre>
-        <code>{JSON.stringify(caught.data, null, 2)}</code>
-      </pre>
-    </>
-  );
-}
-
-export function ErrorBoundary({ error }: { error: Error }) {
-  return (
-    <>
-      <h1>Error</h1>
-      <p>{error.message}</p>
-      <p>The stack trace is:</p>
-      <pre>{error.stack}</pre>
-    </>
-  );
+export function ErrorBoundary() {
+  return <BasicCatchBoundary />;
 }

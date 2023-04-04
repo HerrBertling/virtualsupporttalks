@@ -1,24 +1,24 @@
-import { Link, useLocation } from "@remix-run/react";
-import { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useParams } from "@remix-run/react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { availableLocales, getCurrentLocale } from "~/utils/locales";
 import GlobeAltIcon from "./icons/GlobeAltIcon";
 
 export default function LanguageSwitcher() {
   const [show, setShow] = useState(false);
-  let location = useLocation();
-  const currentLang = getCurrentLocale();
+  let { pathname } = useLocation();
+  const currentLang = getCurrentLocale(pathname);
   const ref = useRef(null);
 
-  useEffect(() => {
-    handleClickOutside();
-  }, [location]);
-
-  const handleClickOutside = () => {
+  const handleClickOutside = useCallback(() => {
     if (show) {
       setShow(false);
     }
-  };
+  }, [show]);
+
+  useEffect(() => {
+    setShow(false);
+  }, [pathname]);
 
   const handleButtonClick = () => {
     setShow(!show);

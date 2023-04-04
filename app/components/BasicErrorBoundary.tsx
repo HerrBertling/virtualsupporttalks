@@ -1,10 +1,13 @@
-export default function BasicCatchBoundary({
-  status,
-  statusText,
-}: {
-  status: number;
-  statusText: string;
-}) {
+import { isRouteErrorResponse, useRouteError } from "@remix-run/react";
+
+export default function BasicErrorBoundary() {
+  let error = useRouteError();
+  let status = isRouteErrorResponse(error) ? error.status : 500;
+  let statusText = isRouteErrorResponse(error)
+    ? error.statusText
+    : error instanceof Error
+    ? error.message
+    : "Unknown Error";
   return (
     <div className="mx-auto min-h-[50vh] w-screen max-w-3xl px-4 pt-32 pb-12">
       <div className="prose prose-lg prose-slate lg:prose-xl">

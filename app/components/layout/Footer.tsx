@@ -1,3 +1,4 @@
+import { useLocation } from "@remix-run/react";
 import { getCurrentLocale } from "~/utils/locales";
 import CleverLink from "../CleverLink";
 
@@ -37,8 +38,8 @@ export default function LayoutFooter({}) {
       },
     },
   ];
-
-  const currentLocale = getCurrentLocale();
+  let { pathname } = useLocation();
+  const currentLocale = getCurrentLocale(pathname);
   return (
     <nav className="p-8 text-xs">
       <ul className="flex flex-col items-center justify-center md:flex-row">
@@ -56,7 +57,7 @@ export default function LayoutFooter({}) {
       <a
         className="my-8 mx-auto block w-full max-w-[100px]"
         href="https://www.contentful.com/"
-        rel="nofollow"
+        rel="nofollow noreferrer"
         target="_blank"
       >
         <img

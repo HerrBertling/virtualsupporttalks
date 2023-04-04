@@ -12,7 +12,9 @@ export default function Header({
   const hasButton = buttonUrl && buttonText;
   const styleObject = {
     backgroundColor: backgroundcolor,
-    backgroundImage: image ? `url(${image.fields.file.url})` : undefined,
+    backgroundImage: image
+      ? `url(${image.fields.file.url}?fm=avif&q=80)`
+      : undefined,
   };
   return (
     <div className="pt-20 md:pt-32" style={headerStyle}>

@@ -1,4 +1,4 @@
-import { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction } from "@remix-run/node";
 import { getAllPages } from "~/utils/contentful";
 
 type PageResult = {

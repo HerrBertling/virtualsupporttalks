@@ -1,4 +1,4 @@
-import { IVideoPlayerFields } from "../../../@types/generated/contentful";
+import type { IVideoPlayerFields } from "../../../@types/generated/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
 export default function VideoPlayer({ videoId, content }: IVideoPlayerFields) {
@@ -9,10 +9,11 @@ export default function VideoPlayer({ videoId, content }: IVideoPlayerFields) {
       </div>
       <div className="row-start-2 h-auto w-full lg:col-start-2 lg:row-start-1 lg:max-h-max lg:p-4">
         <iframe
+          title="video"
+          loading="lazy"
           width="100%"
           height="100%"
           src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&color=white`}
-          frameBorder="0"
           allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           style={{
