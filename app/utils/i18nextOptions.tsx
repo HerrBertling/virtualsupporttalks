@@ -1,7 +1,7 @@
-import translationDE from "../../public/locales/de/translation.json";
-import translationEN from "../../public/locales/en/translation.json";
-import translationUKR from "../../public/locales/uk/translation.json";
-import translationRU from "../../public/locales/ru/translation.json";
+import translationDE from "../../public/locales/de/translation";
+import translationEN from "../../public/locales/en/translation";
+import translationUKR from "../../public/locales/uk/translation";
+import translationRU from "../../public/locales/ru/translation";
 
 export default {
   debug: false,
