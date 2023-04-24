@@ -8,7 +8,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useFetcher,
   useLoaderData,
   useLocation,
   useRouteError,
@@ -21,6 +20,7 @@ import { useEffect, useState } from "react";
 import BasicCatchBoundary from "./components/BasicErrorBoundary";
 import styles from "./styles/app.css";
 import { getCurrentLocale } from "./utils/locales";
+import { CookieBanner } from "./components/CookieBanner";
 
 let [seoMeta, seoLinks] = getSeo();
 
@@ -59,7 +59,6 @@ export function useChangeLanguage(locale: string) {
 
 export default function App() {
   let { locale, track } = useLoaderData<typeof loader>();
-  const analyticsFetcher = useFetcher();
   const location = useLocation();
   const [shouldTrack, setShouldTrack] = useState(track);
   let { i18n } = useTranslation();
@@ -102,19 +101,7 @@ export default function App() {
       </head>
       <body>
         {!shouldTrack ? (
-          <div className="fixed bottom-0 right-4 z-50 w-full rounded-t-md bg-vsp-100 px-8 py-4 text-center text-slate-700 shadow-xl md:max-w-lg">
-            <analyticsFetcher.Form method="post" action="/enable-analytics">
-              <span className="mr-8">Wir nutzen Cookies.</span>
-              <button
-                name="accept-gdpr"
-                value="true"
-                type="submit"
-                className="font-inherit inline-flex items-center justify-center rounded-md bg-slate-400 py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg"
-              >
-                Akzeptieren
-              </button>
-            </analyticsFetcher.Form>
-          </div>
+          <CookieBanner initialOpen={!shouldTrack} />
         ) : (
           <noscript>
             <iframe
