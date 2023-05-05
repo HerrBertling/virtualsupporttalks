@@ -19,6 +19,8 @@ type CoachProps = {
   children: ReactNode;
   languages: string[] | undefined;
   gender?: string[] | undefined;
+  mhfaTraining?: Asset;
+  completedMhfaTraining?: string;
 };
 
 export default function CoachCard(props: CoachProps) {
@@ -31,6 +33,8 @@ export default function CoachCard(props: CoachProps) {
     email,
     languages,
     gender,
+    mhfaTraining,
+    completedMhfaTraining,
     children,
   } = props;
 
@@ -59,6 +63,7 @@ export default function CoachCard(props: CoachProps) {
   }
 
   const imagePath = image?.fields.file.url;
+  const mhfaTrainingLabel = mhfaTraining?.fields.file.url;
 
   return (
     <article
@@ -106,39 +111,48 @@ export default function CoachCard(props: CoachProps) {
           <h3 className="text-xl font-bold text-slate-500 transition-colors hover:text-vsp-500">
             {name}
           </h3>
-          <h2 className="text-sm font-extralight text-slate-500">
-            {t("languages")}
-            {flagCodes.map((lang, index) => {
-              return (
-                <ReactCountryFlag
-                  key={index}
-                  className="px-1"
-                  style={{
-                    fontSize: "1.2em",
-                  }}
-                  countryCode={lang}
+
+          <section className="inline-flex items-center justify-center gap-2 px-1">
+            <h2 className="text-sm font-extralight text-slate-500">
+              {t("languages")}
+              {flagCodes.map((lang, index) => {
+                return (
+                  <ReactCountryFlag
+                    key={index}
+                    className="px-1"
+                    style={{
+                      fontSize: "1.2em",
+                    }}
+                    countryCode={lang}
+                  />
+                );
+              })}
+            </h2>
+
+            {mhfaTraining ? (
+              <picture className="inline-flex">
+                <source
+                  srcSet={`${mhfaTrainingLabel}?w=25&h=auto&fm=png, ${mhfaTrainingLabel}?w=240&h=240&fm=png&f=face&fit=thumb 2x`}
+                  type="image/png"
                 />
-              );
-            })}
-          </h2>
-          <h2 className="text-sm font-extralight text-slate-500">
-            {t("gender")}
-            {genderCodes.map((gender, index) => {
-              return (
-                <div
-                  className="inline-flex px-1"
-                  style={{
-                    fontSize: "1em",
-                  }}
-                  key={index}
-                >
-                  <h2>: {gender}</h2>
-                </div>
-              );
-            })}
-          </h2>
+                |
+                <img
+                  src={`${mhfaTrainingLabel}`}
+                  alt={completedMhfaTraining}
+                  className="ml-1 p-1"
+                  width="25px object-scale-down"
+                  height="auto"
+                  loading="lazy"
+                />
+                <span className="absolute pl-9 text-center text-sm text-slate-500 opacity-0 duration-300 hover:opacity-100">
+                  {completedMhfaTraining}
+                </span>
+              </picture>
+            ) : null}
+          </section>
         </a>
       </header>
+
       <div className="prose prose-sm prose-slate col-span-full row-start-2">
         {children}
       </div>
