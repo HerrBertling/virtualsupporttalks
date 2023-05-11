@@ -130,24 +130,26 @@ export default function CoachCard(props: CoachProps) {
             </h2>
 
             {mhfaTraining ? (
-              <picture className="inline-flex">
-                <source
-                  srcSet={`${mhfaTrainingLabel}?w=25&h=auto&fm=png, ${mhfaTrainingLabel}?w=240&h=240&fm=png&f=face&fit=thumb 2x`}
-                  type="image/png"
-                />
+              <div className="inline-flex items-center ">
                 |
-                <img
-                  src={`${mhfaTrainingLabel}`}
-                  alt={completedMhfaTraining}
-                  className="ml-1 p-1"
-                  width="25px object-scale-down"
-                  height="auto"
-                  loading="lazy"
-                />
-                <span className="absolute pl-9 text-center text-sm text-slate-500 opacity-0 duration-300 hover:opacity-100">
+                <picture>
+                  <source
+                    srcSet={`${mhfaTrainingLabel}?w=25&h=auto&fm=png, ${mhfaTrainingLabel}?w=240&h=240&fm=png&f=face&fit=thumb 2x`}
+                    type="image/png"
+                  />
+                  <img
+                    src={`${mhfaTrainingLabel}`}
+                    alt={completedMhfaTraining}
+                    className="ml-1 p-1"
+                    width="25px object-scale-down"
+                    height="auto"
+                    loading="lazy"
+                  />
+                </picture>
+                <span className="absolute pl-10 text-center text-sm text-slate-500 opacity-0 duration-300 hover:opacity-100">
                   {completedMhfaTraining}
                 </span>
-              </picture>
+              </div>
             ) : null}
           </section>
         </a>
