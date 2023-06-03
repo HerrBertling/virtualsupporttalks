@@ -117,6 +117,12 @@ export interface ICoachFields {
   /** Bild */
   image?: Asset | undefined;
 
+  /** MHFA Training */
+  mhfaTraining?: Asset | undefined;
+
+  /** Completed MHFA Training */
+  completedMhfaTraining?: string | undefined;
+
   /** Beschreibung */
   description?: Document | undefined;
 
