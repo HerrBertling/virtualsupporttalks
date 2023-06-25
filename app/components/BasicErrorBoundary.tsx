@@ -1,7 +1,7 @@
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react";
 
 export default function BasicErrorBoundary() {
-  let error = useRouteError();
+  let error: { status: number; statusText: string } = useRouteError();
   let status = isRouteErrorResponse(error) ? error.status : 500;
   let statusText = isRouteErrorResponse(error)
     ? error.statusText
