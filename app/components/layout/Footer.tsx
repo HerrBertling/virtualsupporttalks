@@ -7,7 +7,7 @@ type FooterNavLink = {
   title: { [char: string]: string };
 };
 
-export default function LayoutFooter({}) {
+export default function LayoutFooter() {
   const footerNav: FooterNavLink[] = [
     {
       link: {
@@ -35,8 +35,8 @@ export default function LayoutFooter({}) {
         en: "Privacy",
         ru: "Конфиденциальность",
         uk: "Конфіденційність",
-      },
-    },
+      }
+    }
   ];
   let { pathname } = useLocation();
   const currentLocale = getCurrentLocale(pathname);
@@ -46,7 +46,7 @@ export default function LayoutFooter({}) {
         {footerNav.map(({ link, title }) => (
           <li key={link.de}>
             <CleverLink
-              className="block p-2 underline md:py-4 md:px-2"
+              className="block p-2 underline md:px-2 md:py-4"
               to={link[currentLocale]}
             >
               {title[currentLocale]}
@@ -55,7 +55,7 @@ export default function LayoutFooter({}) {
         ))}
       </ul>
       <a
-        className="my-8 mx-auto block w-full max-w-[100px]"
+        className="mx-auto my-8 block w-full max-w-[100px]"
         href="https://www.contentful.com/"
         rel="nofollow noreferrer"
         target="_blank"

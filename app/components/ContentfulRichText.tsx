@@ -2,7 +2,7 @@ import type { Options } from "@contentful/rich-text-react-renderer";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import type { Document } from "@contentful/rich-text-types";
 import { INLINES } from "@contentful/rich-text-types";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import CleverLink from "./CleverLink";
 
 type ContentfulRichTextProps = {

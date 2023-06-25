@@ -33,7 +33,7 @@ export default function networkPartnerMedia({
     <BasicLayout nav={navigation.fields.items!} lang={locale}>
       <div className="container mx-auto max-w-6xl">
         <div className="pt-24">
-          <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
+          <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
             <h2 className="mb-12 font-headline text-4xl font-bold">
               {t("title.network")}
             </h2>
@@ -56,7 +56,7 @@ export default function networkPartnerMedia({
           </section>
         </div>
         {supporters && (
-          <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
+          <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
             <h2 className="mb-12 font-headline text-4xl font-bold">
               {t("title.partner")}
             </h2>
@@ -81,7 +81,7 @@ export default function networkPartnerMedia({
         <ContentBlocks content={page.fields.content} locale={locale} />
       )}
       {media && (
-        <section className="mx-auto max-w-7xl py-12 px-4 md:px-12">
+        <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
           <h2 className="mb-12 font-headline text-4xl font-bold">
             {t("title.media")}
           </h2>

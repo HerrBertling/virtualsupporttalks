@@ -1,7 +1,6 @@
 import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
-  isRouteErrorResponse,
   Links,
   LiveReload,
   Meta,
@@ -10,7 +9,6 @@ import {
   ScrollRestoration,
   useLoaderData,
   useLocation,
-  useRouteError,
 } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import * as gtag from "~/utils/gtag.client";
