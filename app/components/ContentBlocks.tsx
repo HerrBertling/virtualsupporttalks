@@ -120,13 +120,18 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 
         if (id === "videoPlayer") {
           const { videoId, content } = item.fields as IVideoPlayerFields;
-          return (
-            <VideoPlayer
-              key={item.sys.id}
-              videoId={videoId}
-              content={content}
-            />
-          );
+          if (
+            !item.fields.showOnlyOnGermanPage ||
+            (locale === "de" && item.fields.showOnlyOnGermanPage)
+          ) {
+            return (
+              <VideoPlayer
+                key={item.sys.id}
+                videoId={videoId}
+                content={content}
+              />
+            );
+          }
         }
 
         if (id === "imageCollection") {
