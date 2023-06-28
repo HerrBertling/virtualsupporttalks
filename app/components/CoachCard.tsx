@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
-import getGenderCode from "~/utils/getGenderCode";
 import getFlagCode from "~/utils/getFlagCodes";
 import { trackCoachClick } from "~/utils/gtag.client";
 
@@ -32,7 +31,6 @@ export default function CoachCard(props: CoachProps) {
     phone,
     email,
     languages,
-    gender,
     mhfaTraining,
     completedMhfaTraining,
     children,
@@ -40,7 +38,6 @@ export default function CoachCard(props: CoachProps) {
 
   const { t } = useTranslation("searchingCoach");
   const flagCodes = getFlagCode(languages);
-  const genderCodes = getGenderCode(gender);
 
   const contactMethods = [];
   if (email) {
@@ -182,7 +179,7 @@ export default function CoachCard(props: CoachProps) {
         ))}
       </div>
       {emergency ? (
-        <span className="absolute top-0 right-4 w-48 translate-x-16 translate-y-8 rotate-45 transform bg-orange-300 py-1 text-center text-xs text-orange-900 shadow-md">
+        <span className="absolute right-4 top-0 w-48 translate-x-16 translate-y-8 rotate-45 transform bg-orange-300 py-1 text-center text-xs text-orange-900 shadow-md">
           {t("emergency")}
         </span>
       ) : null}

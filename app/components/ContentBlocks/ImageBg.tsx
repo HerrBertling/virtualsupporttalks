@@ -23,13 +23,12 @@ export default function ContentBlockImageBg({
     : {};
   return (
     <section
-      className={`after:content-[\'\'], after::z-0 relative flex min-h-[400px] bg-cover bg-center bg-no-repeat text-center mix-blend-multiply after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:block after:bg-slate-300/80 ${
-        hasButton && "grid grid-cols-1 justify-center gap-4 pb-12"
-      }`}
+      className={`after::z-0 relative flex min-h-[400px] bg-cover bg-center bg-no-repeat text-center mix-blend-multiply after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:block after:bg-slate-300/80 
+      ${hasButton && "grid grid-cols-1 justify-center gap-4 pb-12"}`}
       style={backgroundStyle}
     >
       <div
-        className={`z-10 m-auto w-screen max-w-4xl py-12 px-4 ${
+        className={`z-10 m-auto w-screen max-w-4xl px-4 py-12 ${
           withPaddingTop && "px-4 py-12 pt-28"
         }`}
       >

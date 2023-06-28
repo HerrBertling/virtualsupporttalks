@@ -1,9 +1,3 @@
-import type { IImageCollectionFields } from "../../@types/generated/contentful";
-
-interface ImageCollectionProps extends IImageCollectionFields {
-  withPaddingTop: boolean;
-}
-
 export default function SupporterTile({
   url,
   image,

@@ -30,6 +30,7 @@ export default function BlogpostCard({
           <img
             src={image}
             className="h-auto max-h-40 w-full rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+            alt={title}
           />
         </CleverLink>
       ) : (

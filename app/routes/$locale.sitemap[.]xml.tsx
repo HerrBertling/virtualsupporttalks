@@ -10,8 +10,7 @@ type PageResult = {
   };
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const encoding = request.headers.get("accept-encoding") ?? "";
+export const loader: LoaderFunction = async () => {
   const allPages = await getAllPages().catch(() => {
     throw new Error();
   });

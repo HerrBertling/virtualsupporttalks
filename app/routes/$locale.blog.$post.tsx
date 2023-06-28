@@ -59,7 +59,7 @@ export default function Blogpost() {
     <>
       <header className="mx-auto w-full max-w-4xl px-4 pt-24 pb-6">
         <div
-          className={`grid min-h-[16rem] grid-cols-1 grid-rows-1 overflow-hidden rounded-lg shadow-lg after:relative after:z-10 after:col-start-1 after:row-start-1 after:block after:bg-vsp-500 after:mix-blend-multiply after:content-[\'\'] ${
+          className={`grid min-h-[16rem] grid-cols-1 grid-rows-1 overflow-hidden rounded-lg shadow-lg after:relative after:z-10 after:col-start-1 after:row-start-1 after:block after:bg-vsp-500 after:mix-blend-multiply ${
             !mainImage && "bg-contain"
           }`}
         >
