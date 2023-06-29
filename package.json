@@ -21,7 +21,7 @@
     "cross-env": "^7.0.3",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
-    "i18next-fs-backend": "^2.1.1",
+    "i18next-fs-backend": "^2.1.5",
     "i18next-http-backend": "^2.2.0",
     "isbot": "^3.6.10",
     "react": "^18.2.0",
