@@ -59,8 +59,8 @@ export default function CoachCard(props: CoachProps) {
     });
   }
 
-  const imagePath = image?.fields.file.url;
-  const mhfaTrainingLabel = mhfaTraining?.fields.file.url;
+  const imagePath = image?.fields?.file?.url;
+  const mhfaTrainingLabel = mhfaTraining?.fields?.file?.url;
 
   return (
     <article
