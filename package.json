@@ -40,7 +40,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "contentful-management": "^10.45.0",
+    "contentful-management": "^10.45.1",
     "contentful-typescript-codegen": "^3.4.0",
     "eslint": "^8.49.0",
     "postcss": "^8.4.29",
