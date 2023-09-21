@@ -131,15 +131,13 @@ export default function CoachCard(props: CoachProps) {
                 |
                 <picture>
                   <source
-                    srcSet={`${mhfaTrainingLabel}?w=25&h=auto&fm=png, ${mhfaTrainingLabel}?w=240&h=240&fm=png&f=face&fit=thumb 2x`}
+                    srcSet={`${mhfaTrainingLabel}?w=25&h=25&fm=png, ${mhfaTrainingLabel}?w=240&h=240&fm=png&f=face&fit=thumb 2x`}
                     type="image/png"
                   />
                   <img
                     src={`${mhfaTrainingLabel}`}
                     alt={completedMhfaTraining}
-                    className="ml-1 p-1"
-                    width="25px object-scale-down"
-                    height="auto"
+                    className="ml-1 p-1 w-6 h-6 object-contain"
                     loading="lazy"
                   />
                 </picture>
