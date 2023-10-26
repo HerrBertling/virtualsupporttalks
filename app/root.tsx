@@ -57,7 +57,7 @@ export function useChangeLanguage(locale: string) {
 
 export default function App() {
   let { locale, track } = useLoaderData<typeof loader>();
-  const location = useLocation();
+  // const location = useLocation();
   const [shouldTrack, setShouldTrack] = useState(track);
   let { i18n } = useTranslation();
 
@@ -71,12 +71,12 @@ export default function App() {
     }
   }, [shouldTrack]);
 
-  useEffect(() => {
-    if (shouldTrack) {
-      gtag.pageview(location.pathname);
-      gtag.conversion();
-    }
-  }, [location, shouldTrack]);
+  // useEffect(() => {
+  //   if (shouldTrack) {
+  //     gtag.pageview(location.pathname);
+  //     gtag.conversion();
+  //   }
+  // }, [location, shouldTrack]);
 
   useChangeLanguage(locale);
 
@@ -98,19 +98,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        {!shouldTrack ? (
-          <CookieBanner initialOpen={!shouldTrack} />
-        ) : (
-          <noscript>
-            <iframe
-              title="gtm"
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            ></iframe>
-          </noscript>
-        )}
+        {!shouldTrack && <CookieBanner initialOpen={!shouldTrack} />}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
