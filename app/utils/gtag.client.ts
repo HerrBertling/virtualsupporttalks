@@ -6,14 +6,14 @@ export const init = () => {
   ReactGA.initialize(GA_TRACKING_ID);
 };
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url: string) => {
-  ReactGA.send({ hitType: "pageview", page: url });
-};
+// // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
+// export const pageview = (url: string) => {
+//   ReactGA.send({ hitType: "pageview", page: url });
+// };
 
-export const conversion = () => {
-  ReactGA.gtag("config", "AW-11007581155");
-};
+// export const conversion = () => {
+//   ReactGA.gtag("config", "AW-11007581155");
+// };
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const event = ({
