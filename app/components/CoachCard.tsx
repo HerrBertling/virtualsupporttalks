@@ -93,9 +93,7 @@ export default function CoachCard(props: CoachProps) {
         ) : null}
       </div>
       <header className="col-start-2 row-start-1 self-center">
-        <h3 className="text-xl font-bold text-slate-500 transition-colors hover:text-vsp-500">
-          {name}
-        </h3>
+        <h3 className="text-xl font-bold text-slate-500">{name}</h3>
 
         <section className="inline-flex items-center justify-center gap-2 px-1">
           <p className="text-sm font-extralight text-slate-500">
