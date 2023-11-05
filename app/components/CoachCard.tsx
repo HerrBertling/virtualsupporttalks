@@ -66,13 +66,7 @@ export default function CoachCard(props: CoachProps) {
     <article
       className={`relative grid grid-cols-[4rem_1fr] grid-rows-[4rem_1fr] gap-3 overflow-hidden rounded-md bg-white px-3 py-3 shadow-lg`}
     >
-      <a
-        href={url ? url : `mailto:${email}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="shadow-inset-md col-start-1 row-start-1 h-16 w-16 overflow-hidden rounded-full"
-        onClick={() => trackCoachClick({ type: "image", coachName: name! })}
-      >
+      <div className="shadow-inset-md col-start-1 row-start-1 h-16 w-16 overflow-hidden rounded-full">
         {imagePath ? (
           <picture>
             <source
@@ -97,57 +91,48 @@ export default function CoachCard(props: CoachProps) {
             />
           </picture>
         ) : null}
-      </a>
+      </div>
       <header className="col-start-2 row-start-1 self-center">
-        <a
-          href={url ? url : `mailto:${email}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackCoachClick({ type: "image", coachName: name! })}
-        >
-          <h3 className="text-xl font-bold text-slate-500 transition-colors hover:text-vsp-500">
-            {name}
-          </h3>
+        <h3 className="text-xl font-bold text-slate-500">{name}</h3>
 
-          <section className="inline-flex items-center justify-center gap-2 px-1">
-            <h2 className="text-sm font-extralight text-slate-500">
-              {t("languages")}
-              {flagCodes.map((lang, index) => {
-                return (
-                  <ReactCountryFlag
-                    key={index}
-                    className="px-1"
-                    style={{
-                      fontSize: "1.2em",
-                    }}
-                    countryCode={lang}
-                  />
-                );
-              })}
-            </h2>
+        <section className="inline-flex items-center justify-center gap-2 px-1">
+          <p className="text-sm font-extralight text-slate-500">
+            {t("languages")}
+            {flagCodes.map((lang, index) => {
+              return (
+                <ReactCountryFlag
+                  key={index}
+                  className="px-1"
+                  style={{
+                    fontSize: "1.2em",
+                  }}
+                  countryCode={lang}
+                />
+              );
+            })}
+          </p>
 
-            {mhfaTraining ? (
-              <div className="inline-flex items-center ">
-                |
-                <picture>
-                  <source
-                    srcSet={`${mhfaTrainingLabel}?w=25&h=25&fm=png, ${mhfaTrainingLabel}?w=240&h=240&fm=png&f=face&fit=thumb 2x`}
-                    type="image/png"
-                  />
-                  <img
-                    src={`${mhfaTrainingLabel}`}
-                    alt={completedMhfaTraining}
-                    className="ml-1 p-1 w-6 h-6 object-contain"
-                    loading="lazy"
-                  />
-                </picture>
-                <span className="absolute pl-10 text-center text-sm text-slate-500 opacity-0 duration-300 hover:opacity-100">
-                  {completedMhfaTraining}
-                </span>
-              </div>
-            ) : null}
-          </section>
-        </a>
+          {mhfaTraining ? (
+            <div className="inline-flex items-center ">
+              |
+              <picture>
+                <source
+                  srcSet={`${mhfaTrainingLabel}?w=25&h=25&fm=png, ${mhfaTrainingLabel}?w=240&h=240&fm=png&f=face&fit=thumb 2x`}
+                  type="image/png"
+                />
+                <img
+                  src={`${mhfaTrainingLabel}`}
+                  alt={completedMhfaTraining}
+                  className="ml-1 p-1 w-6 h-6 object-contain"
+                  loading="lazy"
+                />
+              </picture>
+              <span className="absolute pl-10 text-center text-sm text-slate-500 opacity-0 duration-300 hover:opacity-100">
+                {completedMhfaTraining}
+              </span>
+            </div>
+          ) : null}
+        </section>
       </header>
 
       <div className="prose prose-sm prose-slate col-span-full row-start-2">
