@@ -10,6 +10,8 @@ import { trackCoachClick } from "~/utils/gtag.client";
 
 type CoachProps = {
   email?: string;
+  subject?: string;
+  emailTemplate?: string;
   url?: string;
   phone?: string;
   name?: string;
@@ -39,11 +41,17 @@ export default function CoachCard(props: CoachProps) {
   const { t } = useTranslation("searchingCoach");
   const flagCodes = getFlagCode(languages);
 
+  const message = {
+    subject: "Ich brauche Redezeit!",
+    emailTemplate:
+      "Hallo, ich würde gerne kostenfreie REDEZEIT in Anspruch nehmen und bitte um einen Termin.%0ASie können mich unter dieser Email-Adresse oder unter folgender Telefonnummer erreichen:%0A%0A0XXXXX XXXXX XXXX.%0A%0ADanke für dieses wertvolle Angebot.%0A%0ANAME%0A",
+  };
+
   const contactMethods = [];
   if (email) {
     contactMethods.push({
       type: "email",
-      address: `mailto:${email}`,
+      address: `mailto:${email}?subject=${message.subject}&body=${message.emailTemplate}`,
     });
   }
   if (url) {
@@ -149,7 +157,6 @@ export default function CoachCard(props: CoachProps) {
           </section>
         </a>
       </header>
-
       <div className="prose prose-sm prose-slate col-span-full row-start-2">
         {children}
       </div>
