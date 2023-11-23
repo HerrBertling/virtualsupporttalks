@@ -4,12 +4,9 @@ import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SpeakingTimeContent from "~/components/SpeakingTimeContent";
 import { getSeoMeta } from "~/seo";
-import type { SearchPageContentResponse } from "~/utils/getSearchPageContents";
 import { getSearchPageContents } from "~/utils/getSearchPageContents";
 
-export const loader: LoaderFunction = async ({
-  request,
-}): Promise<SearchPageContentResponse> => {
+export const loader: LoaderFunction = async ({ request }) => {
   const data = await getSearchPageContents(request, "en");
   return data;
 };
@@ -40,6 +37,7 @@ export default function SearchingCoach() {
     checkedGender,
     locale,
     availableTagIDs,
+    emailTemplate,
   } = useLoaderData<typeof loader>();
 
   return (
@@ -56,6 +54,7 @@ export default function SearchingCoach() {
         checkedTags={checkedTags}
         availableTagIDs={availableTagIDs}
         page={page}
+        emailTemplate={emailTemplate}
       />
     </BasicLayout>
   );

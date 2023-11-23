@@ -61,7 +61,6 @@ export default function CoachFilterTag({
           {isHighlighted && <Lifebuoy classNames="h-4 w-4 mr-2" />}
           <span>{children}</span>
         </span>
-        {/* </span> */}
       </label>
     </>
   );
