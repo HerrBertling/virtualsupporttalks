@@ -144,6 +144,8 @@ export const getBlogpost = async (slug: string, locale: LOCALE_CODE) => {
   return items[0];
 };
 
+export type EmailTemplate = Awaited<ReturnType<typeof getEmailTemplate>>;
+
 export const getEmailTemplate = async (locale: LOCALE_CODE) => {
   const client = createContentfulClient();
   const { items } = await client.getEntries({
@@ -155,8 +157,10 @@ export const getEmailTemplate = async (locale: LOCALE_CODE) => {
   if (items.length === 0) {
     return null;
   }
-  console.log(items);
-  return items[0];
+  return {
+    subject: items[0].fields.subject as string,
+    content: encodeURI(items[0].fields.emailTemplate as string),
+  };
 };
 
 function shuffle(array: any[]) {

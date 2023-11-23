@@ -2,7 +2,6 @@ import { Form, useSubmit, useNavigation } from "@remix-run/react";
 import type {
   ICoach,
   ICoachtag,
-  IEmailTemplate,
   IPage,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
@@ -16,6 +15,7 @@ import FilterIcon from "./icons/FilterIcon";
 import Spinner from "./icons/Spinner";
 import CoachCard from "./CoachCard";
 import ContentfulRichText from "./ContentfulRichText";
+import type { EmailTemplate } from "~/utils/contentful";
 
 const QUICK_RESPONSE_TAG_ID = "4dQrja372DDIuqvhTtnGda";
 
@@ -31,7 +31,7 @@ type SpeakingTimeContentProps = {
   checkedTags: string[];
   coaches: ICoach[];
   coachesAmount: number;
-  emailTemplate?: IEmailTemplate;
+  emailTemplate?: EmailTemplate;
 };
 
 export default function SpeakingTimeContent({
