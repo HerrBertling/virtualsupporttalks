@@ -23,7 +23,6 @@ import TrackingGa from "./ContentBlocks/TrackingGA";
 import ContentBlockTwoImages from "./ContentBlocks/TwoImages";
 import VideoPlayer from "./ContentBlocks/VideoPlayer";
 import ContentfulRichText from "./ContentfulRichText";
-import EmailTemplate from "./ContentBlocks/EmailTemplate";
 
 type ContentBlockProps = {
   content: IPageFields["content"] | IBlogpostFields["content"];
@@ -152,18 +151,6 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
         if (id === "trackingGa") {
           const { title } = item.fields as ITrackingGaFields;
           return <TrackingGa key={item.sys.id} title={title} />;
-        }
-
-        if (id === "emailTemplate") {
-          const { subject, emailTemplate } =
-            item.fields as IEmailTemplateFields;
-          return (
-            <EmailTemplate
-              key={item.sys.id}
-              subject={subject}
-              emailTemplate={emailTemplate}
-            />
-          );
         }
 
         if (id === "coachList") {

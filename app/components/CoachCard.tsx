@@ -1,3 +1,4 @@
+import type { IEmailTemplate } from "@types/generated/contentful";
 import type { Asset } from "contentful";
 import type { ReactNode } from "react";
 import ReactCountryFlag from "react-country-flag";
@@ -22,6 +23,7 @@ type CoachProps = {
   gender?: string[] | undefined;
   mhfaTraining?: Asset;
   completedMhfaTraining?: string;
+  message?: IEmailTemplate;
 };
 
 export default function CoachCard(props: CoachProps) {
@@ -36,22 +38,22 @@ export default function CoachCard(props: CoachProps) {
     mhfaTraining,
     completedMhfaTraining,
     children,
+    message,
   } = props;
 
   const { t } = useTranslation("searchingCoach");
   const flagCodes = getFlagCode(languages);
-
-  const message = {
-    subject: "Ich brauche Redezeit!",
-    emailTemplate:
-      "Hallo, ich würde gerne kostenfreie REDEZEIT in Anspruch nehmen und bitte um einen Termin.%0ASie können mich unter dieser Email-Adresse oder unter folgender Telefonnummer erreichen:%0A%0A0XXXXX XXXXX XXXX.%0A%0ADanke für dieses wertvolle Angebot.%0A%0ANAME%0A",
-  };
-
+  const mailSubjectFallback = "Ich brauche Redezeit!";
+  const mailContentFallback =
+    "Hallo, ich würde gerne kostenfreie REDEZEIT in Anspruch nehmen und bitte um einen Termin.\n\nSie können mich unter dieser Email-Adresse oder unter folgender Telefonnummer erreichen:\n\nXXXXX XXXXX XXXX\n\nDanke für dieses wertvolle Angebot.\n\nNAME";
   const contactMethods = [];
   if (email) {
+    const address = `mailto:${email}?subject=${
+      message.fields.subject ?? mailSubjectFallback
+    }&body=${message.fields.emailTemplate ?? mailContentFallback}`;
     contactMethods.push({
       type: "email",
-      address: `mailto:${email}?subject=${message.subject}&body=${message.emailTemplate}`,
+      address,
     });
   }
   if (url) {
