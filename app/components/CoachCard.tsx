@@ -11,8 +11,6 @@ import { trackCoachClick } from "~/utils/gtag.client";
 
 type CoachProps = {
   email?: string;
-  subject?: string;
-  emailTemplate?: string;
   url?: string;
   phone?: string;
   name?: string;
@@ -46,7 +44,9 @@ export default function CoachCard(props: CoachProps) {
   const mailSubject = message ? message.subject : "Ich brauche Redezeit!";
   const mailContent = message
     ? message.content
-    : "Hallo, ich würde gerne kostenfreie REDEZEIT in Anspruch nehmen und bitte um einen Termin.\n\nSie können mich unter dieser Email-Adresse oder unter folgender Telefonnummer erreichen:\n\nXXXXX XXXXX XXXX\n\nDanke für dieses wertvolle Angebot.\n\nNAME";
+    : encodeURI(
+        "Hallo, ich würde gerne kostenfreie REDEZEIT in Anspruch nehmen und bitte um einen Termin.\n\nSie können mich unter dieser Email-Adresse oder unter folgender Telefonnummer erreichen:\n\nXXXXX XXXXX XXXX\n\nDanke für dieses wertvolle Angebot.\n\nNAME",
+      );
   const contactMethods = [];
   if (email) {
     const address = `mailto:${email}?subject=${mailSubject}&body=${mailContent}`;
