@@ -5,44 +5,15 @@ import {
   getMainNav,
   getPageById,
   getTags,
+  getEmailTemplate,
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
-import type {
-  ICoach,
-  ICoachtag,
-  INavigation,
-  IPage,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
-
-type PromiseResponse = [
-  IPage | null,
-  ICoach[] | null,
-  string[] | null,
-  string[] | null,
-  ICoachtag[] | null,
-  INavigation | null
-];
-
-export type SearchPageContentResponse = {
-  page: IPage | null;
-  coaches: ICoach[] | null;
-  languages: string[] | null;
-  gender: string[] | null;
-  tags: ICoachtag[] | null;
-  availableTagIDs: string[];
-  navigation: INavigation | null;
-  checkedTags: string[] | null;
-  checkedGender: string[] | null;
-  currentLang: string;
-  locale: LOCALE_CODE;
-  coachesAmount: number;
-};
+import type { ICoachtag, LOCALE_CODE } from "../../@types/generated/contentful";
 
 export const getSearchPageContents = async (
   request: Request,
-  locale: LOCALE_CODE
-): Promise<SearchPageContentResponse> => {
+  locale: LOCALE_CODE,
+) => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || locale;
 
@@ -50,7 +21,7 @@ export const getSearchPageContents = async (
 
   const checkedGender = searchParams.getAll("gender");
 
-  const [page, coaches, languages, gender, tags, navigation]: PromiseResponse =
+  const [page, coaches, languages, gender, tags, navigation, emailTemplate] =
     await Promise.all([
       getPageById(pageIds.SEARCH_HELP, locale),
       getCoaches(lang),
@@ -58,6 +29,7 @@ export const getSearchPageContents = async (
       getGender(),
       getTags(locale),
       getMainNav(locale),
+      getEmailTemplate(locale),
     ]);
 
   if (!coaches || coaches.length === 0) {
@@ -79,7 +51,7 @@ export const getSearchPageContents = async (
       return (
         !!coachTags &&
         checkedTags.every((tagId) =>
-          coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId)
+          coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId),
         )
       );
     })
@@ -116,5 +88,6 @@ export const getSearchPageContents = async (
     currentLang: lang,
     coachesAmount: filteredCoaches?.length || 0,
     availableTagIDs,
+    emailTemplate,
   };
 };

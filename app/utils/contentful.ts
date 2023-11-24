@@ -51,7 +51,7 @@ export const getPageById = async (id: string, locale: LOCALE_CODE) => {
 };
 
 export const getMainNav = async (
-  locale: LOCALE_CODE
+  locale: LOCALE_CODE,
 ): Promise<INavigation | null> => {
   const client = createContentfulClient();
   const entry: Entry<INavigation> = await client.getEntry(
@@ -59,7 +59,7 @@ export const getMainNav = async (
     {
       include: 3,
       locale: locale,
-    }
+    },
   );
 
   if (!entry) {
@@ -116,7 +116,7 @@ export const getBlogposts = async (locale: LOCALE_CODE) => {
 
 export const getBlogpostTags = async (
   locale: LOCALE_CODE,
-  tag: ITag["fields"]["slug"]
+  tag: ITag["fields"]["slug"],
 ) => {
   const client = createContentfulClient();
   const { items } = await client.getEntries({
@@ -144,6 +144,25 @@ export const getBlogpost = async (slug: string, locale: LOCALE_CODE) => {
   return items[0];
 };
 
+export type EmailTemplate = Awaited<ReturnType<typeof getEmailTemplate>>;
+
+export const getEmailTemplate = async (locale: LOCALE_CODE) => {
+  const client = createContentfulClient();
+  const { items } = await client.getEntries({
+    content_type: "emailTemplate",
+    locale: locale,
+    include: 1,
+  });
+
+  if (items.length === 0) {
+    return null;
+  }
+  return {
+    subject: items[0].fields.subject as string,
+    content: encodeURI(items[0].fields.emailTemplate as string),
+  };
+};
+
 function shuffle(array: any[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -165,7 +184,7 @@ export const getLanguages = async (): Promise<string[]> => {
   });
 
   const lowercasedLangs = [...new Set(languages)].map((lang) =>
-    lang.toLowerCase()
+    lang.toLowerCase(),
   );
 
   return [...new Set(lowercasedLangs)].sort().filter((lang) => lang != "ukr");
@@ -186,7 +205,7 @@ export const getGender = async (): Promise<string[]> => {
   });
 
   const lowercasedGender = [...new Set(gender)].map((gend) =>
-    gend.toLowerCase()
+    gend.toLowerCase(),
   );
 
   return [...new Set(lowercasedGender)].sort().filter((gend) => gend);

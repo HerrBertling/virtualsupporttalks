@@ -10,6 +10,7 @@ import type {
   ITrackingGaFields,
   ITwoImagesFields,
   IVideoPlayerFields,
+  IEmailTemplateFields,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
 import ContentBlockCentered from "./ContentBlocks/Centered";

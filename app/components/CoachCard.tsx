@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
+import type { EmailTemplate } from "~/utils/contentful";
 import getFlagCode from "~/utils/getFlagCodes";
 import { trackCoachClick } from "~/utils/gtag.client";
 
@@ -20,6 +21,7 @@ type CoachProps = {
   gender?: string[] | undefined;
   mhfaTraining?: Asset;
   completedMhfaTraining?: string;
+  message?: EmailTemplate;
 };
 
 export default function CoachCard(props: CoachProps) {
@@ -34,16 +36,23 @@ export default function CoachCard(props: CoachProps) {
     mhfaTraining,
     completedMhfaTraining,
     children,
+    message,
   } = props;
 
   const { t } = useTranslation("searchingCoach");
   const flagCodes = getFlagCode(languages);
-
+  const mailSubject = message ? message.subject : "Ich brauche Redezeit!";
+  const mailContent = message
+    ? message.content
+    : encodeURI(
+        "Hallo, ich würde gerne kostenfreie REDEZEIT in Anspruch nehmen und bitte um einen Termin.\n\nSie können mich unter dieser Email-Adresse oder unter folgender Telefonnummer erreichen:\n\nXXXXX XXXXX XXXX\n\nDanke für dieses wertvolle Angebot.\n\nNAME",
+      );
   const contactMethods = [];
   if (email) {
+    const address = `mailto:${email}?subject=${mailSubject}&body=${mailContent}`;
     contactMethods.push({
       type: "email",
-      address: `mailto:${email}`,
+      address,
     });
   }
   if (url) {
@@ -134,7 +143,6 @@ export default function CoachCard(props: CoachProps) {
           ) : null}
         </section>
       </header>
-
       <div className="prose prose-sm prose-slate col-span-full row-start-2">
         {children}
       </div>

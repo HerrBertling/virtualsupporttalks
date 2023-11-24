@@ -315,6 +315,31 @@ export interface IContributor extends Entry<IContributorFields> {
   };
 }
 
+export interface IEmailTemplateFields {
+  /** Subject */
+  subject?: string | undefined;
+
+  /** Email template */
+  emailTemplate?: string | undefined;
+}
+
+export interface IEmailTemplate extends Entry<IEmailTemplateFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "emailTemplate";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IGenericContentFields {
   /** Interner Titel */
   title?: string | undefined;
@@ -794,6 +819,7 @@ export type CONTENT_TYPE =
   | "contentImageBg"
   | "contentWithFullSizeImage"
   | "contributor"
+  | "emailTemplate"
   | "genericContent"
   | "headerBlock"
   | "imageCollection"
@@ -819,6 +845,7 @@ export type IEntry =
   | IContentImageBg
   | IContentWithFullSizeImage
   | IContributor
+  | IEmailTemplate
   | IGenericContent
   | IHeaderBlock
   | IImageCollection

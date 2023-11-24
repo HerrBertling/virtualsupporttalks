@@ -13,6 +13,9 @@ import ContentBlocks from "./ContentBlocks";
 import ArrowDown from "./icons/ArrowDown";
 import FilterIcon from "./icons/FilterIcon";
 import Spinner from "./icons/Spinner";
+import CoachCard from "./CoachCard";
+import ContentfulRichText from "./ContentfulRichText";
+import type { EmailTemplate } from "~/utils/contentful";
 
 const QUICK_RESPONSE_TAG_ID = "4dQrja372DDIuqvhTtnGda";
 
@@ -28,6 +31,7 @@ type SpeakingTimeContentProps = {
   checkedTags: string[];
   coaches: ICoach[];
   coachesAmount: number;
+  emailTemplate?: EmailTemplate;
 };
 
 export default function SpeakingTimeContent({
@@ -42,6 +46,7 @@ export default function SpeakingTimeContent({
   checkedTags,
   coaches,
   coachesAmount,
+  emailTemplate,
 }: SpeakingTimeContentProps) {
   const submit = useSubmit();
   const formRef = useRef<HTMLFormElement>(null);
@@ -63,8 +68,8 @@ export default function SpeakingTimeContent({
           return tag.sys.id;
         })
         .indexOf(QUICK_RESPONSE_TAG_ID),
-      1
-    )[0]
+      1,
+    )[0],
   );
 
   return (
@@ -185,7 +190,43 @@ export default function SpeakingTimeContent({
             </div>
           </div>
         )}
-        <CoachList coaches={coaches} />
+        <CoachList>
+          {coaches.map((coach: ICoach) => {
+            const {
+              email,
+              name,
+              url,
+              phone,
+              emergency,
+              image,
+              description,
+              languages,
+              gender,
+              mhfaTraining,
+              completedMhfaTraining,
+            } = coach.fields;
+            return (
+              <CoachCard
+                key={coach.sys.id}
+                name={name}
+                email={email}
+                url={url}
+                phone={phone}
+                emergency={emergency}
+                image={image}
+                languages={languages}
+                gender={gender}
+                mhfaTraining={mhfaTraining}
+                completedMhfaTraining={completedMhfaTraining}
+                message={emailTemplate}
+              >
+                {description && (
+                  <ContentfulRichText content={description} withProse={false} />
+                )}
+              </CoachCard>
+            );
+          })}
+        </CoachList>
       </div>
     </div>
   );
