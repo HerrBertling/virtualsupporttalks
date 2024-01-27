@@ -49,6 +49,9 @@ export default {
   blogpostByTag: {
     title: "Blogposts for the tag ",
   },
+  blogpostOverview: {
+    title: "The latest blog posts",
+  },
   cookies: {
     title: "We use cookies",
     description:

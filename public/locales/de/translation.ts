@@ -50,6 +50,9 @@ export default {
   blogpostByTag: {
     title: "BLOGPOSTS für den Tag ",
   },
+  blogpostOverview: {
+    title: "Die neuesten Blog-Beiträge",
+  },
   cookies: {
     title: "Wir nutzen Cookies",
     description:
