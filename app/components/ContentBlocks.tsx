@@ -150,9 +150,13 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
         }
 
         if (id === "BlogPreview") {
+          const { titleAndHeader, buttonText } = item.fields as any;
+
           return (
             <ContentBlockBlogPreview
               key={item.sys.id}
+              titleAndHeader={titleAndHeader}
+              buttonText={buttonText}
             ></ContentBlockBlogPreview>
           );
         }

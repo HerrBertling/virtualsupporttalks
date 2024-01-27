@@ -49,11 +49,6 @@ export default {
   blogpostByTag: {
     title: "Blogposts for the tag ",
   },
-  blogpostOverview: {
-    title: "The latest blog posts",
-    contentBlockTitle: "Check our lastest blog posts:",
-    contentBlockButton: "To the blog",
-  },
   cookies: {
     title: "We use cookies",
     description:

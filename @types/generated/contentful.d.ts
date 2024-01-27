@@ -56,6 +56,9 @@ export interface IBlogpost extends Entry<IBlogpostFields> {
 export interface IBlogPreviewFields {
   /** Default text */
   defaultText?: string | undefined;
+
+  /** Title and header */
+  titleAndHeader: Document;
 }
 
 /** Block to display a blog preview */
