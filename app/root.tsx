@@ -8,7 +8,6 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-  useLocation,
 } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import * as gtag from "~/utils/gtag.client";
