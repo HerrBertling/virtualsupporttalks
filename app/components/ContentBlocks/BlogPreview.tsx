@@ -17,9 +17,10 @@ export default function ContentBlockBlogPreview() {
         <h2 className="font-headline text-3xl font-bold">{t("title")}</h2>
       </header>
       <div className="my-4 mx-auto grid grid-cols-1 gap-16 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-y-16 lg:gap-x-12">
-        {latestPosts.map((post: IBlogpost) => (
-          <BlogpostCard post={post} locale={"de"} key={post.sys.id} />
-        ))}
+        {latestPosts &&
+          latestPosts.map((post: IBlogpost) => (
+            <BlogpostCard post={post} locale={"de"} key={post.sys.id} />
+          ))}
       </div>
     </>
   );
