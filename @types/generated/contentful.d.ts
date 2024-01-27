@@ -53,6 +53,30 @@ export interface IBlogpost extends Entry<IBlogpostFields> {
   };
 }
 
+export interface IBlogPreviewFields {
+  /** Default text */
+  defaultText?: string | undefined;
+}
+
+/** Block to display a blog preview */
+
+export interface IBlogPreview extends Entry<IBlogPreviewFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "BlogPreview";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ICenteredContentFields {
   /** Inhalt */
   content?: Document | undefined;
@@ -599,6 +623,7 @@ export interface IPageFields {
     | IVideoPlayer
     | ITwoImages
     | ITrackingGa
+    | IBlogPreview
   )[];
 
   /** seo */
@@ -812,6 +837,7 @@ export interface IVideoPlayer extends Entry<IVideoPlayerFields> {
 
 export type CONTENT_TYPE =
   | "blogpost"
+  | "BlogPreview"
   | "centeredContent"
   | "coach"
   | "coachList"
@@ -838,6 +864,7 @@ export type CONTENT_TYPE =
 
 export type IEntry =
   | IBlogpost
+  | IBlogPreview
   | ICenteredContent
   | ICoach
   | ICoachList
