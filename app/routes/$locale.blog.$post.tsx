@@ -5,7 +5,12 @@ import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
 import { getSeoMeta } from "~/seo";
 import { getBlogpost } from "~/utils/contentful";
-import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
+import type {
+  IBlogpost,
+  IBlogpostFields,
+  ISeoFields,
+  LOCALE_CODE,
+} from "../../@types/generated/contentful";
 
 export const meta: MetaFunction = ({
   data,
@@ -17,11 +22,13 @@ export const meta: MetaFunction = ({
       title: "404 – page not found",
     };
   }
-  const { title, seo, description } = data?.blogpost?.fields;
+  const { title, seo, description } = data?.blogpost?.fields as IBlogpostFields;
+  const { title: seoTitle, description: seoDescription } =
+    seo?.fields as ISeoFields;
 
   let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
-    description: seo?.fields?.description || description,
+    title: seoTitle || title,
+    description: seoDescription || description,
   });
   return {
     ...seoMeta,

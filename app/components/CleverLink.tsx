@@ -1,11 +1,12 @@
 import { Link } from "@remix-run/react";
-import type { RemixLinkProps } from "@remix-run/react/components";
+import type { RemixLinkProps } from "@remix-run/react/dist/components";
 import type { ReactNode } from "react";
 
 interface CleverLinkProps extends RemixLinkProps {
   to: string;
   children: ReactNode;
   className?: string;
+  prefetch?: "intent" | "render" | "none" | "viewport";
 }
 
 export default function CleverLink({

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { getCurrentLocale } from "~/utils/locales";
 import type {
   INavigationItem,
+  INavigationItemFields,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
 import LanguageSwitcher from "../LanguageSwitcher";
@@ -26,7 +27,7 @@ export default function Navigation({
 
   const navItems = nav
     .map((item) => {
-      const { page, title, url } = item.fields;
+      const { page, title, url } = item.fields as INavigationItemFields;
       const id = item.sys.id;
       let path = "/";
       if (url) {

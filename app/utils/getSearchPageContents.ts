@@ -8,7 +8,12 @@ import {
   getEmailTemplate,
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
-import type { ICoachtag, LOCALE_CODE } from "../../@types/generated/contentful";
+import type {
+  ICoachFields,
+  ICoachtag,
+  LOCALE_CODE,
+} from "../../@types/generated/contentful";
+import { Entry } from "contentful";
 
 export const getSearchPageContents = async (
   request: Request,

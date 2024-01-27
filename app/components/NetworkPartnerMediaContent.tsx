@@ -5,11 +5,12 @@ import type {
   IPage,
   ISupporter,
   LOCALE_CODE,
-} from "@types/generated/contentful";
-import { useTranslation } from "react-i18next";
+} from "../../@types/generated/contentful";
+
 import ContentBlocks from "./ContentBlocks";
 import BasicLayout from "./layout/BasicLayout";
 import SupporterTile from "./SupporterTile";
+import { useTranslation } from "react-i18next";
 
 type NetworkPartnerMediaProps = {
   page?: IPage;
@@ -28,7 +29,8 @@ export default function networkPartnerMedia({
   page,
   media,
 }: NetworkPartnerMediaProps) {
-  const { t } = useTranslation("networkPartnerMedia");
+  const { t } = useTranslation("searchingCoach");
+
   return (
     <BasicLayout nav={navigation.fields.items!} lang={locale}>
       <div className="container mx-auto max-w-6xl">
