@@ -104,11 +104,26 @@ export const getAllPages = async () => {
 
 export const getBlogposts = async (locale: LOCALE_CODE) => {
   const client = createContentfulClient();
+
   const { items } = await client.getEntries({
     content_type: "blogpost",
     locale: locale,
     include: 5,
     order: "-sys.createdAt",
+  });
+
+  return createResult(items);
+};
+
+export const getLatestBlogposts = async (locale: LOCALE_CODE) => {
+  const client = createContentfulClient();
+
+  const { items } = await client.getEntries({
+    content_type: "blogpost",
+    locale: locale,
+    include: 5,
+    order: "-sys.createdAt",
+    limit: 3,
   });
 
   return createResult(items);

@@ -10,9 +10,9 @@ import type {
   ITrackingGaFields,
   ITwoImagesFields,
   IVideoPlayerFields,
-  IEmailTemplateFields,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
+import ContentBlockBlogPreview from "./ContentBlocks/BlogPreview";
 import ContentBlockCentered from "./ContentBlocks/Centered";
 import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection";
 import ContentBlockFullSizeImageBg from "./ContentBlocks/FullSizeImageBg";
@@ -40,6 +40,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
             },
           },
         } = item;
+
         if (id === "headerBlock") {
           const { backgroundcolor, image, buttonText, buttonUrl } =
             item.fields as IHeaderBlockFields;
@@ -145,6 +146,14 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
               internalTitle={internalTitle}
               withPaddingTop={index === 0}
             />
+          );
+        }
+
+        if (id === "BlogPreview") {
+          return (
+            <ContentBlockBlogPreview
+              key={item.sys.id}
+            ></ContentBlockBlogPreview>
           );
         }
 

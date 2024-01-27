@@ -28,6 +28,7 @@ export const loader: LoaderFunction = async ({
   if (!nav || nav.length === 0) {
     throw new Response("Could not load navigation", { status: 404 });
   }
+
   return { nav, locale };
 };
 
