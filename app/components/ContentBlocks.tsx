@@ -121,10 +121,11 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
         }
 
         if (id === "videoPlayer") {
-          const { videoId, content } = item.fields as IVideoPlayerFields;
+          const { videoId, content, showOnlyOnGermanPage } =
+            item.fields as IVideoPlayerFields;
           if (
-            !item.fields.showOnlyOnGermanPage ||
-            (locale === "de" && item.fields.showOnlyOnGermanPage)
+            !showOnlyOnGermanPage ||
+            (locale === "de" && showOnlyOnGermanPage)
           ) {
             return (
               <VideoPlayer

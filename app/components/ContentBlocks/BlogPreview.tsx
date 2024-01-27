@@ -1,6 +1,9 @@
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
-import { IBlogpost, LOCALE_CODE } from "@types/generated/contentful";
+import type {
+  IBlogpost,
+  LOCALE_CODE,
+} from "../../../@types/generated/contentful";
 import { useLoaderData } from "@remix-run/react";
 import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
