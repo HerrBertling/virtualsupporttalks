@@ -6,9 +6,11 @@ import TagGroup from "./TagGroup";
 export default function BlogpostCard({
   post,
   locale,
+  showTags = true,
 }: {
   post: IBlogpost;
   locale: LOCALE_CODE;
+  showTags: boolean;
 }) {
   const { title, slug, tagList, description, mainImage } = post.fields;
   const image = mainImage?.fields?.file?.url;
@@ -51,7 +53,9 @@ export default function BlogpostCard({
           tagList ? "justify-between" : "justify-end"
         }`}
       >
-        {Boolean(tagList) && <TagGroup tags={tagList} locale={locale} />}
+        {Boolean(tagList) && showTags && (
+          <TagGroup tags={tagList} locale={locale} />
+        )}
         <time
           dateTime={post.sys.createdAt}
           className="text-xs italic text-slate-400"
