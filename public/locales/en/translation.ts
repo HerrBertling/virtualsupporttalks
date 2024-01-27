@@ -51,6 +51,8 @@ export default {
   },
   blogpostOverview: {
     title: "The latest blog posts",
+    contentBlockTitle: "Check our lastest blog posts:",
+    contentBlockButton: "To the blog",
   },
   cookies: {
     title: "We use cookies",
