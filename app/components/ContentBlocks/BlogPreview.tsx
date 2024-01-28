@@ -25,11 +25,11 @@ export default function ContentBlockBlogPreview({
 
   return (
     latestPosts && (
-      <div className="w-full px-4 pt-24 mx-auto max-w-7xl">
+      <div className="w-full px-4 pt-20 mx-auto max-w-7xl">
         <header>
           <ContentfulRichText content={titleAndHeader} />
         </header>
-        <div className="my-4 mx-auto grid grid-cols-1 gap-16 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-y-16 lg:gap-x-12">
+        <div className="my-4 mx-auto grid grid-cols-1 gap-10 px-4 md:grid-cols-3 md:gap-6 lg:gap-y-16">
           {latestPosts.map((post: IBlogpost) => (
             <BlogpostCard
               post={post}
@@ -39,7 +39,7 @@ export default function ContentBlockBlogPreview({
             />
           ))}
         </div>
-        <div className="w-full text-center mt-8">
+        <div className="w-full text-center mt-8 mb-20">
           <CleverButton to={"blog"}> {buttonText}</CleverButton>
         </div>
       </div>
