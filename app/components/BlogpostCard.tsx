@@ -1,16 +1,23 @@
 import { useTranslation } from "react-i18next";
-import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
+import type {
+  IBlogpost,
+  IBlogpostFields,
+  LOCALE_CODE,
+} from "../../@types/generated/contentful";
 import CleverLink from "./CleverLink";
 import TagGroup from "./TagGroup";
 
 export default function BlogpostCard({
   post,
   locale,
+  showTags = true,
 }: {
   post: IBlogpost;
   locale: LOCALE_CODE;
+  showTags?: boolean;
 }) {
-  const { title, slug, tagList, description, mainImage } = post.fields;
+  const { title, slug, tagList, description, mainImage } =
+    post.fields as IBlogpostFields;
   const image = mainImage?.fields?.file?.url;
   const dateObj = new Date(post.sys.createdAt);
   const date = dateObj.toLocaleString(locale, {
@@ -28,7 +35,7 @@ export default function BlogpostCard({
       {image ? (
         <CleverLink to={`/${locale}/blog/${slug}`}>
           <img
-            src={image}
+            src={image as string}
             className="h-auto max-h-40 w-full rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
             alt={title}
           />
@@ -51,7 +58,9 @@ export default function BlogpostCard({
           tagList ? "justify-between" : "justify-end"
         }`}
       >
-        {Boolean(tagList) && <TagGroup tags={tagList} locale={locale} />}
+        {Boolean(tagList) && showTags && (
+          <TagGroup tags={tagList} locale={locale} />
+        )}
         <time
           dateTime={post.sys.createdAt}
           className="text-xs italic text-slate-400"

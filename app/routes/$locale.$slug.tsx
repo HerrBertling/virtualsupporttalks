@@ -3,8 +3,12 @@ import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
-import { getPage } from "~/utils/contentful";
-import type { IPage, LOCALE_CODE } from "../../@types/generated/contentful";
+import { getLatestBlogposts, getPage } from "~/utils/contentful";
+import type {
+  IBlogpost,
+  IPage,
+  LOCALE_CODE,
+} from "../../@types/generated/contentful";
 
 export const meta: MetaFunction = ({ data }) => {
   if (!data?.page) {
@@ -31,7 +35,11 @@ export const loader: LoaderFunction = async ({ params }) => {
     throw new Response("Not Found", { status: 404 });
   }
 
-  return { page, locale };
+  const latestPosts = (await getLatestBlogposts(
+    (locale || "de") as LOCALE_CODE,
+  )) as IBlogpost[];
+
+  return { page, locale, latestPosts };
 };
 
 type PageProps = {

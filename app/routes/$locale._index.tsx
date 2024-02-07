@@ -1,7 +1,11 @@
-import type { IPage, LOCALE_CODE } from "../../@types/generated/contentful";
+import type {
+  IBlogpost,
+  IPage,
+  LOCALE_CODE,
+} from "../../@types/generated/contentful";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { getPageById } from "~/utils/contentful";
+import { getLatestBlogposts, getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 import ContentBlocks from "~/components/ContentBlocks";
 
@@ -10,6 +14,7 @@ import { getSeoMeta } from "~/seo";
 type PageProps = {
   page: IPage;
   locale: LOCALE_CODE;
+  latestPosts: IBlogpost[];
 };
 
 export const meta: MetaFunction = ({ data }) => {
@@ -35,7 +40,12 @@ export const loader: LoaderFunction = async ({
   if (!page) {
     throw new Response("Not Found", { status: 404 });
   }
-  return { page, locale };
+
+  const latestPosts = (await getLatestBlogposts(
+    locale as LOCALE_CODE,
+  )) as IBlogpost[];
+
+  return { page, locale, latestPosts };
 };
 
 export default function Index() {

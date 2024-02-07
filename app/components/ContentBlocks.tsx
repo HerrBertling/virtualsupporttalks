@@ -10,9 +10,9 @@ import type {
   ITrackingGaFields,
   ITwoImagesFields,
   IVideoPlayerFields,
-  IEmailTemplateFields,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
+import ContentBlockBlogPreview from "./ContentBlocks/BlogPreview";
 import ContentBlockCentered from "./ContentBlocks/Centered";
 import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection";
 import ContentBlockFullSizeImageBg from "./ContentBlocks/FullSizeImageBg";
@@ -40,6 +40,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
             },
           },
         } = item;
+
         if (id === "headerBlock") {
           const { backgroundcolor, image, buttonText, buttonUrl } =
             item.fields as IHeaderBlockFields;
@@ -120,10 +121,11 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
         }
 
         if (id === "videoPlayer") {
-          const { videoId, content } = item.fields as IVideoPlayerFields;
+          const { videoId, content, showOnlyOnGermanPage } =
+            item.fields as IVideoPlayerFields;
           if (
-            !item.fields.showOnlyOnGermanPage ||
-            (locale === "de" && item.fields.showOnlyOnGermanPage)
+            !showOnlyOnGermanPage ||
+            (locale === "de" && showOnlyOnGermanPage)
           ) {
             return (
               <VideoPlayer
@@ -145,6 +147,18 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
               internalTitle={internalTitle}
               withPaddingTop={index === 0}
             />
+          );
+        }
+
+        if (id === "BlogPreview") {
+          const { titleAndHeader, buttonText } = item.fields as any;
+
+          return (
+            <ContentBlockBlogPreview
+              key={item.sys.id}
+              titleAndHeader={titleAndHeader}
+              buttonText={buttonText}
+            ></ContentBlockBlogPreview>
           );
         }
 
