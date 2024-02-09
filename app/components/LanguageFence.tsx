@@ -9,7 +9,6 @@ export default function LanguageFence({
   children: ReactNode;
 }) {
   const { locale } = useParams();
-  console.log({ locale, allowedLanguages });
   if (!allowedLanguages.includes(locale ?? "")) {
     return null;
   }
