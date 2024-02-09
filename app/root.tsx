@@ -16,7 +16,6 @@ import { gdprConsent } from "./cookies";
 import { useEffect, useState } from "react";
 import BasicCatchBoundary from "./components/BasicErrorBoundary";
 import styles from "./styles/app.css";
-import { getCurrentLocale } from "./utils/locales";
 import { CookieBanner } from "./components/CookieBanner";
 
 let [seoMeta, seoLinks] = getSeo();
@@ -39,9 +38,8 @@ export const links: LinksFunction = () => {
   ];
 };
 
-export async function loader({ request }: LoaderArgs) {
-  const url = new URL(request.url);
-  let locale = await getCurrentLocale(url.pathname);
+export async function loader({ request, params }: LoaderArgs) {
+  let { locale } = params;
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
   return json({ locale, track: cookie.gdprConsent });
@@ -56,7 +54,6 @@ export function useChangeLanguage(locale: string) {
 
 export default function App() {
   let { locale, track } = useLoaderData<typeof loader>();
-  // const location = useLocation();
   const [shouldTrack, setShouldTrack] = useState(track);
   let { i18n } = useTranslation();
 
