@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getCurrentLocale } from "~/utils/locales";
 import type {
   INavigationItem,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
 import LanguageSwitcher from "../LanguageSwitcher";
 import NavItem from "./NavItem";
+import { useParams } from "@remix-run/react";
 
 export default function Navigation({
   nav,
@@ -17,12 +17,13 @@ export default function Navigation({
 }) {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const { locale } = useParams();
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  const currentLang = getCurrentLocale(pathname);
+  const currentLang = locale || "de";
 
   const navItems = nav
     .map((item) => {

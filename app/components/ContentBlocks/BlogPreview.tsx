@@ -8,6 +8,7 @@ import { useLoaderData } from "@remix-run/react";
 import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
 import type { Document } from "@contentful/rich-text-types";
+import LanguageFence from "../LanguageFence";
 
 interface ContentBlockBlogPreviewProps {
   titleAndHeader: Document;
@@ -23,8 +24,12 @@ export default function ContentBlockBlogPreview({
     locale: LOCALE_CODE;
   }>();
 
+  if (!latestPosts) {
+    return null;
+  }
+
   return (
-    latestPosts && (
+    <LanguageFence allowedLanguages={["en", "de"]}>
       <div className="w-full px-4 pt-20 mx-auto max-w-7xl">
         <header>
           <ContentfulRichText content={titleAndHeader} />
@@ -43,7 +48,7 @@ export default function ContentBlockBlogPreview({
           <CleverButton to={"blog"}> {buttonText}</CleverButton>
         </div>
       </div>
-    )
+    </LanguageFence>
   );
 }
 
