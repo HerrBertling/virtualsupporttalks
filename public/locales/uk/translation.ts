@@ -22,6 +22,7 @@ export default {
       tur: "Türk",
       arab: "عربي",
       nor: "Norsk",
+      vn: "Tiếng Việt",
     },
     genderTags: {
       weiblich: "Female",
