@@ -50,9 +50,7 @@ export const getPageById = async (id: string, locale: LOCALE_CODE) => {
   return entry as IPage;
 };
 
-export const getMainNav = async (
-  locale: LOCALE_CODE,
-): Promise<INavigation | null> => {
+export const getMainNav = async (locale: LOCALE_CODE) => {
   const client = createContentfulClient();
   const entry: Entry<INavigation> = await client.getEntry(
     "67EXX84GGCZfZayO0JxrFg",
