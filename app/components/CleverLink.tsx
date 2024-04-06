@@ -1,8 +1,8 @@
 import { Link } from "@remix-run/react";
-import type { RemixLinkProps } from "@remix-run/react/components";
+import { type LinkProps } from "@remix-run/react";
 import type { ReactNode } from "react";
 
-interface CleverLinkProps extends RemixLinkProps {
+interface CleverLinkProps extends LinkProps {
   to: string;
   children: ReactNode;
   className?: string;
@@ -31,7 +31,11 @@ export default function CleverLink({
   if (isInternalLink) {
     const usedLink = to.replace("https://www.virtualsupporttalks.de", "");
     return (
-      <Link className={className} to={usedLink} prefetch={prefetch}>
+      <Link
+        className={`text-vsp-500 hover:text-vsp-700 underline ${className}`}
+        to={usedLink}
+        prefetch={prefetch}
+      >
         {children}
       </Link>
     );
@@ -40,7 +44,7 @@ export default function CleverLink({
     <a
       href={to}
       target="_blank"
-      className={className}
+      className={`text-vsp-500 hover:text-vsp-700 underline ${className}`}
       rel="noopener noreferrer"
     >
       {children}
