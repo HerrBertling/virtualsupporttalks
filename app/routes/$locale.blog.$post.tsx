@@ -1,31 +1,28 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
-import { getSeoMeta } from "~/seo";
 import { getBlogpost } from "~/utils/contentful";
 import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
 
-export const meta: MetaFunction = ({
+export const meta: V2_MetaFunction = ({
   data,
 }: {
   data: { blogpost: IBlogpost };
 }) => {
   if (!data?.blogpost) {
-    return {
-      title: "404 – page not found",
-    };
+    return [
+      {
+        title: "404 – page not found",
+      },
+    ];
   }
   const { title, seo, description } = data?.blogpost?.fields;
-
-  let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
-    description: seo?.fields?.description || description,
-  });
-  return {
-    ...seoMeta,
-  };
+  return [
+    { title: seo?.fields?.title || title },
+    { description: seo?.fields?.description || description },
+  ];
 };
 
 export const loader: LoaderFunction = async ({ params }) => {

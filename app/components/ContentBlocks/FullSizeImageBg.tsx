@@ -17,7 +17,7 @@ export default function FullSizeImageBg({
       className="grid w-screen max-w-full grid-cols-1 lg:grid-cols-2"
       style={styleObject}
     >
-      {image && (
+      {image && imagePath && (
         <picture>
           <source srcSet={`${imagePath}?fm=avif&q=80`} type="image/avif" />
           <source srcSet={`${imagePath}?fm=webp&q=80`} type="image/webp" />

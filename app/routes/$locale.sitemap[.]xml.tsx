@@ -15,25 +15,27 @@ export const loader: LoaderFunction = async () => {
     throw new Error();
   });
 
-  const postPages =
-    allPages &&
-    allPages.map((page: PageResult) => {
-      let resultEn =
-        (page.fields.slug.en && [
-          `<url>`,
-          `<loc>https://www.virtualsupporttalks.de/en/${page.fields.slug.en}</loc>`,
-          `</url>`,
-        ]) ||
-        "";
-      let resultDe =
-        (page.fields.slug.de && [
-          `<url>`,
-          `<loc>https://www.virtualsupporttalks.de/de/${page.fields.slug.de}</loc>`,
-          `</url>`,
-        ]) ||
-        "";
-      return [...resultEn, ...resultDe].join("");
-    });
+  if (!allPages) {
+    return null;
+  }
+
+  const postPages = allPages.map((page: PageResult) => {
+    let resultEn =
+      (page.fields.slug.en && [
+        `<url>`,
+        `<loc>https://www.virtualsupporttalks.de/en/${page.fields.slug.en}</loc>`,
+        `</url>`,
+      ]) ||
+      "";
+    let resultDe =
+      (page.fields.slug.de && [
+        `<url>`,
+        `<loc>https://www.virtualsupporttalks.de/de/${page.fields.slug.de}</loc>`,
+        `</url>`,
+      ]) ||
+      "";
+    return [...resultEn, ...resultDe].join("");
+  });
 
   const xml = [
     `<?xml version="1.0" encoding="UTF-8"?>`,

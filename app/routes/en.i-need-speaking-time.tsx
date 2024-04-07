@@ -1,9 +1,8 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SpeakingTimeContent from "~/components/SpeakingTimeContent";
-import { getSeoMeta } from "~/seo";
 import { getSearchPageContents } from "~/utils/getSearchPageContents";
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -11,16 +10,13 @@ export const loader: LoaderFunction = async ({ request }) => {
   return data;
 };
 
-export const meta: MetaFunction = ({ data }) => {
+export const meta: V2_MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
 
-  let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
-    description: seo?.fields?.description || null,
-  });
-  return {
-    ...seoMeta,
-  };
+  return [
+    { title: seo?.fields?.title || title },
+    { description: seo?.fields?.description || null },
+  ];
 };
 
 export default function SearchingCoach() {

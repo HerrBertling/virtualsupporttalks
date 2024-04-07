@@ -3,13 +3,11 @@ import type {
   IPage,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { type LoaderFunction, type V2_MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getLatestBlogposts, getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 import ContentBlocks from "~/components/ContentBlocks";
-
-import { getSeoMeta } from "~/seo";
 
 type PageProps = {
   page: IPage;
@@ -17,16 +15,12 @@ type PageProps = {
   latestPosts: IBlogpost[];
 };
 
-export const meta: MetaFunction = ({ data }) => {
+export const meta: V2_MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
-
-  let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
-    description: seo?.fields?.description || null,
-  });
-  return {
-    ...seoMeta,
-  };
+  return [
+    { title: seo?.fields?.title || title },
+    { description: seo?.fields?.description || null },
+  ];
 };
 
 export const loader: LoaderFunction = async ({

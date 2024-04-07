@@ -1,7 +1,6 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import NetworkPartnerMediaContent from "~/components/NetworkPartnerMediaContent";
-import { getSeoMeta } from "~/seo";
 import {
   getMainNav,
   getMedia,
@@ -11,16 +10,13 @@ import {
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 
-export const meta: MetaFunction = ({ data }) => {
+export const meta: V2_MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
 
-  let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
-    description: seo?.fields?.description || null,
-  });
-  return {
-    ...seoMeta,
-  };
+  return [
+    { title: seo?.fields?.title || title },
+    { description: seo?.fields?.description || null },
+  ];
 };
 
 export const loader: LoaderFunction = async () => {

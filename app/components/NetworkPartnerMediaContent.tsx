@@ -5,7 +5,7 @@ import type {
   IPage,
   ISupporter,
   LOCALE_CODE,
-} from "@types/generated/contentful";
+} from "../../@types/generated/contentful";
 import { useTranslation } from "react-i18next";
 import ContentBlocks from "./ContentBlocks";
 import BasicLayout from "./layout/BasicLayout";
@@ -20,7 +20,7 @@ type NetworkPartnerMediaProps = {
   locale: LOCALE_CODE;
 };
 
-export default function networkPartnerMedia({
+export default function NetworkPartnerMedia({
   navigation,
   locale,
   network,

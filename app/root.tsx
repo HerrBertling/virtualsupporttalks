@@ -1,4 +1,8 @@
-import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
+import type {
+  LinksFunction,
+  LoaderArgs,
+  V2_MetaFunction,
+} from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -11,28 +15,20 @@ import {
 } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import * as gtag from "~/utils/gtag.client";
-import { getSeo } from "~/seo";
 import { gdprConsent } from "./cookies";
 import { useEffect, useState } from "react";
 import BasicCatchBoundary from "./components/BasicErrorBoundary";
 import styles from "./styles/app.css";
 import { CookieBanner } from "./components/CookieBanner";
 
-let [seoMeta, seoLinks] = getSeo();
-
 const GA_TRACKING_ID = "GTM-NH6W3MZ";
 
-export const meta: MetaFunction = () => {
-  return {
-    ...seoMeta,
-    charset: "utf-8",
-    viewport: "width=device-width, initial-scale=1",
-  };
+export const meta: V2_MetaFunction = () => {
+  return [];
 };
 
 export const links: LinksFunction = () => {
   return [
-    ...seoLinks,
     { rel: "stylesheet", href: styles },
     { rel: "icon", href: "/icon.png", type: "image/png" },
   ];
@@ -90,6 +86,8 @@ export default function App() {
             }}
           />
         )}
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>

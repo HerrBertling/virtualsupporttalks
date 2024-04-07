@@ -1,8 +1,7 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
-import { getSeoMeta } from "~/seo";
 import { getLatestBlogposts, getPage } from "~/utils/contentful";
 import type {
   IBlogpost,
@@ -10,24 +9,20 @@ import type {
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
 
-export const meta: MetaFunction = ({ data }) => {
+export const meta: V2_MetaFunction = ({ data }) => {
   if (!data?.page) {
-    return {
-      title: "404 – page not found",
-    };
+    return [{ title: "404 – page not found" }];
   }
   const { title, seo } = data?.page?.fields;
 
-  let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
-    description: seo?.fields?.description || null,
-  });
-  return {
-    ...seoMeta,
-  };
+  let seoMeta = [
+    { title: seo?.fields?.title || title },
+    { description: seo?.fields?.description || null },
+  ];
+  return [...seoMeta];
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const { slug, locale } = params;
   const page = await getPage(slug, locale as LOCALE_CODE);
 
@@ -41,6 +36,8 @@ export const loader: LoaderFunction = async ({ params }) => {
 
   return { page, locale, latestPosts };
 };
+
+export type LocaleSlugLoader = Awaited<ReturnType<typeof loader>>;
 
 type PageProps = {
   locale: LOCALE_CODE;

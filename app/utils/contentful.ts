@@ -1,9 +1,9 @@
-import type { ThrownResponse } from "@remix-run/react";
 import type { Entry, EntryCollection } from "contentful";
 import * as contentful from "contentful";
 import type {
   ICoach,
   ICoachtag,
+  IEmailTemplateFields,
   INavigation,
   IPage,
   IPageFields,
@@ -11,8 +11,6 @@ import type {
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
 import { availableLocales } from "./locales";
-
-export type PageNotFoundResponse = ThrownResponse<404, string>;
 
 export const createContentfulClient = () => {
   const space = process.env.CONTENTFUL_SPACE;
@@ -172,9 +170,12 @@ export const getEmailTemplate = async (locale: LOCALE_CODE) => {
   if (items.length === 0) {
     return null;
   }
+
+  const firstItemFields = items[0].fields as IEmailTemplateFields;
+
   return {
-    subject: items[0].fields.subject as string,
-    content: encodeURI(items[0].fields.emailTemplate as string),
+    subject: String(firstItemFields.subject),
+    content: encodeURI(String(firstItemFields.emailTemplate)),
   };
 };
 

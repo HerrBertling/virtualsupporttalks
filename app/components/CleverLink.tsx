@@ -1,8 +1,8 @@
 import { Link } from "@remix-run/react";
-import type { RemixLinkProps } from "@remix-run/react/components";
+import type { LinkProps } from "@remix-run/react";
 import type { ReactNode } from "react";
 
-interface CleverLinkProps extends RemixLinkProps {
+interface CleverLinkProps extends LinkProps {
   to: string;
   children: ReactNode;
   className?: string;

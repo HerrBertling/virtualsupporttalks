@@ -1,9 +1,6 @@
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
-import type {
-  IBlogpost,
-  LOCALE_CODE,
-} from "../../../@types/generated/contentful";
+import { type LocaleSlugLoader } from "~/routes/$locale.$slug";
 import { useLoaderData } from "@remix-run/react";
 import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
@@ -19,10 +16,7 @@ export default function ContentBlockBlogPreview({
   titleAndHeader,
   buttonText,
 }: ContentBlockBlogPreviewProps) {
-  const { latestPosts, locale } = useLoaderData<{
-    latestPosts: IBlogpost[];
-    locale: LOCALE_CODE;
-  }>();
+  const { latestPosts, locale } = useLoaderData<LocaleSlugLoader>();
 
   if (!latestPosts) {
     return null;
@@ -35,7 +29,7 @@ export default function ContentBlockBlogPreview({
           <ContentfulRichText content={titleAndHeader} />
         </header>
         <div className="my-4 mx-auto grid grid-cols-1 gap-10 px-4 md:grid-cols-3 md:gap-6 lg:gap-y-16">
-          {latestPosts.map((post: IBlogpost) => (
+          {latestPosts.map((post) => (
             <BlogpostCard
               post={post}
               locale={locale}
