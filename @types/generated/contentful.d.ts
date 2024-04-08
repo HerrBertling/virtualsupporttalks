@@ -59,6 +59,9 @@ export interface IBlogPreviewFields {
 
   /** Title and header */
   titleAndHeader: Document;
+
+  /** Label for button */
+  buttonText?: string | undefined;
 }
 
 /** Block to display a blog preview */
@@ -309,6 +312,9 @@ export interface IContributorFields {
 
   /** Nachname */
   lastname?: string | undefined;
+
+  /** Position */
+  position?: string | undefined;
 
   /** Webseite */
   url?: string | undefined;
@@ -627,6 +633,7 @@ export interface IPageFields {
     | ITwoImages
     | ITrackingGa
     | IBlogPreview
+    | ITeamSection
   )[];
 
   /** seo */
@@ -732,6 +739,36 @@ export interface ITag extends Entry<ITagFields> {
     contentType: {
       sys: {
         id: "tag";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ITeamSectionFields {
+  /** Title */
+  title: string;
+
+  /** Team members */
+  teamMembers: IContributor[];
+
+  /** Description */
+  description: string;
+}
+
+/** Team section – shows parts or all of the team members. You need to add everyone if you want to show the whole team here. */
+
+export interface ITeamSection extends Entry<ITeamSectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "teamSection";
         linkType: "ContentType";
         type: "Link";
       };
@@ -861,6 +898,7 @@ export type CONTENT_TYPE =
   | "seo"
   | "supporter"
   | "tag"
+  | "teamSection"
   | "trackingGa"
   | "twoImages"
   | "videoPlayer";
@@ -888,6 +926,7 @@ export type IEntry =
   | ISeo
   | ISupporter
   | ITag
+  | ITeamSection
   | ITrackingGa
   | ITwoImages
   | IVideoPlayer;

@@ -7,6 +7,7 @@ import type {
   IHeaderBlockFields,
   IImageCollectionFields,
   IPageFields,
+  ITeamSectionFields,
   ITrackingGaFields,
   ITwoImagesFields,
   IVideoPlayerFields,
@@ -19,6 +20,7 @@ import ContentBlockFullSizeImageBg from "./ContentBlocks/FullSizeImageBg";
 import GenericContent from "./ContentBlocks/GenericContent";
 import ContentBlockHeader from "./ContentBlocks/Header";
 import ContentBlockImageBg from "./ContentBlocks/ImageBg";
+import ContentBlockTeamSection from "./ContentBlocks/TeamSection";
 import TrackingGa from "./ContentBlocks/TrackingGA";
 import ContentBlockTwoImages from "./ContentBlocks/TwoImages";
 import VideoPlayer from "./ContentBlocks/VideoPlayer";
@@ -167,12 +169,27 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
           return <TrackingGa key={item.sys.id} title={title} />;
         }
 
+        if (id === "teamSection") {
+          const { title, teamMembers, description } =
+            item.fields as ITeamSectionFields;
+          return (
+            <ContentBlockTeamSection
+              key={item.sys.id}
+              title={title}
+              description={description}
+              teamMembers={teamMembers}
+            />
+          );
+        }
+
         if (id === "coachList") {
           return null;
         } else {
           const { content } = item.fields as IGenericContentFields;
 
-          return <GenericContent key={item.sys.id} content={content} />;
+          return content ? (
+            <GenericContent key={item.sys.id} content={content} />
+          ) : null;
         }
       })}
     </div>
