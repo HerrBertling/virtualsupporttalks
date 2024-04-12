@@ -12,7 +12,6 @@ export default function VideoPlayer({
         content ? "grid lg:grid-cols-2" : "max-w-4xl mx-auto"
       }`}
     >
-      {/* case with text : single video case */}
       {content && (
         <div
           className={`flex self-center py-8 px-4 lg:row-start-1 lg:max-w-[70ch] lg:px-12 lg:pt-24 lg:pb-12 ${
