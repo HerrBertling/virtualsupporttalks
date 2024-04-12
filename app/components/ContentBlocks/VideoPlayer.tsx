@@ -7,18 +7,30 @@ export default function VideoPlayer({
   videoAlignment,
 }: IVideoPlayerFields) {
   return (
-    <section className="my-1 grid w-screen max-w-full grid-cols-1 lg:grid-cols-2">
+    <section
+      className={`my-1 w-screen grid-cols-1 ${
+        content ? "grid lg:grid-cols-2" : "max-w-4xl mx-auto"
+      }`}
+    >
+      {/* case with text : single video case */}
+      {content && (
+        <div
+          className={`flex self-center py-8 px-4 lg:row-start-1 lg:max-w-[70ch] lg:px-12 lg:pt-24 lg:pb-12 ${
+            videoAlignment ? "lg:mr-auto lg:col-start-2" : "lg:ml-auto"
+          } `}
+        >
+          <ContentfulRichText content={content} />
+        </div>
+      )}
       <div
-        className={`flex self-center py-8 px-4 lg:row-start-1 ${
-          videoAlignment ? "lg:mr-auto" : "lg:ml-auto"
-        } lg:max-w-[70ch] lg:px-12 lg:pt-24 lg:pb-12 `}
-      >
-        {content && <ContentfulRichText content={content} />}
-      </div>
-      <div
-        className={`row-start-2 h-auto w-full ${
-          videoAlignment ? "lg:col-start-1" : "lg:col-start-2"
-        } lg:row-start-1 lg:max-h-max lg:p-4 `}
+        className={`lg:p-4 ${
+          content
+            ? "row-start-2 lg:row-start-1 h-auto w-full lg:max-h-max " &&
+              videoAlignment
+              ? "lg:col-start-1 "
+              : "lg:col-start-2 "
+            : "mx-auto"
+        }`}
       >
         <iframe
           title="video"
