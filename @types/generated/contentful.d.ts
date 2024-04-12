@@ -912,6 +912,9 @@ export interface IVideoPlayerFields {
 
   /** Show only on german page */
   showOnlyOnGermanPage?: boolean | undefined;
+
+  /** video alignment */
+  videoAlignment?: boolean | undefined;
 }
 
 /** Component to display videos */

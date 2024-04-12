@@ -123,7 +123,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
         }
 
         if (id === "videoPlayer") {
-          const { videoId, content, showOnlyOnGermanPage } =
+          const { videoId, content, showOnlyOnGermanPage, videoAlignment } =
             item.fields as IVideoPlayerFields;
           if (
             !showOnlyOnGermanPage ||
@@ -134,6 +134,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
                 key={item.sys.id}
                 videoId={videoId}
                 content={content}
+                videoAlignment={videoAlignment}
               />
             );
           }
