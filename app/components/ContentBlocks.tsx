@@ -1,4 +1,5 @@
 import type {
+  IBannerFields,
   IBlogpostFields,
   ICenteredContentFields,
   IContentImageBgFields,
@@ -13,6 +14,7 @@ import type {
   IVideoPlayerFields,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
+import Banner from "./ContentBlocks/Banner";
 import ContentBlockBlogPreview from "./ContentBlocks/BlogPreview";
 import ContentBlockCentered from "./ContentBlocks/Centered";
 import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection";
@@ -123,7 +125,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
         }
 
         if (id === "videoPlayer") {
-          const { videoId, content, showOnlyOnGermanPage } =
+          const { videoId, content, showOnlyOnGermanPage, videoAlignment } =
             item.fields as IVideoPlayerFields;
           if (
             !showOnlyOnGermanPage ||
@@ -134,6 +136,7 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
                 key={item.sys.id}
                 videoId={videoId}
                 content={content}
+                videoAlignment={videoAlignment}
               />
             );
           }
@@ -178,6 +181,17 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
               title={title}
               description={description}
               teamMembers={teamMembers}
+            />
+          );
+        }
+
+        if (id === "banner") {
+          const { textInBanner, action } = item.fields as IBannerFields;
+          return (
+            <Banner
+              key={item.sys.id}
+              textInBanner={textInBanner}
+              action={action}
             />
           );
         }

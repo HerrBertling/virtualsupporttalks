@@ -3,6 +3,33 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
+export interface IBannerFields {
+  /** text in banner */
+  textInBanner: Document;
+
+  /** action */
+  action?: string | undefined;
+}
+
+/** A banner to display timely-relevant information */
+
+export interface IBanner extends Entry<IBannerFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "banner";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBlogpostFields {
   /** Titel */
   title?: string | undefined;
@@ -634,6 +661,7 @@ export interface IPageFields {
     | ITrackingGa
     | IBlogPreview
     | ITeamSection
+    | IBanner
   )[];
 
   /** seo */
@@ -776,6 +804,64 @@ export interface ITeamSection extends Entry<ITeamSectionFields> {
   };
 }
 
+export interface ITestimonialsFields {
+  /** image */
+  image?: Asset | undefined;
+
+  /** link */
+  link?: string | undefined;
+
+  /** testimonialText */
+  testimonialText?: string | undefined;
+
+  /** author */
+  author?: string | undefined;
+}
+
+export interface ITestimonials extends Entry<ITestimonialsFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "testimonials";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ITestimonialSectionFields {
+  /** Title */
+  title: string;
+
+  /** Testimonials */
+  testimonials: ITestimonials[];
+}
+
+/** Here you can find the testimonials grouped */
+
+export interface ITestimonialSection extends Entry<ITestimonialSectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "testimonialSection";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ITrackingGaFields {
   /** Title */
   title: string;
@@ -854,6 +940,9 @@ export interface IVideoPlayerFields {
 
   /** Show only on german page */
   showOnlyOnGermanPage?: boolean | undefined;
+
+  /** video alignment */
+  videoAlignment?: boolean | undefined;
 }
 
 /** Component to display videos */
@@ -876,6 +965,7 @@ export interface IVideoPlayer extends Entry<IVideoPlayerFields> {
 }
 
 export type CONTENT_TYPE =
+  | "banner"
   | "blogpost"
   | "BlogPreview"
   | "centeredContent"
@@ -899,11 +989,14 @@ export type CONTENT_TYPE =
   | "supporter"
   | "tag"
   | "teamSection"
+  | "testimonials"
+  | "testimonialSection"
   | "trackingGa"
   | "twoImages"
   | "videoPlayer";
 
 export type IEntry =
+  | IBanner
   | IBlogpost
   | IBlogPreview
   | ICenteredContent
@@ -927,6 +1020,8 @@ export type IEntry =
   | ISupporter
   | ITag
   | ITeamSection
+  | ITestimonials
+  | ITestimonialSection
   | ITrackingGa
   | ITwoImages
   | IVideoPlayer;
