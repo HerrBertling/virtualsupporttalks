@@ -8,6 +8,8 @@ import type {
   IImageCollectionFields,
   IPageFields,
   ITeamSectionFields,
+  ITestimonialSectionFields,
+  ITestimonialsFields,
   ITrackingGaFields,
   ITwoImagesFields,
   IVideoPlayerFields,
@@ -25,6 +27,8 @@ import TrackingGa from "./ContentBlocks/TrackingGA";
 import ContentBlockTwoImages from "./ContentBlocks/TwoImages";
 import VideoPlayer from "./ContentBlocks/VideoPlayer";
 import ContentfulRichText from "./ContentfulRichText";
+import Testimonial from "./ContentBlocks/Testimonial";
+import Testimonials from "./ContentBlocks/Testimonials";
 
 type ContentBlockProps = {
   content: IPageFields["content"] | IBlogpostFields["content"];
@@ -178,6 +182,34 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
               title={title}
               description={description}
               teamMembers={teamMembers}
+            />
+          );
+        }
+
+        if (id === "testimonials") {
+          const { image, link, testimonialText, author } =
+            item.fields as ITestimonialsFields;
+
+          return (
+            <Testimonial
+              key={item.sys.id}
+              image={image}
+              link={link}
+              testimonialText={testimonialText}
+              author={author}
+            />
+          );
+        }
+
+        if (id === "testimonialSection") {
+          const { title, testimonials } =
+            item.fields as ITestimonialSectionFields;
+
+          return (
+            <Testimonials
+              key={item.sys.id}
+              title={title}
+              testimonials={testimonials}
             />
           );
         }
