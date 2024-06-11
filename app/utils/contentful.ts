@@ -8,6 +8,7 @@ import type {
   IPage,
   IPageFields,
   ITag,
+  ITestimonials,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
 import { availableLocales } from "./locales";
@@ -73,7 +74,7 @@ export const getPage = async (slug: Slug, locale: LOCALE_CODE) => {
     content_type: "page",
     "fields.slug[in]": slug,
     locale: locale,
-    include: 5,
+    include: 10,
   });
 
   if (entries.items.length === 0) {
@@ -299,3 +300,17 @@ export const getMedia = async () => {
 
   return createResult(items);
 };
+
+export const getTestimonials = async () => {
+  const client = createContentfulClient();
+
+  const { items } = await client.getEntries({
+    content_type: "testimonials",
+    order: "fields.title",
+    include: 10,
+
+  });
+
+  return items as ITestimonials[];
+};
+
