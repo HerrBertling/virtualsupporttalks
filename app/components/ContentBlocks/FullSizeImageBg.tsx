@@ -33,7 +33,7 @@ export default function FullSizeImageBg({
         </picture>
       )}
       <div
-        className={`py-8 px-4 lg:max-w-[70ch] lg:px-12 lg:pb-12 lg:pt-36 ${
+        className={`py-8 px-4 lg:max-w-[70ch] lg:px-12 lg:pb-12 lg:pt-36 break-words overflow-hidden ${
           imageRight && "col-start-1 ml-auto lg:row-start-1"
         }`}
       >
