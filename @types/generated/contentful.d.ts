@@ -634,6 +634,8 @@ export interface IPageFields {
     | ITrackingGa
     | IBlogPreview
     | ITeamSection
+    | ITestimonialSection
+    | ITestimonials
   )[];
 
   /** seo */
@@ -776,6 +778,64 @@ export interface ITeamSection extends Entry<ITeamSectionFields> {
   };
 }
 
+export interface ITestimonialsFields {
+  /** image */
+  image?: Asset | undefined;
+
+  /** link */
+  link?: string | undefined;
+
+  /** testimonialText */
+  testimonialText?: string | undefined;
+
+  /** author */
+  author?: string | undefined;
+}
+
+export interface ITestimonials extends Entry<ITestimonialsFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "testimonials";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ITestimonialSectionFields {
+  /** Title */
+  title: string;
+
+  /** Testimonials */
+  testimonials: ITestimonials[];
+}
+
+/** Here you can find the testimonials grouped */
+
+export interface ITestimonialSection extends Entry<ITestimonialSectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "testimonialSection";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ITrackingGaFields {
   /** Title */
   title: string;
@@ -899,6 +959,8 @@ export type CONTENT_TYPE =
   | "supporter"
   | "tag"
   | "teamSection"
+  | "testimonials"
+  | "testimonialSection"
   | "trackingGa"
   | "twoImages"
   | "videoPlayer";
@@ -927,6 +989,8 @@ export type IEntry =
   | ISupporter
   | ITag
   | ITeamSection
+  | ITestimonials
+  | ITestimonialSection
   | ITrackingGa
   | ITwoImages
   | IVideoPlayer;
