@@ -7,7 +7,7 @@ export default function Testimonial({
   author,
 }: ITestimonialsFields) {
   return (
-    <section className="mx-auto max-w-7xl px-4 pt-12 md:px-12">
+    <section className="mx-auto my-8 max-w-7xl px-4 pt-12 md:px-12">
       <div className="max-w-[100%] h-[auto] flex flex-col gap-8 items-center justify-center p-8 shadow shadow-black-500/40 hover:shadow-vsp-500/40 rounded-lg ">
         <div className="h-auto  rounded-lg object-cover flex justify-center ">
           <a href={link}>
