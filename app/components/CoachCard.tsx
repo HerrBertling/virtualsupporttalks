@@ -73,7 +73,7 @@ export default function CoachCard(props: CoachProps) {
 
   return (
     <article
-      className={`relative grid grid-cols-[4rem_1fr] grid-rows-[4rem_1fr] gap-3 overflow-hidden rounded-md bg-white px-3 py-3 shadow-lg`}
+      className={`mb-3 break-inside-avoid relative grid grid-cols-[4rem_1fr] grid-rows-[4rem_1fr] gap-3 overflow-hidden rounded-md bg-white px-3 py-3 shadow-lg`}
     >
       <div className="shadow-inset-md col-start-1 row-start-1 h-16 w-16 overflow-hidden rounded-full">
         {imagePath ? (
