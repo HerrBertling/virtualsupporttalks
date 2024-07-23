@@ -3,6 +3,33 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
+export interface IBannerFields {
+  /** text in banner */
+  textInBanner: Document;
+
+  /** action */
+  action?: string | undefined;
+}
+
+/** A banner to display timely-relevant information */
+
+export interface IBanner extends Entry<IBannerFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "banner";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBlogpostFields {
   /** Titel */
   title?: string | undefined;
@@ -634,6 +661,7 @@ export interface IPageFields {
     | ITrackingGa
     | IBlogPreview
     | ITeamSection
+    | IBanner
     | ITestimonialSection
     | ITestimonials
   )[];
@@ -914,6 +942,9 @@ export interface IVideoPlayerFields {
 
   /** Show only on german page */
   showOnlyOnGermanPage?: boolean | undefined;
+
+  /** video alignment */
+  videoAlignment?: boolean | undefined;
 }
 
 /** Component to display videos */
@@ -936,6 +967,7 @@ export interface IVideoPlayer extends Entry<IVideoPlayerFields> {
 }
 
 export type CONTENT_TYPE =
+  | "banner"
   | "blogpost"
   | "BlogPreview"
   | "centeredContent"
@@ -966,6 +998,7 @@ export type CONTENT_TYPE =
   | "videoPlayer";
 
 export type IEntry =
+  | IBanner
   | IBlogpost
   | IBlogPreview
   | ICenteredContent
