@@ -1,4 +1,4 @@
-import { RemixI18Next } from "remix-i18next";
+import { RemixI18Next } from "remix-i18next/server";
 
 import i18nextOptions from "./i18nextOptions";
 

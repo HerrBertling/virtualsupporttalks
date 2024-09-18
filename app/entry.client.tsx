@@ -5,7 +5,7 @@ import i18n from "./utils/i18nextOptions";
 import i18next from "i18next";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import { getInitialNamespaces } from "remix-i18next";
+import { getInitialNamespaces } from "remix-i18next/client";
 
 async function hydrate() {
   await i18next

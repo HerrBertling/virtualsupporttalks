@@ -15,7 +15,7 @@ import { getSeo } from "~/seo";
 import { gdprConsent } from "./cookies";
 import { useEffect, useState } from "react";
 import BasicCatchBoundary from "./components/BasicErrorBoundary";
-import styles from "./styles/app.css";
+import styles from "./styles/app.css?url";
 import { CookieBanner } from "./components/CookieBanner";
 
 let [seoMeta, seoLinks] = getSeo();
@@ -23,11 +23,11 @@ let [seoMeta, seoLinks] = getSeo();
 const GA_TRACKING_ID = "GTM-NH6W3MZ";
 
 export const meta: MetaFunction = () => {
-  return {
+  return [{
     ...seoMeta,
     charset: "utf-8",
     viewport: "width=device-width, initial-scale=1",
-  };
+  }];
 };
 
 export const links: LinksFunction = () => {
@@ -39,7 +39,7 @@ export const links: LinksFunction = () => {
 };
 
 export async function loader({ request, params }: LoaderArgs) {
-  let { locale } = params;
+  let { locale = 'de' } = params;
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
   return json({ locale, track: cookie.gdprConsent });
@@ -67,18 +67,12 @@ export default function App() {
     }
   }, [shouldTrack]);
 
-  // useEffect(() => {
-  //   if (shouldTrack) {
-  //     gtag.pageview(location.pathname);
-  //     gtag.conversion();
-  //   }
-  // }, [location, shouldTrack]);
-
   useChangeLanguage(locale);
 
   return (
     <html lang={locale} dir={i18n.dir()}>
       <head>
+      <meta charSet="utf-8" />
         {shouldTrack && (
           <script
             dangerouslySetInnerHTML={{

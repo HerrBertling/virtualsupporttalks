@@ -1,6 +1,6 @@
 import type { ThrownResponse } from "@remix-run/react";
 import type { Entry, EntryCollection } from "contentful";
-import * as contentful from "contentful";
+import contentful from "contentful";
 import type {
   ICoach,
   ICoachtag,

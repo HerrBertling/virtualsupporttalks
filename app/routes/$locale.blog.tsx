@@ -7,9 +7,9 @@ export const meta: MetaFunction = () => {
     title: "Lesezeit – das Redezeit Blog.",
     description: "Beiträge rund um Redezeit.",
   });
-  return {
+  return [{
     ...seoMeta,
-  };
+  }];
 };
 
 export default function BlogWrapepr() {

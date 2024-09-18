@@ -1,6 +1,7 @@
 import { Form, useSubmit, useNavigation } from "@remix-run/react";
 import type {
   ICoach,
+  ICoachFields,
   ICoachtag,
   IPage,
   LOCALE_CODE,
@@ -206,7 +207,7 @@ export default function SpeakingTimeContent({
               gender,
               mhfaTraining,
               completedMhfaTraining,
-            } = coach.fields;
+            } = coach.fields as ICoachFields;
             return (
               <CoachCard
                 key={coach.sys.id}

@@ -18,9 +18,9 @@ export const meta: MetaFunction = ({ data }) => {
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || null,
   });
-  return {
+  return [{
     ...seoMeta,
-  };
+  }];
 };
 
 export const loader: LoaderFunction = async () => {
