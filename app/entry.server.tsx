@@ -1,8 +1,8 @@
-import { PassThrough } from "stream";
 import type { EntryContext } from "@remix-run/node";
-import { Response } from "@remix-run/node";
+import { PassThrough } from "stream";
+import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
-import isbot from "isbot";
+import { isbot} from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { createInstance } from "i18next";
 import i18next from "./utils/i18n.server";
@@ -49,7 +49,7 @@ export default async function handleRequest(
           responseHeaders.set("Content-Type", "text/html");
 
           resolve(
-            new Response(body, {
+            new Response(createReadableStreamFromReadable(body), {
               headers: responseHeaders,
               status: didError ? 500 : responseStatusCode,
             })
