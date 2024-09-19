@@ -16,7 +16,7 @@
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.4",
     "@netlify/edge-functions": "^2.3.1",
-    "@netlify/remix-edge-adapter": "^3.2.1",
+    "@netlify/remix-adapter": "^2.3.1",
     "@netlify/remix-runtime": "^2.2.0",
     "@remix-run/node": "^2.10.2",
     "@remix-run/react": "^2.10.2",
