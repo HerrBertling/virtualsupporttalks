@@ -23,9 +23,11 @@ export const meta: MetaFunction = ({
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || description,
   });
-  return [{
-    ...seoMeta,
-  }];
+  return [
+    {
+      ...seoMeta,
+    },
+  ];
 };
 
 export const loader: LoaderFunction = async ({ params }) => {

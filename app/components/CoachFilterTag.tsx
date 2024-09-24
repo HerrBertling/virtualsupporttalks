@@ -37,16 +37,16 @@ export default function CoachFilterTag({
                 name === "lang"
                   ? "coachLanguage"
                   : name === "gender"
-                  ? "coachGender"
-                  : "coachTag",
+                    ? "coachGender"
+                    : "coachTag",
               type:
                 type === "radio"
                   ? "select"
                   : type === "checkbox"
-                  ? "checked"
-                  : defaultValue
-                  ? "unselect"
-                  : "select",
+                    ? "checked"
+                    : defaultValue
+                      ? "unselect"
+                      : "select",
 
               label: children as string,
             })

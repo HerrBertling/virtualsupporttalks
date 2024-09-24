@@ -107,16 +107,16 @@ export default function CoachCard(props: CoachProps) {
         <section className="inline-flex items-center justify-center gap-2 px-1">
           <p className="text-sm font-extralight text-slate-500">
             {t("languages")}
-            {flagCodes.map((lang, index) => 
-                <ReactCountryFlag
-                  key={index}
-                  className="px-1"
-                  style={{
-                    fontSize: "1.2em",
-                  }}
-                  countryCode={lang}
-                />
-            )}
+            {flagCodes.map((lang, index) => (
+              <ReactCountryFlag
+                key={index}
+                className="px-1"
+                style={{
+                  fontSize: "1.2em",
+                }}
+                countryCode={lang}
+              />
+            ))}
           </p>
 
           {mhfaTraining ? (
