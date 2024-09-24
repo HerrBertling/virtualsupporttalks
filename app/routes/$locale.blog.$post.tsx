@@ -59,14 +59,14 @@ export default function Blogpost() {
     <>
       <header className="mx-auto w-full max-w-4xl px-4 pt-24 pb-6">
         <div
-          className={`grid min-h-[16rem] grid-cols-1 grid-rows-1 overflow-hidden rounded-lg shadow-lg after:relative after:z-10 after:col-start-1 after:row-start-1 after:block after:bg-vsp-500 after:mix-blend-multiply ${
+          className={`grid min-h-[16rem] max-h-96 grid-cols-1 grid-rows-1 overflow-hidden rounded-lg shadow-lg after:relative after:z-10 after:col-start-1 after:row-start-1 after:block after:bg-vsp-500 after:mix-blend-multiply ${
             !mainImage && "bg-contain"
           }`}
         >
           {mainImage && (
             <img
               alt=""
-              className="relative z-0 col-start-1 row-start-1 min-h-[16rem] w-full max-w-4xl object-cover"
+              className="relative z-0 col-start-1 row-start-1 min-h-[16rem] w-full max-w-4xl object-cover object-center"
               src={mainImage.fields.file.url}
             />
           )}

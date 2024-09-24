@@ -12,9 +12,9 @@ import type {
 
 export const meta: MetaFunction = ({ data }) => {
   if (!data?.page) {
-    return {
+    return [{
       title: "404 – page not found",
-    };
+    }]
   }
   const { title, seo } = data?.page?.fields;
 
