@@ -18,8 +18,8 @@ export default function ContentBlockCentered({
     bgcolor === "gray"
       ? "bg-slate-400"
       : bgcolor === "green"
-      ? "bg-vsp-500"
-      : "bg-white";
+        ? "bg-vsp-500"
+        : "bg-white";
 
   const useWhiteProse = bgcolor !== "white";
   const hasButton = buttonText && buttonUrl;

@@ -18,8 +18,8 @@ export default function CleverButton({
     variant === "primary"
       ? "bg-vsp-500"
       : variant === "secondary"
-      ? "bg-slate-400"
-      : "";
+        ? "bg-slate-400"
+        : "";
   return (
     <CleverLink
       to={to}

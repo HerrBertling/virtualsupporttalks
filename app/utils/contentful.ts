@@ -308,9 +308,7 @@ export const getTestimonials = async () => {
     content_type: "testimonials",
     order: "fields.title",
     include: 10,
-
   });
 
   return items as ITestimonials[];
 };
-

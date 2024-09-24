@@ -12,9 +12,11 @@ import type {
 
 export const meta: MetaFunction = ({ data }) => {
   if (!data?.page) {
-    return [{
-      title: "404 – page not found",
-    }]
+    return [
+      {
+        title: "404 – page not found",
+      },
+    ];
   }
   const { title, seo } = data?.page?.fields;
 
@@ -22,9 +24,11 @@ export const meta: MetaFunction = ({ data }) => {
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || null,
   });
-  return [{
-    ...seoMeta,
-  }];
+  return [
+    {
+      ...seoMeta,
+    },
+  ];
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
