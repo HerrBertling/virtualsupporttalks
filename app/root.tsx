@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -25,8 +25,6 @@ const GA_TRACKING_ID = "GTM-NH6W3MZ";
 export const meta: MetaFunction = () => {
   return [{
     ...seoMeta,
-    charset: "utf-8",
-    viewport: "width=device-width, initial-scale=1",
   }];
 };
 
@@ -38,7 +36,7 @@ export const links: LinksFunction = () => {
   ];
 };
 
-export async function loader({ request, params }: LoaderArgs) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
   let { locale = 'de' } = params;
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
@@ -72,6 +70,8 @@ export default function App() {
   return (
     <html lang={locale} dir={i18n.dir()}>
       <head>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
         {shouldTrack && (
           <script
