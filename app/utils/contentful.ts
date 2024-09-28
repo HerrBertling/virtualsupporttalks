@@ -1,6 +1,6 @@
 import type { ThrownResponse } from "@remix-run/react";
 import type { Entry, EntryCollection } from "contentful";
-import * as contentful from "contentful";
+import contentful from "contentful";
 import type {
   ICoach,
   ICoachtag,
@@ -308,9 +308,7 @@ export const getTestimonials = async () => {
     content_type: "testimonials",
     order: "fields.title",
     include: 10,
-
   });
 
   return items as ITestimonials[];
 };
-

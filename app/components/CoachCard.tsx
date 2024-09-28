@@ -1,6 +1,6 @@
 import type { Asset } from "contentful";
 import type { ReactNode } from "react";
-import ReactCountryFlag from "react-country-flag";
+import { ReactCountryFlag } from "react-country-flag";
 import { useTranslation } from "react-i18next";
 import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
@@ -107,18 +107,16 @@ export default function CoachCard(props: CoachProps) {
         <section className="inline-flex items-center justify-center gap-2 px-1">
           <p className="text-sm font-extralight text-slate-500">
             {t("languages")}
-            {flagCodes.map((lang, index) => {
-              return (
-                <ReactCountryFlag
-                  key={index}
-                  className="px-1"
-                  style={{
-                    fontSize: "1.2em",
-                  }}
-                  countryCode={lang}
-                />
-              );
-            })}
+            {flagCodes.map((lang, index) => (
+              <ReactCountryFlag
+                key={index}
+                className="px-1"
+                style={{
+                  fontSize: "1.2em",
+                }}
+                countryCode={lang}
+              />
+            ))}
           </p>
 
           {mhfaTraining ? (

@@ -8,7 +8,7 @@ npm install
 
 ### Configure .env
 
-Please copy the `.env.template` and rename it to `.env`. 
+Please copy the `.env.template` and rename it to `.env`.
 You can ignore `CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN` for now, The other values can be found in Contentful. Go to `Settings` in the right-upper corner > `API keys` > `Add API key`. From there you can find the Space, Access Token as well as the environment.
 
 ## Generate Contentful types
