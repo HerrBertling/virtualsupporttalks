@@ -10,11 +10,13 @@ import {
 import pageIds from "~/utils/pageIds";
 import type { ICoachtag, LOCALE_CODE } from "../../@types/generated/contentful";
 
-export const getSearchPageContents = async (
-  request: Request,
+export const getSearchPageContents = async ({
+  searchParams,
+  locale
+} :{
+  searchParams: URLSearchParams,
   locale: LOCALE_CODE,
-) => {
-  const searchParams = new URL(request.url).searchParams;
+}) => {
   const lang = searchParams.get("lang") || locale;
 
   const checkedTags = searchParams.getAll("tag");

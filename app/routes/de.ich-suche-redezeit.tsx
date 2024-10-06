@@ -14,7 +14,8 @@ export const headers: HeadersFunction = () => ({
 });
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const data = await getSearchPageContents(request, "de");
+  const searchParams = new URL(request.url).searchParams;
+  const data = await getSearchPageContents({searchParams, locale: "de"});
   return data;
 };
 
