@@ -17,7 +17,7 @@ export default function ContentBlockImageBg({
   children,
 }: ContentBlockImageBgProps) {
   const hasButton = buttonUrl && buttonText;
-  const usedBackgroundImage = backgroundImage?.fields?.file?.url;
+  const usedBackgroundImage = `${backgroundImage?.fields?.file?.url}`;
   const backgroundStyle = usedBackgroundImage
     ? { backgroundImage: `url(${usedBackgroundImage}?fm=avif&q=20)` }
     : {};
