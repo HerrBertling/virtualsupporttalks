@@ -1,7 +1,6 @@
 import { Link } from "@remix-run/react";
 import { type LinkProps } from "@remix-run/react";
 import type { ReactNode } from "react";
-import cx from 'classnames';
 
 interface CleverLinkProps extends LinkProps {
   to: string;
@@ -33,7 +32,7 @@ export default function CleverLink({
     const usedLink = to.replace("https://www.virtualsupporttalks.de", "");
     return (
       <Link
-        className={cx("text-vsp-500 hover:text-vsp-700 underline", className)}
+        className={`text-vsp-500 hover:text-vsp-700 underline ${className}`}
         to={usedLink}
         prefetch={prefetch}
       >
@@ -45,7 +44,7 @@ export default function CleverLink({
     <a
       href={to}
       target="_blank"
-      className={cx("text-vsp-500 hover:text-vsp-700 underline", className)}
+      className={`text-vsp-500 hover:text-vsp-700 underline ${className}`}
       rel="noopener noreferrer"
     >
       {children}
