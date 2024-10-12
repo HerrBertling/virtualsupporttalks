@@ -1,4 +1,4 @@
-import type { HeadersFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
@@ -6,16 +6,8 @@ import SpeakingTimeContent from "~/components/SpeakingTimeContent";
 import { getSeoMeta } from "~/seo";
 import { getSearchPageContents } from "~/utils/getSearchPageContents";
 
-export const headers: HeadersFunction = () => ({
-  // Tell the browser to always check the freshness of the cache
-  "Cache-Control": "public, max-age=0, must-revalidate",
-  // Tell the CDN to treat it as fresh for 5 minutes, but for a day after that return a stale version while it revalidates
-  "Netlify-CDN-Cache-Control": "public, durable, s-maxage=300, stale-while-revalidate=86400",
-});
-
 export const loader: LoaderFunction = async ({ request }) => {
-  const searchParams = new URL(request.url).searchParams;
-  const data = await getSearchPageContents({searchParams, locale: "de"});
+  const data = await getSearchPageContents(request, "de");
   return data;
 };
 
