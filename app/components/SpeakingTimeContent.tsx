@@ -54,10 +54,14 @@ export default function SpeakingTimeContent({
   const formRef = useRef<HTMLFormElement>(null);
   const { t } = useTranslation("searchingCoach");
   const [isActive, setIsActive] = useState(false);
+  var timeout: NodeJS.Timeout;
 
   const handleChange = () => {
     if (formRef) {
-      submit(formRef.current, { replace: true, preventScrollReset: true });
+      // not the best solution as the tags now will timeout for 300ms as well - but with the onchange on the form I could not find another way
+      // to debounce the search input to not sent a request for each input .. happy for suggestions
+      clearTimeout(timeout)
+      timeout = setTimeout(() => submit(formRef.current, { replace: true, preventScrollReset: true }), 300);
     }
   };
   const state = useNavigation();

@@ -23,7 +23,6 @@ export const getSearchPageContents = async (
   const checkedGender = searchParams.getAll("gender");
 
   const searchTerm = searchParams.getAll("search");
-  console.log(searchTerm);
 
   const [page, coaches, languages, gender, tags, navigation, emailTemplate] =
     await Promise.all([

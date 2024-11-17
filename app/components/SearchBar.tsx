@@ -1,20 +1,36 @@
 ﻿import { Form } from "@remix-run/react";
-import React, { RefObject, useRef, useState }  from 'react';
+import React, { ChangeEvent, RefObject, useRef, useState }  from 'react';
 import SearchIcon from "./icons/SearchIcon";
 
 
 const SearchBar = () => {
 
-    const [searchTerm, setSearchTerm] = useState('');
+    const [inputValue, setInputValue] = React.useState("")
+    const [debouncedInputValue, setDebouncedInputValue] = React.useState("")
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const clonedEvent = new Event(e.nativeEvent.type, e.nativeEvent);
+        setInputValue(e.currentTarget.value)
+        setTimeout(() => {
+            if (inputRef.current) {
+              inputRef.current.dispatchEvent(clonedEvent);
+            }
+          }, 1000);
+     }
+
+
     return (
         <div className="inline-flex gap-2">
                 <input
                     name="search"
                     type="text"
+                    
                     placeholder="Suche..."
                     className="text-[1rem] px-2 py-1 rounded-full hover:text-vsp-900 border border-vsp-400 active:border-vsp-900 focus:border-vsp-900 disabled:border-vsp-200"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    value={inputValue}
+                    onChange={(e) => {handleInputChange(e)}}
                 > 
                 </input>
             {/* <button
