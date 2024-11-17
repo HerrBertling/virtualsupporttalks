@@ -14,6 +14,7 @@ import ContentBlocks from "./ContentBlocks";
 import ArrowDown from "./icons/ArrowDown";
 import FilterIcon from "./icons/FilterIcon";
 import Spinner from "./icons/Spinner";
+import Searching from "./Searching";
 import CoachCard from "./CoachCard";
 import ContentfulRichText from "./ContentfulRichText";
 import type { EmailTemplate } from "~/utils/contentful";
@@ -76,6 +77,7 @@ export default function SpeakingTimeContent({
   return (
     <div>
       <ContentBlocks content={page.fields.content} locale={locale} />
+      <Searching />
       <details open={true} className="mx-auto max-w-7xl py-8 px-4">
         <summary
           className="inline-flex  cursor-pointer items-center hover:text-vsp-500"
