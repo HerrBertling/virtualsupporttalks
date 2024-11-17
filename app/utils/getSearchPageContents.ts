@@ -9,6 +9,7 @@ import {
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 import type { ICoachtag, LOCALE_CODE } from "../../@types/generated/contentful";
+import { documentContentToSimpleString } from "./documentToSimpleString";
 
 export const getSearchPageContents = async (
   request: Request,
@@ -20,6 +21,9 @@ export const getSearchPageContents = async (
   const checkedTags = searchParams.getAll("tag");
 
   const checkedGender = searchParams.getAll("gender");
+
+  const searchTerm = searchParams.getAll("search");
+  console.log(searchTerm);
 
   const [page, coaches, languages, gender, tags, navigation, emailTemplate] =
     await Promise.all([
@@ -40,6 +44,7 @@ export const getSearchPageContents = async (
   if (!navigation) {
     throw new Response("Could not load navigation", { status: 404 });
   }
+  
 
   const filteredCoaches = coaches
     .filter((coach) => {
@@ -65,7 +70,15 @@ export const getSearchPageContents = async (
         !!coachGenders &&
         coachGenders.some((gender) => checkedGender.includes(gender))
       );
-    });
+    })
+    .filter((coach) => {
+      if(searchTerm[0] && searchTerm[0] != '') {
+      const description = documentContentToSimpleString(coach.fields.description?.content);
+      return `${coach.fields.name} ${description}`.includes(searchTerm[0])
+      } else {
+        return true
+      }
+    })
 
   // get available tags from all coaches
 
@@ -85,9 +98,8 @@ export const getSearchPageContents = async (
     checkedTags,
     checkedGender,
     locale,
-    currentLang: lang,
-    coachesAmount: filteredCoaches?.length || 0,
-    availableTagIDs,
+    currentLang: lang,    
+    coachesAmount: filteredCoaches?.length || 0,    availableTagIDs,
     emailTemplate,
   };
 };

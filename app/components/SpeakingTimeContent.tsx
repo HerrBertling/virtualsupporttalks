@@ -14,7 +14,7 @@ import ContentBlocks from "./ContentBlocks";
 import ArrowDown from "./icons/ArrowDown";
 import FilterIcon from "./icons/FilterIcon";
 import Spinner from "./icons/Spinner";
-import Searching from "./Searching";
+import CoachSearch from "./CoachSearch";
 import CoachCard from "./CoachCard";
 import ContentfulRichText from "./ContentfulRichText";
 import type { EmailTemplate } from "~/utils/contentful";
@@ -53,6 +53,7 @@ export default function SpeakingTimeContent({
   const submit = useSubmit();
   const formRef = useRef<HTMLFormElement>(null);
   const { t } = useTranslation("searchingCoach");
+  const [isActive, setIsActive] = useState(false);
 
   const handleChange = () => {
     if (formRef) {
@@ -61,7 +62,7 @@ export default function SpeakingTimeContent({
   };
   const state = useNavigation();
 
-  const [isActive, setIsActive] = useState(false);
+
   // sort tags to ensure the "quick response" one is always the first in the array
   tags.unshift(
     tags.splice(
@@ -77,8 +78,14 @@ export default function SpeakingTimeContent({
   return (
     <div>
       <ContentBlocks content={page.fields.content} locale={locale} />
-      <Searching />
-      <details open={true} className="mx-auto max-w-7xl py-8 px-4">
+      <Form
+          onChange={handleChange}
+          ref={formRef}
+          method="get"
+          id="filter-form"
+          className=""
+        >
+      <details open={false} className="mx-auto max-w-7xl py-8 px-4">
         <summary
           className="inline-flex  cursor-pointer items-center hover:text-vsp-500"
           onClick={() => setIsActive(!isActive)}
@@ -96,13 +103,7 @@ export default function SpeakingTimeContent({
           </div>
         </summary>
 
-        <Form
-          onChange={handleChange}
-          ref={formRef}
-          method="get"
-          id="filter-form"
-          className="flex flex-col gap-2"
-        >
+
           <fieldset className="mt-8">
             <legend className="mb-4 inline-block text-xl">
               {t("filter.language")}
@@ -180,11 +181,14 @@ export default function SpeakingTimeContent({
               </button>
             </noscript>
           </div>
-        </Form>
       </details>
+      <CoachSearch />
+      </Form>
+
       <div className="text-m mx-auto max-w-7xl py-4 px-4 font-semibold text-slate-700">
         {coachesAmount ? `${coachesAmount} ${t("result")}` : t("noResult")}
       </div>
+
       <div className="relative">
         {state.state === "loading" && (
           <div className="absolute inset-0 z-50 flex items-start justify-center bg-white bg-opacity-50">
