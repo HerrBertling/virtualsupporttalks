@@ -86,7 +86,7 @@ export default function App() {
 
   useEffect(() => {
     setShouldTrack(track);
-  }, [track]);
+  }, []);
 
   useEffect(() => {
     if (shouldTrack) {
