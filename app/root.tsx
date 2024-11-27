@@ -3,7 +3,6 @@ import type {
   LoaderFunctionArgs,
   MetaFunction,
 } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -70,7 +69,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   let { locale = "de" } = params;
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  return json({ locale, track: cookie.gdprConsent });
+  return { locale, track: cookie.gdprConsent };
 }
 
 export function useChangeLanguage(locale: string) {
@@ -86,13 +85,11 @@ export default function App() {
 
   useEffect(() => {
     setShouldTrack(track);
-  }, []);
+  }, [track]);
 
-  useEffect(() => {
-    if (shouldTrack) {
-      gtag.init();
-    }
-  }, [shouldTrack]);
+  if (shouldTrack) {
+    gtag.init();
+  }
 
   useChangeLanguage(locale);
 
