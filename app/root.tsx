@@ -3,7 +3,6 @@ import type {
   LoaderFunctionArgs,
   MetaFunction,
 } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -12,14 +11,14 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { useTranslation } from "react-i18next";
-import * as gtag from "~/utils/gtag.client";
-import { getSeo } from "~/seo";
-import { gdprConsent } from "./cookies";
 import { ReactNode, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { getSeo } from "~/seo";
+import * as gtag from "~/utils/gtag.client";
 import BasicCatchBoundary from "./components/BasicErrorBoundary";
-import styles from "./styles/app.css?url";
 import { CookieBanner } from "./components/CookieBanner";
+import { gdprConsent } from "./cookies";
+import styles from "./styles/app.css?url";
 
 let [seoMeta, seoLinks] = getSeo();
 
@@ -70,7 +69,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   let { locale = "de" } = params;
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
-  return json({ locale, track: cookie.gdprConsent });
+  return { locale, track: cookie.gdprConsent };
 }
 
 export function useChangeLanguage(locale: string) {
@@ -82,17 +81,15 @@ export function useChangeLanguage(locale: string) {
 
 export default function App() {
   let { locale, track } = useLoaderData<typeof loader>();
-  const [shouldTrack, setShouldTrack] = useState(track);
+  const [shouldTrack, setShouldTrack] = useState(false);
 
   useEffect(() => {
     setShouldTrack(track);
   }, [track]);
 
-  useEffect(() => {
-    if (shouldTrack) {
-      gtag.init();
-    }
-  }, [shouldTrack]);
+  if (shouldTrack) {
+    gtag.init();
+  }
 
   useChangeLanguage(locale);
 
