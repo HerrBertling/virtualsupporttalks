@@ -1,9 +1,9 @@
-﻿import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar";
 
 
 function CoachSearch() { 
      return (
-         <div className="flex flex-row-reverse py-5 max-w-7xl mx-auto">
+         <div className="flex flex-row flex-grow w-full lg:w-10 ">
              <SearchBar />
          </div>
      );

@@ -1,6 +1,4 @@
-﻿import { Form } from "@remix-run/react";
-import React, { ChangeEvent, RefObject, useRef, useState }  from 'react';
-import SearchIcon from "./icons/SearchIcon";
+import React, { ChangeEvent, useRef }  from 'react';
 
 
 const SearchBar = () => {
@@ -22,13 +20,13 @@ const SearchBar = () => {
 
 
     return (
-        <div className="inline-flex gap-2">
+        <div className="inline-flex gap-2 w-full lg:w-96">
                 <input
                     name="search"
                     type="text"
                     
                     placeholder="Suche..."
-                    className="text-[1rem] px-2 py-1 rounded-full hover:text-vsp-900 border border-vsp-400 active:border-vsp-900 focus:border-vsp-900 disabled:border-vsp-200"
+                    className="text-[1rem] px-2 py-1 rounded-full hover:text-vsp-900 border border-vsp-400 active:border-vsp-900 focus:border-vsp-900 disabled:border-vsp-200 w-full"
                     value={inputValue}
                     onChange={(e) => {handleInputChange(e)}}
                 > 

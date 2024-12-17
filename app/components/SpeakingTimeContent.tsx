@@ -87,9 +87,9 @@ export default function SpeakingTimeContent({
           ref={formRef}
           method="get"
           id="filter-form"
-          className=""
+          className="bg-slate-100"
         >
-      <details open={false} className="mx-auto max-w-7xl py-8 px-4">
+      <details open={false} className="mx-auto max-w-7xl pt-6 px-4">
         <summary
           className="inline-flex  cursor-pointer items-center hover:text-vsp-500"
           onClick={() => setIsActive(!isActive)}
@@ -186,12 +186,16 @@ export default function SpeakingTimeContent({
             </noscript>
           </div>
       </details>
-      <CoachSearch />
-      </Form>
+      <div className="py-6 px-4 max-w-7xl mx-auto flex justify-end lg:justify-between items-center flex-wrap">
 
-      <div className="text-m mx-auto max-w-7xl py-4 px-4 font-semibold text-slate-700">
+      <CoachSearch />
+      <div className="text-m font-semibold text-slate-700">
         {coachesAmount ? `${coachesAmount} ${t("result")}` : t("noResult")}
       </div>
+      </div>
+      </Form>
+
+
 
       <div className="relative">
         {state.state === "loading" && (
