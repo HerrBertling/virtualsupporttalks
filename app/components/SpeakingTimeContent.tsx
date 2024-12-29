@@ -60,12 +60,15 @@ export default function SpeakingTimeContent({
     if (formRef) {
       // not the best solution as the tags now will timeout for 300ms as well - but with the onchange on the form I could not find another way
       // to debounce the search input to not sent a request for each input .. happy for suggestions
-      clearTimeout(timeout)
-      timeout = setTimeout(() => submit(formRef.current, { replace: true, preventScrollReset: true }), 300);
+      clearTimeout(timeout);
+      timeout = setTimeout(
+        () =>
+          submit(formRef.current, { replace: true, preventScrollReset: true }),
+        300,
+      );
     }
   };
   const state = useNavigation();
-
 
   // sort tags to ensure the "quick response" one is always the first in the array
   tags.unshift(
@@ -83,30 +86,29 @@ export default function SpeakingTimeContent({
     <div>
       <ContentBlocks content={page.fields.content} locale={locale} />
       <Form
-          onChange={handleChange}
-          ref={formRef}
-          method="get"
-          id="filter-form"
-          className="bg-slate-100"
-        >
-      <details open={false} className="mx-auto max-w-7xl pt-6 px-4">
-        <summary
-          className="inline-flex  cursor-pointer items-center hover:text-vsp-500"
-          onClick={() => setIsActive(!isActive)}
-        >
-          <FilterIcon />
-          <h5 className="inline-block px-4 text-xl" id="details-filter">
-            {t("filter.showFilter")}
-          </h5>
-          <div
-            className={`transition-transform hover:text-vsp-500 ${
-              isActive ? "rotate-180" : "rotate-0"
-            }`}
+        onChange={handleChange}
+        ref={formRef}
+        method="get"
+        id="filter-form"
+        className="bg-slate-100"
+      >
+        <details open={false} className="mx-auto max-w-7xl pt-6 px-4">
+          <summary
+            className="inline-flex  cursor-pointer items-center hover:text-vsp-500"
+            onClick={() => setIsActive(!isActive)}
           >
-            <ArrowDown />
-          </div>
-        </summary>
-
+            <FilterIcon />
+            <h5 className="inline-block px-4 text-xl" id="details-filter">
+              {t("filter.showFilter")}
+            </h5>
+            <div
+              className={`transition-transform hover:text-vsp-500 ${
+                isActive ? "rotate-180" : "rotate-0"
+              }`}
+            >
+              <ArrowDown />
+            </div>
+          </summary>
 
           <fieldset className="mt-8">
             <legend className="mb-4 inline-block text-xl">
@@ -185,17 +187,14 @@ export default function SpeakingTimeContent({
               </button>
             </noscript>
           </div>
-      </details>
-      <div className="py-6 px-4 max-w-7xl mx-auto flex justify-end lg:justify-between items-center flex-wrap">
-
-      <CoachSearch />
-      <div className="text-m font-semibold text-slate-700">
-        {coachesAmount ? `${coachesAmount} ${t("result")}` : t("noResult")}
-      </div>
-      </div>
+        </details>
+        <div className="py-6 px-4 max-w-7xl mx-auto flex justify-end lg:justify-between items-center flex-wrap">
+          <CoachSearch />
+          <div className="text-m font-semibold text-slate-700">
+            {coachesAmount ? `${coachesAmount} ${t("result")}` : t("noResult")}
+          </div>
+        </div>
       </Form>
-
-
 
       <div className="relative">
         {state.state === "loading" && (

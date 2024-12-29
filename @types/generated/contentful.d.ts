@@ -193,7 +193,7 @@ export interface ICoachFields {
 /** Die Coaches */
 
 export interface ICoach extends Entry<ICoachFields> {
-  fields: ICoachFields
+  fields: ICoachFields;
   sys: {
     id: string;
     type: string;

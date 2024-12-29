@@ -43,7 +43,6 @@ export const getSearchPageContents = async (
   if (!navigation) {
     throw new Response("Could not load navigation", { status: 404 });
   }
-  
 
   const filteredCoaches = coaches
     .filter((coach) => {
@@ -71,13 +70,15 @@ export const getSearchPageContents = async (
       );
     })
     .filter((coach) => {
-      if(searchTerm[0] && searchTerm[0] != '') {
-      const description = documentContentToSimpleString(coach.fields.description?.content);
-      return `${coach.fields.name} ${description}`.includes(searchTerm[0])
+      if (searchTerm[0] && searchTerm[0] != "") {
+        const description = documentContentToSimpleString(
+          coach.fields.description?.content,
+        );
+        return `${coach.fields.name} ${description}`.includes(searchTerm[0]);
       } else {
-        return true
+        return true;
       }
-    })
+    });
 
   // get available tags from all coaches
 
@@ -97,8 +98,9 @@ export const getSearchPageContents = async (
     checkedTags,
     checkedGender,
     locale,
-    currentLang: lang,    
-    coachesAmount: filteredCoaches?.length || 0,    availableTagIDs,
+    currentLang: lang,
+    coachesAmount: filteredCoaches?.length || 0,
+    availableTagIDs,
     emailTemplate,
   };
 };
