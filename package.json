@@ -9,7 +9,8 @@
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
     "start": "netlify serve",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "test": "vitest"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.22.1",
@@ -60,7 +61,8 @@
     "prettier": "^3.3.3",
     "typescript": "^5.1.6",
     "vite": "^5.0.0",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^2.1.5"
   },
   "engines": {
     "node": ">=22.2.0"
