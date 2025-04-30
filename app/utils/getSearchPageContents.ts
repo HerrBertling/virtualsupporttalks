@@ -74,7 +74,8 @@ export const getSearchPageContents = async (
         const description = documentContentToSimpleString(
           coach.fields.description?.content,
         );
-        return `${coach.fields.name} ${description}`.includes(searchTerm[0]);
+        const searchRegex = new RegExp(searchTerm[0], "i");
+        return `${coach.fields.name} ${description}`.match(searchRegex);
       } else {
         return true;
       }
