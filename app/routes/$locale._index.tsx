@@ -3,8 +3,8 @@ import type {
   IPage,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderFunction, MetaFunction } from "react-router";
+import { useLoaderData } from "react-router";
 import { getLatestBlogposts, getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 import ContentBlocks from "~/components/ContentBlocks";

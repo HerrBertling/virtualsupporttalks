@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "@remix-run/react";
+import { Link, useLocation, useParams } from "react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { availableLocales } from "~/utils/locales";

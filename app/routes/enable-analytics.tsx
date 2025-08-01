@@ -1,5 +1,5 @@
-import type { ActionFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import type { ActionFunction } from "react-router";
+import { json } from "react-router";
 import { gdprConsent } from "~/cookies";
 
 export const action: ActionFunction = async ({ request }) => {

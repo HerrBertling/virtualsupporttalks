@@ -1,5 +1,5 @@
 import { Fragment, useRef, useState } from "react";
-import { useFetcher } from "@remix-run/react";
+import { useFetcher } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Dialog, Transition } from "@headlessui/react";
 import CookieIcon from "./icons/CookieIcon";
