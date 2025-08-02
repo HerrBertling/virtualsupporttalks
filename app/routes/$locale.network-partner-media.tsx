@@ -1,5 +1,5 @@
-import type { LoaderFunction, MetaFunction } from "react-router";
-import { useLoaderData } from "react-router";
+import type { MetaFunction } from "react-router";
+import type { Route } from "./+types/$locale.network-partner-media";
 import NetworkPartnerMediaContent from "~/components/NetworkPartnerMediaContent";
 import { getSeoMeta } from "~/seo";
 import {
@@ -10,12 +10,13 @@ import {
   getSupporters,
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
+import type { LOCALE_CODE } from "../../@types/generated/contentful";
 
 export const meta: MetaFunction = ({ data }) => {
   const { title, seo } = data?.page?.fields;
 
   let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
+    title: seo?.fields?.title || title || null,
     description: seo?.fields?.description || null,
   });
   return [
@@ -25,8 +26,8 @@ export const meta: MetaFunction = ({ data }) => {
   ];
 };
 
-export const loader: LoaderFunction = async () => {
-  const locale = "ru";
+export async function loader({ params }: Route.LoaderArgs) {
+  const locale = (params.locale as LOCALE_CODE) || "de";
 
   const page = getPageById(pageIds.NETWORK, locale);
   const navigation = getMainNav(locale);
@@ -56,9 +57,8 @@ export const loader: LoaderFunction = async () => {
   };
 };
 
-export default function SupportMedia() {
-  const { page, navigation, network, supporters, media, locale } =
-    useLoaderData<typeof loader>();
+export default function SupportMedia({ loaderData }: Route.ComponentProps) {
+  const { page, navigation, network, supporters, media, locale } = loaderData;
 
   return (
     <NetworkPartnerMediaContent

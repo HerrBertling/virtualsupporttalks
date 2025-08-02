@@ -1,12 +1,11 @@
-import type { LoaderFunction } from "react-router";
-import { useLoaderData } from "react-router";
 import { useTranslation } from "react-i18next";
+import type { Route } from "./+types/$locale.blog._index";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
 import { getBlogposts } from "~/utils/contentful";
 import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
 
-export const loader: LoaderFunction = async ({ params }) => {
+export async function loader({ params }: Route.LoaderArgs) {
   const locale = (params.locale as string) || "de";
   const posts = await getBlogposts(locale as LOCALE_CODE);
 
@@ -17,9 +16,8 @@ export const loader: LoaderFunction = async ({ params }) => {
   return { posts, locale };
 };
 
-export default function Index() {
-  const { posts, locale }: { posts: IBlogpost[]; locale: LOCALE_CODE } =
-    useLoaderData<typeof loader>();
+export default function Index({ loaderData }: Route.ComponentProps) {
+  const { posts, locale } = loaderData;
   const { t } = useTranslation("blogpostOverview");
   return (
     <>

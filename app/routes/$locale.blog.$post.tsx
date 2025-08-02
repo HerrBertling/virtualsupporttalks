@@ -1,5 +1,5 @@
-import type { LoaderFunction, MetaFunction } from "react-router";
-import { useLoaderData } from "react-router";
+import type { MetaFunction } from "react-router";
+import type { Route } from "./+types/$locale.blog.$post";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
@@ -30,7 +30,7 @@ export const meta: MetaFunction = ({
   ];
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export async function loader({ params }: Route.LoaderArgs) {
   const { post, locale } = params;
 
   if (!post) {
@@ -46,8 +46,8 @@ export const loader: LoaderFunction = async ({ params }) => {
   return { blogpost, locale };
 };
 
-export default function Blogpost() {
-  const { blogpost, locale } = useLoaderData<typeof loader>();
+export default function Blogpost({ loaderData }: Route.ComponentProps) {
+  const { blogpost, locale } = loaderData;
 
   const { mainImage, content, title, tagList } = blogpost.fields;
   const dateObj = new Date(blogpost.sys.createdAt);

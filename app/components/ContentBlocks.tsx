@@ -33,9 +33,10 @@ import Testimonials from "./ContentBlocks/Testimonials";
 type ContentBlockProps = {
   content: IPageFields["content"] | IBlogpostFields["content"];
   locale: LOCALE_CODE;
+  latestPosts?: any[]; // Optional for backward compatibility
 };
 
-export default function ContentBlocks({ content, locale }: ContentBlockProps) {
+export default function ContentBlocks({ content, locale, latestPosts }: ContentBlockProps) {
   return (
     <div>
       {content.map((item, index) => {
@@ -164,7 +165,9 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
               key={item.sys.id}
               titleAndHeader={titleAndHeader}
               buttonText={buttonText}
-            ></ContentBlockBlogPreview>
+              latestPosts={latestPosts}
+              locale={locale}
+            />
           );
         }
 

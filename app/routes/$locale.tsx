@@ -1,6 +1,6 @@
-import type { LoaderFunction } from "react-router";
 import { redirect } from "react-router";
-import { Outlet, useLoaderData } from "react-router";
+import { Outlet } from "react-router";
+import type { Route } from "./+types/$locale";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
@@ -14,9 +14,9 @@ type WrapperLoaderItems = {
   locale: LOCALE_CODE;
 };
 
-export const loader: LoaderFunction = async ({
+export async function loader({
   params,
-}): Promise<WrapperLoaderItems> => {
+}: Route.LoaderArgs): Promise<WrapperLoaderItems> {
   const locale = (params.locale as LOCALE_CODE) || "de";
   if (!["en", "de", "uk", "ru"].includes(locale)) {
     console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);
@@ -31,8 +31,8 @@ export const loader: LoaderFunction = async ({
   return { nav, locale };
 };
 
-export default function Wrapper() {
-  const { nav, locale } = useLoaderData<typeof loader>();
+export default function Wrapper({ loaderData }: Route.ComponentProps) {
+  const { nav, locale } = loaderData;
 
   return (
     <BasicLayout nav={nav} lang={locale}>
