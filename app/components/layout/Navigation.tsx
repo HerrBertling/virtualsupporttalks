@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import type {
   INavigationItem,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
 import LanguageSwitcher from "../LanguageSwitcher";
 import NavItem from "./NavItem";
-import { useParams } from "@remix-run/react";
+import { useParams } from "react-router";
 
 export default function Navigation({
   nav,

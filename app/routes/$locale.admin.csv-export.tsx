@@ -1,5 +1,5 @@
-import type { ActionFunctionArgs } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
+import type { ActionFunctionArgs } from "react-router";
+import { Form, useActionData } from "react-router";
 import { getCoaches } from "~/utils/contentful";
 
 export async function action({ request }: ActionFunctionArgs) {

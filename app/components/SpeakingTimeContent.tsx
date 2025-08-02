@@ -1,4 +1,4 @@
-import { Form, useSubmit, useNavigation } from "@remix-run/react";
+import { Form, useSubmit, useNavigation } from "react-router";
 import type {
   ICoach,
   ICoachFields,
@@ -54,7 +54,7 @@ export default function SpeakingTimeContent({
   const formRef = useRef<HTMLFormElement>(null);
   const { t } = useTranslation("searchingCoach");
   const [isActive, setIsActive] = useState(false);
-  var timeout: NodeJS.Timeout;
+  var timeout: ReturnType<typeof setTimeout>;
 
   const handleChange = () => {
     if (formRef) {

@@ -1,5 +1,5 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderFunction, MetaFunction } from "react-router";
+import { useLoaderData } from "react-router";
 import NetworkPartnerMediaContent from "~/components/NetworkPartnerMediaContent";
 import { getSeoMeta } from "~/seo";
 import {

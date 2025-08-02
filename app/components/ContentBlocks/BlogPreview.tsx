@@ -4,7 +4,7 @@ import type {
   IBlogpost,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "react-router";
 import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
 import type { Document } from "@contentful/rich-text-types";

@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import typography from "@tailwindcss/typography";
+
 const headlineFonts = [
   "Poppins",
   "Roboto",
@@ -10,7 +12,7 @@ const headlineFonts = [
   "sans-serif",
 ];
 
-module.exports = {
+export default {
   content: ["./app/**/*.{js,ts,jsx,tsx}"],
   allowList: ["h-4", "w-4", "mr-2"],
   theme: {
@@ -92,5 +94,5 @@ module.exports = {
       }),
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [typography],
 };

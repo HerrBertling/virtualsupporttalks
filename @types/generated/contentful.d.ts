@@ -193,14 +193,12 @@ export interface ICoachFields {
 /** Die Coaches */
 
 export interface ICoach extends Entry<ICoachFields> {
-  fields: ICoachFields;
   sys: {
     id: string;
     type: string;
     createdAt: string;
     updatedAt: string;
     locale: string;
-
     contentType: {
       sys: {
         id: "coach";
