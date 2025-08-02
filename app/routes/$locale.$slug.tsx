@@ -1,5 +1,5 @@
-import type { LoaderFunction, MetaFunction } from "react-router";
-import { useLoaderData } from "react-router";
+import type { MetaFunction } from "react-router";
+import type { Route } from "./+types/$locale.$slug";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
@@ -31,7 +31,7 @@ export const meta: MetaFunction = ({ data }) => {
   ];
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export async function loader({ params }: Route.LoaderArgs) {
   const { slug, locale } = params;
   const page = await getPage(slug, locale as LOCALE_CODE);
 
@@ -49,16 +49,17 @@ export const loader: LoaderFunction = async ({ params }) => {
 type PageProps = {
   locale: LOCALE_CODE;
   page: IPage;
+  latestPosts: IBlogpost[];
 };
 
-export default function Index() {
+export default function Index({ loaderData }: Route.ComponentProps) {
   const {
     page: {
       fields: { content },
     },
     locale,
-  }: PageProps = useLoaderData<typeof loader>();
-  return <ContentBlocks content={content} locale={locale} />;
+  } = loaderData;
+  return <ContentBlocks content={content} locale={locale} latestPosts={loaderData.latestPosts} />;
 }
 
 export function ErrorBoundary() {

@@ -3,8 +3,8 @@ import type {
   IPage,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
-import type { LoaderFunction, MetaFunction } from "react-router";
-import { useLoaderData } from "react-router";
+import type { MetaFunction } from "react-router";
+import type { Route } from "./+types/$locale._index";
 import { getLatestBlogposts, getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 import ContentBlocks from "~/components/ContentBlocks";
@@ -31,9 +31,9 @@ export const meta: MetaFunction = ({ data }) => {
   ];
 };
 
-export const loader: LoaderFunction = async ({
+export async function loader({
   params,
-}): Promise<PageProps> => {
+}: Route.LoaderArgs): Promise<PageProps> {
   const locale = params.locale as LOCALE_CODE;
   if (!locale) {
     throw new Error("No locale provided");
@@ -50,12 +50,12 @@ export const loader: LoaderFunction = async ({
   return { page, locale, latestPosts };
 };
 
-export default function Index() {
+export default function Index({ loaderData }: Route.ComponentProps) {
   const {
     page: {
       fields: { content },
     },
     locale,
-  }: PageProps = useLoaderData<typeof loader>();
-  return <ContentBlocks content={content} locale={locale} />;
+  } = loaderData;
+  return <ContentBlocks content={content} locale={locale} latestPosts={loaderData.latestPosts} />;
 }

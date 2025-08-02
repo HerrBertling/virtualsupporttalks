@@ -4,7 +4,6 @@ import type {
   IBlogpost,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
-import { useLoaderData } from "react-router";
 import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
 import type { Document } from "@contentful/rich-text-types";
@@ -13,16 +12,16 @@ import LanguageFence from "../LanguageFence";
 interface ContentBlockBlogPreviewProps {
   titleAndHeader: Document;
   buttonText: string;
+  latestPosts?: IBlogpost[];
+  locale: LOCALE_CODE;
 }
 
 export default function ContentBlockBlogPreview({
   titleAndHeader,
   buttonText,
+  latestPosts,
+  locale,
 }: ContentBlockBlogPreviewProps) {
-  const { latestPosts, locale } = useLoaderData<{
-    latestPosts: IBlogpost[];
-    locale: LOCALE_CODE;
-  }>();
 
   if (!latestPosts) {
     return null;

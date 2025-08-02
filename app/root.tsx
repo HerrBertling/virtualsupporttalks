@@ -1,5 +1,6 @@
-import type { LinksFunction, LoaderFunctionArgs, MetaFunction } from "react-router";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "react-router";
+import type { LinksFunction, MetaFunction } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import type { Route } from "./+types/root";
 import { ReactNode, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getSeoMeta, getSeoLinks } from "~/seo";
@@ -57,7 +58,7 @@ export const Layout = ({
   );
 };
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
+export async function loader({ request, params }: Route.LoaderArgs) {
   let { locale = "de" } = params;
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
@@ -71,8 +72,8 @@ export function useChangeLanguage(locale: string) {
   }, [locale, i18n]);
 }
 
-export default function App() {
-  let { locale, track } = useLoaderData<typeof loader>();
+export default function App({ loaderData }: Route.ComponentProps) {
+  let { locale, track } = loaderData;
   const [shouldTrack, setShouldTrack] = useState(false);
 
   useEffect(() => {
