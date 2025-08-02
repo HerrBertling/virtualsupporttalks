@@ -1,12 +1,12 @@
-import type { EntryContext } from "react-router";
-import { PassThrough } from "stream";
 import { createReadableStreamFromReadable } from "@react-router/node";
-import { ServerRouter } from "react-router";
-import { isbot } from "isbot";
-import { renderToPipeableStream } from "react-dom/server";
 import { createInstance } from "i18next";
-import i18next from "./utils/i18n.server";
+import { isbot } from "isbot";
+import { PassThrough } from "node:stream";
+import { renderToPipeableStream } from "react-dom/server";
 import { I18nextProvider, initReactI18next } from "react-i18next";
+import type { EntryContext } from "react-router";
+import { ServerRouter } from "react-router";
+import i18next from "./utils/i18n.server";
 import i18n from "./utils/i18nextOptions"; // your i18n configuration file
 import { getCurrentLocale } from "./utils/locales";
 
@@ -18,14 +18,14 @@ export default async function handleRequest(
   responseHeaders: Headers,
   reactRouterContext: EntryContext,
 ) {
-  let callbackName = isbot(request.headers.get("user-agent"))
+  const callbackName = isbot(request.headers.get("user-agent"))
     ? "onAllReady"
     : "onShellReady";
 
-  let instance = createInstance();
+  const instance = createInstance();
   const url = new URL(request.url);
-  let lng = await getCurrentLocale(url.pathname);
-  let ns = i18next.getRouteNamespaces(reactRouterContext);
+  const lng = await getCurrentLocale(url.pathname);
+  const ns = i18next.getRouteNamespaces(reactRouterContext);
 
   await instance
     .use(initReactI18next) // Tell our instance to use react-i18next
@@ -38,13 +38,13 @@ export default async function handleRequest(
   return new Promise((resolve, reject) => {
     let didError = false;
 
-    let { pipe, abort } = renderToPipeableStream(
+    const { pipe, abort } = renderToPipeableStream(
       <I18nextProvider i18n={instance}>
         <ServerRouter context={reactRouterContext} url={request.url} />
       </I18nextProvider>,
       {
         [callbackName]: () => {
-          let body = new PassThrough();
+          const body = new PassThrough();
 
           responseHeaders.set("Content-Type", "text/html");
 

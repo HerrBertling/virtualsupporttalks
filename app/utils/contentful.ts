@@ -1,4 +1,4 @@
-import type { ThrownResponse } from "react-router";
+import { isRouteErrorResponse } from "react-router";
 import type { Entry, EntryCollection } from "contentful";
 import contentful from "contentful";
 import type {

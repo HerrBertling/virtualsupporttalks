@@ -5,7 +5,7 @@ import type {
   IPage,
   ISupporter,
   LOCALE_CODE,
-} from "@types/generated/contentful";
+} from "../../@types/generated/contentful";
 import { useTranslation } from "react-i18next";
 import ContentBlocks from "./ContentBlocks";
 import BasicLayout from "./layout/BasicLayout";
@@ -46,7 +46,7 @@ export default function networkPartnerMedia({
               >
                 {network.map((entry: any) => (
                   <SupporterTile
-                    key={entry.fields.url}
+                    key={entry.sys.id}
                     image={entry.fields.image.fields.file.url}
                     url={entry.fields.url}
                   />
@@ -68,7 +68,7 @@ export default function networkPartnerMedia({
             >
               {supporters.map((entry: any) => (
                 <SupporterTile
-                  key={entry.fields.url}
+                  key={entry.sys.id}
                   url={entry.fields.url}
                   image={entry.fields.image.fields.file.url}
                 />
@@ -93,7 +93,7 @@ export default function networkPartnerMedia({
           >
             {media.map((entry: any) => (
               <SupporterTile
-                key={entry.fields.url}
+                key={entry.sys.id}
                 url={entry.fields.url}
                 image={entry.fields.image.fields.file.url}
                 title={entry.fields.title}

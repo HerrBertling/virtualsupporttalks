@@ -1,9 +1,9 @@
-const contentfulManagement = require("contentful-management");
+import contentfulManagement from "contentful-management";
+import dotenv from "dotenv";
 
-const dotenv = require("dotenv");
 dotenv.config();
 
-module.exports = function () {
+export default function getContentfulEnvironment() {
   const contentfulClient = contentfulManagement.createClient({
     accessToken: process.env.CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN,
   });
@@ -11,4 +11,4 @@ module.exports = function () {
   return contentfulClient
     .getSpace(process.env.CONTENTFUL_SPACE)
     .then((space) => space.getEnvironment(process.env.CONTENTFUL_ENVIRONMENT));
-};
+}

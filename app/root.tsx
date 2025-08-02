@@ -2,26 +2,29 @@ import type { LinksFunction, LoaderFunctionArgs, MetaFunction } from "react-rout
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "react-router";
 import { ReactNode, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getSeo } from "~/seo";
+import { getSeoMeta, getSeoLinks } from "~/seo";
 import * as gtag from "~/utils/gtag.client";
 import BasicCatchBoundary from "./components/BasicErrorBoundary";
 import { CookieBanner } from "./components/CookieBanner";
 import { gdprConsent } from "./cookies";
 import styles from "./styles/app.css?url";
 
-let [seoMeta, seoLinks] = getSeo();
-
 const GA_TRACKING_ID = "GTM-NH6W3MZ";
 
 export const meta: MetaFunction = () => {
+  const seoMeta = getSeoMeta();
   return [
-    {
-      ...seoMeta,
-    },
+    { title: seoMeta.title },
+    { name: "description", content: seoMeta.description },
+    { property: "og:title", content: seoMeta["og:title"] },
+    { property: "og:description", content: seoMeta["og:description"] },
+    { name: "twitter:title", content: seoMeta["twitter:title"] },
+    { name: "twitter:description", content: seoMeta["twitter:description"] },
   ];
 };
 
 export const links: LinksFunction = () => {
+  const seoLinks = getSeoLinks();
   return [
     ...seoLinks,
     { rel: "stylesheet", href: styles },
