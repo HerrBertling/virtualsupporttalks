@@ -8,12 +8,14 @@ useEffect(() => {
     script.id = "brevo-script";
     script.src = "https://cdn.brevo.com/js/sdk-loader.js";
     document.head.appendChild(script);
+    const scriptInit = document.createElement("script");
+    scriptInit.type = "text/javascript";
+    scriptInit.async = true;
+    scriptInit.id = "brevo-init";
+    scriptInit.innerHTML = `window.Brevo = window.Brevo || []; Brevo.push(["init",{client_key: "ir90lm6djp5yl513z778118q"}]);`
+    document.head.appendChild(scriptInit);
   }, []);
-return (
-<script dangerouslySetInnerHTML={{
-    __html: `window.Brevo = window.Brevo || []; Brevo.push(["init",{client_key: "ir90lm6djp5yl513z778118q"}]);`
-}}/>
-)
+return null;
 };
 
 export default Brevo;
