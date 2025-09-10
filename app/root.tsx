@@ -60,7 +60,6 @@ export const Layout = ({
       <body>
         {children}
         <ScrollRestoration />
-        <Scripts />
       </body>
     </html>
   );
@@ -113,6 +112,7 @@ export default function App() {
       {!shouldTrack && <CookieBanner initialOpen={!shouldTrack} />}
 
       <Outlet />
+      <Scripts/>
     </>
   );
 }
