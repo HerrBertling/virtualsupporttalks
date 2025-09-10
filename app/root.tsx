@@ -19,7 +19,6 @@ import BasicCatchBoundary from "./components/BasicErrorBoundary";
 import { CookieBanner } from "./components/CookieBanner";
 import { gdprConsent } from "./cookies";
 import styles from "./styles/app.css?url";
-import Brevo from "./brevo";
 
 let [seoMeta, seoLinks] = getSeo();
 
@@ -106,7 +105,6 @@ export default function App() {
   })(window,document,'script','dataLayer','${GA_TRACKING_ID}');`,
           }}
         />
-        <Brevo/>
         </>
       )}
 
