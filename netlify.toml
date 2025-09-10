@@ -12,9 +12,3 @@ framework = "vite"
 for = "/build/*"
 [headers.values]
   "Cache-Control" = "public, max-age=31560000, immutable"
-
-# Add the Content-Security-Policy header for all HTML pages, allowing Brevo scripts and resources.
-[[headers]]
-for = "/*"
-[headers.values]
-  Content-Security-Policy = "script-src 'self' https://cdn.brevo.com; connect-src 'self' https://cdn.brevo.com;"
