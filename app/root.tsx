@@ -56,10 +56,12 @@ export const Layout = ({
         <meta charSet="utf-8" />
         <Meta />
         <Links />
+        <Brevo/>
       </head>
       <body>
         {children}
         <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   );
@@ -105,14 +107,12 @@ export default function App() {
   })(window,document,'script','dataLayer','${GA_TRACKING_ID}');`,
           }}
         />
-        <Brevo/>
         </>
       )}
 
       {!shouldTrack && <CookieBanner initialOpen={!shouldTrack} />}
 
       <Outlet />
-      <Scripts/>
     </>
   );
 }
