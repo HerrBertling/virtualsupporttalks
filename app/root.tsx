@@ -19,6 +19,7 @@ import BasicCatchBoundary from "./components/BasicErrorBoundary";
 import { CookieBanner } from "./components/CookieBanner";
 import { gdprConsent } from "./cookies";
 import styles from "./styles/app.css?url";
+import Brevo from "./brevo";
 
 let [seoMeta, seoLinks] = getSeo();
 
@@ -96,7 +97,7 @@ export default function App() {
   return (
     <>
       {shouldTrack && (
-        <script
+        <><script
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -105,9 +106,12 @@ export default function App() {
   })(window,document,'script','dataLayer','${GA_TRACKING_ID}');`,
           }}
         />
+        <Brevo/>
+        </>
       )}
 
       {!shouldTrack && <CookieBanner initialOpen={!shouldTrack} />}
+
       <Outlet />
     </>
   );
