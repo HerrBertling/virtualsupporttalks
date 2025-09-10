@@ -56,7 +56,6 @@ export const Layout = ({
         <meta charSet="utf-8" />
         <Meta />
         <Links />
-        <Brevo/>
       </head>
       <body>
         {children}
@@ -107,6 +106,7 @@ export default function App() {
   })(window,document,'script','dataLayer','${GA_TRACKING_ID}');`,
           }}
         />
+        <Brevo/>
         </>
       )}
 
