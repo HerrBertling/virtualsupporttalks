@@ -254,7 +254,46 @@ if (
 
 ---
 
-### 6d. Update Other Major Dependencies
+### 6d. Migrate from Remix v2 to React Router v7
+
+**Impact**: High - Major architectural change, future-proofs the app
+
+**Context**: React Router v7 is the successor to Remix. The Remix team recommends migrating to React Router v7 as it combines the best of both frameworks with better performance and a more streamlined API.
+
+**⚠️ REQUIRED READING**: Before starting this migration, **read and follow the official guide**:
+- **https://reactrouter.com/upgrading/remix** - This is the canonical migration guide from the React Router team
+
+**Tasks**:
+
+- [ ] **Read the entire migration guide**: https://reactrouter.com/upgrading/remix
+- [ ] Install React Router v7 packages (follow guide for exact versions)
+- [ ] Update file-based routing (likely minimal changes per guide)
+- [ ] Migrate from Remix loaders/actions to React Router loaders/actions
+- [ ] Update data fetching patterns
+- [ ] Replace `@remix-run/*` imports with `react-router` equivalents (use codemod if available)
+- [ ] Update `entry.client.tsx` and `entry.server.tsx` (follow guide examples)
+- [ ] Update Netlify adapter (check for `@react-router/netlify` or follow deployment guide)
+- [ ] Update `vite.config.ts` to use React Router plugin
+- [ ] Update package.json scripts if needed
+- [ ] Test all routes thoroughly (especially loaders, actions, and error boundaries)
+- [ ] Update documentation and CLAUDE.md
+
+**Benefits**:
+- Modern framework with active development
+- Better performance characteristics
+- Simplified mental model
+- Official successor to Remix
+
+**Notes**:
+- The migration guide includes codemods to automate many changes
+- File-based routing conventions are largely compatible
+- Most breaking changes are in package names, not APIs
+
+**Estimated effort**: 8-10 hours
+
+---
+
+### 6e. Update Other Major Dependencies
 
 **Impact**: Medium - Gradual modernization
 
@@ -583,12 +622,12 @@ if (
 | Priority  | Total Estimated Hours | Number of Tasks |
 | --------- | --------------------- | --------------- |
 | Critical  | 16-20 hours           | 4 tasks         |
-| High      | 32-49 hours           | 8 tasks         |
+| High      | 40-59 hours           | 9 tasks         |
 | Medium    | 32-44 hours           | 9 tasks         |
 | Low       | 16-23 hours           | 6 tasks         |
-| **Total** | **96-136 hours**      | **27 tasks**    |
+| **Total** | **104-146 hours**     | **28 tasks**    |
 
-**Note**: Tasks are now broken down into <10 hour chunks for easier PR review and implementation.
+**Note**: Tasks are now broken down into ≤10 hour chunks for easier PR review and implementation.
 
 ### Recommended Approach
 
@@ -609,31 +648,32 @@ if (
 10. Improve type safety in Contentful integration
 11. Add error boundary improvements
 
-**Phase 3: Major Updates (Sprint 6-8)**
+**Phase 3: Major Updates (Sprint 6-9)**
 
 12. Update React to v19 (6b)
 13. Update Tailwind to v4 (6c)
-14. Update other major dependencies (6d)
+14. **Migrate from Remix v2 to React Router v7 (6d)** ⭐
+15. Update other major dependencies (6e)
 
-**Phase 4: Quality & Performance (Sprint 9-11)**
+**Phase 4: Quality & Performance (Sprint 10-12)**
 
-15. Documentation improvements
-16. Component performance optimizations (11a)
-17. Image/asset optimizations (11b)
-18. Bundle/caching optimizations (11c)
-19. Accessibility improvements
-20. Analytics improvements
-21. i18n improvements
+16. Documentation improvements
+17. Component performance optimizations (11a)
+18. Image/asset optimizations (11b)
+19. Bundle/caching optimizations (11c)
+20. Accessibility improvements
+21. Analytics improvements
+22. i18n improvements
 
-**Phase 5: Polish (Sprint 12+)**
+**Phase 5: Polish (Sprint 13+)**
 
-22. Code quality improvements
-23. Developer experience improvements
-24. CI/CD improvements
-25. Security improvements
-26. Content management improvements
-27. Clean up unused code
-28. Resolve TODO comments
+23. Code quality improvements
+24. Developer experience improvements
+25. CI/CD improvements
+26. Security improvements
+27. Content management improvements
+28. Clean up unused code
+29. Resolve TODO comments
 
 ---
 
