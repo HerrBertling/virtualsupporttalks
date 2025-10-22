@@ -23,7 +23,7 @@ type IPage = Entry<TypePageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">;
 type IBlogpost = Entry<TypeBlogpostSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">;
 
 type ContentBlockProps = {
-  content: IPage["fields"]["content"] | IBlogpost["fields"]["content"];
+  content: IPage["fields"]["content"] | IBlogpost["fields"]["content"] | undefined | null;
   locale: LOCALE_CODE;
 };
 

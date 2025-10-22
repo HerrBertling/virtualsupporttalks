@@ -11,8 +11,12 @@ export const loader: LoaderFunction = async ({ request }) => {
   return data;
 };
 
-export const meta: MetaFunction = ({ data }) => {
-  const { title, seo } = data?.page?.fields;
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  if (!data?.page) {
+    return [{ title: "Redezeit suchen" }];
+  }
+
+  const { title, seo } = data.page.fields;
 
   let seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,

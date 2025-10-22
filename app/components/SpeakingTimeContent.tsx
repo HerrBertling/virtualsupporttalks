@@ -267,19 +267,19 @@ export default function SpeakingTimeContent({
             return (
               <CoachCard
                 key={coach.sys.id}
-                name={name as string}
-                email={email as string}
-                url={url as string}
-                phone={phone as string}
-                emergency={emergency as boolean}
-                image={image}
-                languages={languages}
-                gender={gender}
-                mhfaTraining={mhfaTraining}
-                completedMhfaTraining={completedMhfaTraining}
+                name={typeof name === 'string' ? name : undefined}
+                email={typeof email === 'string' ? email : undefined}
+                url={typeof url === 'string' ? url : undefined}
+                phone={typeof phone === 'string' ? phone : undefined}
+                emergency={typeof emergency === 'boolean' ? emergency : undefined}
+                image={image && typeof image === 'object' && 'sys' in image && 'fields' in image ? image : undefined}
+                languages={Array.isArray(languages) ? languages.filter((l): l is string => typeof l === 'string') : undefined}
+                gender={Array.isArray(gender) ? gender.filter((g): g is string => typeof g === 'string') : undefined}
+                mhfaTraining={mhfaTraining && typeof mhfaTraining === 'object' && 'sys' in mhfaTraining && 'fields' in mhfaTraining ? mhfaTraining : undefined}
+                completedMhfaTraining={typeof completedMhfaTraining === 'string' ? completedMhfaTraining : undefined}
                 message={emailTemplate}
               >
-                {description && (
+                {description && typeof description === 'object' && 'nodeType' in description && (
                   <ContentfulRichText content={description} withProse={false} />
                 )}
               </CoachCard>

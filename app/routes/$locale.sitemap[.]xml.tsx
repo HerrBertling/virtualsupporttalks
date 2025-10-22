@@ -15,9 +15,7 @@ export const loader: LoaderFunction = async () => {
     throw new Error();
   });
 
-  const postPages =
-    allPages &&
-    allPages.map((page: PageResult) => {
+  const postPages = allPages ? allPages.map((page: PageResult) => {
       let resultEn =
         (page.fields.slug.en && [
           `<url>`,
@@ -33,7 +31,7 @@ export const loader: LoaderFunction = async () => {
         ]) ||
         "";
       return [...resultEn, ...resultDe].join("");
-    });
+    }) : [];
 
   const xml = [
     `<?xml version="1.0" encoding="UTF-8"?>`,
