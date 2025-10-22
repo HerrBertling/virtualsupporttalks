@@ -261,6 +261,7 @@ if (
 **Context**: React Router v7 is the successor to Remix. The Remix team recommends migrating to React Router v7 as it combines the best of both frameworks with better performance and a more streamlined API.
 
 **⚠️ REQUIRED READING**: Before starting this migration, **read and follow the official guide**:
+
 - **https://reactrouter.com/upgrading/remix** - This is the canonical migration guide from the React Router team
 
 **Tasks**:
@@ -279,12 +280,14 @@ if (
 - [ ] Update documentation and CLAUDE.md
 
 **Benefits**:
+
 - Modern framework with active development
 - Better performance characteristics
 - Simplified mental model
 - Official successor to Remix
 
 **Notes**:
+
 - The migration guide includes codemods to automate many changes
 - File-based routing conventions are largely compatible
 - Most breaking changes are in package names, not APIs
@@ -605,7 +608,6 @@ if (
 **Tasks**:
 
 - [ ] Remove unused dependencies (check with `knip`)
-- [ ] Remove unused files (`bundle-analysis.html`)
 - [ ] Remove commented-out code in routes and components
 - [ ] Remove unused icons if any
 - [ ] Clean up `.DS_Store` files (add to `.gitignore`)
