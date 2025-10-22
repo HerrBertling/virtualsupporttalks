@@ -30,10 +30,12 @@ export default {
       divers: "Divers",
     },
     filter: {
-      showFilter: "Filter anzeigen",
+      showFilter: "Filter",
       language: "Filter by language",
       gender: "Filter by gender",
       tag: "Filter by topic",
+      popularTags: "Популярні теми",
+      moreFilters: "Додаткові фільтри",
       submitCta: "Apply filter",
     },
     result: "listeners found.",

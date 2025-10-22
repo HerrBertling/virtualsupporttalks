@@ -30,10 +30,12 @@ export default {
       divers: "Divers",
     },
     filter: {
-      showFilter: "Filter anzeigen",
+      showFilter: "Filter",
       language: "Nach Sprache filtern",
       gender: "Nach Gender filtern",
       tag: "Nach Thema filtern",
+      popularTags: "Häufige Themen",
+      moreFilters: "Weitere Filter",
       submitCta: "Filter anwenden",
     },
     result: "Zuhörer*innen gefunden.",

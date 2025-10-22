@@ -2,6 +2,7 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
 
 export interface TypeCoachtagFields {
     tag: EntryFieldTypes.Symbol;
+    isMostUsed?: EntryFieldTypes.Boolean;
 }
 
 export type TypeCoachtagSkeleton = EntrySkeletonType<TypeCoachtagFields, "coachtag">;
