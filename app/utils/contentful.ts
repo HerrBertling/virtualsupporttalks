@@ -1,19 +1,15 @@
-import type { ThrownResponse } from "@remix-run/react";
-import type { Entry, EntryCollection } from "contentful";
+import type { Entry } from "contentful";
 import contentful from "contentful";
 import type {
-  ICoach,
-  ICoachtag,
-  INavigation,
-  IPage,
-  IPageFields,
-  ITag,
-  ITestimonials,
+  TypeCoachSkeleton,
+  TypeCoachtagSkeleton,
+  TypeNavigationSkeleton,
+  TypePageSkeleton,
+  TypeTagSkeleton,
+  TypeTestimonialsSkeleton,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
 import { availableLocales } from "./locales";
-
-export type PageNotFoundResponse = ThrownResponse<404, string>;
 
 export const createContentfulClient = () => {
   const space = process.env.CONTENTFUL_SPACE;
@@ -36,11 +32,9 @@ export const createContentfulClient = () => {
   return client;
 };
 
-type Slug = IPageFields["slug"];
-
 export const getPageById = async (id: string, locale: LOCALE_CODE) => {
   const client = createContentfulClient();
-  const entry: Entry<IPageFields> = await client.getEntry(id, {
+  const entry = await client.withoutUnresolvableLinks.getEntry<TypePageSkeleton>(id, {
     locale: locale,
   });
 
@@ -48,12 +42,12 @@ export const getPageById = async (id: string, locale: LOCALE_CODE) => {
     return null;
   }
 
-  return entry as IPage;
+  return entry;
 };
 
 export const getMainNav = async (locale: LOCALE_CODE) => {
   const client = createContentfulClient();
-  const entry: Entry<INavigation> = await client.getEntry(
+  const entry = await client.withoutUnresolvableLinks.getEntry<TypeNavigationSkeleton>(
     "67EXX84GGCZfZayO0JxrFg",
     {
       include: 3,
@@ -65,14 +59,14 @@ export const getMainNav = async (locale: LOCALE_CODE) => {
     return null;
   }
 
-  return entry as INavigation;
+  return entry;
 };
 
-export const getPage = async (slug: Slug, locale: LOCALE_CODE) => {
+export const getPage = async (slug: string, locale: LOCALE_CODE) => {
   const client = createContentfulClient();
-  const entries = await client.getEntries({
+  const entries = await client.withoutUnresolvableLinks.getEntries<TypePageSkeleton>({
     content_type: "page",
-    "fields.slug[in]": slug,
+    "fields.slug[in]": [slug],
     locale: locale,
     include: 10,
   });
@@ -81,7 +75,7 @@ export const getPage = async (slug: Slug, locale: LOCALE_CODE) => {
     return null;
   }
 
-  return entries.items[0] as IPage;
+  return entries.items[0];
 };
 
 function createResult(items: any[]) {
@@ -108,7 +102,7 @@ export const getBlogposts = async (locale: LOCALE_CODE) => {
     content_type: "blogpost",
     locale: locale,
     include: 5,
-    order: "-sys.createdAt",
+    order: ["-sys.createdAt"],
   });
 
   return createResult(items);
@@ -121,7 +115,7 @@ export const getLatestBlogposts = async (locale: LOCALE_CODE) => {
     content_type: "blogpost",
     locale: locale,
     include: 5,
-    order: "-sys.createdAt",
+    order: ["-sys.createdAt"],
     limit: 3,
   });
 
@@ -130,14 +124,13 @@ export const getLatestBlogposts = async (locale: LOCALE_CODE) => {
 
 export const getBlogpostTags = async (
   locale: LOCALE_CODE,
-  tag: ITag["fields"]["slug"],
+  tag: string | undefined,
 ) => {
   const client = createContentfulClient();
-  const { items } = await client.getEntries({
+  const { items } = await client.withoutUnresolvableLinks.getEntries<TypeTagSkeleton>({
     content_type: "tag",
     locale: locale,
-    "fields.slug[in]": tag,
-    order: "sys.updatedAt",
+    "fields.slug[in]": tag ? [tag] : [],
   });
   return createResult(items);
 };
@@ -228,13 +221,12 @@ export const getGender = async (): Promise<string[]> => {
 export const getTags = async (locale: LOCALE_CODE = "de") => {
   const client = createContentfulClient();
 
-  const { items } = await client.getEntries({
+  const { items } = await client.withoutUnresolvableLinks.getEntries<TypeCoachtagSkeleton>({
     content_type: "coachtag",
-    order: "fields.tag",
     locale: locale,
   });
 
-  return items as ICoachtag[];
+  return items;
 };
 
 export const getCoaches = async (lang: string | null = null) => {
@@ -242,39 +234,31 @@ export const getCoaches = async (lang: string | null = null) => {
 
   const usedLanguage = lang === "de" ? null : lang;
 
-  let options = {};
-
   const baseOptions = {
     limit: 500,
-    content_type: "coach",
-    order: "fields.name",
+    content_type: "coach" as const,
   };
 
-  if (usedLanguage) {
-    options = {
-      ...baseOptions,
-      "fields.languages[in]": usedLanguage,
-    };
-  } else {
-    options = baseOptions;
-  }
+  const options = usedLanguage
+    ? { ...baseOptions, "fields.languages[in]": usedLanguage }
+    : baseOptions;
 
   const usedLocale =
     !lang || !availableLocales.includes(lang as LOCALE_CODE) ? "de" : lang;
 
-  const coachesResponse: EntryCollection<ICoach> = await client.getEntries({
+  const coachesResponse = await client.withoutUnresolvableLinks.getEntries<TypeCoachSkeleton>({
     ...options,
     locale: usedLocale,
   });
 
-  return shuffle(coachesResponse.items) as ICoach[];
+  return shuffle(coachesResponse.items);
 };
 
 export const getNetwork = async () => {
   const client = createContentfulClient();
   const { items } = await client.getEntries({
     content_type: "network",
-    order: "fields.title",
+    order: ["fields.title"],
   });
 
   return createResult(items);
@@ -285,7 +269,7 @@ export const getSupporters = async () => {
 
   const { items } = await client.getEntries({
     content_type: "supporter",
-    order: "fields.title",
+    order: ["fields.title"],
   });
   return createResult(items);
 };
@@ -295,7 +279,7 @@ export const getMedia = async () => {
 
   const { items } = await client.getEntries({
     content_type: "media",
-    order: "fields.title",
+    order: ["fields.title"],
   });
 
   return createResult(items);
@@ -304,11 +288,10 @@ export const getMedia = async () => {
 export const getTestimonials = async () => {
   const client = createContentfulClient();
 
-  const { items } = await client.getEntries({
+  const { items } = await client.withoutUnresolvableLinks.getEntries<TypeTestimonialsSkeleton>({
     content_type: "testimonials",
-    order: "fields.title",
     include: 10,
   });
 
-  return items as ITestimonials[];
+  return items;
 };

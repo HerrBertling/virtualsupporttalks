@@ -18,7 +18,7 @@ export default function BlogpostCard({
 }) {
   const { title, slug, tagList, description, mainImage } =
     post.fields as IBlogpostFields;
-  const image = mainImage?.fields?.file?.url;
+  const image = ((mainImage as any)?.fields?.file?.url as string) || null;
   const dateObj = new Date(post.sys.createdAt);
   const date = dateObj.toLocaleString(locale, {
     year: "numeric",
@@ -35,9 +35,9 @@ export default function BlogpostCard({
       {image ? (
         <CleverLink to={`/${locale}/blog/${slug}`}>
           <img
-            src={image as string}
+            src={image}
             className="h-auto max-h-40 w-full rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
-            alt={title}
+            alt={title as string}
           />
         </CleverLink>
       ) : (
@@ -50,7 +50,7 @@ export default function BlogpostCard({
       )}
       <CleverLink to={`/${locale}/blog/${slug}`}>
         <h3 className="font-headline text-xl font-bold group-hover:text-vsp-500">
-          {title}
+          {title as string}
         </h3>
       </CleverLink>
       <aside
@@ -59,7 +59,7 @@ export default function BlogpostCard({
         }`}
       >
         {Boolean(tagList) && showTags && (
-          <TagGroup tags={tagList} locale={locale} />
+          <TagGroup tags={tagList as any} locale={locale} />
         )}
         <time
           dateTime={post.sys.createdAt}
@@ -68,7 +68,7 @@ export default function BlogpostCard({
           {date}
         </time>
       </aside>
-      <p>{description}</p>
+      <p>{description as string}</p>
       <CleverLink to={`/${locale}/blog/${slug}`} className="block underline">
         {t("ctaToBlogpost")}
       </CleverLink>

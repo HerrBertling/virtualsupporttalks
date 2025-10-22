@@ -1,9 +1,12 @@
 import type { ReactNode } from "react";
-import type { IContentImageBgFields } from "../../../@types/generated/contentful";
+import type { Entry } from "contentful";
+import type { TypeContentImageBgSkeleton } from "../../../@types/generated/contentful";
 import AmazonCharityBanner from "../AmazonCharityBanner";
 import CleverButton from "../CleverButton";
 
-interface ContentBlockImageBgProps extends IContentImageBgFields {
+type BaseContentImageBgFields = Entry<TypeContentImageBgSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+
+interface ContentBlockImageBgProps extends BaseContentImageBgFields {
   children: ReactNode;
   withPaddingTop: Boolean;
 }

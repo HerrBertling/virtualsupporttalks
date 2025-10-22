@@ -1,7 +1,8 @@
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
+import type { Entry } from "contentful";
 import type {
-  IBlogpost,
+  TypeBlogpostSkeleton,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
 import { useLoaderData } from "@remix-run/react";
@@ -9,6 +10,8 @@ import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
 import type { Document } from "@contentful/rich-text-types";
 import LanguageFence from "../LanguageFence";
+
+type IBlogpost = Entry<TypeBlogpostSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">;
 
 interface ContentBlockBlogPreviewProps {
   titleAndHeader: Document;

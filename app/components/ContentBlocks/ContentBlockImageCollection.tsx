@@ -1,6 +1,9 @@
-import type { IImageCollectionFields } from "../../../@types/generated/contentful";
+import type { Entry } from "contentful";
+import type { TypeImageCollectionSkeleton } from "../../../@types/generated/contentful";
 
-interface ImageCollectionProps extends IImageCollectionFields {
+type BaseImageCollectionFields = Entry<TypeImageCollectionSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+
+interface ImageCollectionProps extends BaseImageCollectionFields {
   withPaddingTop: boolean;
 }
 
@@ -34,10 +37,10 @@ export default function ContentBlockImageCollection({
   images,
   withPaddingTop,
 }: ImageCollectionProps) {
-  const imageCollection = images?.map(({ sys, fields }) => ({
-    image: fields?.image?.fields.file.url,
-    link: fields.url,
-    text: fields.internalTitle,
+  const imageCollection = images?.filter((item): item is NonNullable<typeof item> => !!item).map(({ sys, fields }) => ({
+    image: fields?.image?.fields?.file?.url,
+    link: fields?.url,
+    text: fields?.internalTitle,
     id: sys.id,
   }));
 

@@ -84,7 +84,7 @@ export default function SpeakingTimeContent({
 
   return (
     <div>
-      <ContentBlocks content={page.fields.content} locale={locale} />
+      <ContentBlocks content={page.fields.content as any} locale={locale} />
       <Form
         onChange={handleChange}
         ref={formRef}
@@ -171,7 +171,7 @@ export default function SpeakingTimeContent({
                   defaultValue={checkedTags.includes(tag.sys.id)}
                   type="checkbox"
                 >
-                  {tag.fields.tag}
+                  {tag.fields.tag as string}
                 </CoachFilterTag>
               );
             })}
@@ -222,11 +222,11 @@ export default function SpeakingTimeContent({
             return (
               <CoachCard
                 key={coach.sys.id}
-                name={name}
-                email={email}
-                url={url}
-                phone={phone}
-                emergency={emergency}
+                name={name as string}
+                email={email as string}
+                url={url as string}
+                phone={phone as string}
+                emergency={emergency as boolean}
                 image={image}
                 languages={languages}
                 gender={gender}

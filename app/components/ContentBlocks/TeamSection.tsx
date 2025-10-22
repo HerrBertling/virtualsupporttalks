@@ -1,13 +1,16 @@
-import { type ITeamSectionFields } from "../../../@types/generated/contentful";
+import type { Entry } from "contentful";
+import { type TypeTeamSectionSkeleton } from "../../../@types/generated/contentful";
 import CleverLink from "../CleverLink";
 import ContentfulRichText from "../ContentfulRichText";
+
+type TeamSectionProps = Entry<TypeTeamSectionSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
 
 export default function ContentBlockTeamSection({
   title,
   description,
   teamMembers,
-}: ITeamSectionFields) {
-  const sanitizedTeamMembers = teamMembers.filter((member) => !!member.fields);
+}: TeamSectionProps) {
+  const sanitizedTeamMembers = (teamMembers || []).filter((member): member is NonNullable<typeof member> => !!member?.fields);
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -22,7 +25,7 @@ export default function ContentBlockTeamSection({
             <li key={person.sys.id} className="flex flex-col gap-6 xl:flex-row">
               <img
                 className="aspect-square w-full lg:aspect-[4/5] lg:w-52 flex-none rounded-2xl object-cover"
-                src={person.fields.image.fields.file.url}
+                src={person.fields.image?.fields?.file?.url}
                 alt=""
               />
               <div className="flex-auto">
@@ -36,10 +39,10 @@ export default function ContentBlockTeamSection({
                     </p>
                   )}
                 </div>
-                <ContentfulRichText content={person.fields.content} />
+                {person.fields.content && <ContentfulRichText content={person.fields.content} />}
                 {person.fields.url && (
                   <p>
-                    <CleverLink to={person.fields.url}>Website</CleverLink>
+                    <CleverLink to={person.fields.url as string}>Website</CleverLink>
                   </p>
                 )}
               </div>

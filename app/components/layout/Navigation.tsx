@@ -27,11 +27,11 @@ export default function Navigation({
 
   const navItems = nav
     .map((item) => {
-      const { page, title, url } = item.fields;
+      const { page, title, url } = item.fields as any;
       const id = item.sys.id;
       let path = "/";
       if (url) {
-        path = url.replace("https://www.virtualsupporttalks.de", "");
+        path = (url as string).replace("https://www.virtualsupporttalks.de", "");
       }
       if (page?.fields?.slug) {
         path = `/${lang}/${page.fields.slug}`;
@@ -39,7 +39,7 @@ export default function Navigation({
         path = `/${lang}${path}`;
       }
       return {
-        title,
+        title: title as string,
         path,
         id,
       };

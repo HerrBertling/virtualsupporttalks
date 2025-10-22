@@ -1,11 +1,14 @@
-import type { IHeaderBlockFields } from "../../../@types/generated/contentful";
+import type { Entry } from "contentful";
+import type { TypeHeaderBlockSkeleton } from "../../../@types/generated/contentful";
+
+type HeaderProps = Entry<TypeHeaderBlockSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
 
 export default function Header({
   backgroundcolor,
   image,
   buttonUrl,
   buttonText,
-}: IHeaderBlockFields) {
+}: HeaderProps) {
   const headerStyle = {
     backgroundColor: backgroundcolor,
   };
@@ -13,7 +16,7 @@ export default function Header({
   const styleObject = {
     backgroundColor: backgroundcolor,
     backgroundImage: image
-      ? `url(${image.fields.file.url}?fm=avif&q=80)`
+      ? `url(${image.fields.file?.url}?fm=avif&q=80)`
       : undefined,
   };
   return (

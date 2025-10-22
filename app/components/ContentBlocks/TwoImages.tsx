@@ -1,17 +1,20 @@
+import type { Entry } from "contentful";
 import type {
-  ITwoImagesFields,
+  TypeTwoImagesSkeleton,
   LOCALE_CODE,
 } from "../../../@types/generated/contentful";
 import CleverLink from "../CleverLink";
 import FadeIn from "../FadeIn";
 
 type ImageType = {
-  image: string;
+  image: string | undefined;
   text: string;
   link: string;
 };
 
-interface TwoImagesProps extends ITwoImagesFields {
+type BaseTwoImagesFields = Entry<TypeTwoImagesSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+
+interface TwoImagesProps extends BaseTwoImagesFields {
   locale: LOCALE_CODE;
 }
 
@@ -35,12 +38,12 @@ export default function ContentBlockTwoImages({
   };
   const images: ImageType[] = [
     {
-      image: image1?.fields.file.url,
+      image: image1?.fields.file?.url,
       text: text1,
       link: sanityCheckForLink(link1),
     },
     {
-      image: image2?.fields.file.url,
+      image: image2?.fields.file?.url,
       text: text2,
       link: sanityCheckForLink(link2),
     },
