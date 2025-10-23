@@ -260,28 +260,57 @@ export default function SpeakingTimeContent({
               image,
               description,
               languages,
-              gender,
               mhfaTraining,
               completedMhfaTraining,
             } = coach.fields as ICoachFields;
+
+            // Type guards for safe rendering
+            const safeEmail = typeof email === 'string' ? email : undefined;
+            const safeName = typeof name === 'string' ? name : undefined;
+            const safeUrl = typeof url === 'string' ? url : undefined;
+            const safePhone = typeof phone === 'string' ? phone : undefined;
+            const safeEmergency = typeof emergency === 'boolean' ? emergency : undefined;
+            const safeLanguages = Array.isArray(languages)
+              ? languages.filter((l): l is string => typeof l === 'string')
+              : undefined;
+            const safeImage = image && typeof image === 'object' && 'sys' in image && 'fields' in image
+              ? image
+              : undefined;
+            const safeMhfaTraining = mhfaTraining && typeof mhfaTraining === 'object' && 'sys' in mhfaTraining && 'fields' in mhfaTraining
+              ? mhfaTraining
+              : undefined;
+            const safeMhfaLabel = typeof completedMhfaTraining === 'string'
+              ? completedMhfaTraining
+              : undefined;
+            const hasDescription = description && typeof description === 'object' && 'nodeType' in description;
+
             return (
-              <CoachCard
-                key={coach.sys.id}
-                name={name as string}
-                email={email as string}
-                url={url as string}
-                phone={phone as string}
-                emergency={emergency as boolean}
-                image={image}
-                languages={languages}
-                gender={gender}
-                mhfaTraining={mhfaTraining}
-                completedMhfaTraining={completedMhfaTraining}
-                message={emailTemplate}
-              >
-                {description && (
-                  <ContentfulRichText content={description} withProse={false} />
-                )}
+              <CoachCard key={coach.sys.id} emergency={safeEmergency} coachName={safeName}>
+                <CoachCard.Avatar image={safeImage} name={safeName} />
+
+                <CoachCard.Header>
+                  <CoachCard.Name>{safeName}</CoachCard.Name>
+                  <CoachCard.Meta>
+                    <CoachCard.Languages languages={safeLanguages} />
+                    <CoachCard.Badge image={safeMhfaTraining} label={safeMhfaLabel} />
+                  </CoachCard.Meta>
+                </CoachCard.Header>
+
+                <CoachCard.Description>
+                  {hasDescription && <ContentfulRichText content={description} withProse={false} />}
+                </CoachCard.Description>
+
+                <CoachCard.Contacts>
+                  {safeEmail && (
+                    <CoachCard.Email
+                      email={safeEmail}
+                      subject={emailTemplate?.subject}
+                      body={emailTemplate?.content}
+                    />
+                  )}
+                  {safeUrl && <CoachCard.Website url={safeUrl} />}
+                  {safePhone && <CoachCard.Phone phone={safePhone} />}
+                </CoachCard.Contacts>
               </CoachCard>
             );
           })}

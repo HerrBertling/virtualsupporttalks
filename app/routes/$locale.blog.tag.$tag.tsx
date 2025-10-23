@@ -10,9 +10,20 @@ import type {
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
 
-export const loader: LoaderFunction = async ({ params }) => {
+type LoaderData = {
+  posts: IBlogpost[];
+  locale: LOCALE_CODE;
+  tag: string;
+};
+
+export const loader: LoaderFunction = async ({ params }): Promise<LoaderData> => {
   const tag = params.tag;
-  const locale = (params.locale as string) || "de";
+  const locale = (params.locale as LOCALE_CODE) || "de";
+
+  if (!tag) {
+    throw new Response("Not Found", { status: 404 });
+  }
+
   const posts = (await getBlogposts(locale as LOCALE_CODE)) as IBlogpost[];
 
   if (!posts) {
@@ -20,10 +31,14 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 
   const postsWithCurrentTag = posts.filter((post) => {
-    return (
-      post.fields.tagList &&
-      post.fields.tagList.some((tag) => tag.fields.slug === params.tag)
-    );
+    const tagList = post.fields.tagList;
+    if (!Array.isArray(tagList)) return false;
+
+    return tagList.some((tagEntry) => {
+      if (!tagEntry || typeof tagEntry !== 'object' || !('fields' in tagEntry) || !tagEntry.fields) return false;
+      if (typeof tagEntry.fields !== 'object' || !('slug' in tagEntry.fields)) return false;
+      return tagEntry.fields.slug === tag;
+    });
   });
 
   if (postsWithCurrentTag.length === 0) {
@@ -37,15 +52,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function Index() {
-  const {
-    posts,
-    locale,
-    tag,
-  }: {
-    posts: IBlogpost[];
-    locale: LOCALE_CODE;
-    tag: ITag["fields"]["slug"];
-  } = useLoaderData<typeof loader>();
+  const { posts, locale, tag } = useLoaderData<typeof loader>();
   const { t } = useTranslation("blogpostByTag");
 
   return (

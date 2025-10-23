@@ -7,17 +7,15 @@ import { getSeoMeta } from "~/seo";
 import { getBlogpost } from "~/utils/contentful";
 import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
 
-export const meta: MetaFunction = ({
-  data,
-}: {
-  data: { blogpost: IBlogpost };
-}) => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data?.blogpost) {
-    return {
-      title: "404 – page not found",
-    };
+    return [
+      {
+        title: "404 – page not found",
+      },
+    ];
   }
-  const { title, seo, description } = data?.blogpost?.fields;
+  const { title, seo, description } = data.blogpost.fields;
 
   let seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,

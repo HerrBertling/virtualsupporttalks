@@ -66,7 +66,7 @@ export const getSearchPageContents = async (
 
       return (
         !!coachGenders &&
-        coachGenders.some((gender) => checkedGender.includes(gender))
+        coachGenders.some((gender: string) => checkedGender.includes(gender))
       );
     })
     .filter((coach) => {
@@ -86,7 +86,7 @@ export const getSearchPageContents = async (
   const availableTagIDs = filteredCoaches
     .map((coach) => coach.fields.tag)
     .filter((tags) => !!tags)
-    .map((tags) => tags?.map((tag) => tag.sys.id))
+    .map((tags) => tags?.map((tag: { sys: { id: string } }) => tag.sys.id))
     .flat();
 
   return {

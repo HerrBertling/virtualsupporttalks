@@ -10,6 +10,12 @@ export default function TagGroup({ tags, locale }: TagGroupProps) {
     <div className="flex flex-wrap items-start gap-2">
       {tags?.map((tag) => {
         const { tagName, slug } = tag.fields;
+
+        // Type guard: only render if both fields are strings
+        if (typeof tagName !== 'string' || typeof slug !== 'string') {
+          return null;
+        }
+
         return (
           <CleverLink
             key={tagName}

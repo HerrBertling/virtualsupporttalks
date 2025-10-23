@@ -24,10 +24,14 @@ export const loader: LoaderFunction = async ({
   }
 
   const navObject = await getMainNav(locale);
-  const nav = navObject?.fields?.items;
-  if (!nav || nav.length === 0) {
+  const rawNav = navObject?.fields?.items;
+  if (!rawNav || rawNav.length === 0) {
     throw new Response("Could not load navigation", { status: 404 });
   }
+
+  // Filter out undefined items
+  const nav = rawNav.filter((item): item is NonNullable<typeof item> => item !== undefined);
+
   return { nav, locale };
 };
 

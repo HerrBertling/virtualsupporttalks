@@ -17,8 +17,12 @@ type PageProps = {
   latestPosts: IBlogpost[];
 };
 
-export const meta: MetaFunction = ({ data }) => {
-  const { title, seo } = data?.page?.fields;
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  if (!data?.page) {
+    return [{ title: "Redezeit" }];
+  }
+
+  const { title, seo } = data.page.fields;
 
   let seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
@@ -51,11 +55,6 @@ export const loader: LoaderFunction = async ({
 };
 
 export default function Index() {
-  const {
-    page: {
-      fields: { content },
-    },
-    locale,
-  }: PageProps = useLoaderData<typeof loader>();
-  return <ContentBlocks content={content} locale={locale} />;
+  const { page, locale }: PageProps = useLoaderData<typeof loader>();
+  return <ContentBlocks content={page.fields.content} locale={locale} />;
 }
