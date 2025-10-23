@@ -1,4 +1,5 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
@@ -22,7 +23,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
   let seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
-    description: seo?.fields?.description || null,
+    description: seo?.fields?.description || undefined,
   });
   return [
     {
@@ -31,7 +32,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug, locale } = params;
 
   if (!slug) {
@@ -48,16 +49,11 @@ export const loader: LoaderFunction = async ({ params }) => {
     (locale || "de") as LOCALE_CODE,
   )) as IBlogpost[];
 
-  return { page, locale, latestPosts };
-};
-
-type PageProps = {
-  locale: LOCALE_CODE;
-  page: IPage;
+  return json({ page, locale: locale as LOCALE_CODE, latestPosts });
 };
 
 export default function Index() {
-  const { page, locale }: PageProps = useLoaderData<typeof loader>();
+  const { page, locale } = useLoaderData<typeof loader>();
   return <ContentBlocks content={page.fields.content} locale={locale} />;
 }
 

@@ -5,39 +5,56 @@ This document outlines recommended improvements to make the Redezeit project mor
 ## Status Overview
 
 - **Total Lines of Code**: ~4,587 (TypeScript/TSX)
-- **Current Type Errors**: 22
+- **Current Type Errors**: 0 ✅ (Fixed in PR #332)
 - **Current Lint Errors**: 2
 - **Test Coverage**: Minimal (1 test file)
 - **Outdated Dependencies**: 37+
+- **Security Vulnerabilities**: 22 (1 critical, 4 high, 11 moderate, 6 low)
 - **Node Version**: >=22.2.0
 
 ---
 
 ## 🔴 Critical Priority
 
-### 1. Fix TypeScript Errors (22 errors)
+### 1. ✅ Fix TypeScript Errors (COMPLETED)
+
+**Status**: ✅ Completed in PRs #331 and #332
 
 **Impact**: High - Type safety is compromised, potential runtime errors
 
-**Files affected**:
+**Completed Tasks**:
 
-- `app/components/SpeakingTimeContent.tsx` (8 errors)
-- `app/components/TagGroup.tsx` (2 errors)
-- `app/routes/$locale.$slug.tsx` (4 errors)
-- `app/routes/$locale._index.tsx` (2 errors)
-- `app/routes/$locale.blog.$post.tsx` (3 errors)
-- `app/routes/$locale.blog.tag.$tag.tsx` (3 errors)
+- [x] Fix null assignment type errors in `SpeakingTimeContent.tsx:275-279`
+- [x] Fix `Document` type mismatches in `SpeakingTimeContent.tsx:283`
+- [x] Add proper type guards for `page` property in route loaders
+- [x] Fix meta function type signature in blog post route
+- [x] Add proper type assertions for Contentful fields that are currently typed as `any`
+- [x] Fix array iteration type issues in tag filtering
+- [x] Remove unused `app/utils/i18n.ts` file
+
+**Actual effort**: ~4 hours
+
+---
+
+### 1b. Fix Security Vulnerabilities (22 vulnerabilities)
+
+**Impact**: High - Security risks, potential exploits
+
+**Issue**: GitHub Dependabot detected 22 vulnerabilities:
+- 1 critical severity
+- 4 high severity
+- 11 moderate severity
+- 6 low severity
 
 **Tasks**:
 
-- [ ] Fix null assignment type errors in `SpeakingTimeContent.tsx:275-279`
-- [ ] Fix `Document` type mismatches in `SpeakingTimeContent.tsx:283`
-- [ ] Add proper type guards for `page` property in route loaders
-- [ ] Fix meta function type signature in blog post route
-- [ ] Add proper type assertions for Contentful fields that are currently typed as `any`
-- [ ] Fix array iteration type issues in tag filtering
+- [ ] Review Dependabot security alerts at https://github.com/HerrBertling/virtualsupporttalks/security/dependabot
+- [ ] Update vulnerable dependencies (prioritize critical and high severity)
+- [ ] Test application after security updates
+- [ ] Verify no breaking changes from dependency updates
+- [ ] Consider enabling Dependabot auto-updates for security patches
 
-**Estimated effort**: 4-6 hours
+**Estimated effort**: 2-3 hours
 
 ---
 
@@ -202,7 +219,49 @@ if (
 
 ---
 
-### 6a. Update Patch and Minor Dependencies
+### 6a. Migrate from Remix v2 to React Router v7
+
+**Impact**: High - Major architectural change, future-proofs the app
+
+**Context**: React Router v7 is the successor to Remix. The Remix team recommends migrating to React Router v7 as it combines the best of both frameworks with better performance and a more streamlined API.
+
+**⚠️ REQUIRED READING**: Before starting this migration, **read and follow the official guide**:
+
+- **https://reactrouter.com/upgrading/remix** - This is the canonical migration guide from the React Router team
+
+**Tasks**:
+
+- [ ] **Read the entire migration guide**: https://reactrouter.com/upgrading/remix
+- [ ] Install React Router v7 packages (follow guide for exact versions)
+- [ ] Update file-based routing (likely minimal changes per guide)
+- [ ] Migrate from Remix loaders/actions to React Router loaders/actions
+- [ ] Update data fetching patterns
+- [ ] Replace `@remix-run/*` imports with `react-router` equivalents (use codemod if available)
+- [ ] Update `entry.client.tsx` and `entry.server.tsx` (follow guide examples)
+- [ ] Update Netlify adapter (check for `@react-router/netlify` or follow deployment guide)
+- [ ] Update `vite.config.ts` to use React Router plugin
+- [ ] Update package.json scripts if needed
+- [ ] Test all routes thoroughly (especially loaders, actions, and error boundaries)
+- [ ] Update documentation and CLAUDE.md
+
+**Benefits**:
+
+- Modern framework with active development
+- Better performance characteristics
+- Simplified mental model
+- Official successor to Remix
+
+**Notes**:
+
+- The migration guide includes codemods to automate many changes
+- File-based routing conventions are largely compatible
+- Most breaking changes are in package names, not APIs
+
+**Estimated effort**: 8-10 hours
+
+---
+
+### 6a2. Update Patch and Minor Dependencies
 
 **Impact**: Medium - Quick security and bug fixes
 
@@ -251,48 +310,6 @@ if (
 - [ ] Update custom CSS if needed
 
 **Estimated effort**: 3-4 hours
-
----
-
-### 6d. Migrate from Remix v2 to React Router v7
-
-**Impact**: High - Major architectural change, future-proofs the app
-
-**Context**: React Router v7 is the successor to Remix. The Remix team recommends migrating to React Router v7 as it combines the best of both frameworks with better performance and a more streamlined API.
-
-**⚠️ REQUIRED READING**: Before starting this migration, **read and follow the official guide**:
-
-- **https://reactrouter.com/upgrading/remix** - This is the canonical migration guide from the React Router team
-
-**Tasks**:
-
-- [ ] **Read the entire migration guide**: https://reactrouter.com/upgrading/remix
-- [ ] Install React Router v7 packages (follow guide for exact versions)
-- [ ] Update file-based routing (likely minimal changes per guide)
-- [ ] Migrate from Remix loaders/actions to React Router loaders/actions
-- [ ] Update data fetching patterns
-- [ ] Replace `@remix-run/*` imports with `react-router` equivalents (use codemod if available)
-- [ ] Update `entry.client.tsx` and `entry.server.tsx` (follow guide examples)
-- [ ] Update Netlify adapter (check for `@react-router/netlify` or follow deployment guide)
-- [ ] Update `vite.config.ts` to use React Router plugin
-- [ ] Update package.json scripts if needed
-- [ ] Test all routes thoroughly (especially loaders, actions, and error boundaries)
-- [ ] Update documentation and CLAUDE.md
-
-**Benefits**:
-
-- Modern framework with active development
-- Better performance characteristics
-- Simplified mental model
-- Official successor to Remix
-
-**Notes**:
-
-- The migration guide includes codemods to automate many changes
-- File-based routing conventions are largely compatible
-- Most breaking changes are in package names, not APIs
-
-**Estimated effort**: 8-10 hours
 
 ---
 
