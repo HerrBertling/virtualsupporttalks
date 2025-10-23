@@ -202,7 +202,49 @@ if (
 
 ---
 
-### 6a. Update Patch and Minor Dependencies
+### 6a. Migrate from Remix v2 to React Router v7
+
+**Impact**: High - Major architectural change, future-proofs the app
+
+**Context**: React Router v7 is the successor to Remix. The Remix team recommends migrating to React Router v7 as it combines the best of both frameworks with better performance and a more streamlined API.
+
+**⚠️ REQUIRED READING**: Before starting this migration, **read and follow the official guide**:
+
+- **https://reactrouter.com/upgrading/remix** - This is the canonical migration guide from the React Router team
+
+**Tasks**:
+
+- [ ] **Read the entire migration guide**: https://reactrouter.com/upgrading/remix
+- [ ] Install React Router v7 packages (follow guide for exact versions)
+- [ ] Update file-based routing (likely minimal changes per guide)
+- [ ] Migrate from Remix loaders/actions to React Router loaders/actions
+- [ ] Update data fetching patterns
+- [ ] Replace `@remix-run/*` imports with `react-router` equivalents (use codemod if available)
+- [ ] Update `entry.client.tsx` and `entry.server.tsx` (follow guide examples)
+- [ ] Update Netlify adapter (check for `@react-router/netlify` or follow deployment guide)
+- [ ] Update `vite.config.ts` to use React Router plugin
+- [ ] Update package.json scripts if needed
+- [ ] Test all routes thoroughly (especially loaders, actions, and error boundaries)
+- [ ] Update documentation and CLAUDE.md
+
+**Benefits**:
+
+- Modern framework with active development
+- Better performance characteristics
+- Simplified mental model
+- Official successor to Remix
+
+**Notes**:
+
+- The migration guide includes codemods to automate many changes
+- File-based routing conventions are largely compatible
+- Most breaking changes are in package names, not APIs
+
+**Estimated effort**: 8-10 hours
+
+---
+
+### 6a2. Update Patch and Minor Dependencies
 
 **Impact**: Medium - Quick security and bug fixes
 
@@ -251,48 +293,6 @@ if (
 - [ ] Update custom CSS if needed
 
 **Estimated effort**: 3-4 hours
-
----
-
-### 6d. Migrate from Remix v2 to React Router v7
-
-**Impact**: High - Major architectural change, future-proofs the app
-
-**Context**: React Router v7 is the successor to Remix. The Remix team recommends migrating to React Router v7 as it combines the best of both frameworks with better performance and a more streamlined API.
-
-**⚠️ REQUIRED READING**: Before starting this migration, **read and follow the official guide**:
-
-- **https://reactrouter.com/upgrading/remix** - This is the canonical migration guide from the React Router team
-
-**Tasks**:
-
-- [ ] **Read the entire migration guide**: https://reactrouter.com/upgrading/remix
-- [ ] Install React Router v7 packages (follow guide for exact versions)
-- [ ] Update file-based routing (likely minimal changes per guide)
-- [ ] Migrate from Remix loaders/actions to React Router loaders/actions
-- [ ] Update data fetching patterns
-- [ ] Replace `@remix-run/*` imports with `react-router` equivalents (use codemod if available)
-- [ ] Update `entry.client.tsx` and `entry.server.tsx` (follow guide examples)
-- [ ] Update Netlify adapter (check for `@react-router/netlify` or follow deployment guide)
-- [ ] Update `vite.config.ts` to use React Router plugin
-- [ ] Update package.json scripts if needed
-- [ ] Test all routes thoroughly (especially loaders, actions, and error boundaries)
-- [ ] Update documentation and CLAUDE.md
-
-**Benefits**:
-
-- Modern framework with active development
-- Better performance characteristics
-- Simplified mental model
-- Official successor to Remix
-
-**Notes**:
-
-- The migration guide includes codemods to automate many changes
-- File-based routing conventions are largely compatible
-- Most breaking changes are in package names, not APIs
-
-**Estimated effort**: 8-10 hours
 
 ---
 

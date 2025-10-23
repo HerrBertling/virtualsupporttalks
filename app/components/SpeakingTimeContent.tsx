@@ -1,4 +1,6 @@
 import { Form, useNavigation, useSubmit } from "@remix-run/react";
+import type { Asset } from "contentful";
+import type { Document } from "@contentful/rich-text-types";
 import { PropsWithChildren, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { EmailTemplate } from "~/utils/contentful";
@@ -9,6 +11,30 @@ import type {
   IPage,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
+
+// Type guard to check if a value is an Asset
+function isAsset(value: unknown): value is Asset {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'sys' in value &&
+    typeof value.sys === 'object' &&
+    value.sys !== null &&
+    'type' in value.sys &&
+    value.sys.type === 'Asset'
+  );
+}
+
+// Type guard to check if a value is a Contentful RichText Document
+function isDocument(value: unknown): value is Document {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'nodeType' in value &&
+    'content' in value &&
+    'data' in value
+  );
+}
 import CoachCard from "./CoachCard";
 import CoachFilterTag from "./CoachFilterTag";
 import CoachList from "./CoachList";
@@ -273,16 +299,12 @@ export default function SpeakingTimeContent({
             const safeLanguages = Array.isArray(languages)
               ? languages.filter((l): l is string => typeof l === 'string')
               : undefined;
-            const safeImage = image && typeof image === 'object' && 'sys' in image && 'fields' in image
-              ? image
-              : undefined;
-            const safeMhfaTraining = mhfaTraining && typeof mhfaTraining === 'object' && 'sys' in mhfaTraining && 'fields' in mhfaTraining
-              ? mhfaTraining
-              : undefined;
+            const safeImage = isAsset(image) ? image : undefined;
+            const safeMhfaTraining = isAsset(mhfaTraining) ? mhfaTraining : undefined;
             const safeMhfaLabel = typeof completedMhfaTraining === 'string'
               ? completedMhfaTraining
               : undefined;
-            const hasDescription = description && typeof description === 'object' && 'nodeType' in description;
+            const safeDescription = isDocument(description) ? description : undefined;
 
             return (
               <CoachCard key={coach.sys.id} emergency={safeEmergency} coachName={safeName}>
@@ -297,7 +319,7 @@ export default function SpeakingTimeContent({
                 </CoachCard.Header>
 
                 <CoachCard.Description>
-                  {hasDescription && <ContentfulRichText content={description} withProse={false} />}
+                  {safeDescription && <ContentfulRichText content={safeDescription} withProse={false} />}
                 </CoachCard.Description>
 
                 <CoachCard.Contacts>

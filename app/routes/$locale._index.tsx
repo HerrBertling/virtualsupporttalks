@@ -3,19 +3,14 @@ import type {
   IPage,
   LOCALE_CODE,
 } from "../../@types/generated/contentful";
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getLatestBlogposts, getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 import ContentBlocks from "~/components/ContentBlocks";
 
 import { getSeoMeta } from "~/seo";
-
-type PageProps = {
-  page: IPage;
-  locale: LOCALE_CODE;
-  latestPosts: IBlogpost[];
-};
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data?.page) {
@@ -26,7 +21,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
   let seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
-    description: seo?.fields?.description || null,
+    description: seo?.fields?.description || undefined,
   });
   return [
     {
@@ -35,9 +30,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
-export const loader: LoaderFunction = async ({
-  params,
-}): Promise<PageProps> => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   const locale = params.locale as LOCALE_CODE;
   if (!locale) {
     throw new Error("No locale provided");
@@ -51,10 +44,10 @@ export const loader: LoaderFunction = async ({
     locale as LOCALE_CODE,
   )) as IBlogpost[];
 
-  return { page, locale, latestPosts };
+  return json({ page, locale, latestPosts });
 };
 
 export default function Index() {
-  const { page, locale }: PageProps = useLoaderData<typeof loader>();
+  const { page, locale } = useLoaderData<typeof loader>();
   return <ContentBlocks content={page.fields.content} locale={locale} />;
 }

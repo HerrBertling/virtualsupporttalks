@@ -154,7 +154,7 @@ type BadgeProps = {
 function Badge({ image, label }: BadgeProps) {
   const imagePath = image?.fields?.file?.url;
 
-  if (!imagePath) return null;
+  if (!imagePath || typeof imagePath !== 'string') return null;
 
   return (
     <>
