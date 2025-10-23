@@ -1,12 +1,8 @@
-import type { ICenteredContentFields } from "../../../@types/generated/contentful";
+import type { Entry } from "contentful";
+import type { TypeCenteredContentSkeleton } from "../../../@types/generated/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
-type ContentCenteredProps = {
-  content: ICenteredContentFields["content"];
-  bgcolor: ICenteredContentFields["bgcolor"];
-  buttonText: ICenteredContentFields["buttonText"];
-  buttonUrl: ICenteredContentFields["buttonUrl"];
-};
+type ContentCenteredProps = Entry<TypeCenteredContentSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
 
 export default function ContentBlockCentered({
   content,

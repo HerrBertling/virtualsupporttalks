@@ -1,7 +1,10 @@
-import type { IVideoPlayerFields } from "../../../@types/generated/contentful";
+import type { Entry } from "contentful";
+import type { TypeVideoPlayerSkeleton } from "../../../@types/generated/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
-export default function VideoPlayer({ videoId, content }: IVideoPlayerFields) {
+type VideoPlayerProps = Entry<TypeVideoPlayerSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+
+export default function VideoPlayer({ videoId, content }: VideoPlayerProps) {
   return (
     <section className="my-1 grid w-screen max-w-full grid-cols-1 lg:grid-cols-2">
       <div className=" flex-grid self-center py-8 px-4 lg:row-start-1 lg:ml-auto lg:max-w-[70ch] lg:px-12 lg:pt-24 lg:pb-12">

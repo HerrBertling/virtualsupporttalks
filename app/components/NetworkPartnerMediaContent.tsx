@@ -5,7 +5,7 @@ import type {
   IPage,
   ISupporter,
   LOCALE_CODE,
-} from "@types/generated/contentful";
+} from "../../@types/generated/contentful";
 import { useTranslation } from "react-i18next";
 import ContentBlocks from "./ContentBlocks";
 import BasicLayout from "./layout/BasicLayout";
@@ -30,7 +30,7 @@ export default function networkPartnerMedia({
 }: NetworkPartnerMediaProps) {
   const { t } = useTranslation("networkPartnerMedia");
   return (
-    <BasicLayout nav={navigation.fields.items!} lang={locale}>
+    <BasicLayout nav={navigation.fields.items! as any} lang={locale}>
       <div className="container mx-auto max-w-6xl">
         <div className="pt-24">
           <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
@@ -78,7 +78,7 @@ export default function networkPartnerMedia({
         )}
       </div>
       {page?.fields.content && (
-        <ContentBlocks content={page.fields.content} locale={locale} />
+        <ContentBlocks content={page.fields.content as any} locale={locale} />
       )}
       {media && (
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">

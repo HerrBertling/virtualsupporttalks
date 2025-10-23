@@ -1,11 +1,14 @@
-import { type ITestimonialsFields } from "../../../@types/generated/contentful";
+import type { Entry } from "contentful";
+import { type TypeTestimonialsSkeleton } from "../../../@types/generated/contentful";
+
+type TestimonialProps = Entry<TypeTestimonialsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
 
 export default function Testimonial({
   link,
   image,
   testimonialText,
   author,
-}: ITestimonialsFields) {
+}: TestimonialProps) {
   return (
     <section className="mx-auto my-8 max-w-7xl px-4 pt-12 md:px-12">
       <div className="max-w-[100%] h-[auto] flex flex-col gap-8 items-center justify-center p-8 shadow shadow-black-500/40 hover:shadow-vsp-500/40 rounded-lg ">
@@ -13,7 +16,7 @@ export default function Testimonial({
           <a href={link}>
             {image && (
               <img
-                src={image.fields.file.url}
+                src={image.fields.file?.url}
                 alt=""
                 className="h-auto max-h-40  rounded-lg object-cover transition-opacity duration-300 group-hover:opacity-50"
               />

@@ -1,4 +1,4 @@
-function ArrowDown({ classNames = "h-6 w-6" }) {
+function ArrowDown({ className = "h-6 w-6" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ function ArrowDown({ classNames = "h-6 w-6" }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={classNames}
+      className={className}
     >
       <path
         strokeLinecap="round"

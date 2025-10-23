@@ -1,7 +1,5 @@
 const contentfulManagement = require("contentful-management");
-
-const dotenv = require("dotenv");
-dotenv.config();
+require("dotenv").config();
 
 module.exports = function () {
   const contentfulClient = contentfulManagement.createClient({
