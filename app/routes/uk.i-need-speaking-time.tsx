@@ -7,65 +7,65 @@ import { getSeoMeta } from "~/seo";
 import { getSearchPageContents } from "~/utils/getSearchPageContents";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const data = await getSearchPageContents(request, "uk");
-  return data;
+	const data = await getSearchPageContents(request, "uk");
+	return data;
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  if (!data?.page) {
-    return [{ title: "Мені потрібен час для розмови" }];
-  }
+	if (!data?.page) {
+		return [{ title: "Мені потрібен час для розмови" }];
+	}
 
-  const { title, seo } = data.page.fields;
+	const { title, seo } = data.page.fields;
 
-  let seoMeta = getSeoMeta({
-    title: seo?.fields?.title || title,
-    description: seo?.fields?.description || null,
-  });
-  return [
-    {
-      ...seoMeta,
-    },
-  ];
+	const seoMeta = getSeoMeta({
+		title: seo?.fields?.title || title,
+		description: seo?.fields?.description || null,
+	});
+	return [
+		{
+			...seoMeta,
+		},
+	];
 };
 
 export default function SearchingCoach() {
-  const {
-    page,
-    coaches,
-    coachesAmount,
-    languages,
-    gender,
-    tags,
-    navigation,
-    checkedTags,
-    currentLang,
-    checkedGender,
-    locale,
-    availableTagIDs,
-    emailTemplate,
-  } = useLoaderData<typeof loader>();
+	const {
+		page,
+		coaches,
+		coachesAmount,
+		languages,
+		gender,
+		tags,
+		navigation,
+		checkedTags,
+		currentLang,
+		checkedGender,
+		locale,
+		availableTagIDs,
+		emailTemplate,
+	} = useLoaderData<typeof loader>();
 
-  return (
-    <BasicLayout nav={navigation.fields.items} lang={locale}>
-      <SpeakingTimeContent
-        languages={languages}
-        gender={gender}
-        currentLang={currentLang}
-        checkedGender={checkedGender}
-        locale={locale}
-        coaches={coaches}
-        coachesAmount={coachesAmount}
-        tags={tags}
-        checkedTags={checkedTags}
-        availableTagIDs={availableTagIDs}
-        page={page}
-        emailTemplate={emailTemplate}
-      />
-    </BasicLayout>
-  );
+	return (
+		<BasicLayout nav={navigation.fields.items} lang={locale}>
+			<SpeakingTimeContent
+				languages={languages}
+				gender={gender}
+				currentLang={currentLang}
+				checkedGender={checkedGender}
+				locale={locale}
+				coaches={coaches}
+				coachesAmount={coachesAmount}
+				tags={tags}
+				checkedTags={checkedTags}
+				availableTagIDs={availableTagIDs}
+				page={page}
+				emailTemplate={emailTemplate}
+			/>
+		</BasicLayout>
+	);
 }
 
 export function ErrorBoundary() {
-  return <BasicCatchBoundary />;
+	return <BasicCatchBoundary />;
 }

@@ -1,23 +1,20 @@
 import type { ReactNode } from "react";
-import type {
-  INavigationItem,
-  LOCALE_CODE,
-} from "../../../@types/generated/contentful";
+import type { INavigationItem, LOCALE_CODE } from "../../../@types/generated/contentful";
 import LayoutFooter from "./Footer";
 import LayoutHeader from "./Header";
 
 type BasicLayoutProps = {
-  children: ReactNode;
-  nav: INavigationItem[];
-  lang: LOCALE_CODE;
+	children: ReactNode;
+	nav: INavigationItem[];
+	lang: LOCALE_CODE;
 };
 
 export default function BasicLayout({ nav, lang, children }: BasicLayoutProps) {
-  return (
-    <div>
-      <LayoutHeader nav={nav} lang={lang} />
-      <main>{children}</main>
-      <LayoutFooter />
-    </div>
-  );
+	return (
+		<div>
+			<LayoutHeader nav={nav} lang={lang} />
+			<main>{children}</main>
+			<LayoutFooter />
+		</div>
+	);
 }

@@ -1,4 +1,10 @@
-import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type {
+	ChainModifiers,
+	Entry,
+	EntryFieldTypes,
+	EntrySkeletonType,
+	LocaleCode,
+} from "contentful";
 import type { TypeBannerSkeleton } from "./TypeBanner";
 import type { TypeBlogPreviewSkeleton } from "./TypeBlogPreview";
 import type { TypeCenteredContentSkeleton } from "./TypeCenteredContent";
@@ -18,11 +24,33 @@ import type { TypeTwoImagesSkeleton } from "./TypeTwoImages";
 import type { TypeVideoPlayerSkeleton } from "./TypeVideoPlayer";
 
 export interface TypePageFields {
-    title?: EntryFieldTypes.Symbol;
-    slug?: EntryFieldTypes.Symbol;
-    content: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeBannerSkeleton | TypeBlogPreviewSkeleton | TypeCenteredContentSkeleton | TypeCoachListSkeleton | TypeContentImageBgSkeleton | TypeContentWithFullSizeImageSkeleton | TypeGenericContentSkeleton | TypeHeaderBlockSkeleton | TypeImageCollectionSkeleton | TypeNewsletterSkeleton | TypeTeamSectionSkeleton | TypeTestimonialSectionSkeleton | TypeTestimonialsSkeleton | TypeTrackingGaSkeleton | TypeTwoImagesSkeleton | TypeVideoPlayerSkeleton>>;
-    seo?: EntryFieldTypes.EntryLink<TypeSeoSkeleton>;
+	title?: EntryFieldTypes.Symbol;
+	slug?: EntryFieldTypes.Symbol;
+	content: EntryFieldTypes.Array<
+		EntryFieldTypes.EntryLink<
+			| TypeBannerSkeleton
+			| TypeBlogPreviewSkeleton
+			| TypeCenteredContentSkeleton
+			| TypeCoachListSkeleton
+			| TypeContentImageBgSkeleton
+			| TypeContentWithFullSizeImageSkeleton
+			| TypeGenericContentSkeleton
+			| TypeHeaderBlockSkeleton
+			| TypeImageCollectionSkeleton
+			| TypeNewsletterSkeleton
+			| TypeTeamSectionSkeleton
+			| TypeTestimonialSectionSkeleton
+			| TypeTestimonialsSkeleton
+			| TypeTrackingGaSkeleton
+			| TypeTwoImagesSkeleton
+			| TypeVideoPlayerSkeleton
+		>
+	>;
+	seo?: EntryFieldTypes.EntryLink<TypeSeoSkeleton>;
 }
 
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
-export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
+export type TypePage<
+	Modifiers extends ChainModifiers,
+	Locales extends LocaleCode = LocaleCode,
+> = Entry<TypePageSkeleton, Modifiers, Locales>;

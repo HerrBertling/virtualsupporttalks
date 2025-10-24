@@ -4,49 +4,44 @@ import { Outlet, useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
-import type {
-  INavigationItem,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
+import type { INavigationItem, LOCALE_CODE } from "../../@types/generated/contentful";
 
 type WrapperLoaderItems = {
-  nav: INavigationItem[];
-  locale: LOCALE_CODE;
+	nav: INavigationItem[];
+	locale: LOCALE_CODE;
 };
 
-export const loader: LoaderFunction = async ({
-  params,
-}): Promise<WrapperLoaderItems> => {
-  const locale = (params.locale as LOCALE_CODE) || "de";
-  if (!["en", "de", "uk", "ru"].includes(locale)) {
-    console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);
-    throw redirect(`/de/${locale}`, 301);
-  }
+export const loader: LoaderFunction = async ({ params }): Promise<WrapperLoaderItems> => {
+	const locale = (params.locale as LOCALE_CODE) || "de";
+	if (!["en", "de", "uk", "ru"].includes(locale)) {
+		console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);
+		throw redirect(`/de/${locale}`, 301);
+	}
 
-  const navObject = await getMainNav(locale);
-  const rawNav = navObject?.fields?.items;
-  if (!rawNav || rawNav.length === 0) {
-    throw new Response("Could not load navigation", { status: 404 });
-  }
+	const navObject = await getMainNav(locale);
+	const rawNav = navObject?.fields?.items;
+	if (!rawNav || rawNav.length === 0) {
+		throw new Response("Could not load navigation", { status: 404 });
+	}
 
-  // Filter out undefined items
-  const nav = rawNav.filter((item): item is NonNullable<typeof item> => item !== undefined);
+	// Filter out undefined items
+	const nav = rawNav.filter((item): item is NonNullable<typeof item> => item !== undefined);
 
-  return { nav, locale };
+	return { nav, locale };
 };
 
 export default function Wrapper() {
-  const { nav, locale } = useLoaderData<typeof loader>();
+	const { nav, locale } = useLoaderData<typeof loader>();
 
-  return (
-    <BasicLayout nav={nav} lang={locale}>
-      <div>
-        <Outlet />
-      </div>
-    </BasicLayout>
-  );
+	return (
+		<BasicLayout nav={nav} lang={locale}>
+			<div>
+				<Outlet />
+			</div>
+		</BasicLayout>
+	);
 }
 
 export function ErrorBoundary() {
-  return <BasicCatchBoundary />;
+	return <BasicCatchBoundary />;
 }

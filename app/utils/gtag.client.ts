@@ -3,7 +3,7 @@ import ReactGA from "react-ga4";
 const GA_TRACKING_ID = "G-3203CF2NDT";
 
 export const init = () => {
-  ReactGA.initialize(GA_TRACKING_ID);
+	ReactGA.initialize(GA_TRACKING_ID);
 };
 
 // // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
@@ -17,58 +17,52 @@ export const init = () => {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const event = ({
-  action,
-  category,
-  label,
-  value,
+	action,
+	category,
+	label,
+	value,
 }: {
-  action: string;
-  category: string;
-  label: string;
-  value: number;
+	action: string;
+	category: string;
+	label: string;
+	value: number;
 }) => {
-  ReactGA.event({
-    category,
-    action,
-    label,
-    value,
-  });
+	ReactGA.event({
+		category,
+		action,
+		label,
+		value,
+	});
 };
 
-export const trackCoachClick = ({
-  type,
-  coachName,
-}: {
-  type: string;
-  coachName: string;
-}) => {
-  ReactGA.event({
-    category: "coachClick",
-    action: type,
-    label: coachName,
-  });
+export const trackCoachClick = ({ type, coachName }: { type: string; coachName: string }) => {
+	ReactGA.event({
+		category: "coachClick",
+		action: type,
+		label: coachName,
+	});
 };
 
 export const trackFilterClick = ({
-  type,
-  category,
-  label,
+	type,
+	category,
+	label,
 }: {
-  type: string;
-  category: string;
-  label: string;
+	type: string;
+	category: string;
+	label: string;
 }) => {
-  ReactGA.event({
-    category: category,
-    action: type,
-    label,
-  });
+	ReactGA.event({
+		category: category,
+		action: type,
+		label,
+	});
 };
 
 export const trackSiteVisit = ({ label }: { label: string }) => {
-  ReactGA.event({
-    category: "event",
-    action: "conversion",
-    label,
-  });
+	ReactGA.event({
+		category: "event",
+		action: "conversion",
+		label,
+	});
 };
