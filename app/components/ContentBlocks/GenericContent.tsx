@@ -1,8 +1,11 @@
 import type { Entry } from "contentful";
-import type { TypeGenericContentSkeleton } from "../../../@types/generated/contentful";
+import type { TypeGenericContentSkeleton } from "../../../types/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
-type GenericContentProps = Entry<TypeGenericContentSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+type GenericContentProps = Entry<
+  TypeGenericContentSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS"
+>["fields"];
 
 export default function GenericContent({ content }: GenericContentProps) {
   return (

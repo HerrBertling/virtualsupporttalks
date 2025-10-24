@@ -4,11 +4,7 @@ import { useTranslation } from "react-i18next";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
 import { getBlogposts } from "~/utils/contentful";
-import type {
-  IBlogpost,
-  ITag,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
+import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
 
 type LoaderData = {
   posts: IBlogpost[];
@@ -35,8 +31,9 @@ export const loader: LoaderFunction = async ({ params }): Promise<LoaderData> =>
     if (!Array.isArray(tagList)) return false;
 
     return tagList.some((tagEntry) => {
-      if (!tagEntry || typeof tagEntry !== 'object' || !('fields' in tagEntry) || !tagEntry.fields) return false;
-      if (typeof tagEntry.fields !== 'object' || !('slug' in tagEntry.fields)) return false;
+      if (!tagEntry || typeof tagEntry !== "object" || !("fields" in tagEntry) || !tagEntry.fields)
+        return false;
+      if (typeof tagEntry.fields !== "object" || !("slug" in tagEntry.fields)) return false;
       return tagEntry.fields.slug === tag;
     });
   });
@@ -59,9 +56,7 @@ export default function Index() {
     <>
       <header className="w-full px-4 pt-24">
         <h2 className="font-headline text-3xl font-bold">
-          <>
-            {t("title")} "{tag}"
-          </>
+          {t("title")} "{tag}"
         </h2>
       </header>
       <div className="my-4 mx-auto grid grid-cols-1 gap-y-24 gap-x-16 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">

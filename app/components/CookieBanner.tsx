@@ -1,7 +1,7 @@
-import { Fragment, useRef, useState } from "react";
-import { useFetcher } from "@remix-run/react";
-import { useTranslation } from "react-i18next";
 import { Dialog, Transition } from "@headlessui/react";
+import { useFetcher } from "@remix-run/react";
+import { Fragment, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import CookieIcon from "./icons/CookieIcon";
 
 export const CookieBanner = ({ initialOpen }: { initialOpen: boolean }) => {
@@ -13,12 +13,7 @@ export const CookieBanner = ({ initialOpen }: { initialOpen: boolean }) => {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-50"
-        initialFocus={focusButtonRef}
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="relative z-50" initialFocus={focusButtonRef} onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -46,10 +41,7 @@ export const CookieBanner = ({ initialOpen }: { initialOpen: boolean }) => {
                 <analyticsFetcher.Form method="post" action="/enable-analytics">
                   <div>
                     <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-vsp-100">
-                      <CookieIcon
-                        classNames="h-6 w-6 text-vsp-800"
-                        aria-hidden="true"
-                      />
+                      <CookieIcon classNames="h-6 w-6 text-vsp-800" aria-hidden="true" />
                     </div>
                     <div className="mt-3 text-center sm:mt-5">
                       <Dialog.Title
@@ -59,9 +51,7 @@ export const CookieBanner = ({ initialOpen }: { initialOpen: boolean }) => {
                         {t("title")}
                       </Dialog.Title>
                       <div className="mt-2">
-                        <p className="text-sm text-slate-500">
-                          {t("description")}
-                        </p>
+                        <p className="text-sm text-slate-500">{t("description")}</p>
                       </div>
                     </div>
                   </div>

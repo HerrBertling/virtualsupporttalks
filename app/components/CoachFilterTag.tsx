@@ -33,11 +33,7 @@ export default function CoachFilterTag({
         onClick={() =>
           trackFilterClick({
             category:
-              name === "lang"
-                ? "coachLanguage"
-                : name === "gender"
-                  ? "coachGender"
-                  : "coachTag",
+              name === "lang" ? "coachLanguage" : name === "gender" ? "coachGender" : "coachTag",
             type:
               type === "radio"
                 ? "select"

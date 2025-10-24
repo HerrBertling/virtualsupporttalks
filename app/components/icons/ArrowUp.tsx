@@ -1,5 +1,3 @@
-import React from "react";
-
 function ArrowUp() {
   return (
     <svg
@@ -10,11 +8,8 @@ function ArrowUp() {
       stroke="currentColor"
       className="h-6 w-6"
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-      />
+      <title>Arrow up icon</title>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
     </svg>
   );
 }

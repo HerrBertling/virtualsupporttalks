@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { TypeVideoPlayerSkeleton } from "../../../@types/generated/contentful";
+import type { TypeVideoPlayerSkeleton } from "../../../types/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
 type VideoPlayerProps = Entry<TypeVideoPlayerSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];

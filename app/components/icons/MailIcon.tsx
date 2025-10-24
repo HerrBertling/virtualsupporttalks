@@ -8,6 +8,7 @@ export default function MailIcon({ classNames = "h-6 w-6" }) {
       stroke="currentColor"
       strokeWidth={2}
     >
+      <title>Mail icon</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

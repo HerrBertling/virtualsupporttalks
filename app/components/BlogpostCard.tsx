@@ -1,9 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type {
-  IBlogpost,
-  IBlogpostFields,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
+import type { IBlogpost, IBlogpostFields, LOCALE_CODE } from "../../types/contentful";
 import CleverLink from "./CleverLink";
 import TagGroup from "./TagGroup";
 
@@ -16,8 +12,7 @@ export default function BlogpostCard({
   locale: LOCALE_CODE;
   showTags?: boolean;
 }) {
-  const { title, slug, tagList, description, mainImage } =
-    post.fields as IBlogpostFields;
+  const { title, slug, tagList, description, mainImage } = post.fields;
   const image = ((mainImage as any)?.fields?.file?.url as string) || null;
   const dateObj = new Date(post.sys.createdAt);
   const date = dateObj.toLocaleString(locale, {
@@ -28,16 +23,13 @@ export default function BlogpostCard({
   const { t } = useTranslation("blogpostCard");
 
   return (
-    <div
-      key={post.sys.id}
-      className="group grid grid-cols-1 content-start gap-2 no-underline"
-    >
+    <div key={post.sys.id} className="group grid grid-cols-1 content-start gap-2 no-underline">
       {image ? (
         <CleverLink to={`/${locale}/blog/${slug}`}>
           <img
             src={image}
             className="h-auto max-h-40 w-full rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
-            alt={title as string}
+            alt={String(title)}
           />
         </CleverLink>
       ) : (
@@ -50,7 +42,7 @@ export default function BlogpostCard({
       )}
       <CleverLink to={`/${locale}/blog/${slug}`}>
         <h3 className="font-headline text-xl font-bold group-hover:text-vsp-500">
-          {title as string}
+          {String(title)}
         </h3>
       </CleverLink>
       <aside
@@ -58,17 +50,12 @@ export default function BlogpostCard({
           tagList ? "justify-between" : "justify-end"
         }`}
       >
-        {Boolean(tagList) && showTags && (
-          <TagGroup tags={tagList as any} locale={locale} />
-        )}
-        <time
-          dateTime={post.sys.createdAt}
-          className="text-xs italic text-slate-400"
-        >
+        {Boolean(tagList) && showTags && <TagGroup tags={tagList as any} locale={locale} />}
+        <time dateTime={post.sys.createdAt} className="text-xs italic text-slate-400">
           {date}
         </time>
       </aside>
-      <p>{description as string}</p>
+      <p>{String(description)}</p>
       <CleverLink to={`/${locale}/blog/${slug}`} className="block underline">
         {t("ctaToBlogpost")}
       </CleverLink>

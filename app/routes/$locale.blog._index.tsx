@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
 import { getBlogposts } from "~/utils/contentful";
-import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const locale = (params.locale as string) || "de";

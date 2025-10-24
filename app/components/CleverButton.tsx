@@ -9,17 +9,9 @@ type CleverButtonProps = {
   to: string;
 };
 
-export default function CleverButton({
-  children,
-  variant = "primary",
-  to,
-}: CleverButtonProps) {
+export default function CleverButton({ children, variant = "primary", to }: CleverButtonProps) {
   const variantClass =
-    variant === "primary"
-      ? "bg-vsp-500"
-      : variant === "secondary"
-        ? "bg-slate-400"
-        : "";
+    variant === "primary" ? "bg-vsp-500" : variant === "secondary" ? "bg-slate-400" : "";
   return (
     <CleverLink
       to={to}

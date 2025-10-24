@@ -18,7 +18,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
   const { title, seo } = data.page.fields;
 
-  let seoMeta = getSeoMeta({
+  const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || null,
   });

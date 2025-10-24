@@ -1,5 +1,6 @@
 import { expect, test } from "vitest";
 import { documentContentToSimpleString } from "./documentToSimpleString";
+
 const exampleDescription = {
   data: {},
   content: [

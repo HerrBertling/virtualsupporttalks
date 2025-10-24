@@ -1,7 +1,7 @@
 import translationDE from "../../public/locales/de/translation";
 import translationEN from "../../public/locales/en/translation";
-import translationUKR from "../../public/locales/uk/translation";
 import translationRU from "../../public/locales/ru/translation";
+import translationUKR from "../../public/locales/uk/translation";
 
 export default {
   debug: false,

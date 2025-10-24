@@ -1,14 +1,11 @@
+import type { Document } from "@contentful/rich-text-types";
+import { useLoaderData } from "@remix-run/react";
+import type { Entry } from "contentful";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
-import type { Entry } from "contentful";
-import type {
-  TypeBlogpostSkeleton,
-  LOCALE_CODE,
-} from "../../../@types/generated/contentful";
-import { useLoaderData } from "@remix-run/react";
+import type { LOCALE_CODE, TypeBlogpostSkeleton } from "../../../types/contentful";
 import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
-import type { Document } from "@contentful/rich-text-types";
 import LanguageFence from "../LanguageFence";
 
 type IBlogpost = Entry<TypeBlogpostSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">;
@@ -39,12 +36,7 @@ export default function ContentBlockBlogPreview({
         </header>
         <div className="my-4 mx-auto grid grid-cols-1 gap-10 px-4 md:grid-cols-3 md:gap-6 lg:gap-y-16">
           {latestPosts.map((post: IBlogpost) => (
-            <BlogpostCard
-              post={post}
-              locale={locale}
-              key={post.sys.id}
-              showTags={false}
-            />
+            <BlogpostCard post={post} locale={locale} key={post.sys.id} showTags={false} />
           ))}
         </div>
         <div className="w-full text-center mt-8 mb-20">

@@ -1,8 +1,11 @@
 import type { Entry } from "contentful";
-import type { TypeCenteredContentSkeleton } from "../../../@types/generated/contentful";
+import type { TypeCenteredContentSkeleton } from "../../../types/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
-type ContentCenteredProps = Entry<TypeCenteredContentSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+type ContentCenteredProps = Entry<
+  TypeCenteredContentSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS"
+>["fields"];
 
 export default function ContentBlockCentered({
   content,
@@ -11,11 +14,7 @@ export default function ContentBlockCentered({
   buttonUrl,
 }: ContentCenteredProps) {
   const colors =
-    bgcolor === "gray"
-      ? "bg-slate-400"
-      : bgcolor === "green"
-        ? "bg-vsp-500"
-        : "bg-white";
+    bgcolor === "gray" ? "bg-slate-400" : bgcolor === "green" ? "bg-vsp-500" : "bg-white";
 
   const useWhiteProse = bgcolor !== "white";
   const hasButton = buttonText && buttonUrl;
@@ -27,9 +26,7 @@ export default function ContentBlockCentered({
       }`}
     >
       <div className="mx-auto w-full max-w-4xl">
-        {content && (
-          <ContentfulRichText content={content} useWhiteProse={useWhiteProse} />
-        )}
+        {content && <ContentfulRichText content={content} useWhiteProse={useWhiteProse} />}
       </div>
       {hasButton && <button>{buttonText}</button>}
     </section>

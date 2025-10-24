@@ -1,16 +1,11 @@
-import type {
-  IBlogpost,
-  IPage,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import ContentBlocks from "~/components/ContentBlocks";
+import { getSeoMeta } from "~/seo";
 import { getLatestBlogposts, getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
-import ContentBlocks from "~/components/ContentBlocks";
-
-import { getSeoMeta } from "~/seo";
+import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data?.page) {
@@ -19,7 +14,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
   const { title, seo } = data.page.fields;
 
-  let seoMeta = getSeoMeta({
+  const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || undefined,
   });
@@ -40,9 +35,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const latestPosts = (await getLatestBlogposts(
-    locale as LOCALE_CODE,
-  )) as IBlogpost[];
+  const latestPosts = (await getLatestBlogposts(locale as LOCALE_CODE)) as IBlogpost[];
 
   return json({ page, locale, latestPosts });
 };

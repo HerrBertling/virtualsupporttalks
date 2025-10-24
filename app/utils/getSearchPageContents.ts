@@ -1,20 +1,17 @@
 import {
   getCoaches,
-  getLanguages,
+  getEmailTemplate,
   getGender,
+  getLanguages,
   getMainNav,
   getPageById,
   getTags,
-  getEmailTemplate,
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
-import type { ICoachtag, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { ICoachtag, LOCALE_CODE } from "../../types/contentful";
 import { documentContentToSimpleString } from "./documentToSimpleString";
 
-export const getSearchPageContents = async (
-  request: Request,
-  locale: LOCALE_CODE,
-) => {
+export const getSearchPageContents = async (request: Request, locale: LOCALE_CODE) => {
   const searchParams = new URL(request.url).searchParams;
   const lang = searchParams.get("lang") || locale;
 
@@ -24,16 +21,15 @@ export const getSearchPageContents = async (
 
   const searchTerm = searchParams.getAll("search");
 
-  const [page, coaches, languages, gender, tags, navigation, emailTemplate] =
-    await Promise.all([
-      getPageById(pageIds.SEARCH_HELP, locale),
-      getCoaches(lang),
-      getLanguages(),
-      getGender(),
-      getTags(locale),
-      getMainNav(locale),
-      getEmailTemplate(locale),
-    ]);
+  const [page, coaches, languages, gender, tags, navigation, emailTemplate] = await Promise.all([
+    getPageById(pageIds.SEARCH_HELP, locale),
+    getCoaches(lang),
+    getLanguages(),
+    getGender(),
+    getTags(locale),
+    getMainNav(locale),
+    getEmailTemplate(locale),
+  ]);
 
   if (!coaches || coaches.length === 0) {
     throw new Response("Not Found", {
@@ -53,9 +49,7 @@ export const getSearchPageContents = async (
 
       return (
         !!coachTags &&
-        checkedTags.every((tagId) =>
-          coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId),
-        )
+        checkedTags.every((tagId) => coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId))
       );
     })
     .filter((coach) => {
@@ -65,15 +59,12 @@ export const getSearchPageContents = async (
       }
 
       return (
-        !!coachGenders &&
-        coachGenders.some((gender: string) => checkedGender.includes(gender))
+        !!coachGenders && coachGenders.some((gender: string) => checkedGender.includes(gender))
       );
     })
     .filter((coach) => {
-      if (searchTerm[0] && searchTerm[0] != "") {
-        const description = documentContentToSimpleString(
-          coach.fields.description?.content,
-        );
+      if (searchTerm[0] && searchTerm[0] !== "") {
+        const description = documentContentToSimpleString(coach.fields.description?.content);
         const searchRegex = new RegExp(searchTerm[0], "i");
         return `${coach.fields.name} ${description}`.match(searchRegex);
       } else {
@@ -86,8 +77,7 @@ export const getSearchPageContents = async (
   const availableTagIDs = filteredCoaches
     .map((coach) => coach.fields.tag)
     .filter((tags) => !!tags)
-    .map((tags) => tags?.map((tag: { sys: { id: string } }) => tag.sys.id))
-    .flat();
+    .flatMap((tags) => tags?.map((tag: { sys: { id: string } }) => tag.sys.id));
 
   return {
     page,

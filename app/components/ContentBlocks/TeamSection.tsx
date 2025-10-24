@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import { type TypeTeamSectionSkeleton } from "../../../@types/generated/contentful";
+import type { TypeTeamSectionSkeleton } from "../../../types/contentful";
 import CleverLink from "../CleverLink";
 import ContentfulRichText from "../ContentfulRichText";
 
@@ -10,14 +10,14 @@ export default function ContentBlockTeamSection({
   description,
   teamMembers,
 }: TeamSectionProps) {
-  const sanitizedTeamMembers = (teamMembers || []).filter((member): member is NonNullable<typeof member> => !!member?.fields);
+  const sanitizedTeamMembers = (teamMembers || []).filter(
+    (member): member is NonNullable<typeof member> => !!member?.fields
+  );
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-            {title}
-          </h2>
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">{title}</h2>
           <p className="mt-6 text-lg leading-8 text-slate-600">{description}</p>
         </div>
         <ul className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none">
@@ -34,9 +34,7 @@ export default function ContentBlockTeamSection({
                     {person.fields.firstname} {person.fields.lastname}
                   </h3>
                   {person.fields.position && (
-                    <p className="text-base leading-7 text-slate-600">
-                      {person.fields.position}
-                    </p>
+                    <p className="text-base leading-7 text-slate-600">{person.fields.position}</p>
                   )}
                 </div>
                 {person.fields.content && <ContentfulRichText content={person.fields.content} />}

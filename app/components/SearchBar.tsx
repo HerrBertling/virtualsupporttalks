@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useRef } from "react";
+import React, { type ChangeEvent, useRef } from "react";
 
 const SearchBar = () => {
   const [inputValue, setInputValue] = React.useState("");
-  const [debouncedInputValue, setDebouncedInputValue] = React.useState("");
+  const [_debouncedInputValue, _setDebouncedInputValue] = React.useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -2,13 +2,7 @@ import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import NetworkPartnerMediaContent from "~/components/NetworkPartnerMediaContent";
 import { getSeoMeta } from "~/seo";
-import {
-  getMainNav,
-  getMedia,
-  getNetwork,
-  getPageById,
-  getSupporters,
-} from "~/utils/contentful";
+import { getMainNav, getMedia, getNetwork, getPageById, getSupporters } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -18,7 +12,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
   const { title, seo } = data.page.fields;
 
-  let seoMeta = getSeoMeta({
+  const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || null,
   });
@@ -38,13 +32,7 @@ export const loader: LoaderFunction = async () => {
   const supporters = getSupporters();
   const media = getMedia();
 
-  const data = await Promise.all([
-    page,
-    navigation,
-    network,
-    supporters,
-    media,
-  ]);
+  const data = await Promise.all([page, navigation, network, supporters, media]);
 
   if (!navigation) {
     throw new Response("Could not load navigation", { status: 404 });
@@ -61,8 +49,7 @@ export const loader: LoaderFunction = async () => {
 };
 
 export default function SupportMedia() {
-  const { page, navigation, network, supporters, media, locale } =
-    useLoaderData<typeof loader>();
+  const { page, navigation, network, supporters, media, locale } = useLoaderData<typeof loader>();
 
   return (
     <NetworkPartnerMediaContent

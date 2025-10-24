@@ -6,6 +6,7 @@ export default function Spinner() {
       fill="none"
       viewBox="0 0 24 24"
     >
+      <title>Loading spinner icon</title>
       <circle
         className="opacity-25"
         cx="12"

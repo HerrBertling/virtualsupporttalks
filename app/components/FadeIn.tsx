@@ -1,5 +1,3 @@
-import { useRef } from "react";
-
 import { useIntersectionObserver } from "usehooks-ts";
 
 export default function FadeIn({ children }: { children: React.ReactNode }) {

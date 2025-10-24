@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const Brevo = () => {
-useEffect(() => {
+  useEffect(() => {
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.async = true;
@@ -12,10 +12,10 @@ useEffect(() => {
     scriptInit.type = "text/javascript";
     scriptInit.async = true;
     scriptInit.id = "brevo-init";
-    scriptInit.innerHTML = `window.Brevo = window.Brevo || []; Brevo.push(["init",{client_key: "ir90lm6djp5yl513z778118q"}]);`
+    scriptInit.innerHTML = `window.Brevo = window.Brevo || []; Brevo.push(["init",{client_key: "ir90lm6djp5yl513z778118q"}]);`;
     document.head.appendChild(scriptInit);
   }, []);
-return null;
+  return null;
 };
 
 export default Brevo;

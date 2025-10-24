@@ -14,7 +14,7 @@ export const action: ActionFunction = async ({ request }) => {
             gdprConsent: true,
           }),
         },
-      },
+      }
     );
   }
 };
