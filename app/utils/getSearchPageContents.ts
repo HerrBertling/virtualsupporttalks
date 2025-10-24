@@ -63,7 +63,7 @@ export const getSearchPageContents = async (request: Request, locale: LOCALE_COD
 			);
 		})
 		.filter((coach) => {
-			if (searchTerm[0] && searchTerm[0] != "") {
+			if (searchTerm[0] && searchTerm[0] !== "") {
 				const description = documentContentToSimpleString(coach.fields.description?.content);
 				const searchRegex = new RegExp(searchTerm[0], "i");
 				return `${coach.fields.name} ${description}`.match(searchRegex);

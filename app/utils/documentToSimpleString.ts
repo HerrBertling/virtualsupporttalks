@@ -1,6 +1,6 @@
 // This function processes each individual node of the Rich Text document
 export function documentContentToSimpleString(nodes?: any) {
-	if (nodes == undefined) return "";
+	if (nodes === undefined) return "";
 	// Initialize an empty string to hold the result
 	let result = "";
 

@@ -12,7 +12,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
 
 	useEffect(() => {
 		setOpen(false);
-	}, [pathname]);
+	}, []);
 
 	const currentLang = locale || "de";
 
@@ -26,7 +26,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
 			}
 			if (page?.fields?.slug) {
 				path = `/${lang}/${page.fields.slug}`;
-			} else if (lang != "de") {
+			} else if (lang !== "de") {
 				path = `/${lang}${path}`;
 			}
 			return {

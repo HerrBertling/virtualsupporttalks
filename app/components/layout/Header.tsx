@@ -12,14 +12,14 @@ export default function LayoutHeader({ nav, lang }: { nav: INavigationItem[]; la
 
 	useEffect(() => {
 		handleScroll();
-	}, []);
+	}, [handleScroll]);
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
 		};
-	}, []);
+	}, [handleScroll]);
 
 	return (
 		<header

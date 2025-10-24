@@ -1,4 +1,3 @@
-import type { Entry } from "contentful";
 import contentful from "contentful";
 import type {
 	LOCALE_CODE,
@@ -189,7 +188,7 @@ export const getLanguages = async (): Promise<string[]> => {
 
 	const lowercasedLangs = [...new Set(languages)].map((lang) => lang.toLowerCase());
 
-	return [...new Set(lowercasedLangs)].sort().filter((lang) => lang != "ukr");
+	return [...new Set(lowercasedLangs)].sort().filter((lang) => lang !== "ukr");
 };
 
 // begin gender

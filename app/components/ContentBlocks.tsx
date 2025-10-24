@@ -35,13 +35,13 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 			{content
 				.filter((item): item is NonNullable<typeof item> => item !== undefined)
 				.map((item, index) => {
-					const id = item!.sys.contentType.sys.id;
+					const id = item?.sys.contentType.sys.id;
 
 					if (id === "headerBlock") {
-						const { backgroundcolor, image, buttonText, buttonUrl } = item!.fields as any;
+						const { backgroundcolor, image, buttonText, buttonUrl } = item?.fields as any;
 						return (
 							<ContentBlockHeader
-								key={item!.sys.id}
+								key={item?.sys.id}
 								backgroundcolor={backgroundcolor}
 								image={image}
 								buttonText={buttonText}
@@ -51,10 +51,10 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 					}
 
 					if (id === "centeredContent") {
-						const { bgcolor, content, buttonText, buttonUrl } = item!.fields as any;
+						const { bgcolor, content, buttonText, buttonUrl } = item?.fields as any;
 						return (
 							<ContentBlockCentered
-								key={item!.sys.id}
+								key={item?.sys.id}
 								bgcolor={bgcolor}
 								content={content}
 								buttonText={buttonText}
@@ -63,10 +63,10 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 						);
 					}
 					if (id === "contentWithFullSizeImage") {
-						const { backgroundcolor, image, imageRight, content } = item!.fields as any;
+						const { backgroundcolor, image, imageRight, content } = item?.fields as any;
 						return (
 							<ContentBlockFullSizeImageBg
-								key={item!.sys.id}
+								key={item?.sys.id}
 								backgroundcolor={backgroundcolor}
 								image={image}
 								imageRight={imageRight}
@@ -76,11 +76,11 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 						);
 					}
 					if (id === "contentImageBg") {
-						const { backgroundImage, buttonUrl, buttonText, withCharityBanner, content } = item!
-							.fields as any;
+						const { backgroundImage, buttonUrl, buttonText, withCharityBanner, content } =
+							item?.fields as any;
 						return (
 							<ContentBlockImageBg
-								key={item!.sys.id}
+								key={item?.sys.id}
 								backgroundImage={backgroundImage}
 								buttonUrl={buttonUrl}
 								buttonText={buttonText}
@@ -92,10 +92,10 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 						);
 					}
 					if (id === "twoImages") {
-						const { image1, image2, text1, text2, link1, link2 } = item!.fields as any;
+						const { image1, image2, text1, text2, link1, link2 } = item?.fields as any;
 						return (
 							<ContentBlockTwoImages
-								key={item!.sys.id}
+								key={item?.sys.id}
 								image1={image1}
 								image2={image2}
 								text1={text1}
@@ -108,17 +108,17 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 					}
 
 					if (id === "videoPlayer") {
-						const { videoId, content, showOnlyOnGermanPage } = item!.fields as any;
+						const { videoId, content, showOnlyOnGermanPage } = item?.fields as any;
 						if (!showOnlyOnGermanPage || (locale === "de" && showOnlyOnGermanPage)) {
-							return <VideoPlayer key={item!.sys.id} videoId={videoId} content={content} />;
+							return <VideoPlayer key={item?.sys.id} videoId={videoId} content={content} />;
 						}
 					}
 
 					if (id === "imageCollection") {
-						const { internalTitle, images } = item!.fields as any;
+						const { internalTitle, images } = item?.fields as any;
 						return (
 							<ContentBlockImageCollection
-								key={item!.sys.id}
+								key={item?.sys.id}
 								images={images}
 								internalTitle={internalTitle}
 								withPaddingTop={index === 0}
@@ -127,11 +127,11 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 					}
 
 					if (id === "BlogPreview") {
-						const { titleAndHeader, buttonText } = item!.fields as any;
+						const { titleAndHeader, buttonText } = item?.fields as any;
 
 						return (
 							<ContentBlockBlogPreview
-								key={item!.sys.id}
+								key={item?.sys.id}
 								titleAndHeader={titleAndHeader}
 								buttonText={buttonText}
 							></ContentBlockBlogPreview>
@@ -139,15 +139,15 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 					}
 
 					if (id === "trackingGa") {
-						const { title } = item!.fields as any;
-						return <TrackingGa key={item!.sys.id} title={title} />;
+						const { title } = item?.fields as any;
+						return <TrackingGa key={item?.sys.id} title={title} />;
 					}
 
 					if (id === "teamSection") {
-						const { title, teamMembers, description } = item!.fields as any;
+						const { title, teamMembers, description } = item?.fields as any;
 						return (
 							<ContentBlockTeamSection
-								key={item!.sys.id}
+								key={item?.sys.id}
 								title={title}
 								description={description}
 								teamMembers={teamMembers}
@@ -156,11 +156,11 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 					}
 
 					if (id === "testimonials") {
-						const { image, link, testimonialText, author } = item!.fields as any;
+						const { image, link, testimonialText, author } = item?.fields as any;
 
 						return (
 							<Testimonial
-								key={item!.sys.id}
+								key={item?.sys.id}
 								image={image}
 								link={link}
 								testimonialText={testimonialText}
@@ -170,17 +170,17 @@ export default function ContentBlocks({ content, locale }: ContentBlockProps) {
 					}
 
 					if (id === "testimonialSection") {
-						const { title, testimonials } = item!.fields as any;
+						const { title, testimonials } = item?.fields as any;
 
-						return <Testimonials key={item!.sys.id} title={title} testimonials={testimonials} />;
+						return <Testimonials key={item?.sys.id} title={title} testimonials={testimonials} />;
 					}
 
 					if (id === "coachList") {
 						return null;
 					} else {
-						const { content } = item!.fields as any;
+						const { content } = item?.fields as any;
 
-						return content ? <GenericContent key={item!.sys.id} content={content} /> : null;
+						return content ? <GenericContent key={item?.sys.id} content={content} /> : null;
 					}
 				})}
 		</div>

@@ -1,3 +1,4 @@
+import { PassThrough } from "node:stream";
 import type { EntryContext } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
@@ -5,7 +6,6 @@ import { createInstance } from "i18next";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { I18nextProvider, initReactI18next } from "react-i18next";
-import { PassThrough } from "stream";
 import i18next from "./utils/i18n.server";
 import i18n from "./utils/i18nextOptions"; // your i18n configuration file
 import { getCurrentLocale } from "./utils/locales";

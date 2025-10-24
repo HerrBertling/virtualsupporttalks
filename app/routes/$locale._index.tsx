@@ -5,7 +5,7 @@ import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
 import { getLatestBlogposts, getPageById } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
-import type { IBlogpost, IPage, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	if (!data?.page) {

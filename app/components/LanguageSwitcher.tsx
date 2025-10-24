@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
 
 	useEffect(() => {
 		setShow(false);
-	}, [pathname]);
+	}, []);
 
 	const handleButtonClick = () => {
 		setShow(!show);

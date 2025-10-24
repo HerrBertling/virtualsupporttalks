@@ -81,7 +81,7 @@ export default function SpeakingTimeContent({
 	const formRef = useRef<HTMLFormElement>(null);
 	const { t } = useTranslation("searchingCoach");
 	const [isActive, setIsActive] = useState(false);
-	const [showMoreFilters, setShowMoreFilters] = useState(false);
+	const [_showMoreFilters, _setShowMoreFilters] = useState(false);
 	var timeout: NodeJS.Timeout;
 
 	const handleChange = () => {

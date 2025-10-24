@@ -56,7 +56,7 @@ export default function ContentBlockImageCollection({
 			}`}
 		>
 			{imageCollection?.map(({ image, link, text, id }) => (
-				<figure key={id} role="figure" aria-label="text">
+				<figure key={id} aria-label="text">
 					{link ? (
 						<a href={link}>
 							<Image image={image} text={text} />

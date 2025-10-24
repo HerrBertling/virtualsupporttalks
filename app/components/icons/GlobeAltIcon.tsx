@@ -7,6 +7,8 @@ export default function GlobeAltIcon({ classNames = "h-6 w-6" }) {
 			viewBox="0 0 24 24"
 			stroke="currentColor"
 			strokeWidth={2}
+			aria-label="Globe"
+			role="img"
 		>
 			<path
 				strokeLinecap="round"

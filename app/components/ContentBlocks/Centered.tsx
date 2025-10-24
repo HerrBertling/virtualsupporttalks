@@ -28,7 +28,11 @@ export default function ContentBlockCentered({
 			<div className="mx-auto w-full max-w-4xl">
 				{content && <ContentfulRichText content={content} useWhiteProse={useWhiteProse} />}
 			</div>
-			{hasButton && <button>{buttonText}</button>}
+			{hasButton && (
+			<a href={buttonUrl} className="button">
+				{buttonText}
+			</a>
+		)}
 		</section>
 	);
 }
