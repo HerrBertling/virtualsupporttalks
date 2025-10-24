@@ -31,7 +31,7 @@ npm start                             # Serve production build locally (via Netl
 npm run contentful-typescript-codegen # Generate TypeScript types from Contentful schema
 ```
 
-This generates types to `@types/contentful.d.ts` based on the current Contentful content model.
+This generates types to `types/generated/*` based on the current Contentful content model.
 
 ### Code Quality
 ```bash
@@ -47,7 +47,7 @@ npm test                              # Run Vitest tests
 The site is entirely content-driven through Contentful:
 
 - **Content fetching**: All Contentful API calls are in `app/utils/contentful.ts`
-- **Content types**: TypeScript types are auto-generated in `@types/contentful.d.ts`
+- **Content types**: TypeScript types are auto-generated in `types/generated/` via the codegen script
 - **Content blocks**: Modular content blocks are rendered via `app/components/ContentBlocks.tsx`, which maps Contentful content types to React components
 
 Key Contentful utilities:
