@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!!@types/generated"]
+    "includes": ["**", "!!types/generated"]
   },
   "formatter": {
     "enabled": true,

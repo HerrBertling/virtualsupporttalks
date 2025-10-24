@@ -3,7 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import type { Entry } from "contentful";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
-import type { LOCALE_CODE, TypeBlogpostSkeleton } from "../../../@types/generated/contentful";
+import type { LOCALE_CODE, TypeBlogpostSkeleton } from "../../../types/contentful";
 import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
 import LanguageFence from "../LanguageFence";

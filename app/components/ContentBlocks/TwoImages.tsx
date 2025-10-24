@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { LOCALE_CODE, TypeTwoImagesSkeleton } from "../../../@types/generated/contentful";
+import type { LOCALE_CODE, TypeTwoImagesSkeleton } from "../../../types/contentful";
 import CleverLink from "../CleverLink";
 import FadeIn from "../FadeIn";
 

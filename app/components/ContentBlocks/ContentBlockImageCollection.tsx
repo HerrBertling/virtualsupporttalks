@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { TypeImageCollectionSkeleton } from "../../../@types/generated/contentful";
+import type { TypeImageCollectionSkeleton } from "../../../types/contentful";
 
 type BaseImageCollectionFields = Entry<
   TypeImageCollectionSkeleton,

@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import type { LOCALE_CODE } from "../../@types/generated/contentful";
+import type { LOCALE_CODE } from "types/contentful";
 
 export const availableLocales: LOCALE_CODE[] = ["de", "en", "ru", "uk"];
 

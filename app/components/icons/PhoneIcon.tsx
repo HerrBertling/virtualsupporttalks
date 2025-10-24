@@ -8,6 +8,7 @@ export default function PhoneIcon({ classNames = "h-6 w-6" }) {
       stroke="currentColor"
       strokeWidth={2}
     >
+      <title>Phone icon</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

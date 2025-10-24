@@ -8,6 +8,7 @@ function ArrowDown({ className = "h-6 w-6" }) {
       stroke="currentColor"
       className={className}
     >
+      <title>Arrow down icon</title>
       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
     </svg>
   );

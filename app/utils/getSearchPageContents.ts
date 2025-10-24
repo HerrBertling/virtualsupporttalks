@@ -8,7 +8,7 @@ import {
   getTags,
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
-import type { ICoachtag, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { ICoachtag, LOCALE_CODE } from "../../types/contentful";
 import { documentContentToSimpleString } from "./documentToSimpleString";
 
 export const getSearchPageContents = async (request: Request, locale: LOCALE_CODE) => {

@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { TypeTeamSectionSkeleton } from "../../../@types/generated/contentful";
+import type { TypeTeamSectionSkeleton } from "../../../types/contentful";
 import CleverLink from "../CleverLink";
 import ContentfulRichText from "../ContentfulRichText";
 

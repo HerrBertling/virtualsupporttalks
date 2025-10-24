@@ -1,7 +1,7 @@
 import type { Entry } from "contentful";
 import { useEffect } from "react";
 import { trackSiteVisit } from "~/utils/gtag.client";
-import type { TypeTrackingGaSkeleton } from "../../../@types/generated/contentful";
+import type { TypeTrackingGaSkeleton } from "../../../types/contentful";
 
 type TrackingGaProps = Entry<TypeTrackingGaSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
 

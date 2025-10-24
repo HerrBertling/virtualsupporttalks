@@ -5,7 +5,7 @@ import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
 import { getSeoMeta } from "~/seo";
 import { getBlogpost } from "~/utils/contentful";
-import type { LOCALE_CODE } from "../../@types/generated/contentful";
+import type { LOCALE_CODE } from "../../types/contentful";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data?.blogpost) {

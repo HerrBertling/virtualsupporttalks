@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { TypeCenteredContentSkeleton } from "../../../@types/generated/contentful";
+import type { TypeCenteredContentSkeleton } from "../../../types/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
 type ContentCenteredProps = Entry<

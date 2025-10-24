@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { TypeGenericContentSkeleton } from "../../../@types/generated/contentful";
+import type { TypeGenericContentSkeleton } from "../../../types/contentful";
 import ContentfulRichText from "../ContentfulRichText";
 
 type GenericContentProps = Entry<

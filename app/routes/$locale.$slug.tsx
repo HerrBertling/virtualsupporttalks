@@ -5,7 +5,7 @@ import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
 import { getLatestBlogposts, getPage } from "~/utils/contentful";
-import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data?.page) {

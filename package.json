@@ -8,8 +8,9 @@
     "dev": "remix vite:dev",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
+    "lint:yolo": "biome check --write --unsafe .",
     "format": "biome format --write .",
-    "contentful-typescript-codegen": "cf-content-types-generator -s $CONTENTFUL_SPACE -t $CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN -e $CONTENTFUL_ENVIRONMENT -o @types/generated -X",
+    "contentful-typescript-codegen": "node --env-file=.env scripts/generate-contentful-types.js",
     "start": "netlify serve",
     "typecheck": "tsc",
     "test": "vitest"

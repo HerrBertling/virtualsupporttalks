@@ -6,7 +6,7 @@ import type {
   IPage,
   ISupporter,
   LOCALE_CODE,
-} from "../../@types/generated/contentful";
+} from "../../types/contentful";
 import ContentBlocks from "./ContentBlocks";
 import BasicLayout from "./layout/BasicLayout";
 import SupporterTile from "./SupporterTile";

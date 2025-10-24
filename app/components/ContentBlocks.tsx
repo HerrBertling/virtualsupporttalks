@@ -1,9 +1,5 @@
 import type { Entry } from "contentful";
-import type {
-  LOCALE_CODE,
-  TypeBlogpostSkeleton,
-  TypePageSkeleton,
-} from "../../@types/generated/contentful";
+import type { LOCALE_CODE, TypeBlogpostSkeleton, TypePageSkeleton } from "../../types/contentful";
 import ContentBlockBlogPreview from "./ContentBlocks/BlogPreview";
 import ContentBlockCentered from "./ContentBlocks/Centered";
 import ContentBlockImageCollection from "./ContentBlocks/ContentBlockImageCollection";

@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { TypeTestimonialsSkeleton } from "../../../@types/generated/contentful";
+import type { TypeTestimonialsSkeleton } from "../../../types/contentful";
 
 type TestimonialProps = Entry<TypeTestimonialsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
 

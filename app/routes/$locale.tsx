@@ -4,7 +4,7 @@ import { Outlet, useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
-import type { INavigationItem, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { INavigationItem, LOCALE_CODE } from "../../types/contentful";
 
 type WrapperLoaderItems = {
   nav: INavigationItem[];

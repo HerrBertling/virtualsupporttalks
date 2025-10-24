@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { IBlogpost, IBlogpostFields, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { IBlogpost, IBlogpostFields, LOCALE_CODE } from "../../types/contentful";
 import CleverLink from "./CleverLink";
 import TagGroup from "./TagGroup";
 

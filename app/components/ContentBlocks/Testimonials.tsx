@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { TypeTestimonialSectionSkeleton } from "../../../@types/generated/contentful";
+import type { TypeTestimonialSectionSkeleton } from "../../../types/contentful";
 
 type TestimonialsProps = Entry<
   TypeTestimonialSectionSkeleton,

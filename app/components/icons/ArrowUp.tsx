@@ -8,6 +8,7 @@ function ArrowUp() {
       stroke="currentColor"
       className="h-6 w-6"
     >
+      <title>Arrow up icon</title>
       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
     </svg>
   );

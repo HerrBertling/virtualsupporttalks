@@ -1,5 +1,5 @@
 import type { Entry } from "contentful";
-import type { TypeHeaderBlockSkeleton } from "../../../@types/generated/contentful";
+import type { TypeHeaderBlockSkeleton } from "../../../types/contentful";
 
 type HeaderProps = Entry<TypeHeaderBlockSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
 

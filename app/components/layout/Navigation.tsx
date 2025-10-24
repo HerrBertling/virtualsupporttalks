@@ -1,13 +1,11 @@
 import { useParams } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import type { INavigationItem, LOCALE_CODE } from "../../../@types/generated/contentful";
+import type { INavigationItem, LOCALE_CODE } from "types/contentful";
 import LanguageSwitcher from "../LanguageSwitcher";
 import NavItem from "./NavItem";
 
 export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang: LOCALE_CODE }) {
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
   const { locale } = useParams();
 
   useEffect(() => {
@@ -47,6 +45,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
         className={`flex h-12 w-12 items-center justify-center rounded-full lg:hidden ${
           open && "bg-white"
         }`}
+        type="button"
         aria-expanded={open}
         aria-controls="navigation"
         onClick={() => setOpen(!open)}
@@ -61,6 +60,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
+              <title>Menu icon</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -76,6 +76,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
+              <title>Close icon</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

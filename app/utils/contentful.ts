@@ -7,7 +7,7 @@ import type {
   TypePageSkeleton,
   TypeTagSkeleton,
   TypeTestimonialsSkeleton,
-} from "../../@types/generated/contentful";
+} from "../../types/contentful";
 import { availableLocales } from "./locales";
 
 export const createContentfulClient = () => {

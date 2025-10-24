@@ -1,6 +1,6 @@
 import type { Entry } from "contentful";
 import type { ReactNode } from "react";
-import type { TypeContentImageBgSkeleton } from "../../../@types/generated/contentful";
+import type { TypeContentImageBgSkeleton } from "../../../types/contentful";
 import AmazonCharityBanner from "../AmazonCharityBanner";
 import CleverButton from "../CleverButton";
 

@@ -1,6 +1,6 @@
 import type { Entry } from "contentful";
 import type { ReactNode } from "react";
-import type { TypeContentWithFullSizeImageSkeleton } from "../../../@types/generated/contentful";
+import type { TypeContentWithFullSizeImageSkeleton } from "../../../types/contentful";
 
 type BaseFullSizeImageFields = Entry<
   TypeContentWithFullSizeImageSkeleton,

@@ -4,13 +4,7 @@ import type { Asset } from "contentful";
 import { type PropsWithChildren, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { EmailTemplate } from "~/utils/contentful";
-import type {
-  ICoach,
-  ICoachFields,
-  ICoachtag,
-  IPage,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
+import type { ICoach, ICoachFields, ICoachtag, IPage, LOCALE_CODE } from "../../types/contentful";
 
 // Type guard to check if a value is an Asset
 function isAsset(value: unknown): value is Asset {
