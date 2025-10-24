@@ -1,17 +1,8 @@
-import type {
-	ChainModifiers,
-	Entry,
-	EntryFieldTypes,
-	EntrySkeletonType,
-	LocaleCode,
-} from "contentful";
+import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 
 export interface TypeTrackingGaFields {
-	title: EntryFieldTypes.Symbol;
+    title: EntryFieldTypes.Symbol;
 }
 
 export type TypeTrackingGaSkeleton = EntrySkeletonType<TypeTrackingGaFields, "trackingGa">;
-export type TypeTrackingGa<
-	Modifiers extends ChainModifiers,
-	Locales extends LocaleCode = LocaleCode,
-> = Entry<TypeTrackingGaSkeleton, Modifiers, Locales>;
+export type TypeTrackingGa<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeTrackingGaSkeleton, Modifiers, Locales>;
