@@ -6,59 +6,59 @@ import { getMainNav, getMedia, getNetwork, getPageById, getSupporters } from "~/
 import pageIds from "~/utils/pageIds";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-	if (!data?.page) {
-		return [{ title: "Netzwerk Partner Medien" }];
-	}
+  if (!data?.page) {
+    return [{ title: "Netzwerk Partner Medien" }];
+  }
 
-	const { title, seo } = data.page.fields;
+  const { title, seo } = data.page.fields;
 
-	const seoMeta = getSeoMeta({
-		title: seo?.fields?.title || title || null,
-		description: seo?.fields?.description || null,
-	});
-	return [
-		{
-			...seoMeta,
-		},
-	];
+  const seoMeta = getSeoMeta({
+    title: seo?.fields?.title || title || null,
+    description: seo?.fields?.description || null,
+  });
+  return [
+    {
+      ...seoMeta,
+    },
+  ];
 };
 
 export const loader: LoaderFunction = async () => {
-	const locale = "de";
+  const locale = "de";
 
-	const page = getPageById(pageIds.NETWORK, locale);
-	const navigation = getMainNav(locale);
-	const network = getNetwork();
-	const supporters = getSupporters();
-	const media = getMedia();
+  const page = getPageById(pageIds.NETWORK, locale);
+  const navigation = getMainNav(locale);
+  const network = getNetwork();
+  const supporters = getSupporters();
+  const media = getMedia();
 
-	const data = await Promise.all([page, navigation, network, supporters, media]);
+  const data = await Promise.all([page, navigation, network, supporters, media]);
 
-	if (!navigation) {
-		throw new Response("Could not load navigation", { status: 404 });
-	}
+  if (!navigation) {
+    throw new Response("Could not load navigation", { status: 404 });
+  }
 
-	return {
-		page: data[0],
-		navigation: data[1],
-		network: data[2],
-		supporters: data[3],
-		media: data[4],
-		locale,
-	};
+  return {
+    page: data[0],
+    navigation: data[1],
+    network: data[2],
+    supporters: data[3],
+    media: data[4],
+    locale,
+  };
 };
 
 export default function SupportMedia() {
-	const { page, navigation, network, supporters, media, locale } = useLoaderData<typeof loader>();
+  const { page, navigation, network, supporters, media, locale } = useLoaderData<typeof loader>();
 
-	return (
-		<NetworkPartnerMediaContent
-			navigation={navigation}
-			media={media}
-			locale={locale}
-			page={page}
-			network={network}
-			supporters={supporters}
-		/>
-	);
+  return (
+    <NetworkPartnerMediaContent
+      navigation={navigation}
+      media={media}
+      locale={locale}
+      page={page}
+      network={network}
+      supporters={supporters}
+    />
+  );
 }

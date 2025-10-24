@@ -2,11 +2,11 @@ const contentfulManagement = require("contentful-management");
 require("dotenv").config();
 
 module.exports = () => {
-	const contentfulClient = contentfulManagement.createClient({
-		accessToken: process.env.CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN,
-	});
+  const contentfulClient = contentfulManagement.createClient({
+    accessToken: process.env.CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN,
+  });
 
-	return contentfulClient
-		.getSpace(process.env.CONTENTFUL_SPACE)
-		.then((space) => space.getEnvironment(process.env.CONTENTFUL_ENVIRONMENT));
+  return contentfulClient
+    .getSpace(process.env.CONTENTFUL_SPACE)
+    .then((space) => space.getEnvironment(process.env.CONTENTFUL_ENVIRONMENT));
 };
