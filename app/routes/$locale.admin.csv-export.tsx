@@ -18,7 +18,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const csvBody = coaches
     .map(
       (coach) =>
-        `${coach.fields?.name ?? ""},${coach.fields?.email ?? ""},${coach.fields?.url ?? ""},${coach.fields?.phone ?? ""},${coach.fields?.languages?.join("; ") ?? ""},${coach.fields.gender?.join("; ") ?? ""},`,
+        `${coach.fields?.name ?? ""},${coach.fields?.email ?? ""},${coach.fields?.url ?? ""},${coach.fields?.phone ?? ""},${coach.fields?.languages?.join("; ") ?? ""},${coach.fields.gender?.join("; ") ?? ""},`
     )
     .join("\n");
 
@@ -48,11 +48,7 @@ export default function Component() {
     <div className="container mx-auto max-w-6xl py-40 px-2 md:px-4 lg:px-8">
       <div className="flex flex-col gap-12">
         <h1 className="text-3xl">Daten herunterladen</h1>
-        <Form
-          reloadDocument
-          method="POST"
-          className="flex flex-col gap-4 max-w-md"
-        >
+        <Form reloadDocument method="POST" className="flex flex-col gap-4 max-w-md">
           <label className="flex flex-col gap-2">
             <span>Download-Passwort</span>
             <input
@@ -60,11 +56,7 @@ export default function Component() {
               name="pw"
               type="password"
             />
-            {error ? (
-              <span className="text-red-600 text-sm">
-                Falsches Passwort, sorry!
-              </span>
-            ) : null}
+            {error ? <span className="text-red-600 text-sm">Falsches Passwort, sorry!</span> : null}
           </label>
           <button
             type="submit"

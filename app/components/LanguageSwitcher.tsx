@@ -6,7 +6,7 @@ import GlobeAltIcon from "./icons/GlobeAltIcon";
 
 export default function LanguageSwitcher() {
   const [show, setShow] = useState(false);
-  let { pathname } = useLocation();
+  const { pathname } = useLocation();
   const { locale: currentLang } = useParams();
   const ref = useRef(null);
 
@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
 
   useEffect(() => {
     setShow(false);
-  }, [pathname]);
+  }, []);
 
   const handleButtonClick = () => {
     setShow(!show);

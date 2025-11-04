@@ -8,6 +8,7 @@ export default function FilterIcon({ classNames = "h-6 w-6" }) {
       stroke="currentColor"
       className={classNames}
     >
+      <title>Filter icon</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

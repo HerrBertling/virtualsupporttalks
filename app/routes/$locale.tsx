@@ -4,19 +4,14 @@ import { Outlet, useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
-import type {
-  INavigationItem,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
+import type { INavigationItem, LOCALE_CODE } from "../../types/contentful";
 
 type WrapperLoaderItems = {
   nav: INavigationItem[];
   locale: LOCALE_CODE;
 };
 
-export const loader: LoaderFunction = async ({
-  params,
-}): Promise<WrapperLoaderItems> => {
+export const loader: LoaderFunction = async ({ params }): Promise<WrapperLoaderItems> => {
   const locale = (params.locale as LOCALE_CODE) || "de";
   if (!["en", "de", "uk", "ru"].includes(locale)) {
     console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);

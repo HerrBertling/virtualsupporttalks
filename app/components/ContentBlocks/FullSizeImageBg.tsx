@@ -1,8 +1,11 @@
-import type { ReactNode } from "react";
 import type { Entry } from "contentful";
-import type { TypeContentWithFullSizeImageSkeleton } from "../../../@types/generated/contentful";
+import type { ReactNode } from "react";
+import type { TypeContentWithFullSizeImageSkeleton } from "../../../types/contentful";
 
-type BaseFullSizeImageFields = Entry<TypeContentWithFullSizeImageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+type BaseFullSizeImageFields = Entry<
+  TypeContentWithFullSizeImageSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS"
+>["fields"];
 
 interface FullSizeImageBgProps extends BaseFullSizeImageFields {
   children: ReactNode;
@@ -17,10 +20,7 @@ export default function FullSizeImageBg({
   const styleObject = { backgroundColor: backgroundcolor };
   const imagePath = image?.fields?.file?.url;
   return (
-    <section
-      className="grid w-screen max-w-full grid-cols-1 lg:grid-cols-2"
-      style={styleObject}
-    >
+    <section className="grid w-screen max-w-full grid-cols-1 lg:grid-cols-2" style={styleObject}>
       {image && (
         <picture>
           <source srcSet={`${imagePath}?fm=avif&q=80`} type="image/avif" />

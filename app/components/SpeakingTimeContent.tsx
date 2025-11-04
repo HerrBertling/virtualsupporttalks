@@ -1,40 +1,35 @@
+import type { Document } from "@contentful/rich-text-types";
 import { Form, useNavigation, useSubmit } from "@remix-run/react";
 import type { Asset } from "contentful";
-import type { Document } from "@contentful/rich-text-types";
-import { PropsWithChildren, useRef, useState } from "react";
+import { type PropsWithChildren, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { EmailTemplate } from "~/utils/contentful";
-import type {
-  ICoach,
-  ICoachFields,
-  ICoachtag,
-  IPage,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
+import type { ICoach, ICoachtag, IPage, LOCALE_CODE } from "../../types/contentful";
 
 // Type guard to check if a value is an Asset
 function isAsset(value: unknown): value is Asset {
   return (
-    typeof value === 'object' &&
+    typeof value === "object" &&
     value !== null &&
-    'sys' in value &&
-    typeof value.sys === 'object' &&
+    "sys" in value &&
+    typeof value.sys === "object" &&
     value.sys !== null &&
-    'type' in value.sys &&
-    value.sys.type === 'Asset'
+    "type" in value.sys &&
+    value.sys.type === "Asset"
   );
 }
 
 // Type guard to check if a value is a Contentful RichText Document
 function isDocument(value: unknown): value is Document {
   return (
-    typeof value === 'object' &&
+    typeof value === "object" &&
     value !== null &&
-    'nodeType' in value &&
-    'content' in value &&
-    'data' in value
+    "nodeType" in value &&
+    "content" in value &&
+    "data" in value
   );
 }
+
 import CoachCard from "./CoachCard";
 import CoachFilterTag from "./CoachFilterTag";
 import CoachList from "./CoachList";
@@ -80,7 +75,7 @@ export default function SpeakingTimeContent({
   const formRef = useRef<HTMLFormElement>(null);
   const { t } = useTranslation("searchingCoach");
   const [isActive, setIsActive] = useState(false);
-  const [showMoreFilters, setShowMoreFilters] = useState(false);
+  const [_showMoreFilters, _setShowMoreFilters] = useState(false);
   var timeout: NodeJS.Timeout;
 
   const handleChange = () => {
@@ -89,9 +84,8 @@ export default function SpeakingTimeContent({
       // to debounce the search input to not sent a request for each input .. happy for suggestions
       clearTimeout(timeout);
       timeout = setTimeout(
-        () =>
-          submit(formRef.current, { replace: true, preventScrollReset: true }),
-        300,
+        () => submit(formRef.current, { replace: true, preventScrollReset: true }),
+        300
       );
     }
   };
@@ -102,9 +96,7 @@ export default function SpeakingTimeContent({
   const otherTags = tags.filter((tag) => tag.fields.isMostUsed !== true);
 
   // sort popular tags to ensure the "quick response" one is always the first
-  const quickResponseIndex = popularTags
-    .map((tag) => tag.sys.id)
-    .indexOf(QUICK_RESPONSE_TAG_ID);
+  const quickResponseIndex = popularTags.map((tag) => tag.sys.id).indexOf(QUICK_RESPONSE_TAG_ID);
   if (quickResponseIndex > -1) {
     popularTags.unshift(popularTags.splice(quickResponseIndex, 1)[0]);
   }
@@ -130,15 +122,12 @@ export default function SpeakingTimeContent({
           {/* Popular/Most Used Tags - Always Visible */}
           {popularTags.length > 0 && (
             <fieldset className="mt-8">
-              <CoachTagCollectionLegend>
-                {t("filter.popularTags")}
-              </CoachTagCollectionLegend>
+              <CoachTagCollectionLegend>{t("filter.popularTags")}</CoachTagCollectionLegend>
               <CoachTagCollection>
                 {popularTags.map((tag: ICoachtag) => {
                   const isHighlighted = tag.sys.id === QUICK_RESPONSE_TAG_ID;
                   const isNotSelectable =
-                    !availableTagIDs.includes(tag.sys.id) &&
-                    !checkedTags.includes(tag.sys.id);
+                    !availableTagIDs.includes(tag.sys.id) && !checkedTags.includes(tag.sys.id);
                   return (
                     <CoachFilterTag
                       isHighlighted={isHighlighted}
@@ -162,9 +151,7 @@ export default function SpeakingTimeContent({
               className="inline-flex gap-1 cursor-pointer items-center hover:text-vsp-500"
               onClick={() => setIsActive(!isActive)}
             >
-              <h5 className="text-md font-semibold text-slate-500">
-                {t("filter.moreFilters")}
-              </h5>
+              <h5 className="text-md font-semibold text-slate-500">{t("filter.moreFilters")}</h5>
               <div
                 className={`transition-transform hover:text-vsp-500 ${
                   isActive ? "rotate-180" : "rotate-0"
@@ -176,9 +163,7 @@ export default function SpeakingTimeContent({
 
             <div className="pt-8 flex flex-col gap-8">
               <fieldset>
-                <CoachTagCollectionLegend>
-                  {t("filter.language")}
-                </CoachTagCollectionLegend>
+                <CoachTagCollectionLegend>{t("filter.language")}</CoachTagCollectionLegend>
                 <CoachTagCollection>
                   {languages.map((lang: string) => (
                     <CoachFilterTag
@@ -199,9 +184,7 @@ export default function SpeakingTimeContent({
               {/* Gender filter */}
 
               <fieldset>
-                <CoachTagCollectionLegend>
-                  {t("filter.gender")}
-                </CoachTagCollectionLegend>
+                <CoachTagCollectionLegend>{t("filter.gender")}</CoachTagCollectionLegend>
                 {gender.map((genders: string) => (
                   <CoachFilterTag
                     isHighlighted={false}
@@ -220,14 +203,11 @@ export default function SpeakingTimeContent({
               {/* More Filters - Expandable Section */}
               {otherTags.length > 0 && (
                 <fieldset>
-                  <CoachTagCollectionLegend>
-                    {t("filter.tag")}
-                  </CoachTagCollectionLegend>
+                  <CoachTagCollectionLegend>{t("filter.tag")}</CoachTagCollectionLegend>
                   <CoachTagCollection>
                     {otherTags.map((tag: ICoachtag) => {
                       const isNotSelectable =
-                        !availableTagIDs.includes(tag.sys.id) &&
-                        !checkedTags.includes(tag.sys.id);
+                        !availableTagIDs.includes(tag.sys.id) && !checkedTags.includes(tag.sys.id);
                       return (
                         <CoachFilterTag
                           isHighlighted={false}
@@ -288,22 +268,21 @@ export default function SpeakingTimeContent({
               languages,
               mhfaTraining,
               completedMhfaTraining,
-            } = coach.fields as ICoachFields;
+            } = coach.fields;
 
             // Type guards for safe rendering
-            const safeEmail = typeof email === 'string' ? email : undefined;
-            const safeName = typeof name === 'string' ? name : undefined;
-            const safeUrl = typeof url === 'string' ? url : undefined;
-            const safePhone = typeof phone === 'string' ? phone : undefined;
-            const safeEmergency = typeof emergency === 'boolean' ? emergency : undefined;
+            const safeEmail = typeof email === "string" ? email : undefined;
+            const safeName = typeof name === "string" ? name : undefined;
+            const safeUrl = typeof url === "string" ? url : undefined;
+            const safePhone = typeof phone === "string" ? phone : undefined;
+            const safeEmergency = typeof emergency === "boolean" ? emergency : undefined;
             const safeLanguages = Array.isArray(languages)
-              ? languages.filter((l): l is string => typeof l === 'string')
+              ? languages.filter((l): l is string => typeof l === "string")
               : undefined;
             const safeImage = isAsset(image) ? image : undefined;
             const safeMhfaTraining = isAsset(mhfaTraining) ? mhfaTraining : undefined;
-            const safeMhfaLabel = typeof completedMhfaTraining === 'string'
-              ? completedMhfaTraining
-              : undefined;
+            const safeMhfaLabel =
+              typeof completedMhfaTraining === "string" ? completedMhfaTraining : undefined;
             const safeDescription = isDocument(description) ? description : undefined;
 
             return (
@@ -319,7 +298,9 @@ export default function SpeakingTimeContent({
                 </CoachCard.Header>
 
                 <CoachCard.Description>
-                  {safeDescription && <ContentfulRichText content={safeDescription} withProse={false} />}
+                  {safeDescription && (
+                    <ContentfulRichText content={safeDescription} withProse={false} />
+                  )}
                 </CoachCard.Description>
 
                 <CoachCard.Contacts>
@@ -343,11 +324,7 @@ export default function SpeakingTimeContent({
 }
 
 function CoachTagCollectionLegend({ children }: PropsWithChildren) {
-  return (
-    <legend className="inline-block mb-3 text-lg text-slate-800">
-      {children}
-    </legend>
-  );
+  return <legend className="inline-block mb-3 text-lg text-slate-800">{children}</legend>;
 }
 function CoachTagCollection({ children }: PropsWithChildren) {
   return <div className="flex flex-wrap gap-3">{children}</div>;

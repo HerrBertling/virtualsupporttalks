@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import type {
   IMedia,
   INavigation,
@@ -5,8 +6,7 @@ import type {
   IPage,
   ISupporter,
   LOCALE_CODE,
-} from "../../@types/generated/contentful";
-import { useTranslation } from "react-i18next";
+} from "../../types/contentful";
 import ContentBlocks from "./ContentBlocks";
 import BasicLayout from "./layout/BasicLayout";
 import SupporterTile from "./SupporterTile";
@@ -34,9 +34,7 @@ export default function networkPartnerMedia({
       <div className="container mx-auto max-w-6xl">
         <div className="pt-24">
           <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
-            <h2 className="mb-12 font-headline text-4xl font-bold">
-              {t("title.network")}
-            </h2>
+            <h2 className="mb-12 font-headline text-4xl font-bold">{t("title.network")}</h2>
             {network && (
               <div
                 style={{
@@ -57,9 +55,7 @@ export default function networkPartnerMedia({
         </div>
         {supporters && (
           <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
-            <h2 className="mb-12 font-headline text-4xl font-bold">
-              {t("title.partner")}
-            </h2>
+            <h2 className="mb-12 font-headline text-4xl font-bold">{t("title.partner")}</h2>
             <div
               style={{
                 gridTemplateColumns: "repeat(auto-fit,minmax(270px, 1fr))",
@@ -82,9 +78,7 @@ export default function networkPartnerMedia({
       )}
       {media && (
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
-          <h2 className="mb-12 font-headline text-4xl font-bold">
-            {t("title.media")}
-          </h2>
+          <h2 className="mb-12 font-headline text-4xl font-bold">{t("title.media")}</h2>
           <div
             style={{
               gridTemplateColumns: "repeat(auto-fit,minmax(270px, 1fr))",

@@ -3,7 +3,7 @@ import { Outlet } from "@remix-run/react";
 import { getSeoMeta } from "~/seo";
 
 export const meta: MetaFunction = () => {
-  let seoMeta = getSeoMeta({
+  const seoMeta = getSeoMeta({
     title: "Lesezeit – das Redezeit Blog.",
     description: "Beiträge rund um Redezeit.",
   });

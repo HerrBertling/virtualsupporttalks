@@ -35,13 +35,7 @@ export const event = ({
   });
 };
 
-export const trackCoachClick = ({
-  type,
-  coachName,
-}: {
-  type: string;
-  coachName: string;
-}) => {
+export const trackCoachClick = ({ type, coachName }: { type: string; coachName: string }) => {
   ReactGA.event({
     category: "coachClick",
     action: type,

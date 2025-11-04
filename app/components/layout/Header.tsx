@@ -1,18 +1,9 @@
 import { NavLink } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import type {
-  INavigationItem,
-  LOCALE_CODE,
-} from "../../../@types/generated/contentful";
+import type { INavigationItem, LOCALE_CODE } from "../../../types/contentful";
 import HeaderNavigation from "./Navigation";
 
-export default function LayoutHeader({
-  nav,
-  lang,
-}: {
-  nav: INavigationItem[];
-  lang: LOCALE_CODE;
-}) {
+export default function LayoutHeader({ nav, lang }: { nav: INavigationItem[]; lang: LOCALE_CODE }) {
   const [hasScrolled, setHasScrolled] = useState(false);
 
   const handleScroll = () => {
@@ -21,14 +12,14 @@ export default function LayoutHeader({
 
   useEffect(() => {
     handleScroll();
-  }, []);
+  }, [handleScroll]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   return (
     <header
@@ -39,9 +30,7 @@ export default function LayoutHeader({
         <em className="relative z-20">
           <NavLink to={`/${lang}`}>
             <img
-              className={`max-h-12 w-auto transition-transform ${
-                hasScrolled && "scale-[0.8]"
-              }`}
+              className={`max-h-12 w-auto transition-transform ${hasScrolled && "scale-[0.8]"}`}
               src="/img/logo.png"
               alt="Virtual Support Talks Logo"
             />

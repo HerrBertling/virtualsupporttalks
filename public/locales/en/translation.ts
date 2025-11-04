@@ -57,8 +57,7 @@ export default {
   },
   cookies: {
     title: "We use cookies",
-    description:
-      "To continuously improve our offer, we collect (anonymized) data from visitors.",
+    description: "To continuously improve our offer, we collect (anonymized) data from visitors.",
     accept: "Accept",
     decline: "Decline",
   },

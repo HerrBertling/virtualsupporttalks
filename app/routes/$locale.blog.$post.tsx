@@ -5,7 +5,7 @@ import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
 import { getSeoMeta } from "~/seo";
 import { getBlogpost } from "~/utils/contentful";
-import type { IBlogpost, LOCALE_CODE } from "../../@types/generated/contentful";
+import type { LOCALE_CODE } from "../../types/contentful";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data?.blogpost) {
@@ -17,7 +17,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   }
   const { title, seo, description } = data.blogpost.fields;
 
-  let seoMeta = getSeoMeta({
+  const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || description,
   });
@@ -83,10 +83,7 @@ export default function Blogpost() {
         {Boolean(tagList) && <TagGroup tags={tagList} locale={locale} />}
         <div className="flex gap-4">
           {/* <ShareButton :title="title" :text="description" :url="url" /> */}
-          <time
-            dateTime="sys.createdAt"
-            className="text-sm italic text-slate-400 md:text-base"
-          >
+          <time dateTime="sys.createdAt" className="text-sm italic text-slate-400 md:text-base">
             {date}
           </time>
         </div>

@@ -45,10 +45,7 @@ export default function LayoutFooter() {
       <ul className="flex flex-col items-center justify-center md:flex-row">
         {footerNav.map(({ link, title }) => (
           <li key={link.de}>
-            <CleverLink
-              className="block p-2 underline md:px-2 md:py-4"
-              to={link[usedLocale]}
-            >
+            <CleverLink className="block p-2 underline md:px-2 md:py-4" to={link[usedLocale]}>
               {title[usedLocale]}
             </CleverLink>
           </li>

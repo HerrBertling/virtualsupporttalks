@@ -8,6 +8,7 @@ export default function GlobeIcon({ classNames = "h-6 w-6" }) {
       stroke="currentColor"
       strokeWidth={2}
     >
+      <title>Globe icon</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

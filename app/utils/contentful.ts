@@ -1,14 +1,13 @@
-import type { Entry } from "contentful";
 import contentful from "contentful";
 import type {
+  LOCALE_CODE,
   TypeCoachSkeleton,
   TypeCoachtagSkeleton,
   TypeNavigationSkeleton,
   TypePageSkeleton,
   TypeTagSkeleton,
   TypeTestimonialsSkeleton,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
+} from "../../types/contentful";
 import { availableLocales } from "./locales";
 
 export const createContentfulClient = () => {
@@ -52,7 +51,7 @@ export const getMainNav = async (locale: LOCALE_CODE) => {
     {
       include: 3,
       locale: locale,
-    },
+    }
   );
 
   if (!entry) {
@@ -122,10 +121,7 @@ export const getLatestBlogposts = async (locale: LOCALE_CODE) => {
   return createResult(items);
 };
 
-export const getBlogpostTags = async (
-  locale: LOCALE_CODE,
-  tag: string | undefined,
-) => {
+export const getBlogpostTags = async (locale: LOCALE_CODE, tag: string | undefined) => {
   const client = createContentfulClient();
   const { items } = await client.withoutUnresolvableLinks.getEntries<TypeTagSkeleton>({
     content_type: "tag",
@@ -182,7 +178,7 @@ function shuffle(array: any[]) {
 export const getLanguages = async (): Promise<string[]> => {
   const coaches = await getCoaches("de");
 
-  let languages: string[] = [];
+  const languages: string[] = [];
 
   coaches.forEach((coach) => {
     if (coach.fields.languages) {
@@ -190,11 +186,9 @@ export const getLanguages = async (): Promise<string[]> => {
     }
   });
 
-  const lowercasedLangs = [...new Set(languages)].map((lang) =>
-    lang.toLowerCase(),
-  );
+  const lowercasedLangs = [...new Set(languages)].map((lang) => lang.toLowerCase());
 
-  return [...new Set(lowercasedLangs)].sort().filter((lang) => lang != "ukr");
+  return [...new Set(lowercasedLangs)].sort().filter((lang) => lang !== "ukr");
 };
 
 // begin gender
@@ -203,7 +197,7 @@ export const getLanguages = async (): Promise<string[]> => {
 export const getGender = async (): Promise<string[]> => {
   const coaches = await getCoaches();
 
-  let gender: string[] = [];
+  const gender: string[] = [];
 
   coaches.forEach((coach) => {
     if (coach.fields.gender) {
@@ -211,9 +205,7 @@ export const getGender = async (): Promise<string[]> => {
     }
   });
 
-  const lowercasedGender = [...new Set(gender)].map((gend) =>
-    gend.toLowerCase(),
-  );
+  const lowercasedGender = [...new Set(gender)].map((gend) => gend.toLowerCase());
 
   return [...new Set(lowercasedGender)].sort().filter((gend) => gend);
 };
@@ -243,8 +235,7 @@ export const getCoaches = async (lang: string | null = null) => {
     ? { ...baseOptions, "fields.languages[in]": usedLanguage }
     : baseOptions;
 
-  const usedLocale =
-    !lang || !availableLocales.includes(lang as LOCALE_CODE) ? "de" : lang;
+  const usedLocale = !lang || !availableLocales.includes(lang as LOCALE_CODE) ? "de" : lang;
 
   const coachesResponse = await client.withoutUnresolvableLinks.getEntries<TypeCoachSkeleton>({
     ...options,

@@ -1,8 +1,5 @@
 import type { Entry } from "contentful";
-import type {
-  TypeTwoImagesSkeleton,
-  LOCALE_CODE,
-} from "../../../@types/generated/contentful";
+import type { LOCALE_CODE, TypeTwoImagesSkeleton } from "../../../types/contentful";
 import CleverLink from "../CleverLink";
 import FadeIn from "../FadeIn";
 
@@ -68,9 +65,7 @@ export default function ContentBlockTwoImages({
               />
             </picture>
 
-            <h2 className="m-0 px-4 py-8 font-headline text-2xl font-bold">
-              {text}
-            </h2>
+            <h2 className="m-0 px-4 py-8 font-headline text-2xl font-bold">{text}</h2>
           </CleverLink>
         </FadeIn>
       ))}

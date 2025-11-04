@@ -5,11 +5,7 @@ import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
 import { getLatestBlogposts, getPage } from "~/utils/contentful";
-import type {
-  IBlogpost,
-  IPage,
-  LOCALE_CODE,
-} from "../../@types/generated/contentful";
+import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data?.page) {
@@ -21,7 +17,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   }
   const { title, seo } = data.page.fields;
 
-  let seoMeta = getSeoMeta({
+  const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || undefined,
   });
@@ -45,9 +41,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const latestPosts = (await getLatestBlogposts(
-    (locale || "de") as LOCALE_CODE,
-  )) as IBlogpost[];
+  const latestPosts = (await getLatestBlogposts((locale || "de") as LOCALE_CODE)) as IBlogpost[];
 
   return json({ page, locale: locale as LOCALE_CODE, latestPosts });
 };

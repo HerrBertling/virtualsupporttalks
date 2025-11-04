@@ -1,7 +1,10 @@
 import type { Entry } from "contentful";
-import { type TypeTestimonialSectionSkeleton } from "../../../@types/generated/contentful";
+import type { TypeTestimonialSectionSkeleton } from "../../../types/contentful";
 
-type TestimonialsProps = Entry<TypeTestimonialSectionSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+type TestimonialsProps = Entry<
+  TypeTestimonialSectionSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS"
+>["fields"];
 
 function Testimonials({ title }: TestimonialsProps) {
   return (

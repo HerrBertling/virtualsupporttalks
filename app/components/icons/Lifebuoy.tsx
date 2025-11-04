@@ -8,6 +8,7 @@ export default function Lifebuoy({ classNames = "h-6 w-6" }) {
       stroke="currentColor"
       className={classNames}
     >
+      <title>Lifebuoy icon</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

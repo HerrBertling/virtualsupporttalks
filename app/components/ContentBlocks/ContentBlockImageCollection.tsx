@@ -1,7 +1,10 @@
 import type { Entry } from "contentful";
-import type { TypeImageCollectionSkeleton } from "../../../@types/generated/contentful";
+import type { TypeImageCollectionSkeleton } from "../../../types/contentful";
 
-type BaseImageCollectionFields = Entry<TypeImageCollectionSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
+type BaseImageCollectionFields = Entry<
+  TypeImageCollectionSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS"
+>["fields"];
 
 interface ImageCollectionProps extends BaseImageCollectionFields {
   withPaddingTop: boolean;
@@ -37,12 +40,14 @@ export default function ContentBlockImageCollection({
   images,
   withPaddingTop,
 }: ImageCollectionProps) {
-  const imageCollection = images?.filter((item): item is NonNullable<typeof item> => !!item).map(({ sys, fields }) => ({
-    image: fields?.image?.fields?.file?.url,
-    link: fields?.url,
-    text: fields?.internalTitle,
-    id: sys.id,
-  }));
+  const imageCollection = images
+    ?.filter((item): item is NonNullable<typeof item> => !!item)
+    .map(({ sys, fields }) => ({
+      image: fields?.image?.fields?.file?.url,
+      link: fields?.url,
+      text: fields?.internalTitle,
+      id: sys.id,
+    }));
 
   return (
     <div
@@ -51,7 +56,7 @@ export default function ContentBlockImageCollection({
       }`}
     >
       {imageCollection?.map(({ image, link, text, id }) => (
-        <figure key={id} role="figure" aria-label="text">
+        <figure key={id} aria-label="text">
           {link ? (
             <a href={link}>
               <Image image={image} text={text} />

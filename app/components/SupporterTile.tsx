@@ -14,14 +14,8 @@ export default function SupporterTile({
     >
       <div className="text-center">
         <picture>
-          <source
-            srcSet={`${image}?w=240&h=240&fit=pad&fm=webp`}
-            type="image/webp"
-          />
-          <source
-            srcSet={`${image}?w=240&h=240&fit=pad&fm=jpeg`}
-            type="image/jpeg"
-          />
+          <source srcSet={`${image}?w=240&h=240&fit=pad&fm=webp`} type="image/webp" />
+          <source srcSet={`${image}?w=240&h=240&fit=pad&fm=jpeg`} type="image/jpeg" />
           <img
             src={`${image}?w=240&h=240&fit=pad`}
             alt={title}

@@ -2,9 +2,9 @@ import { isRouteErrorResponse, useRouteError } from "@remix-run/react";
 
 export default function BasicErrorBoundary() {
   // @ts-expect-error
-  let error: { status: number; statusText: string } = useRouteError();
-  let status = isRouteErrorResponse(error) ? error.status : 500;
-  let statusText = isRouteErrorResponse(error)
+  const error: { status: number; statusText: string } = useRouteError();
+  const status = isRouteErrorResponse(error) ? error.status : 500;
+  const statusText = isRouteErrorResponse(error)
     ? error.statusText
     : error instanceof Error
       ? error.message

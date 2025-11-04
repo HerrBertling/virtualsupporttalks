@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
-import type { EmailTemplate } from "~/utils/contentful";
 import getFlagCode from "~/utils/getFlagCodes";
 import { trackCoachClick } from "~/utils/gtag.client";
 
@@ -51,7 +50,9 @@ function Avatar({ image, name }: AvatarProps) {
   const imagePath = image?.fields?.file?.url;
 
   if (!imagePath) {
-    return <div className="shadow-inset-md col-start-1 row-start-1 h-16 w-16 overflow-hidden rounded-full bg-slate-200" />;
+    return (
+      <div className="shadow-inset-md col-start-1 row-start-1 h-16 w-16 overflow-hidden rounded-full bg-slate-200" />
+    );
   }
 
   return (
@@ -88,11 +89,7 @@ type HeaderProps = {
 };
 
 function Header({ children }: HeaderProps) {
-  return (
-    <header className="col-start-2 row-start-1 self-center">
-      {children}
-    </header>
-  );
+  return <header className="col-start-2 row-start-1 self-center">{children}</header>;
 }
 
 // Name component
@@ -111,9 +108,7 @@ type MetaProps = {
 
 function Meta({ children }: MetaProps) {
   return (
-    <section className="inline-flex items-center justify-center gap-2 px-1">
-      {children}
-    </section>
+    <section className="inline-flex items-center justify-center gap-2 px-1">{children}</section>
   );
 }
 
@@ -154,7 +149,7 @@ type BadgeProps = {
 function Badge({ image, label }: BadgeProps) {
   const imagePath = image?.fields?.file?.url;
 
-  if (!imagePath || typeof imagePath !== 'string') return null;
+  if (!imagePath || typeof imagePath !== "string") return null;
 
   return (
     <>
@@ -188,11 +183,7 @@ type DescriptionProps = {
 };
 
 function Description({ children }: DescriptionProps) {
-  return (
-    <div className="prose prose-sm prose-slate col-span-full row-start-2">
-      {children}
-    </div>
-  );
+  return <div className="prose prose-sm prose-slate col-span-full row-start-2">{children}</div>;
 }
 
 // Contacts container
@@ -202,9 +193,7 @@ type ContactsProps = {
 
 function Contacts({ children }: ContactsProps) {
   return (
-    <div className="col-span-2 col-start-1 flex flex-row justify-between gap-2">
-      {children}
-    </div>
+    <div className="col-span-2 col-start-1 flex flex-row justify-between gap-2">{children}</div>
   );
 }
 
@@ -231,9 +220,7 @@ function ContactButton({ href, type, label }: ContactButtonProps) {
       target="_blank"
       rel="noopener noreferrer"
       className="flex w-full flex-grow items-center justify-center rounded-md border border-vsp-400 py-2 text-sm text-slate-600 no-underline transition-colors duration-200 hover:border-vsp-700 hover:bg-vsp-100 hover:text-vsp-900 focus:border-vsp-700 focus:bg-vsp-100 focus:text-vsp-900 active:border-vsp-700 active:bg-vsp-100 active:text-vsp-900"
-      onClick={() =>
-        trackCoachClick({ type, coachName: coachName || "Unknown" })
-      }
+      onClick={() => trackCoachClick({ type, coachName: coachName || "Unknown" })}
     >
       {icons[type]}
       <span>{label || t(type)}</span>
