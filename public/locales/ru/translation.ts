@@ -1,4 +1,11 @@
 export default {
+  error: {
+    title: "Ошибка {{status}}!",
+    notFound: "Мы не смогли найти эту страницу!",
+    generic: "Произошла ошибка!",
+    unknown: "Произошла неизвестная ошибка!",
+    machineMessage: "Вот что говорят нам машины:",
+  },
   networkPartnerMedia: {
     title: {
       network: "Our network",
@@ -48,6 +55,10 @@ export default {
   },
   blogpostByTag: {
     title: "BLOGPOSTS for the tag ",
+  },
+  common: {
+    skipToContent: "Перейти к содержимому",
+    search: "Поиск...",
   },
   cookies: {
     title: "Мы используем файлы cookie",

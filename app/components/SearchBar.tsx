@@ -1,6 +1,8 @@
 import React, { type ChangeEvent, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const SearchBar = () => {
+  const { t } = useTranslation("common");
   const [inputValue, setInputValue] = React.useState("");
   const [_debouncedInputValue, _setDebouncedInputValue] = React.useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -21,7 +23,7 @@ const SearchBar = () => {
       <input
         name="search"
         type="text"
-        placeholder="Suche..."
+        placeholder={t("search")}
         className="text-[1rem] px-2 py-1 rounded-full hover:text-vsp-900 border border-vsp-400 active:border-vsp-900 focus:border-vsp-900 disabled:border-vsp-200 w-full"
         value={inputValue}
         onChange={(e) => {

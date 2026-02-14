@@ -10,7 +10,7 @@ import { CookieBanner } from "./components/CookieBanner";
 import { gdprConsent } from "./cookies";
 import styles from "./styles/app.css?url";
 
-const [seoMeta, seoLinks] = getSeo();
+const [seoMeta] = getSeo();
 
 const GA_TRACKING_ID = import.meta.env.VITE_GTM_ID || "GTM-NH6W3MZ";
 
@@ -24,7 +24,6 @@ export const meta: MetaFunction = () => {
 
 export const links: LinksFunction = () => {
   return [
-    ...seoLinks,
     { rel: "stylesheet", href: styles },
     { rel: "icon", href: "/icon.png", type: "image/png" },
   ];

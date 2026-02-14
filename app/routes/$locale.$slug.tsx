@@ -1,5 +1,4 @@
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
@@ -43,7 +42,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const latestPosts = (await getLatestBlogposts((locale || "de") as LOCALE_CODE)) as IBlogpost[];
 
-  return json({ page, locale: locale as LOCALE_CODE, latestPosts });
+  return { page, locale: locale as LOCALE_CODE, latestPosts };
 };
 
 export default function Index() {

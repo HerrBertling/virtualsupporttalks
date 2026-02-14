@@ -8,8 +8,8 @@ import {
   getTags,
 } from "~/utils/contentful";
 import pageIds from "~/utils/pageIds";
-import type { ICoachtag, LOCALE_CODE } from "../../types/contentful";
-import { documentContentToSimpleString } from "./documentToSimpleString";
+import type { LOCALE_CODE } from "../../types/contentful";
+import { filterCoaches, getAvailableTagIDs } from "./filterCoaches";
 
 export const getSearchPageContents = async (request: Request, locale: LOCALE_CODE) => {
   const searchParams = new URL(request.url).searchParams;
@@ -40,44 +40,13 @@ export const getSearchPageContents = async (request: Request, locale: LOCALE_COD
     throw new Response("Could not load navigation", { status: 404 });
   }
 
-  const filteredCoaches = coaches
-    .filter((coach) => {
-      const coachTags = coach.fields.tag;
-      if (!checkedTags || checkedTags.length === 0) {
-        return true;
-      }
+  const filteredCoaches = filterCoaches(coaches, {
+    checkedTags,
+    checkedGender,
+    searchTerm: searchTerm[0] || "",
+  });
 
-      return (
-        !!coachTags &&
-        checkedTags.every((tagId) => coachTags.some((cTag: ICoachtag) => cTag.sys.id === tagId))
-      );
-    })
-    .filter((coach) => {
-      const coachGenders = coach.fields.gender;
-      if (!checkedGender || checkedGender.length === 0) {
-        return true;
-      }
-
-      return (
-        !!coachGenders && coachGenders.some((gender: string) => checkedGender.includes(gender))
-      );
-    })
-    .filter((coach) => {
-      if (searchTerm[0] && searchTerm[0] !== "") {
-        const description = documentContentToSimpleString(coach.fields.description?.content);
-        const searchRegex = new RegExp(searchTerm[0], "i");
-        return `${coach.fields.name} ${description}`.match(searchRegex);
-      } else {
-        return true;
-      }
-    });
-
-  // get available tags from all coaches
-
-  const availableTagIDs = filteredCoaches
-    .map((coach) => coach.fields.tag)
-    .filter((tags) => !!tags)
-    .flatMap((tags) => tags?.map((tag: { sys: { id: string } }) => tag.sys.id));
+  const availableTagIDs = getAvailableTagIDs(filteredCoaches);
 
   return {
     page,

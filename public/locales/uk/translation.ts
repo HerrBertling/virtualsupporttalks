@@ -1,4 +1,11 @@
 export default {
+  error: {
+    title: "Помилка {{status}}!",
+    notFound: "Ми не змогли знайти цю сторінку!",
+    generic: "Сталася помилка!",
+    unknown: "Сталася невідома помилка!",
+    machineMessage: "Ось що кажуть нам машини:",
+  },
   networkPartnerMedia: {
     title: {
       network: "Наша мережа",
@@ -51,6 +58,10 @@ export default {
   },
   blogpostByTag: {
     title: "BLOGPOSTS for the tag ",
+  },
+  common: {
+    skipToContent: "Перейти до вмісту",
+    search: "Пошук...",
   },
   cookies: {
     title: "Ми використовуємо файли cookie",
