@@ -5,9 +5,6 @@ import { getCoaches } from "~/utils/contentful";
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const pw = formData.get("pw");
-
-  console.log({ pw, envPw: process.env.CSV_DOWNLOAD_PW });
-
   if (pw !== process.env.CSV_DOWNLOAD_PW) {
     return { error: "wrong password", body: null };
   }

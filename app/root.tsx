@@ -12,7 +12,7 @@ import styles from "./styles/app.css?url";
 
 const [seoMeta, seoLinks] = getSeo();
 
-const GA_TRACKING_ID = "GTM-NH6W3MZ";
+const GA_TRACKING_ID = import.meta.env.VITE_GTM_ID || "GTM-NH6W3MZ";
 
 export const meta: MetaFunction = () => {
   return [
@@ -71,9 +71,11 @@ export default function App() {
     setShouldTrack(track);
   }, [track]);
 
-  if (shouldTrack) {
-    gtag.init();
-  }
+  useEffect(() => {
+    if (shouldTrack) {
+      gtag.init();
+    }
+  }, [shouldTrack]);
 
   useChangeLanguage(locale);
 
