@@ -4,6 +4,7 @@ import { Outlet, useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
+import { availableLocales } from "~/utils/locales";
 import type { INavigationItem, LOCALE_CODE } from "../../types/contentful";
 
 type WrapperLoaderItems = {
@@ -13,7 +14,7 @@ type WrapperLoaderItems = {
 
 export const loader: LoaderFunction = async ({ params }): Promise<WrapperLoaderItems> => {
   const locale = (params.locale as LOCALE_CODE) || "de";
-  if (!["en", "de", "uk", "ru"].includes(locale)) {
+  if (!availableLocales.includes(locale)) {
     console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);
     throw redirect(`/de/${locale}`, 301);
   }

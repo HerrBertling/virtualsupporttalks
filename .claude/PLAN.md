@@ -54,13 +54,13 @@ These were considered and deliberately rejected:
 **Branch:** `feat/ux-and-migration-prep` off `main`
 **Ship as:** single PR, merge to `main`
 
-- [ ] Replace `remix-seo` with manual `getSeoMeta()` utility (create `app/utils/seo.ts`, update route meta functions) **[S]**
-- [ ] Replace `json()` with plain object returns — singleFetch already enabled (`app/routes/enable-analytics.tsx`, `$locale._index.tsx`, `$locale.$slug.tsx`) **[S]**
-- [ ] Localize error boundary — currently English-only for all locales (`app/components/BasicErrorBoundary.tsx` — add `useTranslation()`) **[S]**
-- [ ] Add skip-to-content link (`app/components/layout/BasicLayout.tsx`) **[S]**
-- [ ] Internationalize SearchBar placeholder — "Suche..." is hardcoded (`app/components/SearchBar.tsx`) **[S]**
-- [ ] Fix hardcoded locale array to use `availableLocales` constant (`app/routes/$locale.tsx:16-18`) **[S]**
-- [ ] Add unit tests for coach search/filter logic (new test file) **[M]**
+- [x] Replace `remix-seo` with manual `getSeoMeta()` utility (create `app/utils/seo.ts`, update route meta functions) **[S]**
+- [x] Replace `json()` with plain object returns — singleFetch already enabled (`app/routes/enable-analytics.tsx`, `$locale._index.tsx`, `$locale.$slug.tsx`) **[S]**
+- [x] Localize error boundary — currently English-only for all locales (`app/components/BasicErrorBoundary.tsx` — add `useTranslation()`) **[S]**
+- [x] Add skip-to-content link (`app/components/layout/BasicLayout.tsx`) **[S]**
+- [x] Internationalize SearchBar placeholder — "Suche..." is hardcoded (`app/components/SearchBar.tsx`) **[S]**
+- [x] Fix hardcoded locale array to use `availableLocales` constant (`app/routes/$locale.tsx:16-18`) **[S]**
+- [x] Add unit tests for coach search/filter logic (new test file) **[M]**
 
 **Done when:** all boxes checked, `npm run typecheck && npm run lint && npm test && npm run build` passes, PR opened.
 

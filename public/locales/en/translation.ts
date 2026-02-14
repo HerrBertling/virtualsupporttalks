@@ -1,4 +1,11 @@
 export default {
+  error: {
+    title: "Oh no! A {{status}} error!",
+    notFound: "We couldn't find that page!",
+    generic: "An error occurred!",
+    unknown: "An unknown error occurred!",
+    machineMessage: "This is what the machines tell us:",
+  },
   networkPartnerMedia: {
     title: {
       network: "Our network",
@@ -54,6 +61,10 @@ export default {
   },
   blogpostOverview: {
     title: "The latest blog posts",
+  },
+  common: {
+    skipToContent: "Skip to content",
+    search: "Search...",
   },
   cookies: {
     title: "We use cookies",

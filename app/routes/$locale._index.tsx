@@ -1,5 +1,4 @@
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
@@ -37,7 +36,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const latestPosts = (await getLatestBlogposts(locale as LOCALE_CODE)) as IBlogpost[];
 
-  return json({ page, locale, latestPosts });
+  return { page, locale, latestPosts };
 };
 
 export default function Index() {
