@@ -1,13 +1,13 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
 import { getSeoMeta } from "~/seo";
 import { getBlogpost } from "~/utils/contentful";
+import { ensureFound } from "~/utils/ensureFound";
 import type { LOCALE_CODE } from "../../types/contentful";
+import type { Route } from "./+types/$locale.blog.$post";
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: Route.MetaFunction = ({ data }) => {
   if (!data?.blogpost) {
     return [
       {
@@ -28,24 +28,29 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export function headers() {
+  return {
+    "Cache-Control": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
+  };
+}
+
+export async function loader({ params }: Route.LoaderArgs) {
   const { post, locale } = params;
 
   if (!post) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const blogpost = await getBlogpost(post, locale as LOCALE_CODE);
+  const blogpost = ensureFound(
+    await getBlogpost(post, locale as LOCALE_CODE),
+    "Blog post not found"
+  );
 
-  if (!blogpost) {
-    throw new Response("Not Found", { status: 404 });
-  }
+  return { blogpost, locale: locale as LOCALE_CODE };
+}
 
-  return { blogpost, locale };
-};
-
-export default function Blogpost() {
-  const { blogpost, locale } = useLoaderData<typeof loader>();
+export default function Blogpost({ loaderData }: Route.ComponentProps) {
+  const { blogpost, locale } = loaderData;
 
   const { mainImage, content, title, tagList } = blogpost.fields;
   const dateObj = new Date(blogpost.sys.createdAt);
@@ -67,7 +72,7 @@ export default function Blogpost() {
             <img
               alt=""
               className="relative z-0 col-start-1 row-start-1 min-h-[16rem] w-full max-w-4xl object-cover object-center"
-              src={mainImage.fields.file.url}
+              src={mainImage.fields.file?.url}
             />
           )}
           <h1 className="relative z-20 col-start-1 row-start-1 m-0 self-end break-words p-4 font-headline text-3xl font-bold text-white md:text-4xl lg:text-5xl">
@@ -80,7 +85,12 @@ export default function Blogpost() {
           tagList ? "justify-between" : "justify-end"
         }`}
       >
-        {Boolean(tagList) && <TagGroup tags={tagList} locale={locale} />}
+        {Boolean(tagList) && (
+          <TagGroup
+            tags={tagList?.filter((tag): tag is NonNullable<typeof tag> => tag !== undefined)}
+            locale={locale}
+          />
+        )}
         <div className="flex gap-4">
           {/* <ShareButton :title="title" :text="description" :url="url" /> */}
           <time dateTime="sys.createdAt" className="text-sm italic text-slate-400 md:text-base">
