@@ -22,7 +22,7 @@ export default function Header({ backgroundcolor, image, buttonUrl, buttonText }
         <div className="w-full bg-contain bg-center bg-no-repeat" style={styleObject}></div>
         {hasButton && (
           <div>
-            <button>{buttonText}</button>
+            <button type="button">{buttonText}</button>
           </div>
         )}
       </header>

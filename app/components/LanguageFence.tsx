@@ -1,5 +1,5 @@
-import { useParams } from "@remix-run/react";
 import type { ReactNode } from "react";
+import { useParams } from "react-router";
 
 export default function LanguageFence({
   allowedLanguages,

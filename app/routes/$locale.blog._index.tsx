@@ -1,12 +1,11 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
 import { getBlogposts } from "~/utils/contentful";
 import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
+import type { Route } from "./+types/$locale.blog._index";
 
-export const loader: LoaderFunction = async ({ params }) => {
+export async function loader({ params }: Route.LoaderArgs) {
   const locale = (params.locale as string) || "de";
   const posts = await getBlogposts(locale as LOCALE_CODE);
 
@@ -15,11 +14,10 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 
   return { posts, locale };
-};
+}
 
-export default function Index() {
-  const { posts, locale }: { posts: IBlogpost[]; locale: LOCALE_CODE } =
-    useLoaderData<typeof loader>();
+export default function Index({ loaderData }: Route.ComponentProps) {
+  const { posts, locale } = loaderData;
   const { t } = useTranslation("blogpostOverview");
   return (
     <>
@@ -27,8 +25,8 @@ export default function Index() {
         <h2 className="font-headline text-3xl font-bold">{t("title")}</h2>
       </header>
       <div className="my-4 mx-auto grid grid-cols-1 gap-16 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-y-16 lg:gap-x-12">
-        {posts.map((post: IBlogpost) => (
-          <BlogpostCard post={post} locale={locale} key={post.sys.id} />
+        {(posts as IBlogpost[]).map((post: IBlogpost) => (
+          <BlogpostCard post={post} locale={locale as LOCALE_CODE} key={post.sys.id} />
         ))}
       </div>
     </>

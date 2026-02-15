@@ -1,11 +1,18 @@
+interface RichTextNode {
+  nodeType: string;
+  value?: string;
+  content?: RichTextNode[];
+  data?: Record<string, unknown>;
+}
+
 // This function processes each individual node of the Rich Text document
-export function documentContentToSimpleString(nodes?: any) {
+export function documentContentToSimpleString(nodes?: RichTextNode[]) {
   if (nodes === undefined) return "";
   // Initialize an empty string to hold the result
   let result = "";
 
   // Loop through each node in the input content array
-  nodes.forEach((node: any) => {
+  nodes.forEach((node) => {
     // If the node type is 'text', we append its value to the result
     if (node.nodeType === "text" && node.value) {
       result += node.value;

@@ -1,8 +1,8 @@
-import type { ActionFunctionArgs } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
+import { Form } from "react-router";
 import { getCoaches } from "~/utils/contentful";
+import type { Route } from "./+types/$locale.admin.csv-export";
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const pw = formData.get("pw");
   if (pw !== process.env.CSV_DOWNLOAD_PW) {
@@ -24,9 +24,7 @@ export async function action({ request }: ActionFunctionArgs) {
   return { body: csv, error: null };
 }
 
-export default function Component() {
-  const actionData = useActionData<typeof action>();
-
+export default function Component({ actionData }: Route.ComponentProps) {
   const error = actionData?.error ?? null;
 
   const downloadCSV = () => {

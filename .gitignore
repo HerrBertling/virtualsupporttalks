@@ -3,6 +3,7 @@ node_modules
 /.cache
 /public/build
 /build
+.react-router/
 .env
 
 # Local Netlify folder

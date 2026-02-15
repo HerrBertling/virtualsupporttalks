@@ -1,8 +1,8 @@
-import type { MetaFunction } from "@remix-run/node";
-import { Outlet } from "@remix-run/react";
+import { Outlet } from "react-router";
 import { getSeoMeta } from "~/seo";
+import type { Route } from "./+types/$locale.blog";
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   const seoMeta = getSeoMeta({
     title: "Lesezeit – das Redezeit Blog.",
     description: "Beiträge rund um Redezeit.",

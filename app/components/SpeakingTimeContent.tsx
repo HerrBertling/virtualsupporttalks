@@ -1,8 +1,8 @@
 import type { Document } from "@contentful/rich-text-types";
-import { Form, useNavigation, useSubmit } from "@remix-run/react";
 import type { Asset } from "contentful";
 import { type PropsWithChildren, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Form, useNavigation, useSubmit } from "react-router";
 import type { EmailTemplate } from "~/utils/contentful";
 import type { ICoach, ICoachtag, IPage, LOCALE_CODE } from "../../types/contentful";
 
@@ -57,6 +57,65 @@ type SpeakingTimeContentProps = {
   emailTemplate?: EmailTemplate;
 };
 
+function renderCoachCard(coach: ICoach, emailTemplate?: EmailTemplate) {
+  const {
+    email,
+    name,
+    url,
+    phone,
+    emergency,
+    image,
+    description,
+    languages,
+    mhfaTraining,
+    completedMhfaTraining,
+  } = coach.fields;
+
+  const safeEmail = typeof email === "string" ? email : undefined;
+  const safeName = typeof name === "string" ? name : undefined;
+  const safeUrl = typeof url === "string" ? url : undefined;
+  const safePhone = typeof phone === "string" ? phone : undefined;
+  const safeEmergency = typeof emergency === "boolean" ? emergency : undefined;
+  const safeLanguages = Array.isArray(languages)
+    ? languages.filter((l): l is string => typeof l === "string")
+    : undefined;
+  const safeImage = isAsset(image) ? image : undefined;
+  const safeMhfaTraining = isAsset(mhfaTraining) ? mhfaTraining : undefined;
+  const safeMhfaLabel =
+    typeof completedMhfaTraining === "string" ? completedMhfaTraining : undefined;
+  const safeDescription = isDocument(description) ? description : undefined;
+
+  return (
+    <CoachCard key={coach.sys.id} emergency={safeEmergency} coachName={safeName}>
+      <CoachCard.Avatar image={safeImage} name={safeName} />
+
+      <CoachCard.Header>
+        <CoachCard.Name>{safeName}</CoachCard.Name>
+        <CoachCard.Meta>
+          <CoachCard.Languages languages={safeLanguages} />
+          <CoachCard.Badge image={safeMhfaTraining} label={safeMhfaLabel} />
+        </CoachCard.Meta>
+      </CoachCard.Header>
+
+      <CoachCard.Description>
+        {safeDescription && <ContentfulRichText content={safeDescription} withProse={false} />}
+      </CoachCard.Description>
+
+      <CoachCard.Contacts>
+        {safeEmail && (
+          <CoachCard.Email
+            email={safeEmail}
+            subject={emailTemplate?.subject}
+            body={emailTemplate?.content}
+          />
+        )}
+        {safeUrl && <CoachCard.Website url={safeUrl} />}
+        {safePhone && <CoachCard.Phone phone={safePhone} />}
+      </CoachCard.Contacts>
+    </CoachCard>
+  );
+}
+
 export default function SpeakingTimeContent({
   page,
   locale,
@@ -101,7 +160,7 @@ export default function SpeakingTimeContent({
 
   return (
     <div>
-      <ContentBlocks content={page.fields.content as any} locale={locale} />
+      <ContentBlocks content={page.fields.content} locale={locale} />
       <Form
         onChange={handleChange}
         ref={formRef}
@@ -145,6 +204,7 @@ export default function SpeakingTimeContent({
           )}
 
           <details open={false} className="pt-6">
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: <summary> is inherently interactive */}
             <summary
               className="inline-flex gap-1 cursor-pointer items-center hover:text-vsp-500"
               onClick={() => setIsActive(!isActive)}
@@ -254,67 +314,7 @@ export default function SpeakingTimeContent({
           </div>
         )}
         <CoachList>
-          {coaches.map((coach: ICoach) => {
-            const {
-              email,
-              name,
-              url,
-              phone,
-              emergency,
-              image,
-              description,
-              languages,
-              mhfaTraining,
-              completedMhfaTraining,
-            } = coach.fields;
-
-            // Type guards for safe rendering
-            const safeEmail = typeof email === "string" ? email : undefined;
-            const safeName = typeof name === "string" ? name : undefined;
-            const safeUrl = typeof url === "string" ? url : undefined;
-            const safePhone = typeof phone === "string" ? phone : undefined;
-            const safeEmergency = typeof emergency === "boolean" ? emergency : undefined;
-            const safeLanguages = Array.isArray(languages)
-              ? languages.filter((l): l is string => typeof l === "string")
-              : undefined;
-            const safeImage = isAsset(image) ? image : undefined;
-            const safeMhfaTraining = isAsset(mhfaTraining) ? mhfaTraining : undefined;
-            const safeMhfaLabel =
-              typeof completedMhfaTraining === "string" ? completedMhfaTraining : undefined;
-            const safeDescription = isDocument(description) ? description : undefined;
-
-            return (
-              <CoachCard key={coach.sys.id} emergency={safeEmergency} coachName={safeName}>
-                <CoachCard.Avatar image={safeImage} name={safeName} />
-
-                <CoachCard.Header>
-                  <CoachCard.Name>{safeName}</CoachCard.Name>
-                  <CoachCard.Meta>
-                    <CoachCard.Languages languages={safeLanguages} />
-                    <CoachCard.Badge image={safeMhfaTraining} label={safeMhfaLabel} />
-                  </CoachCard.Meta>
-                </CoachCard.Header>
-
-                <CoachCard.Description>
-                  {safeDescription && (
-                    <ContentfulRichText content={safeDescription} withProse={false} />
-                  )}
-                </CoachCard.Description>
-
-                <CoachCard.Contacts>
-                  {safeEmail && (
-                    <CoachCard.Email
-                      email={safeEmail}
-                      subject={emailTemplate?.subject}
-                      body={emailTemplate?.content}
-                    />
-                  )}
-                  {safeUrl && <CoachCard.Website url={safeUrl} />}
-                  {safePhone && <CoachCard.Phone phone={safePhone} />}
-                </CoachCard.Contacts>
-              </CoachCard>
-            );
-          })}
+          {coaches.map((coach: ICoach) => renderCoachCard(coach, emailTemplate))}
         </CoachList>
       </div>
     </div>
