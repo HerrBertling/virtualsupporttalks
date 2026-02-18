@@ -1,5 +1,5 @@
-import { NavLink } from "@remix-run/react";
 import { useCallback, useEffect, useState } from "react";
+import { NavLink } from "react-router";
 import type { INavigationItem, LOCALE_CODE } from "../../../types/contentful";
 import HeaderNavigation from "./Navigation";
 
@@ -12,7 +12,7 @@ export default function LayoutHeader({ nav, lang }: { nav: INavigationItem[]; la
 
   useEffect(() => {
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
