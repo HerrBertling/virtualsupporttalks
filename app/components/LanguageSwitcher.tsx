@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link } from "react-router";
 import { useOnClickOutside } from "usehooks-ts";
+import type { LOCALE_CODE } from "types/contentful";
 import { availableLocales } from "~/utils/locales";
 import GlobeAltIcon from "./icons/GlobeAltIcon";
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ lang: currentLang }: { lang: LOCALE_CODE }) {
   const [show, setShow] = useState(false);
-  const { locale: currentLang } = useParams();
   const ref = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = useCallback(() => {

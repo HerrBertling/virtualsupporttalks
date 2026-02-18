@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import type { INavigationItem, LOCALE_CODE } from "types/contentful";
 import LanguageSwitcher from "../LanguageSwitcher";
 import NavItem from "./NavItem";
 
 export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang: LOCALE_CODE }) {
   const [open, setOpen] = useState(false);
-  const { locale } = useParams();
-
   useEffect(() => {
     setOpen(false);
   }, []);
-
-  const currentLang = locale || "de";
 
   const navItems = nav
     .map((item) => {
@@ -34,7 +29,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
       };
     })
     .filter((item) => {
-      if (["uk", "ru"].includes(currentLang)) {
+      if (["uk", "ru"].includes(lang)) {
         return item.title !== "Blog";
       }
       return item;
@@ -100,7 +95,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
           );
         })}
       </ul>
-      <LanguageSwitcher />
+      <LanguageSwitcher lang={lang} />
     </nav>
   );
 }
