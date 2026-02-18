@@ -1,4 +1,3 @@
-import { useParams } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import type { INavigationItem, LOCALE_CODE } from "types/contentful";
 import LanguageSwitcher from "../LanguageSwitcher";
@@ -6,21 +5,17 @@ import NavItem from "./NavItem";
 
 export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang: LOCALE_CODE }) {
   const [open, setOpen] = useState(false);
-  const { locale } = useParams();
-
   useEffect(() => {
     setOpen(false);
   }, []);
 
-  const currentLang = locale || "de";
-
   const navItems = nav
     .map((item) => {
-      const { page, title, url } = item.fields as any;
+      const { page, title, url } = item.fields;
       const id = item.sys.id;
       let path = "/";
       if (url) {
-        path = (url as string).replace("https://www.virtualsupporttalks.de", "");
+        path = url.replace("https://www.virtualsupporttalks.de", "");
       }
       if (page?.fields?.slug) {
         path = `/${lang}/${page.fields.slug}`;
@@ -28,13 +23,13 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
         path = `/${lang}${path}`;
       }
       return {
-        title: title as string,
+        title: title ?? "",
         path,
         id,
       };
     })
     .filter((item) => {
-      if (["uk", "ru"].includes(currentLang)) {
+      if (["uk", "ru"].includes(lang)) {
         return item.title !== "Blog";
       }
       return item;
@@ -100,7 +95,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
           );
         })}
       </ul>
-      <LanguageSwitcher />
+      <LanguageSwitcher lang={lang} />
     </nav>
   );
 }

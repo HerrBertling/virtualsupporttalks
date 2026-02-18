@@ -1,6 +1,6 @@
 import type { Document } from "@contentful/rich-text-types";
-import { useLoaderData } from "@remix-run/react";
 import type { Entry } from "contentful";
+import { useLoaderData } from "react-router";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
 import type { LOCALE_CODE, TypeBlogpostSkeleton } from "../../../types/contentful";
@@ -12,7 +12,7 @@ type IBlogpost = Entry<TypeBlogpostSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">;
 
 interface ContentBlockBlogPreviewProps {
   titleAndHeader: Document;
-  buttonText: string;
+  buttonText?: string;
 }
 
 export default function ContentBlockBlogPreview({

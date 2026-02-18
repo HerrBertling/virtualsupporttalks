@@ -1,18 +1,12 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
+import { Outlet, redirect } from "react-router";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
 import { availableLocales } from "~/utils/locales";
 import type { INavigationItem, LOCALE_CODE } from "../../types/contentful";
+import type { Route } from "./+types/$locale";
 
-type WrapperLoaderItems = {
-  nav: INavigationItem[];
-  locale: LOCALE_CODE;
-};
-
-export const loader: LoaderFunction = async ({ params }): Promise<WrapperLoaderItems> => {
+export async function loader({ params }: Route.LoaderArgs) {
   const locale = (params.locale as LOCALE_CODE) || "de";
   if (!availableLocales.includes(locale)) {
     console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);
@@ -29,18 +23,22 @@ export const loader: LoaderFunction = async ({ params }): Promise<WrapperLoaderI
   const nav = rawNav.filter((item): item is NonNullable<typeof item> => item !== undefined);
 
   return { nav, locale };
-};
+}
 
-export default function Wrapper() {
-  const { nav, locale } = useLoaderData<typeof loader>();
+export default function Wrapper({ loaderData }: Route.ComponentProps) {
+  const { nav, locale } = loaderData;
 
   return (
-    <BasicLayout nav={nav} lang={locale}>
+    <BasicLayout nav={nav as INavigationItem[]} lang={locale as LOCALE_CODE}>
       <div>
         <Outlet />
       </div>
     </BasicLayout>
   );
+}
+
+export function shouldRevalidate({ currentParams, nextParams }: { currentParams: Record<string, string>; nextParams: Record<string, string> }) {
+  return currentParams.locale !== nextParams.locale;
 }
 
 export function ErrorBoundary() {

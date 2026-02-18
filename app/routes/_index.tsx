@@ -1,6 +1,6 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
+import { redirect } from "react-router";
+import type { Route } from "./+types/_index";
 
-export const loader: LoaderFunction = () => {
+export function loader(_args: Route.LoaderArgs) {
   throw redirect("/de", 301);
-};
+}

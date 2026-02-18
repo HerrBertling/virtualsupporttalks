@@ -12,9 +12,7 @@ export function getSeoMeta({
   title?: string | null;
   description?: string | null;
 }) {
-  const resolvedTitle = title
-    ? defaults.titleTemplate.replace("%s", title)
-    : defaults.title;
+  const resolvedTitle = title ? defaults.titleTemplate.replace("%s", title) : defaults.title;
 
   return {
     title: resolvedTitle,

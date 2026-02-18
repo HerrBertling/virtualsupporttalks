@@ -1,18 +1,23 @@
-import type { LinksFunction, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import { type ReactNode, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import type { LinksFunction, MetaFunction } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import { useChangeLanguage } from "remix-i18next/react";
 import { getSeo } from "~/seo";
 import * as gtag from "~/utils/gtag.client";
+import type { Route } from "./+types/root";
 import Brevo from "./brevo";
 import BasicCatchBoundary from "./components/BasicErrorBoundary";
 import { CookieBanner } from "./components/CookieBanner";
 import { gdprConsent } from "./cookies";
+import { getLocale, i18nextMiddleware } from "./middleware/i18next";
 import styles from "./styles/app.css?url";
 
 const [seoMeta] = getSeo();
 
 const GA_TRACKING_ID = import.meta.env.VITE_GTM_ID || "GTM-NH6W3MZ";
+
+export const middleware = [i18nextMiddleware];
 
 export const meta: MetaFunction = () => {
   return [
@@ -24,15 +29,17 @@ export const meta: MetaFunction = () => {
 
 export const links: LinksFunction = () => {
   return [
+    { rel: "preload", href: "/fonts/Poppins-Regular.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+    { rel: "preload", href: "/fonts/Roboto-Regular.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
     { rel: "stylesheet", href: styles },
     { rel: "icon", href: "/icon.png", type: "image/png" },
   ];
 };
 
-export const Layout = ({ children, locale }: { children: ReactNode; locale: string }) => {
+export const Layout = ({ children }: { children: ReactNode }) => {
   const { i18n } = useTranslation();
   return (
-    <html lang={locale} dir={i18n.dir()}>
+    <html lang={i18n.language} dir={i18n.dir()}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
@@ -48,23 +55,18 @@ export const Layout = ({ children, locale }: { children: ReactNode; locale: stri
   );
 };
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
-  const { locale = "de" } = params;
+export async function loader({ request, context }: Route.LoaderArgs) {
+  const locale = getLocale(context as Parameters<typeof getLocale>[0]);
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
   return { locale, track: cookie.gdprConsent };
 }
 
-export function useChangeLanguage(locale: string) {
-  const { i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage(locale);
-  }, [locale, i18n]);
-}
-
-export default function App() {
-  const { locale, track } = useLoaderData<typeof loader>();
+export default function App({ loaderData }: Route.ComponentProps) {
+  const { locale, track } = loaderData;
   const [shouldTrack, setShouldTrack] = useState(false);
+
+  useChangeLanguage(locale);
 
   useEffect(() => {
     setShouldTrack(track);
@@ -76,13 +78,12 @@ export default function App() {
     }
   }, [shouldTrack]);
 
-  useChangeLanguage(locale);
-
   return (
     <>
       {shouldTrack && (
         <>
           <script
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: GTM requires inline script injection
             dangerouslySetInnerHTML={{
               __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

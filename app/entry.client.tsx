@@ -1,27 +1,49 @@
-import { RemixBrowser } from "@remix-run/react";
-import i18next from "i18next";
+import i18next, { type Resource } from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { StrictMode, startTransition } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { I18nextProvider, initReactI18next } from "react-i18next";
-import { getInitialNamespaces } from "remix-i18next/client";
-import i18n from "./utils/i18nextOptions";
+import { HydratedRouter } from "react-router/dom";
+
+// biome-ignore lint/suspicious/noExplicitAny: i18next resource type requires flexible typing
+type TranslationModule = { default: Record<string, any> };
+
+const localeImports: Record<string, () => Promise<TranslationModule>> = {
+  de: () => import("../public/locales/de/translation"),
+  en: () => import("../public/locales/en/translation"),
+  ru: () => import("../public/locales/ru/translation"),
+  uk: () => import("../public/locales/uk/translation"),
+};
 
 async function hydrate() {
+  const detectedLocale = document.documentElement.lang || "de";
+  const locale = detectedLocale in localeImports ? detectedLocale : "de";
+
+  const [currentTranslation, fallbackTranslation] = await Promise.all([
+    localeImports[locale]().then((m) => m.default),
+    locale !== "de" ? localeImports.de().then((m) => m.default) : Promise.resolve(null),
+  ]);
+
+  const resources: Resource = {
+    [locale]: currentTranslation,
+  };
+  if (fallbackTranslation) {
+    resources.de = fallbackTranslation;
+  }
+
   await i18next
-    .use(initReactI18next) // Tell i18next to use the react-i18next plugin
-    .use(LanguageDetector) // Setup a client-side language detector
+    .use(initReactI18next)
+    .use(LanguageDetector)
     .init({
-      ...i18n, // spread the configuration
-      // This function detects the namespaces your routes rendered while SSR use
-      ns: getInitialNamespaces(),
+      debug: false,
+      fallbackLng: "de",
+      supportedLngs: ["de", "en", "ru", "uk"],
+      ns: Object.keys(currentTranslation),
+      defaultNS: "common",
+      resources,
+      react: { useSuspense: false },
       detection: {
-        // Here only enable htmlTag detection, we'll detect the language only
-        // server-side with remix-i18next, by using the `<html lang>` attribute
-        // we can communicate to the client the language detected server-side
         order: ["htmlTag"],
-        // Because we only use htmlTag, there's no reason to cache the language
-        // on the browser, so we disable it
         caches: [],
       },
     });
@@ -31,7 +53,7 @@ async function hydrate() {
       document,
       <I18nextProvider i18n={i18next}>
         <StrictMode>
-          <RemixBrowser />
+          <HydratedRouter />
         </StrictMode>
       </I18nextProvider>
     );
@@ -41,7 +63,5 @@ async function hydrate() {
 if (window.requestIdleCallback) {
   window.requestIdleCallback(hydrate);
 } else {
-  // Safari doesn't support requestIdleCallback
-  // https://caniuse.com/requestidlecallback
   window.setTimeout(hydrate, 1);
 }

@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { IBlogpost, IBlogpostFields, LOCALE_CODE } from "../../types/contentful";
+import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
 import CleverLink from "./CleverLink";
 import TagGroup from "./TagGroup";
 
@@ -13,7 +13,7 @@ export default function BlogpostCard({
   showTags?: boolean;
 }) {
   const { title, slug, tagList, description, mainImage } = post.fields;
-  const image = ((mainImage as any)?.fields?.file?.url as string) || null;
+  const image = (mainImage?.fields?.file?.url as string) || null;
   const dateObj = new Date(post.sys.createdAt);
   const date = dateObj.toLocaleString(locale, {
     year: "numeric",
@@ -50,7 +50,12 @@ export default function BlogpostCard({
           tagList ? "justify-between" : "justify-end"
         }`}
       >
-        {Boolean(tagList) && showTags && <TagGroup tags={tagList as any} locale={locale} />}
+        {Boolean(tagList) && showTags && (
+          <TagGroup
+            tags={tagList?.filter((tag): tag is NonNullable<typeof tag> => tag !== undefined)}
+            locale={locale}
+          />
+        )}
         <time dateTime={post.sys.createdAt} className="text-xs italic text-slate-400">
           {date}
         </time>

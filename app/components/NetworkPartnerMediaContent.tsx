@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import type {
   IMedia,
-  INavigation,
+  INavigationItem,
   INetwork,
   IPage,
   ISupporter,
@@ -13,7 +13,7 @@ import SupporterTile from "./SupporterTile";
 
 type NetworkPartnerMediaProps = {
   page?: IPage;
-  navigation: INavigation;
+  navItems: INavigationItem[];
   network?: INetwork[];
   supporters?: ISupporter[];
   media: IMedia[];
@@ -21,7 +21,7 @@ type NetworkPartnerMediaProps = {
 };
 
 export default function networkPartnerMedia({
-  navigation,
+  navItems,
   locale,
   network,
   supporters,
@@ -30,7 +30,7 @@ export default function networkPartnerMedia({
 }: NetworkPartnerMediaProps) {
   const { t } = useTranslation("networkPartnerMedia");
   return (
-    <BasicLayout nav={navigation.fields.items! as any} lang={locale}>
+    <BasicLayout nav={navItems} lang={locale}>
       <div className="container mx-auto max-w-6xl">
         <div className="pt-24">
           <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
@@ -42,11 +42,11 @@ export default function networkPartnerMedia({
                 }}
                 className="grid-rows-auto grid gap-x-4 gap-y-8"
               >
-                {network.map((entry: any) => (
+                {network.map((entry) => (
                   <SupporterTile
                     key={entry.fields.url}
-                    image={entry.fields.image.fields.file.url}
-                    url={entry.fields.url}
+                    image={entry.fields.image?.fields.file?.url}
+                    url={entry.fields.url ?? ""}
                   />
                 ))}
               </div>
@@ -62,20 +62,18 @@ export default function networkPartnerMedia({
               }}
               className="grid-rows-auto grid gap-x-4 gap-y-8"
             >
-              {supporters.map((entry: any) => (
+              {supporters.map((entry) => (
                 <SupporterTile
                   key={entry.fields.url}
-                  url={entry.fields.url}
-                  image={entry.fields.image.fields.file.url}
+                  url={entry.fields.url ?? ""}
+                  image={entry.fields.image?.fields.file?.url}
                 />
               ))}
             </div>
           </section>
         )}
       </div>
-      {page?.fields.content && (
-        <ContentBlocks content={page.fields.content as any} locale={locale} />
-      )}
+      {page?.fields.content && <ContentBlocks content={page.fields.content} locale={locale} />}
       {media && (
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-12">
           <h2 className="mb-12 font-headline text-4xl font-bold">{t("title.media")}</h2>
@@ -85,11 +83,11 @@ export default function networkPartnerMedia({
             }}
             className="grid-rows-auto grid gap-x-4 gap-y-8"
           >
-            {media.map((entry: any) => (
+            {media.map((entry) => (
               <SupporterTile
                 key={entry.fields.url}
-                url={entry.fields.url}
-                image={entry.fields.image.fields.file.url}
+                url={entry.fields.url ?? ""}
+                image={entry.fields.image?.fields.file?.url}
                 title={entry.fields.title}
               />
             ))}

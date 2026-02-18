@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { useFetcher } from "@remix-run/react";
 import { Fragment, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useFetcher } from "react-router";
 import CookieIcon from "./icons/CookieIcon";
 
 export const CookieBanner = ({ initialOpen }: { initialOpen: boolean }) => {

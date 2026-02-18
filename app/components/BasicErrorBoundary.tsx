@@ -1,5 +1,5 @@
-import { isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
+import { isRouteErrorResponse, useRouteError } from "react-router";
 
 export default function BasicErrorBoundary() {
   const { t } = useTranslation("error");

@@ -1,11 +1,14 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import NetworkPartnerMediaContent from "~/components/NetworkPartnerMediaContent";
 import { getSeoMeta } from "~/seo";
 import { getMainNav, getMedia, getNetwork, getPageById, getSupporters } from "~/utils/contentful";
+import { ensureFound } from "~/utils/ensureFound";
 import pageIds from "~/utils/pageIds";
+import type { LOCALE_CODE } from "../../types/contentful";
+import type { Route } from "./+types/uk.network-partner-media";
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+const locale: LOCALE_CODE = "uk";
+
+export const meta: Route.MetaFunction = ({ data }) => {
   if (!data?.page) {
     return [{ title: "Мережеві партнери ЗМІ" }];
   }
@@ -23,37 +26,36 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
-export const loader: LoaderFunction = async () => {
-  const locale = "uk";
+export async function loader() {
+  const [page, navigation, network, supporters, media] = await Promise.all([
+    getPageById(pageIds.NETWORK, locale),
+    getMainNav(locale),
+    getNetwork(),
+    getSupporters(),
+    getMedia(),
+  ]);
 
-  const page = getPageById(pageIds.NETWORK, locale);
-  const navigation = getMainNav(locale);
-  const network = getNetwork();
-  const supporters = getSupporters();
-  const media = getMedia();
-
-  const data = await Promise.all([page, navigation, network, supporters, media]);
-
-  if (!navigation) {
-    throw new Response("Could not load navigation", { status: 404 });
-  }
+  const validNavigation = ensureFound(navigation, "Could not load navigation");
+  const navItems = (validNavigation.fields.items ?? []).filter(
+    (item): item is NonNullable<typeof item> => item !== undefined
+  );
 
   return {
-    page: data[0],
-    navigation: data[1],
-    network: data[2],
-    supporters: data[3],
-    media: data[4],
+    page: ensureFound(page, "Could not load page"),
+    navItems,
+    network: network ?? [],
+    supporters: supporters ?? [],
+    media: media ?? [],
     locale,
   };
-};
+}
 
-export default function SupportMedia() {
-  const { page, navigation, network, supporters, media, locale } = useLoaderData<typeof loader>();
+export default function SupportMedia({ loaderData }: Route.ComponentProps) {
+  const { page, navItems, network, supporters, media, locale } = loaderData;
 
   return (
     <NetworkPartnerMediaContent
-      navigation={navigation}
+      navItems={navItems}
       media={media}
       locale={locale}
       page={page}

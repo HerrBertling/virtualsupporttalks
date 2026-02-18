@@ -18,9 +18,7 @@ export function filterCoaches(coaches: ICoach[], options: FilterOptions): ICoach
       }
       return (
         !!coachTags &&
-        checkedTags.every((tagId) =>
-          coachTags.some((cTag) => cTag && cTag.sys.id === tagId)
-        )
+        checkedTags.every((tagId) => coachTags.some((cTag) => cTag && cTag.sys.id === tagId))
       );
     })
     .filter((coach) => {

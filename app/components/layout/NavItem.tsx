@@ -1,5 +1,5 @@
-import { NavLink } from "@remix-run/react";
 import type { ReactNode } from "react";
+import { NavLink } from "react-router";
 
 type NavItemProps = {
   to: string;

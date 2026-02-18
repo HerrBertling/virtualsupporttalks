@@ -1,33 +1,25 @@
-import type { LoaderFunction } from "@remix-run/node";
 import { getAllPages } from "~/utils/contentful";
+import type { Route } from "./+types/$locale.sitemap[.]xml";
 
-type PageResult = {
-  fields: {
-    slug: {
-      en?: string;
-      de?: string;
-    };
-  };
-};
-
-export const loader: LoaderFunction = async () => {
+export async function loader(_args: Route.LoaderArgs) {
   const allPages = await getAllPages().catch(() => {
     throw new Error();
   });
 
   const postPages = allPages
-    ? allPages.map((page: PageResult) => {
+    ? allPages.map((page) => {
+        const slug = page.fields.slug as unknown as Record<string, string | undefined>;
         const resultEn =
-          (page.fields.slug.en && [
+          (slug.en && [
             `<url>`,
-            `<loc>https://www.virtualsupporttalks.de/en/${page.fields.slug.en}</loc>`,
+            `<loc>https://www.virtualsupporttalks.de/en/${slug.en}</loc>`,
             `</url>`,
           ]) ||
           "";
         const resultDe =
-          (page.fields.slug.de && [
+          (slug.de && [
             `<url>`,
-            `<loc>https://www.virtualsupporttalks.de/de/${page.fields.slug.de}</loc>`,
+            `<loc>https://www.virtualsupporttalks.de/de/${slug.de}</loc>`,
             `</url>`,
           ]) ||
           "";
@@ -48,7 +40,8 @@ export const loader: LoaderFunction = async () => {
   const headers: HeadersInit = {
     "Content-Type": "application/xml; charset=utf-8",
     "x-content-type-options": "nosniff",
+    "Cache-Control": "public, max-age=3600, s-maxage=86400",
   };
 
   return new Response(xml.join(""), { headers });
-};
+}

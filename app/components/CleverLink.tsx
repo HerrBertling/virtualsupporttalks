@@ -1,5 +1,5 @@
-import { Link, type LinkProps } from "@remix-run/react";
 import type { ReactNode } from "react";
+import { Link, type LinkProps } from "react-router";
 
 interface CleverLinkProps extends LinkProps {
   to: string;

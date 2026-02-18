@@ -1,17 +1,16 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SpeakingTimeContent from "~/components/SpeakingTimeContent";
 import { getSeoMeta } from "~/seo";
 import { getSearchPageContents } from "~/utils/getSearchPageContents";
+import type { Route } from "./+types/de.ich-suche-redezeit";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export async function loader({ request }: Route.LoaderArgs) {
   const data = await getSearchPageContents(request, "de");
   return data;
-};
+}
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: Route.MetaFunction = ({ data }) => {
   if (!data?.page) {
     return [{ title: "Redezeit suchen" }];
   }
@@ -29,7 +28,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
-export default function SearchingCoach() {
+export default function SearchingCoach({ loaderData }: Route.ComponentProps) {
   const {
     page,
     coaches,
@@ -37,17 +36,17 @@ export default function SearchingCoach() {
     languages,
     gender,
     tags,
-    navigation,
+    navItems,
     checkedTags,
     currentLang,
     checkedGender,
     locale,
     availableTagIDs,
     emailTemplate,
-  } = useLoaderData<typeof loader>();
+  } = loaderData;
 
   return (
-    <BasicLayout nav={navigation.fields.items} lang={locale}>
+    <BasicLayout nav={navItems} lang={locale}>
       <SpeakingTimeContent
         languages={languages}
         gender={gender}

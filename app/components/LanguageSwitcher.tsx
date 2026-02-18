@@ -1,14 +1,13 @@
-import { Link, useLocation, useParams } from "@remix-run/react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
 import { useOnClickOutside } from "usehooks-ts";
+import type { LOCALE_CODE } from "types/contentful";
 import { availableLocales } from "~/utils/locales";
 import GlobeAltIcon from "./icons/GlobeAltIcon";
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ lang: currentLang }: { lang: LOCALE_CODE }) {
   const [show, setShow] = useState(false);
-  const { pathname } = useLocation();
-  const { locale: currentLang } = useParams();
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = useCallback(() => {
     if (show) {
@@ -24,7 +23,7 @@ export default function LanguageSwitcher() {
     setShow(!show);
   };
 
-  useOnClickOutside(ref, handleClickOutside);
+  useOnClickOutside(ref as React.RefObject<HTMLElement>, handleClickOutside);
   const langsInMenu = availableLocales.filter((lang) => lang !== currentLang);
   return (
     <div className="mr-1 w-auto" ref={ref}>

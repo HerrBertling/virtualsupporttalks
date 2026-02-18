@@ -1,8 +1,10 @@
 import { describe, expect, test } from "vitest";
-import type { ICoach } from "../../types/contentful";
+import type { ICoach, ICoachtag } from "../../types/contentful";
 import { filterCoaches, getAvailableTagIDs } from "./filterCoaches";
 
-function createCoach(overrides: Partial<ICoach["fields"]> & { name: string }): ICoach {
+function createCoach(
+  overrides: Partial<ICoach["fields"]> & { name: string; tag?: ICoachtag[] }
+): ICoach {
   return {
     sys: {
       id: overrides.name,
@@ -28,7 +30,7 @@ function createCoach(overrides: Partial<ICoach["fields"]> & { name: string }): I
 }
 
 function createTag(id: string) {
-  return { sys: { id }, fields: { tag: id } } as any;
+  return { sys: { id }, fields: { tag: id } } as unknown as ICoachtag;
 }
 
 const coaches = [
@@ -119,7 +121,7 @@ describe("filterCoaches", () => {
 
   test("handles coaches with no tags", () => {
     const coachesWithNoTags = [
-      createCoach({ name: "Diana", tag: undefined as any }),
+      createCoach({ name: "Diana", tag: undefined as unknown as ICoachtag[] }),
     ];
     const result = filterCoaches(coachesWithNoTags, {
       ...noFilters,
@@ -138,7 +140,9 @@ describe("getAvailableTagIDs", () => {
   });
 
   test("returns empty array for coaches with no tags", () => {
-    const coachesWithNoTags = [createCoach({ name: "Diana", tag: undefined as any })];
+    const coachesWithNoTags = [
+      createCoach({ name: "Diana", tag: undefined as unknown as ICoachtag[] }),
+    ];
     const result = getAvailableTagIDs(coachesWithNoTags);
     expect(result).toEqual([]);
   });

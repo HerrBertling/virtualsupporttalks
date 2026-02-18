@@ -126,9 +126,9 @@ function Languages({ languages }: LanguagesProps) {
   return (
     <p className="text-sm font-extralight text-slate-500">
       {t("languages")}
-      {flagCodes.map((lang, index) => (
+      {flagCodes.map((lang) => (
         <ReactCountryFlag
-          key={index}
+          key={lang}
           className="px-1"
           style={{
             fontSize: "1.2em",

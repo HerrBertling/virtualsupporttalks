@@ -1,12 +1,11 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
 import { getLatestBlogposts, getPage } from "~/utils/contentful";
 import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
+import type { Route } from "./+types/$locale.$slug";
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: Route.MetaFunction = ({ data }) => {
   if (!data?.page) {
     return [
       {
@@ -27,26 +26,27 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export async function loader({ params }: Route.LoaderArgs) {
   const { slug, locale } = params;
 
   if (!slug) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const page = await getPage(slug, locale as LOCALE_CODE);
+  const [page, latestPosts] = await Promise.all([
+    getPage(slug, locale as LOCALE_CODE),
+    getLatestBlogposts((locale || "de") as LOCALE_CODE) as Promise<IBlogpost[]>,
+  ]);
 
   if (!page) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const latestPosts = (await getLatestBlogposts((locale || "de") as LOCALE_CODE)) as IBlogpost[];
-
   return { page, locale: locale as LOCALE_CODE, latestPosts };
-};
+}
 
-export default function Index() {
-  const { page, locale } = useLoaderData<typeof loader>();
+export default function Index({ loaderData }: Route.ComponentProps) {
+  const { page, locale } = loaderData;
   return <ContentBlocks content={page.fields.content} locale={locale} />;
 }
 
