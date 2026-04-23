@@ -10,6 +10,20 @@ import { getInstance } from "./middleware/i18next";
 
 export const streamTimeout = 5_000;
 
+export function handleDataRequest(response: Response, { request }: { request: Request }) {
+  if (request.method !== "GET") return response;
+  const isPrefetch =
+    request.headers.get("Purpose") === "prefetch" ||
+    request.headers.get("X-Purpose") === "prefetch" ||
+    request.headers.get("Sec-Purpose") === "prefetch" ||
+    request.headers.get("Sec-Fetch-Purpose") === "prefetch" ||
+    request.headers.get("X-Moz") === "prefetch";
+  if (isPrefetch) {
+    response.headers.set("Cache-Control", "private, max-age=10");
+  }
+  return response;
+}
+
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
