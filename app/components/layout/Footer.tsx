@@ -9,7 +9,7 @@ type FooterNavLink = {
 const footerNav: FooterNavLink[] = [
   {
     link: {
-      de: "/impressum/",
+      de: "/de/impressum/",
       en: "/en/imprint/",
       ru: "/ru/imprint/",
       uk: "/uk/imprint/",
@@ -23,7 +23,7 @@ const footerNav: FooterNavLink[] = [
   },
   {
     link: {
-      de: "/datenschutz/",
+      de: "/de/datenschutz/",
       en: "/en/privacy/",
       ru: "/ru/privacy/",
       uk: "/uk/privacy/",
