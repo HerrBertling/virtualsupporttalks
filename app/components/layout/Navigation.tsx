@@ -19,7 +19,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
       }
       if (page?.fields?.slug) {
         path = `/${lang}/${page.fields.slug}`;
-      } else if (lang !== "de") {
+      } else if (path.startsWith("/")) {
         path = `/${lang}${path}`;
       }
       return {
