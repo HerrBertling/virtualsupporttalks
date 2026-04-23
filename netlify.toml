@@ -23,3 +23,11 @@ for = "/*"
 [headers.values]
   "Cache-Control" = "public, max-age=0, must-revalidate"
   "Netlify-CDN-Cache-Control" = "public, s-maxage=3600, stale-while-revalidate=604800, durable"
+
+# API endpoints must never be CDN-cached. The global /* rule would otherwise
+# let stale 301s or other pre-deploy responses pin here for the SWR window.
+[[headers]]
+for = "/api/*"
+[headers.values]
+  "Cache-Control" = "private, no-store"
+  "Netlify-CDN-Cache-Control" = "private, no-store"
