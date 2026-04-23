@@ -1,6 +1,8 @@
+import { data } from "react-router";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
+import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getLatestBlogposts, getPage } from "~/utils/contentful";
 import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
 import type { Route } from "./+types/$locale.$slug";
@@ -42,7 +44,18 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  return { page, locale: locale as LOCALE_CODE, latestPosts };
+  return data(
+    { page, locale: locale as LOCALE_CODE, latestPosts },
+    {
+      headers: {
+        "Cache-Tag": `entry:${page.sys.id},collection:blogpost,nav:${locale}`,
+      },
+    }
+  );
+}
+
+export function headers({ loaderHeaders }: Route.HeadersArgs) {
+  return publicCacheHeaders(loaderHeaders);
 }
 
 export default function Index({ loaderData }: Route.ComponentProps) {

@@ -2,12 +2,16 @@ import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import SpeakingTimeContent from "~/components/SpeakingTimeContent";
 import { getSeoMeta } from "~/seo";
+import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getSearchPageContents } from "~/utils/getSearchPageContents";
 import type { Route } from "./+types/en.i-need-speaking-time";
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const data = await getSearchPageContents(request, "en");
-  return data;
+  return getSearchPageContents(request, "en");
+}
+
+export function headers({ loaderHeaders }: Route.HeadersArgs) {
+  return publicCacheHeaders(loaderHeaders);
 }
 
 export const meta: Route.MetaFunction = ({ data }) => {
