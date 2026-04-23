@@ -21,4 +21,5 @@ for = "/fonts/*"
 [[headers]]
 for = "/*"
 [headers.values]
-  "Cache-Control" = "public, max-age=300, s-maxage=3600"
+  "Cache-Control" = "public, max-age=0, must-revalidate"
+  "Netlify-CDN-Cache-Control" = "public, s-maxage=3600, stale-while-revalidate=604800, durable"
