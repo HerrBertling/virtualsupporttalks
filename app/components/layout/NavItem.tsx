@@ -17,6 +17,7 @@ export default function NavItem({ to, children }: NavItemProps) {
           }`
         }
         to={to}
+        prefetch="intent"
       >
         {children}
       </NavLink>
