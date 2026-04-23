@@ -29,6 +29,8 @@ export default {
       tur: "Türk",
       arab: "عربي",
       nor: "Norsk",
+      bos: "Bosanski",
+      hrv: "Hrvatski",
       vn: "Tiếng Việt",
     },
     genderTags: {
