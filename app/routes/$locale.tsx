@@ -9,8 +9,14 @@ import type { Route } from "./+types/$locale";
 export async function loader({ params }: Route.LoaderArgs) {
   const locale = (params.locale as LOCALE_CODE) || "de";
   if (!availableLocales.includes(locale)) {
-    console.warn("REDIRECTING FROM LOCALE FILE BECAUSE THE LOCALE IS:", locale);
-    throw redirect(`/de/${locale}`, 301);
+    // Only treat the param as a typo'd locale if it actually looks like
+    // a locale code (two letters, optional region). Everything else —
+    // /robots.txt, /favicon.ico, /api, reserved paths — 404s so it
+    // doesn't pollute /de/<anything> with bogus redirects.
+    if (/^[a-z]{2}(-[a-z]{2})?$/i.test(locale)) {
+      throw redirect(`/de/${locale}`, 301);
+    }
+    throw new Response("Not Found", { status: 404 });
   }
 
   const navObject = await getMainNav(locale);
