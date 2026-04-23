@@ -31,3 +31,19 @@ for = "/api/*"
 [headers.values]
   "Cache-Control" = "private, no-store"
   "Netlify-CDN-Cache-Control" = "private, no-store"
+
+# Password-gated admin routes return coach PII on POST. POST is uncacheable
+# per HTTP spec, but pin it explicitly so the form GET and any future loader
+# response can't land in the durable CDN either.
+[[headers]]
+for = "/*/admin/*"
+[headers.values]
+  "Cache-Control" = "private, no-store"
+  "Netlify-CDN-Cache-Control" = "private, no-store"
+
+# Sets the gdprConsent cookie on POST. Never cache.
+[[headers]]
+for = "/enable-analytics"
+[headers.values]
+  "Cache-Control" = "private, no-store"
+  "Netlify-CDN-Cache-Control" = "private, no-store"

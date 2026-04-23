@@ -1,3 +1,4 @@
+import { timingSafeEqual } from "node:crypto";
 import type { Route } from "./+types/api.revalidate";
 
 type ContentfulSysLink = { sys: { id: string } };
@@ -33,7 +34,9 @@ export async function action({ request }: Route.ActionArgs) {
     });
   }
 
-  if (request.headers.get("X-Webhook-Secret") !== secret) {
+  const given = Buffer.from(request.headers.get("X-Webhook-Secret") ?? "");
+  const expected = Buffer.from(secret);
+  if (given.length !== expected.length || !timingSafeEqual(given, expected)) {
     return new Response("Unauthorized", { status: 401, headers: NO_STORE });
   }
 
@@ -64,10 +67,8 @@ export async function action({ request }: Route.ActionArgs) {
 
   if (!purgeResponse.ok) {
     const detail = await purgeResponse.text().catch(() => "");
-    return new Response(`Netlify purge failed: ${purgeResponse.status} ${detail}`, {
-      status: 502,
-      headers: NO_STORE,
-    });
+    console.error("Netlify purge failed", purgeResponse.status, detail);
+    return new Response("Purge failed", { status: 502, headers: NO_STORE });
   }
 
   return new Response(JSON.stringify({ purged: tags }), {
