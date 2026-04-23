@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
+import { data } from "react-router";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
+import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getBlogposts } from "~/utils/contentful";
 import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
 import type { Route } from "./+types/$locale.blog._index";
@@ -13,7 +15,11 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  return { posts, locale };
+  return data({ posts, locale }, { headers: { "Cache-Tag": `collection:blogpost,nav:${locale}` } });
+}
+
+export function headers({ loaderHeaders }: Route.HeadersArgs) {
+  return publicCacheHeaders(loaderHeaders);
 }
 
 export default function Index({ loaderData }: Route.ComponentProps) {

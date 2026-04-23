@@ -40,7 +40,9 @@ export async function loader(_args: Route.LoaderArgs) {
   const headers: HeadersInit = {
     "Content-Type": "application/xml; charset=utf-8",
     "x-content-type-options": "nosniff",
-    "Cache-Control": "public, max-age=3600, s-maxage=86400",
+    "Cache-Control": "public, max-age=0, must-revalidate",
+    "Netlify-CDN-Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800, durable",
+    "Cache-Tag": "collection:page",
   };
 
   return new Response(xml.join(""), { headers });

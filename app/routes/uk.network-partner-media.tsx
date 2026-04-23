@@ -1,5 +1,7 @@
+import { data } from "react-router";
 import NetworkPartnerMediaContent from "~/components/NetworkPartnerMediaContent";
 import { getSeoMeta } from "~/seo";
+import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getMainNav, getMedia, getNetwork, getPageById, getSupporters } from "~/utils/contentful";
 import { ensureFound } from "~/utils/ensureFound";
 import pageIds from "~/utils/pageIds";
@@ -40,14 +42,27 @@ export async function loader() {
     (item): item is NonNullable<typeof item> => item !== undefined
   );
 
-  return {
-    page: ensureFound(page, "Could not load page"),
-    navItems,
-    network: network ?? [],
-    supporters: supporters ?? [],
-    media: media ?? [],
-    locale,
-  };
+  const validPage = ensureFound(page, "Could not load page");
+
+  return data(
+    {
+      page: validPage,
+      navItems,
+      network: network ?? [],
+      supporters: supporters ?? [],
+      media: media ?? [],
+      locale,
+    },
+    {
+      headers: {
+        "Cache-Tag": `entry:${validPage.sys.id},collection:network,collection:supporter,collection:media,nav:${locale}`,
+      },
+    }
+  );
+}
+
+export function headers({ loaderHeaders }: Route.HeadersArgs) {
+  return publicCacheHeaders(loaderHeaders);
 }
 
 export default function SupportMedia({ loaderData }: Route.ComponentProps) {

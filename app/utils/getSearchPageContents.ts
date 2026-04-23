@@ -1,3 +1,4 @@
+import { data } from "react-router";
 import {
   extractGender,
   extractLanguages,
@@ -52,19 +53,26 @@ export const getSearchPageContents = async (request: Request, locale: LOCALE_COD
 
   const availableTagIDs = getAvailableTagIDs(filteredCoaches);
 
-  return {
-    page: validPage,
-    coaches: filteredCoaches,
-    languages,
-    gender,
-    tags: tags ?? [],
-    navItems,
-    checkedTags,
-    checkedGender,
-    locale,
-    currentLang: lang,
-    coachesAmount: filteredCoaches?.length || 0,
-    availableTagIDs,
-    emailTemplate,
-  };
+  return data(
+    {
+      page: validPage,
+      coaches: filteredCoaches,
+      languages,
+      gender,
+      tags: tags ?? [],
+      navItems,
+      checkedTags,
+      checkedGender,
+      locale,
+      currentLang: lang,
+      coachesAmount: filteredCoaches?.length || 0,
+      availableTagIDs,
+      emailTemplate,
+    },
+    {
+      headers: {
+        "Cache-Tag": `entry:${validPage.sys.id},collection:coach,collection:coachtag,nav:${locale}`,
+      },
+    }
+  );
 };

@@ -1,7 +1,9 @@
+import { data } from "react-router";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import ContentBlocks from "~/components/ContentBlocks";
 import TagGroup from "~/components/TagGroup";
 import { getSeoMeta } from "~/seo";
+import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getBlogpost } from "~/utils/contentful";
 import { ensureFound } from "~/utils/ensureFound";
 import type { LOCALE_CODE } from "../../types/contentful";
@@ -28,12 +30,6 @@ export const meta: Route.MetaFunction = ({ data }) => {
   ];
 };
 
-export function headers() {
-  return {
-    "Cache-Control": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
-  };
-}
-
 export async function loader({ params }: Route.LoaderArgs) {
   const { post, locale } = params;
 
@@ -46,7 +42,18 @@ export async function loader({ params }: Route.LoaderArgs) {
     "Blog post not found"
   );
 
-  return { blogpost, locale: locale as LOCALE_CODE };
+  return data(
+    { blogpost, locale: locale as LOCALE_CODE },
+    {
+      headers: {
+        "Cache-Tag": `entry:${blogpost.sys.id},collection:blogpost,nav:${locale}`,
+      },
+    }
+  );
+}
+
+export function headers({ loaderHeaders }: Route.HeadersArgs) {
+  return publicCacheHeaders(loaderHeaders);
 }
 
 export default function Blogpost({ loaderData }: Route.ComponentProps) {
