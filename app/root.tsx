@@ -29,8 +29,20 @@ export const meta: MetaFunction = () => {
 
 export const links: LinksFunction = () => {
   return [
-    { rel: "preload", href: "/fonts/Poppins-Regular.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
-    { rel: "preload", href: "/fonts/Roboto-Regular.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+    {
+      rel: "preload",
+      href: "/fonts/Poppins-Regular.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
+    {
+      rel: "preload",
+      href: "/fonts/Roboto-Regular.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
     { rel: "stylesheet", href: styles },
     { rel: "icon", href: "/icon.png", type: "image/png" },
   ];
