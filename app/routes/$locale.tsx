@@ -42,7 +42,13 @@ export default function Wrapper({ loaderData }: Route.ComponentProps) {
   );
 }
 
-export function shouldRevalidate({ currentParams, nextParams }: { currentParams: Record<string, string>; nextParams: Record<string, string> }) {
+export function shouldRevalidate({
+  currentParams,
+  nextParams,
+}: {
+  currentParams: Record<string, string>;
+  nextParams: Record<string, string>;
+}) {
   return currentParams.locale !== nextParams.locale;
 }
 
