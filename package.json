@@ -52,7 +52,7 @@
     "cf-content-types-generator": "^2.16.1",
     "contentful-management": "^11.27.6",
     "dotenv": "^17.2.3",
-    "postcss": "^8.4.39",
+    "postcss": "^8.5.14",
     "typescript": "^5.1.6",
     "vite": "^7.0.0",
     "vite-tsconfig-paths": "^6.1.1",
