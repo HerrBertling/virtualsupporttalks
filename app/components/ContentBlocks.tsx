@@ -9,6 +9,7 @@ import type {
   TypeGenericContentSkeleton,
   TypeHeaderBlockSkeleton,
   TypeImageCollectionSkeleton,
+  TypeMutAtlasKarteSkeleton,
   TypePageSkeleton,
   TypeTeamSectionSkeleton,
   TypeTestimonialSectionSkeleton,
@@ -24,6 +25,7 @@ import ContentBlockFullSizeImageBg from "./ContentBlocks/FullSizeImageBg";
 import GenericContent from "./ContentBlocks/GenericContent";
 import ContentBlockHeader from "./ContentBlocks/Header";
 import ContentBlockImageBg from "./ContentBlocks/ImageBg";
+import MutAtlasKarte from "./ContentBlocks/MutAtlasKarte";
 import ContentBlockTeamSection from "./ContentBlocks/TeamSection";
 import Testimonial from "./ContentBlocks/Testimonial";
 import Testimonials from "./ContentBlocks/Testimonials";
@@ -134,6 +136,12 @@ function renderBlock(item: ContentItem, index: number, locale: LOCALE_CODE) {
         return <VideoPlayer key={item.sys.id} videoId={videoId} content={content} />;
       }
       return null;
+    }
+    case "mutAtlasKarte": {
+      const { title, description } = item.fields as Resolved<
+        Entry<TypeMutAtlasKarteSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
+      >;
+      return <MutAtlasKarte key={item.sys.id} title={title} description={description} />;
     }
     case "imageCollection": {
       const { internalTitle, images } = item.fields as Resolved<

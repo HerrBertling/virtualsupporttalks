@@ -8,6 +8,7 @@ import type { TypeContentWithFullSizeImageSkeleton } from "./TypeContentWithFull
 import type { TypeGenericContentSkeleton } from "./TypeGenericContent";
 import type { TypeHeaderBlockSkeleton } from "./TypeHeaderBlock";
 import type { TypeImageCollectionSkeleton } from "./TypeImageCollection";
+import type { TypeMutAtlasKarteSkeleton } from "./TypeMutAtlasKarte";
 import type { TypeNewsletterSkeleton } from "./TypeNewsletter";
 import type { TypeSeoSkeleton } from "./TypeSeo";
 import type { TypeTeamSectionSkeleton } from "./TypeTeamSection";
@@ -20,7 +21,7 @@ import type { TypeVideoPlayerSkeleton } from "./TypeVideoPlayer";
 export interface TypePageFields {
     title?: EntryFieldTypes.Symbol;
     slug?: EntryFieldTypes.Symbol;
-    content: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeBannerSkeleton | TypeBlogPreviewSkeleton | TypeCenteredContentSkeleton | TypeCoachListSkeleton | TypeContentImageBgSkeleton | TypeContentWithFullSizeImageSkeleton | TypeGenericContentSkeleton | TypeHeaderBlockSkeleton | TypeImageCollectionSkeleton | TypeNewsletterSkeleton | TypeTeamSectionSkeleton | TypeTestimonialSectionSkeleton | TypeTestimonialsSkeleton | TypeTrackingGaSkeleton | TypeTwoImagesSkeleton | TypeVideoPlayerSkeleton>>;
+    content: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeBannerSkeleton | TypeBlogPreviewSkeleton | TypeCenteredContentSkeleton | TypeCoachListSkeleton | TypeContentImageBgSkeleton | TypeContentWithFullSizeImageSkeleton | TypeGenericContentSkeleton | TypeHeaderBlockSkeleton | TypeImageCollectionSkeleton | TypeMutAtlasKarteSkeleton | TypeNewsletterSkeleton | TypeTeamSectionSkeleton | TypeTestimonialSectionSkeleton | TypeTestimonialsSkeleton | TypeTrackingGaSkeleton | TypeTwoImagesSkeleton | TypeVideoPlayerSkeleton>>;
     seo?: EntryFieldTypes.EntryLink<TypeSeoSkeleton>;
 }
 
