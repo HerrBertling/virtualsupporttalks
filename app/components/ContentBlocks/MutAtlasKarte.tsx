@@ -17,7 +17,7 @@ export default function MutAtlasKarte({ title, description }: MutAtlasKarteProps
           )}
         </div>
       )}
-      <div className="w-full h-[60vh] min-h-[360px] md:h-[70vh] md:min-h-[500px] lg:h-[80vh] lg:min-h-[600px]">
+      <div className="mx-auto w-full max-w-7xl h-[60vh] min-h-[360px] md:h-[70vh] md:min-h-[500px] lg:h-[80vh] lg:min-h-[600px]">
         <iframe
           src="https://iframe.mut-atlas.de/"
           title={title || "MUT-ATLAS"}
