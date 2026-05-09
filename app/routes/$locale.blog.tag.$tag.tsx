@@ -4,18 +4,19 @@ import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BlogpostCard from "~/components/BlogpostCard";
 import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getBlogposts } from "~/utils/contentful";
-import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
+import { assertSupportedLocale } from "~/utils/locales";
+import type { IBlogpost } from "../../types/contentful";
 import type { Route } from "./+types/$locale.blog.tag.$tag";
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const tag = params.tag;
-  const locale = (params.locale as LOCALE_CODE) || "de";
+export async function loader({ params, request }: Route.LoaderArgs) {
+  const { tag, locale } = params;
+  assertSupportedLocale(locale, request);
 
   if (!tag) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const posts = (await getBlogposts(locale as LOCALE_CODE)) as IBlogpost[];
+  const posts = (await getBlogposts(locale)) as IBlogpost[];
 
   if (!posts) {
     throw new Response("Not Found", { status: 404 });
@@ -63,7 +64,7 @@ export default function Index({ loaderData }: Route.ComponentProps) {
       </header>
       <div className="my-4 mx-auto grid grid-cols-1 gap-y-24 gap-x-16 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
         {(posts as IBlogpost[]).map((post: IBlogpost) => (
-          <BlogpostCard post={post} locale={locale as LOCALE_CODE} key={post.sys.id} />
+          <BlogpostCard post={post} locale={locale} key={post.sys.id} />
         ))}
       </div>
     </>

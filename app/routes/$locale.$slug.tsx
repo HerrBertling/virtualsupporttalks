@@ -4,7 +4,8 @@ import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
 import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getLatestBlogposts, getPage } from "~/utils/contentful";
-import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
+import { assertSupportedLocale } from "~/utils/locales";
+import type { IBlogpost } from "../../types/contentful";
 import type { Route } from "./+types/$locale.$slug";
 
 export const meta: Route.MetaFunction = ({ data }) => {
@@ -28,16 +29,17 @@ export const meta: Route.MetaFunction = ({ data }) => {
   ];
 };
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function loader({ params, request }: Route.LoaderArgs) {
   const { slug, locale } = params;
+  assertSupportedLocale(locale, request);
 
   if (!slug) {
     throw new Response("Not Found", { status: 404 });
   }
 
   const [page, latestPosts] = await Promise.all([
-    getPage(slug, locale as LOCALE_CODE),
-    getLatestBlogposts((locale || "de") as LOCALE_CODE) as Promise<IBlogpost[]>,
+    getPage(slug, locale),
+    getLatestBlogposts(locale) as Promise<IBlogpost[]>,
   ]);
 
   if (!page) {
@@ -45,7 +47,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   }
 
   return data(
-    { page, locale: locale as LOCALE_CODE, latestPosts },
+    { page, locale, latestPosts },
     {
       headers: {
         "Cache-Tag": `entry:${page.sys.id},collection:blogpost,nav:${locale}`,

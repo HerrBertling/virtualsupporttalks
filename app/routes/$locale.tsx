@@ -2,22 +2,21 @@ import { Outlet, redirect } from "react-router";
 import BasicCatchBoundary from "~/components/BasicErrorBoundary";
 import BasicLayout from "~/components/layout/BasicLayout";
 import { getMainNav } from "~/utils/contentful";
-import { availableLocales } from "~/utils/locales";
+import { assertSupportedLocale, availableLocales } from "~/utils/locales";
 import type { INavigationItem, LOCALE_CODE } from "../../types/contentful";
 import type { Route } from "./+types/$locale";
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const locale = (params.locale as LOCALE_CODE) || "de";
-  if (!availableLocales.includes(locale)) {
-    // Only treat the param as a typo'd locale if it actually looks like
-    // a locale code (two letters, optional region). Everything else —
-    // /robots.txt, /favicon.ico, /api, reserved paths — 404s so it
-    // doesn't pollute /de/<anything> with bogus redirects.
+export async function loader({ params, request }: Route.LoaderArgs) {
+  const locale = params.locale;
+  // Treat anything shaped like a locale code (two letters, optional region) as
+  // a typo and redirect to /de/<locale>. Everything else falls through to the
+  // shared validator, which returns 418 to scanners and 404 to humans.
+  if (locale && !availableLocales.includes(locale as LOCALE_CODE)) {
     if (/^[a-z]{2}(-[a-z]{2})?$/i.test(locale)) {
       throw redirect(`/de/${locale}`, 301);
     }
-    throw new Response("Not Found", { status: 404 });
   }
+  assertSupportedLocale(locale, request);
 
   const navObject = await getMainNav(locale);
   const rawNav = navObject?.fields?.items;
@@ -35,7 +34,7 @@ export default function Wrapper({ loaderData }: Route.ComponentProps) {
   const { nav, locale } = loaderData;
 
   return (
-    <BasicLayout nav={nav as INavigationItem[]} lang={locale as LOCALE_CODE}>
+    <BasicLayout nav={nav as INavigationItem[]} lang={locale}>
       <div>
         <Outlet />
       </div>
