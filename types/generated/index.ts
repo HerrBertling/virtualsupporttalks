@@ -14,6 +14,7 @@ export type { TypeHeaderBlock, TypeHeaderBlockFields, TypeHeaderBlockSkeleton } 
 export type { TypeImageCollection, TypeImageCollectionFields, TypeImageCollectionSkeleton } from "./TypeImageCollection";
 export type { TypeImageWithLink, TypeImageWithLinkFields, TypeImageWithLinkSkeleton } from "./TypeImageWithLink";
 export type { TypeMedia, TypeMediaFields, TypeMediaSkeleton } from "./TypeMedia";
+export type { TypeMutAtlasKarte, TypeMutAtlasKarteFields, TypeMutAtlasKarteSkeleton } from "./TypeMutAtlasKarte";
 export type { TypeNavigation, TypeNavigationFields, TypeNavigationSkeleton } from "./TypeNavigation";
 export type { TypeNavigationItem, TypeNavigationItemFields, TypeNavigationItemSkeleton } from "./TypeNavigationItem";
 export type { TypeNetwork, TypeNetworkFields, TypeNetworkSkeleton } from "./TypeNetwork";
