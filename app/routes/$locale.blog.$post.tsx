@@ -6,7 +6,7 @@ import { getSeoMeta } from "~/seo";
 import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getBlogpost } from "~/utils/contentful";
 import { ensureFound } from "~/utils/ensureFound";
-import type { LOCALE_CODE } from "../../types/contentful";
+import { assertSupportedLocale } from "~/utils/locales";
 import type { Route } from "./+types/$locale.blog.$post";
 
 export const meta: Route.MetaFunction = ({ data }) => {
@@ -30,20 +30,18 @@ export const meta: Route.MetaFunction = ({ data }) => {
   ];
 };
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function loader({ params, request }: Route.LoaderArgs) {
   const { post, locale } = params;
+  assertSupportedLocale(locale, request);
 
   if (!post) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const blogpost = ensureFound(
-    await getBlogpost(post, locale as LOCALE_CODE),
-    "Blog post not found"
-  );
+  const blogpost = ensureFound(await getBlogpost(post, locale), "Blog post not found");
 
   return data(
-    { blogpost, locale: locale as LOCALE_CODE },
+    { blogpost, locale },
     {
       headers: {
         "Cache-Tag": `entry:${blogpost.sys.id},collection:blogpost,nav:${locale}`,

@@ -3,8 +3,9 @@ import ContentBlocks from "~/components/ContentBlocks";
 import { getSeoMeta } from "~/seo";
 import { publicCacheHeaders } from "~/utils/cacheHeaders";
 import { getLatestBlogposts, getPageById } from "~/utils/contentful";
+import { assertSupportedLocale } from "~/utils/locales";
 import pageIds from "~/utils/pageIds";
-import type { IBlogpost, LOCALE_CODE } from "../../types/contentful";
+import type { IBlogpost } from "../../types/contentful";
 import type { Route } from "./+types/$locale._index";
 
 export const meta: Route.MetaFunction = ({ data }) => {
@@ -25,11 +26,9 @@ export const meta: Route.MetaFunction = ({ data }) => {
   ];
 };
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const locale = params.locale as LOCALE_CODE;
-  if (!locale) {
-    throw new Error("No locale provided");
-  }
+export async function loader({ params, request }: Route.LoaderArgs) {
+  const { locale } = params;
+  assertSupportedLocale(locale, request);
 
   const [page, latestPosts] = await Promise.all([
     getPageById(pageIds.STARTPAGE, locale),

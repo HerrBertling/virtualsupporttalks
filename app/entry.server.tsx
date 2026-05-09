@@ -7,6 +7,7 @@ import { I18nextProvider } from "react-i18next";
 import type { EntryContext, RouterContextProvider } from "react-router";
 import { ServerRouter } from "react-router";
 import { getInstance } from "./middleware/i18next";
+import { teapotResponse } from "./utils/scannerTrap";
 
 export const streamTimeout = 5_000;
 
@@ -31,6 +32,12 @@ export default async function handleRequest(
   entryContext: EntryContext,
   routerContext: RouterContextProvider
 ) {
+  // assertSupportedLocale throws a 418 Response for vulnerability scanners.
+  // Short-circuit before rendering React so the body stays plain text and the
+  // long-lived edge cache headers survive (the ErrorBoundary path would
+  // otherwise re-render as text/html and drop them).
+  if (responseStatusCode === 418) return teapotResponse();
+
   let i18n: import("i18next").i18n;
   try {
     i18n = getInstance(routerContext);
