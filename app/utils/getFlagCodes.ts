@@ -1,26 +1,25 @@
-export default function getFlagCode(languages: string[] | undefined) {
-  const flagCodes = {
-    bos: "BA",
-    dan: "DK",
-    de: "DE",
-    en: "GB",
-    esp: "ES",
-    fr: "FR",
-    hrv: "HR",
-    nl: "NL",
-    nor: "NO",
-    pol: "PL",
-    por: "PT",
-    ru: "RU",
-    ukr: "UA",
-  };
-  const result: string[] = [];
+import type { CoachLanguage } from "../../types/contentful";
 
-  languages
-    ? languages.forEach((lang) => {
-        result.push(flagCodes[lang as keyof typeof flagCodes]);
-      })
-    : result.push("DE");
+const flagCodes: Partial<Record<CoachLanguage, string>> = {
+  bos: "BA",
+  dan: "DK",
+  de: "DE",
+  en: "GB",
+  esp: "ES",
+  fr: "FR",
+  hrv: "HR",
+  nl: "NL",
+  nor: "NO",
+  pol: "PL",
+  por: "PT",
+  ru: "RU",
+  tur: "TR",
+  uk: "UA",
+  vn: "VN",
+};
 
-  return [...new Set(result)];
+export default function getFlagCode(languages: CoachLanguage[] | undefined): string[] {
+  if (!languages) return ["DE"];
+  const codes = languages.map((lang) => flagCodes[lang]).filter((c): c is string => Boolean(c));
+  return [...new Set(codes)];
 }

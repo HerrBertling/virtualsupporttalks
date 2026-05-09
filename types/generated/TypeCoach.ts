@@ -6,7 +6,7 @@ export interface TypeCoachFields {
     email?: EntryFieldTypes.Symbol;
     url?: EntryFieldTypes.Symbol;
     phone?: EntryFieldTypes.Symbol;
-    languages?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    languages?: EntryFieldTypes.Array<EntryFieldTypes.Symbol<"arab" | "bos" | "dan" | "de" | "en" | "esp" | "fr" | "hrv" | "nl" | "nor" | "pol" | "por" | "ru" | "tur" | "uk" | "vn">>;
     gender: EntryFieldTypes.Array<EntryFieldTypes.Symbol<"divers" | "männlich" | "weiblich">>;
     image?: EntryFieldTypes.AssetLink;
     mhfaTraining?: EntryFieldTypes.AssetLink;

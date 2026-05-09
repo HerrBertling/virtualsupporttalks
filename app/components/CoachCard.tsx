@@ -8,6 +8,7 @@ import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
 import getFlagCode from "~/utils/getFlagCodes";
 import { trackCoachClick } from "~/utils/gtag.client";
+import type { CoachLanguage } from "../../types/contentful";
 
 // Context to share coach name across subcomponents
 type CoachCardContextType = {
@@ -114,7 +115,7 @@ function Meta({ children }: MetaProps) {
 
 // Languages component
 type LanguagesProps = {
-  languages?: string[];
+  languages?: CoachLanguage[];
 };
 
 function Languages({ languages }: LanguagesProps) {

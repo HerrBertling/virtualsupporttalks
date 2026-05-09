@@ -33,6 +33,7 @@ export type IBlogpostFields = TypeBlogpostFields;
 
 export type ICoach = TypeCoach<"WITHOUT_UNRESOLVABLE_LINKS", LOCALE_CODE>;
 export type ICoachFields = TypeCoachFields;
+export type CoachLanguage = NonNullable<ICoach["fields"]["languages"]>[number];
 
 export type ICoachtag = TypeCoachtag<"WITHOUT_UNRESOLVABLE_LINKS", LOCALE_CODE>;
 export type ICoachtagFields = TypeCoachtagFields;

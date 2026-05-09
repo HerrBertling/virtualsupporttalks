@@ -4,7 +4,7 @@ import { type PropsWithChildren, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Form, useNavigation, useSubmit } from "react-router";
 import type { EmailTemplate } from "~/utils/contentful";
-import type { ICoach, ICoachtag, IPage, LOCALE_CODE } from "../../types/contentful";
+import type { CoachLanguage, ICoach, ICoachtag, IPage, LOCALE_CODE } from "../../types/contentful";
 
 // Type guard to check if a value is an Asset
 function isAsset(value: unknown): value is Asset {
@@ -77,7 +77,7 @@ function renderCoachCard(coach: ICoach, emailTemplate?: EmailTemplate) {
   const safePhone = typeof phone === "string" ? phone : undefined;
   const safeEmergency = typeof emergency === "boolean" ? emergency : undefined;
   const safeLanguages = Array.isArray(languages)
-    ? languages.filter((l): l is string => typeof l === "string")
+    ? languages.filter((l): l is CoachLanguage => typeof l === "string")
     : undefined;
   const safeImage = isAsset(image) ? image : undefined;
   const safeMhfaTraining = isAsset(mhfaTraining) ? mhfaTraining : undefined;
