@@ -1,12 +1,10 @@
 import type { Asset } from "contentful";
 import type { ReactNode } from "react";
 import { createContext, useContext } from "react";
-import { ReactCountryFlag } from "react-country-flag";
 import { useTranslation } from "react-i18next";
 import GlobeIcon from "~/components/icons/GlobeIcon";
 import MailIcon from "~/components/icons/MailIcon";
 import PhoneIcon from "~/components/icons/PhoneIcon";
-import getFlagCode from "~/utils/getFlagCodes";
 import { trackCoachClick } from "~/utils/gtag.client";
 import type { CoachLanguage } from "../../types/contentful";
 
@@ -120,23 +118,24 @@ type LanguagesProps = {
 
 function Languages({ languages }: LanguagesProps) {
   const { t } = useTranslation("searchingCoach");
-  const flagCodes = getFlagCode(languages);
 
   if (!languages || languages.length === 0) return null;
+
+  const uniqueLanguages = [...new Set(languages.map((lang) => lang.toLowerCase()))];
 
   return (
     <p className="text-sm font-extralight text-slate-500">
       {t("languages")}
-      {flagCodes.map((lang) => (
-        <ReactCountryFlag
-          key={lang}
-          className="px-1"
-          style={{
-            fontSize: "1.2em",
-          }}
-          countryCode={lang}
-        />
-      ))}
+      <span className="ml-1 inline-flex flex-wrap items-center gap-1 align-middle">
+        {uniqueLanguages.map((lang) => (
+          <span
+            key={lang}
+            className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] leading-tight text-slate-600"
+          >
+            {t(`languageTags.${lang}`, { defaultValue: lang })}
+          </span>
+        ))}
+      </span>
     </p>
   );
 }
