@@ -233,7 +233,7 @@ export default function SpeakingTimeContent({
                       defaultValue={currentLang === lang}
                       type="radio"
                     >
-                      {t(`languageTags.${lang}`)}
+                      {t(`languageTags.${lang}`, { defaultValue: lang })}
                     </CoachFilterTag>
                   ))}
                 </CoachTagCollection>
