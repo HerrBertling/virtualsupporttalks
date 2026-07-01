@@ -22,7 +22,6 @@ export default {
       pol: "Polskie",
       nl: "Nederlands",
       uk: "Український",
-      ukr: "Український",
       ru: "русский",
       esp: "Español",
       fr: "Français",

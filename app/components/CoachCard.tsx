@@ -121,7 +121,15 @@ function Languages({ languages }: LanguagesProps) {
 
   if (!languages || languages.length === 0) return null;
 
-  const uniqueLanguages = [...new Set(languages.map((lang) => lang.toLowerCase()))];
+  const uniqueLanguages = [
+    ...new Set(
+      languages.map((lang) => {
+        const normalized = lang.toLowerCase();
+        // "ukr" is a legacy alias for "uk"; collapse so Ukrainian isn't listed twice
+        return normalized === "ukr" ? "uk" : normalized;
+      })
+    ),
+  ];
 
   return (
     <p className="text-sm font-extralight text-slate-500">
