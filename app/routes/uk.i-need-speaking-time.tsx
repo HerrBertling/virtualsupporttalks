@@ -14,12 +14,12 @@ export function headers({ loaderHeaders }: Route.HeadersArgs) {
   return publicCacheHeaders(loaderHeaders);
 }
 
-export const meta: Route.MetaFunction = ({ data }) => {
-  if (!data?.page) {
+export const meta: Route.MetaFunction = ({ loaderData }) => {
+  if (!loaderData?.page) {
     return [{ title: "Мені потрібен час для розмови" }];
   }
 
-  const { title, seo } = data.page.fields;
+  const { title, seo } = loaderData.page.fields;
 
   const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,

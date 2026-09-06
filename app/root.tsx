@@ -2,7 +2,6 @@ import { type ReactNode, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { LinksFunction, MetaFunction } from "react-router";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLocation } from "react-router";
-import { useChangeLanguage } from "remix-i18next/react";
 import { getSeo } from "~/seo";
 import * as gtag from "~/utils/gtag.client";
 import { canonicalUrl } from "~/utils/siteUrl";
@@ -15,6 +14,21 @@ import { getLocale, i18nextMiddleware } from "./middleware/i18next";
 import styles from "./styles/app.css?url";
 
 const [seoMeta] = getSeo();
+
+/**
+ * Keep the i18next instance in sync with the locale from the root loader.
+ *
+ * remix-i18next removed `useChangeLanguage` in v8; its own v7 deprecation
+ * notice pointed at `i18n.changeLanguage(loaderData.locale)`, so this is that
+ * call, kept in an effect and guarded against redundant switches exactly as
+ * the removed hook did.
+ */
+function useChangeLanguage(locale: string) {
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    if (i18n.language !== locale) i18n.changeLanguage(locale);
+  }, [locale, i18n]);
+}
 
 const GA_TRACKING_ID = import.meta.env.VITE_GTM_ID || "GTM-NH6W3MZ";
 

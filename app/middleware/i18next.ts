@@ -1,4 +1,4 @@
-import { createI18nextMiddleware } from "remix-i18next/middleware";
+import { createI18nextMiddleware } from "remix-i18next";
 import translationDE from "../../public/locales/de/translation";
 import translationEN from "../../public/locales/en/translation";
 import translationRU from "../../public/locales/ru/translation";
@@ -8,8 +8,11 @@ export const [i18nextMiddleware, getLocale, getInstance] = createI18nextMiddlewa
   detection: {
     supportedLanguages: ["de", "en", "ru", "uk"],
     fallbackLanguage: "de",
-    async findLocale(request) {
-      const pathname = new URL(request.url).pathname;
+    async findLocale({ request }) {
+      // React Router 8 hands middleware the raw single-fetch URL, so a
+      // client-side navigation to a locale root arrives as "/uk.data" rather
+      // than "/uk". Strip the suffix before reading the locale segment.
+      const pathname = new URL(request.url).pathname.replace(/\.data$/, "");
       return pathname.split("/").at(1) || null;
     },
   },
