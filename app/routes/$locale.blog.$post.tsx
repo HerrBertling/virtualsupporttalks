@@ -9,15 +9,15 @@ import { ensureFound } from "~/utils/ensureFound";
 import { assertSupportedLocale } from "~/utils/locales";
 import type { Route } from "./+types/$locale.blog.$post";
 
-export const meta: Route.MetaFunction = ({ data }) => {
-  if (!data?.blogpost) {
+export const meta: Route.MetaFunction = ({ loaderData }) => {
+  if (!loaderData?.blogpost) {
     return [
       {
         title: "404 – page not found",
       },
     ];
   }
-  const { title, seo, description } = data.blogpost.fields;
+  const { title, seo, description } = loaderData.blogpost.fields;
 
   const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,

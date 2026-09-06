@@ -1,4 +1,4 @@
-import { createI18nextMiddleware } from "remix-i18next/middleware";
+import { createI18nextMiddleware } from "remix-i18next";
 import translationDE from "../../public/locales/de/translation";
 import translationEN from "../../public/locales/en/translation";
 import translationRU from "../../public/locales/ru/translation";
@@ -8,7 +8,7 @@ export const [i18nextMiddleware, getLocale, getInstance] = createI18nextMiddlewa
   detection: {
     supportedLanguages: ["de", "en", "ru", "uk"],
     fallbackLanguage: "de",
-    async findLocale(request) {
+    async findLocale({ request }) {
       const pathname = new URL(request.url).pathname;
       return pathname.split("/").at(1) || null;
     },

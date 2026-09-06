@@ -10,12 +10,12 @@ import type { Route } from "./+types/uk.network-partner-media";
 
 const locale: LOCALE_CODE = "uk";
 
-export const meta: Route.MetaFunction = ({ data }) => {
-  if (!data?.page) {
+export const meta: Route.MetaFunction = ({ loaderData }) => {
+  if (!loaderData?.page) {
     return [{ title: "Мережеві партнери ЗМІ" }];
   }
 
-  const { title, seo } = data.page.fields;
+  const { title, seo } = loaderData.page.fields;
 
   const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,

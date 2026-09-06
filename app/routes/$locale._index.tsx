@@ -8,12 +8,12 @@ import pageIds from "~/utils/pageIds";
 import type { IBlogpost } from "../../types/contentful";
 import type { Route } from "./+types/$locale._index";
 
-export const meta: Route.MetaFunction = ({ data }) => {
-  if (!data?.page) {
+export const meta: Route.MetaFunction = ({ loaderData }) => {
+  if (!loaderData?.page) {
     return [{ title: "Redezeit" }];
   }
 
-  const { title, seo } = data.page.fields;
+  const { title, seo } = loaderData.page.fields;
 
   const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,

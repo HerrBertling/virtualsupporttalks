@@ -10,12 +10,12 @@ import type { Route } from "./+types/ru.network-partner-media";
 
 const locale: LOCALE_CODE = "ru";
 
-export const meta: Route.MetaFunction = ({ data }) => {
-  if (!data?.page) {
+export const meta: Route.MetaFunction = ({ loaderData }) => {
+  if (!loaderData?.page) {
     return [{ title: "Сетевые партнеры СМИ" }];
   }
 
-  const { title, seo } = data.page.fields;
+  const { title, seo } = loaderData.page.fields;
 
   const seoMeta = getSeoMeta({
     title: seo?.fields?.title || title,
