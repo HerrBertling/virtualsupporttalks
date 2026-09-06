@@ -1,49 +1,8 @@
-import { getAllPages } from "~/utils/contentful";
+import { redirect } from "react-router";
 import type { Route } from "./+types/$locale.sitemap[.]xml";
 
-export async function loader(_args: Route.LoaderArgs) {
-  const allPages = await getAllPages().catch(() => {
-    throw new Error();
-  });
-
-  const postPages = allPages
-    ? allPages.map((page) => {
-        const slug = page.fields.slug as unknown as Record<string, string | undefined>;
-        const resultEn =
-          (slug.en && [
-            `<url>`,
-            `<loc>https://www.virtualsupporttalks.de/en/${slug.en}</loc>`,
-            `</url>`,
-          ]) ||
-          "";
-        const resultDe =
-          (slug.de && [
-            `<url>`,
-            `<loc>https://www.virtualsupporttalks.de/de/${slug.de}</loc>`,
-            `</url>`,
-          ]) ||
-          "";
-        return [...resultEn, ...resultDe].join("");
-      })
-    : [];
-
-  const xml = [
-    `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
-    `<url>`,
-    `<loc>https://www.virtualsupporttalks.de</loc>`,
-    `</url>`,
-    ...postPages,
-    `</urlset>`,
-  ];
-
-  const headers: HeadersInit = {
-    "Content-Type": "application/xml; charset=utf-8",
-    "x-content-type-options": "nosniff",
-    "Cache-Control": "public, max-age=0, must-revalidate",
-    "Netlify-CDN-Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800, durable",
-    "Cache-Tag": "collection:page",
-  };
-
-  return new Response(xml.join(""), { headers });
+// The sitemap was never locale-specific — it always listed every language.
+// It now lives at the root, where crawlers and robots.txt expect it.
+export function loader(_args: Route.LoaderArgs) {
+  throw redirect("/sitemap.xml", 301);
 }
