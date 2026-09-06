@@ -10,7 +10,6 @@ const args = [
   process.env.CONTENTFUL_ENVIRONMENT,
   "-o",
   "types/generated",
-  "-X",
 ];
 
 spawn("cf-content-types-generator", args, { stdio: "inherit" }).on("exit", (code) => {
