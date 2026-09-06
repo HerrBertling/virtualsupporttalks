@@ -1,10 +1,11 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { LinksFunction, MetaFunction } from "react-router";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLocation } from "react-router";
 import { useChangeLanguage } from "remix-i18next/react";
 import { getSeo } from "~/seo";
 import * as gtag from "~/utils/gtag.client";
+import { canonicalUrl } from "~/utils/siteUrl";
 import type { Route } from "./+types/root";
 import Brevo from "./brevo";
 import BasicCatchBoundary from "./components/BasicErrorBoundary";
@@ -19,13 +20,7 @@ const GA_TRACKING_ID = import.meta.env.VITE_GTM_ID || "GTM-NH6W3MZ";
 
 export const middleware = [i18nextMiddleware];
 
-export const meta: MetaFunction = () => {
-  return [
-    {
-      ...seoMeta,
-    },
-  ];
-};
+export const meta: MetaFunction = () => seoMeta;
 
 export const links: LinksFunction = () => {
   return [
@@ -50,12 +45,16 @@ export const links: LinksFunction = () => {
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const { i18n } = useTranslation();
+  const { pathname } = useLocation();
   return (
     <html lang={i18n.language} dir={i18n.dir()}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <Meta />
+        {/* Every page is reachable under two domains, so the canonical is
+            pinned to the primary origin rather than the requested host. */}
+        <link rel="canonical" href={canonicalUrl(pathname)} />
         <Links />
       </head>
       <body>
