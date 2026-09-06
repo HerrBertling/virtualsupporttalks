@@ -46,6 +46,7 @@
     "@react-router/dev": "^7.15.0",
     "@react-router/fs-routes": "^7.15.0",
     "@tailwindcss/typography": "^0.5.13",
+    "@types/node": "^25.2.3",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "cf-content-types-generator": "^2.16.1",
