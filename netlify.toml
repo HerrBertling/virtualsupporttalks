@@ -6,6 +6,47 @@ publish = "build/client"
 command = "npm run dev"
 framework = "vite"
 
+# www.redezeitfuerdich.de is a second address for the same site. Until now it
+# served a full copy of every page, so Google indexed the site twice and split
+# its ranking. Send it to the primary domain, path and language intact:
+#   redezeitfuerdich.de/de/ich-suche-redezeit
+#   -> www.virtualsupporttalks.de/de/ich-suche-redezeit
+#
+# robots.txt, sitemap.xml and llms.txt stay on this domain on purpose. Google
+# only transfers the ranking of the old URLs if it keeps crawling them and sees
+# the 301s, and it needs that domain's own sitemap to find them. Netlify takes
+# the first matching rule, so these three have to come first.
+
+[[redirects]]
+from = "https://www.redezeitfuerdich.de/robots.txt"
+to = "/robots.txt"
+status = 200
+force = true
+
+[[redirects]]
+from = "https://www.redezeitfuerdich.de/sitemap.xml"
+to = "/sitemap.xml"
+status = 200
+force = true
+
+[[redirects]]
+from = "https://www.redezeitfuerdich.de/llms.txt"
+to = "/llms.txt"
+status = 200
+force = true
+
+[[redirects]]
+from = "https://www.redezeitfuerdich.de/*"
+to = "https://www.virtualsupporttalks.de/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://redezeitfuerdich.de/*"
+to = "https://www.virtualsupporttalks.de/:splat"
+status = 301
+force = true
+
 # Set immutable caching for static files, because they have fingerprinted filenames
 
 [[headers]]

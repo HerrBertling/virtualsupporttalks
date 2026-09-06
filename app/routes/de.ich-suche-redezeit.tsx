@@ -25,11 +25,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || null,
   });
-  return [
-    {
-      ...seoMeta,
-    },
-  ];
+  return seoMeta;
 };
 
 export default function SearchingCoach({ loaderData }: Route.ComponentProps) {

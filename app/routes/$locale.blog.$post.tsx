@@ -23,11 +23,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
     title: seo?.fields?.title || title,
     description: seo?.fields?.description || description,
   });
-  return [
-    {
-      ...seoMeta,
-    },
-  ];
+  return seoMeta;
 };
 
 export async function loader({ params, request }: Route.LoaderArgs) {

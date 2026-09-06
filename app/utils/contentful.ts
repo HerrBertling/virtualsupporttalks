@@ -90,11 +90,24 @@ function createResult<T>(items: T[]) {
   return items;
 }
 
+// `locale: "*"` was removed from the Contentful SDK — it now rejects the query
+// outright, which is why the sitemap used to return a 500. `withAllLocales` is
+// the replacement, and it turns every field into a { [locale]: value } map.
 export const getAllPages = async () => {
   const client = getContentfulClient();
-  const { items } = await client.getEntries<TypePageSkeleton>({
+  const { items } = await client.withAllLocales.getEntries<TypePageSkeleton>({
     content_type: "page",
-    locale: "*",
+    limit: 1000,
+  });
+
+  return createResult(items);
+};
+
+export const getAllBlogposts = async () => {
+  const client = getContentfulClient();
+  const { items } = await client.withAllLocales.getEntries<TypeBlogpostSkeleton>({
+    content_type: "blogpost",
+    limit: 1000,
   });
 
   return createResult(items);
