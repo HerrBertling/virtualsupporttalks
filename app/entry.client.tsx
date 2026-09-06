@@ -19,17 +19,19 @@ async function hydrate() {
   const detectedLocale = document.documentElement.lang || "de";
   const locale = detectedLocale in localeImports ? detectedLocale : "de";
 
-  const [currentTranslation, fallbackTranslation] = await Promise.all([
-    localeImports[locale]().then((m) => m.default),
-    locale !== "de" ? localeImports.de().then((m) => m.default) : Promise.resolve(null),
-  ]);
+  // Load every supported locale, not just the one this document was rendered
+  // with. The language switcher navigates client-side, so useChangeLanguage can
+  // move i18next to any locale without a reload. A locale whose bundle is absent
+  // silently resolves through fallbackLng instead, which renders German UI on an
+  // English page while the CMS content (from the loader) is correctly English.
+  const availableLocales = Object.keys(localeImports);
+  const translations = await Promise.all(
+    availableLocales.map((lng) => localeImports[lng]().then((m) => m.default))
+  );
 
-  const resources: Resource = {
-    [locale]: currentTranslation,
-  };
-  if (fallbackTranslation) {
-    resources.de = fallbackTranslation;
-  }
+  const resources: Resource = Object.fromEntries(
+    availableLocales.map((lng, index) => [lng, translations[index]])
+  );
 
   await i18next
     .use(initReactI18next)
@@ -38,7 +40,7 @@ async function hydrate() {
       debug: false,
       fallbackLng: "de",
       supportedLngs: ["de", "en", "ru", "uk"],
-      ns: Object.keys(currentTranslation),
+      ns: Object.keys(resources[locale]),
       defaultNS: "common",
       resources,
       react: { useSuspense: false },
