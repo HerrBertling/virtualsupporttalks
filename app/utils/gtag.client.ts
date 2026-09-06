@@ -1,4 +1,12 @@
-import ReactGA from "react-ga4";
+import ReactGA4 from "react-ga4";
+
+// react-ga4 is a CommonJS bundle that flags itself with `__esModule` and puts
+// the instance on `exports.default`. Vite 8's Rolldown dep optimizer hands that
+// raw `exports` object to the browser in dev instead of unwrapping it, so the
+// default import arrives as `{ default, ReactGAImplementation }` and every
+// method is undefined. Production builds unwrap it correctly, so accept both.
+type GA4 = typeof ReactGA4;
+const ReactGA: GA4 = (ReactGA4 as GA4 & { default?: GA4 }).default ?? ReactGA4;
 
 const GA_TRACKING_ID = import.meta.env.VITE_GA_ID || "G-3203CF2NDT";
 
