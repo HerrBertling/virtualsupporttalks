@@ -43,6 +43,13 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
       }
       return item;
     });
+
+  // The Foundation sits its CTA at the end of the bar, immediately before the
+  // language switcher, so it reads as an action rather than another nav link.
+  const orderedNavItems = [
+    ...navItems.filter((item) => !item.isCta),
+    ...navItems.filter((item) => item.isCta),
+  ];
   return (
     <nav className="relative z-30 flex items-center lg:max-w-4xl">
       <button
@@ -96,7 +103,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
           open ? "-translate-x-[5vw]" : "translate-x-[90vw]"
         }`}
       >
-        {navItems.map((item) => {
+        {orderedNavItems.map((item) => {
           return (
             <NavItem key={item.id} to={item.path} cta={item.isCta}>
               {item.title}
