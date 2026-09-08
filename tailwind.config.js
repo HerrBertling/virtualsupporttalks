@@ -32,7 +32,7 @@ const scale = {
   eyebrow: "1rem", // 16px, uppercase, tracked out
   h1: "clamp(2.5rem, 1.6rem + 4.5vw, 4.125rem)", // → 66px
   h2: "clamp(2rem, 1.5rem + 2.5vw, 2.625rem)", // → 42px
-  h3: "clamp(1.5rem, 1.3rem + 1vw, 1.75rem)", // → 28px
+  h3: "clamp(1.25rem, 1.15rem + 0.5vw, 1.375rem)", // → 22px
   body: "1.125rem", // 18px
 };
 
