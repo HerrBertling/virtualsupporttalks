@@ -1,5 +1,6 @@
 import type { Entry } from "contentful";
 import type { TypeCenteredContentSkeleton } from "../../../types/contentful";
+import CleverButton from "../CleverButton";
 import ContentfulRichText from "../ContentfulRichText";
 
 type ContentCenteredProps = Entry<
@@ -13,22 +14,27 @@ export default function ContentBlockCentered({
   buttonText,
   buttonUrl,
 }: ContentCenteredProps) {
-  const colors =
-    bgcolor === "gray" ? "bg-slate-400" : bgcolor === "green" ? "bg-vsp-500" : "bg-white";
+  // "gray" is now the Foundation's tinted section band, at our hue: a near-white
+  // wash that separates sections without introducing a second colour.
+  const colors = bgcolor === "gray" ? "bg-vsp-25" : bgcolor === "green" ? "bg-vsp-500" : "bg-white";
 
-  const useWhiteProse = bgcolor !== "white";
+  const useWhiteProse = bgcolor === "green";
   const hasButton = buttonText && buttonUrl;
 
   return (
     <section
-      className={`py-12 px-4 md:px-12 ${colors} ${
+      className={`py-20 px-4 md:px-12 md:py-28 ${colors} ${
         hasButton && "grid grid-cols-1 justify-items-center gap-4 pb-12"
       }`}
     >
       <div className="mx-auto w-full max-w-4xl">
         {content && <ContentfulRichText content={content} useWhiteProse={useWhiteProse} />}
       </div>
-      {hasButton && <button type="button">{buttonText}</button>}
+      {hasButton && (
+        <CleverButton to={buttonUrl} variant={bgcolor === "green" ? "inverted" : "primary"}>
+          {buttonText}
+        </CleverButton>
+      )}
     </section>
   );
 }
