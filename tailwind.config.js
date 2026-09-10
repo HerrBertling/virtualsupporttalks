@@ -46,6 +46,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        // The Foundation's near-black. White on #9cc317 is 2.05:1 and green-700 on
+        // white is 3.0:1 — both fail WCAG AA for button text. Ink on green is 9.1:1.
+        ink: "#001221",
         vsp: {
           // Foundation-style tinted section band, at our hue instead of theirs.
           25: "#f9fbf0",
