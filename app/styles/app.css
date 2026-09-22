@@ -40,6 +40,13 @@
 
 @tailwind utilities;
 
+@layer base {
+  body {
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+}
+
 @layer components {
   .headerBlockHeight {
     height: clamp(200px, 35vh, 300px);

@@ -9,7 +9,9 @@ type TestimonialsProps = Entry<
 function Testimonials({ title }: TestimonialsProps) {
   return (
     <section className="mx-auto max-w-7xl px-4 pt-12 md:px-12">
-      <h2 className="font-headline text-4xl font-bold">{title}</h2>
+      <h2 className="font-headline text-[clamp(2rem,1.5rem+2.5vw,2.625rem)] font-bold leading-[1.4]">
+        {title}
+      </h2>
     </section>
   );
 }

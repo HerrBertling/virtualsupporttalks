@@ -1,5 +1,6 @@
 import type { Entry } from "contentful";
 import type { TypeHeaderBlockSkeleton } from "../../../types/contentful";
+import CleverButton from "../CleverButton";
 
 type HeaderProps = Entry<TypeHeaderBlockSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">["fields"];
 
@@ -22,7 +23,7 @@ export default function Header({ backgroundcolor, image, buttonUrl, buttonText }
         <div className="w-full bg-contain bg-center bg-no-repeat" style={styleObject}></div>
         {hasButton && (
           <div>
-            <button type="button">{buttonText}</button>
+            <CleverButton to={buttonUrl}>{buttonText}</CleverButton>
           </div>
         )}
       </header>

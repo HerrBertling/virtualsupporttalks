@@ -28,14 +28,14 @@ export default function BlogpostCard({
         <CleverLink to={`/${locale}/blog/${slug}`}>
           <img
             src={image}
-            className="h-auto max-h-40 w-full rounded-lg object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+            className="h-auto max-h-40 w-full rounded-card object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
             alt={String(title)}
           />
         </CleverLink>
       ) : (
         <CleverLink
           to={`/${locale}/blog/${slug}`}
-          className={`h-40 max-h-40 w-full rounded-lg bg-vsp-500 bg-contain bg-center bg-no-repeat object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
+          className={`h-40 max-h-40 w-full rounded-card bg-vsp-500 bg-contain bg-center bg-no-repeat object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
         >
           &nbsp;
         </CleverLink>

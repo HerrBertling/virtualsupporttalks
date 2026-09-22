@@ -15,3 +15,8 @@ node_modules
 .idea
 .vscode
 .vs
+# Playwright MCP scratch output
+.playwright-mcp/
+
+# Local agent worktrees
+.claude/worktrees/

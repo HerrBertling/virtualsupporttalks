@@ -55,7 +55,7 @@ export default function Component({ actionData }: Route.ComponentProps) {
           </label>
           <button
             type="submit"
-            className="font-inherit inline-flex items-center justify-center rounded-md py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg bg-vsp-500"
+            className="font-inherit inline-flex items-center justify-center rounded-md py-2 px-4 text-ink no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg bg-vsp-500"
           >
             Download anfragen
           </button>
@@ -66,7 +66,7 @@ export default function Component({ actionData }: Route.ComponentProps) {
             onClick={() => {
               downloadCSV();
             }}
-            className="font-inherit inline-flex items-center justify-center rounded-md py-2 px-4 text-white no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg bg-vsp-500"
+            className="font-inherit inline-flex items-center justify-center rounded-md py-2 px-4 text-ink no-underline transition-opacity duration-300 hover:opacity-90 focus:opacity-90 active:opacity-90 md:text-lg bg-vsp-500"
           >
             CSV herunterladen
           </button>

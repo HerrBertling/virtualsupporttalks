@@ -3,6 +3,14 @@ import type { INavigationItem, LOCALE_CODE } from "types/contentful";
 import LanguageSwitcher from "../LanguageSwitcher";
 import NavItem from "./NavItem";
 
+/*
+ * The Fürstenberg Foundation carries its primary CTA as a pill in the nav bar;
+ * ours is "Ich brauche Redezeit!". The slug is stable across all four locales
+ * (de uses ich-suche-redezeit, en/ru/uk use i-need-speaking-time), so match on
+ * that rather than on nav position or the translated label.
+ */
+const CTA_SLUGS = ["ich-suche-redezeit", "i-need-speaking-time"];
+
 export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang: LOCALE_CODE }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -26,6 +34,7 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
         title: title ?? "",
         path,
         id,
+        isCta: CTA_SLUGS.some((slug) => path.endsWith(`/${slug}`)),
       };
     })
     .filter((item) => {
@@ -34,6 +43,13 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
       }
       return item;
     });
+
+  // The Foundation sits its CTA at the end of the bar, immediately before the
+  // language switcher, so it reads as an action rather than another nav link.
+  const orderedNavItems = [
+    ...navItems.filter((item) => !item.isCta),
+    ...navItems.filter((item) => item.isCta),
+  ];
   return (
     <nav className="relative z-30 flex items-center lg:max-w-4xl">
       <button
@@ -83,13 +99,13 @@ export default function Navigation({ nav, lang }: { nav: INavigationItem[]; lang
         </span>
       </button>
       <ul
-        className={`fixed top-24 right-0 z-30 flex w-screen max-w-[90vw] flex-col overflow-hidden rounded-md bg-white shadow-2xl transition-transform duration-300 lg:static lg:top-auto lg:left-auto lg:h-auto lg:w-auto lg:transform-none lg:flex-row lg:items-center lg:justify-end lg:rounded-none lg:bg-transparent lg:shadow-none ${
+        className={`fixed top-24 right-0 z-30 flex w-screen max-w-[90vw] flex-col overflow-hidden rounded-panel bg-white shadow-2xl transition-transform duration-300 lg:static lg:top-auto lg:left-auto lg:h-auto lg:w-auto lg:transform-none lg:flex-row lg:items-center lg:justify-end lg:rounded-none lg:bg-transparent lg:shadow-none ${
           open ? "-translate-x-[5vw]" : "translate-x-[90vw]"
         }`}
       >
-        {navItems.map((item) => {
+        {orderedNavItems.map((item) => {
           return (
-            <NavItem key={item.id} to={item.path}>
+            <NavItem key={item.id} to={item.path} cta={item.isCta}>
               {item.title}
             </NavItem>
           );

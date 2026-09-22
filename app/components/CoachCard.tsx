@@ -27,7 +27,7 @@ function CoachCardRoot({ children, emergency, coachName }: CoachCardRootProps) {
 
   return (
     <CoachCardContext.Provider value={{ coachName }}>
-      <article className="mb-3 break-inside-avoid relative grid grid-cols-[4rem_1fr] grid-rows-[4rem_1fr] gap-3 overflow-hidden rounded-md bg-white px-3 py-3 shadow-lg">
+      <article className="mb-3 break-inside-avoid relative grid grid-cols-[4rem_1fr] grid-rows-[4rem_1fr] gap-3 overflow-hidden rounded-card bg-white px-3 py-3 shadow-vsp [clip-path:inset(0_round_20px)]">
         {children}
         {emergency && (
           <span className="absolute right-4 top-0 w-48 translate-x-16 translate-y-8 rotate-45 transform bg-orange-300 py-1 text-center text-xs text-orange-900 shadow-md">
@@ -227,7 +227,7 @@ function ContactButton({ href, type, label }: ContactButtonProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex w-full flex-grow items-center justify-center rounded-md border border-vsp-400 py-2 text-sm text-slate-600 no-underline transition-colors duration-200 hover:border-vsp-700 hover:bg-vsp-100 hover:text-vsp-900 focus:border-vsp-700 focus:bg-vsp-100 focus:text-vsp-900 active:border-vsp-700 active:bg-vsp-100 active:text-vsp-900"
+      className="flex w-full flex-grow items-center justify-center rounded-full border-2 border-vsp-400 py-2 text-sm text-slate-600 no-underline transition-colors duration-200 hover:border-vsp-700 hover:bg-vsp-100 hover:text-vsp-900 focus:border-vsp-700 focus:bg-vsp-100 focus:text-vsp-900 active:border-vsp-700 active:bg-vsp-100 active:text-vsp-900"
       onClick={() => trackCoachClick({ type, coachName: coachName || "Unknown" })}
     >
       {icons[type]}
